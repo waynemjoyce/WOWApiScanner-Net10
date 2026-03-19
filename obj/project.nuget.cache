@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "UXsp5z1+P98=",
+  "success": true,
+  "projectFilePath": "C:\\Dev\\VSRepo\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.5\\microsoft.extensions.configuration.10.0.5.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.5\\microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration.binder\\10.0.5\\microsoft.extensions.configuration.binder.10.0.5.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\10.0.5\\microsoft.extensions.configuration.fileextensions.10.0.5.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration.json\\10.0.5\\microsoft.extensions.configuration.json.10.0.5.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\10.0.5\\microsoft.extensions.fileproviders.abstractions.10.0.5.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\10.0.5\\microsoft.extensions.fileproviders.physical.10.0.5.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\10.0.5\\microsoft.extensions.filesystemglobbing.10.0.5.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.5\\microsoft.extensions.primitives.10.0.5.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\restsharp\\114.0.0\\restsharp.114.0.0.nupkg.sha512",
+    "C:\\Users\\wayne\\.nuget\\packages\\winforms.datavisualization\\1.10.0\\winforms.datavisualization.1.10.0.nupkg.sha512"
+  ],
+  "logs": []
+}
