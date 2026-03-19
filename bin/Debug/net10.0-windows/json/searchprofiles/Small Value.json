@@ -1,0 +1,18 @@
+{
+  "ProfileName": "Small Value",
+  "InToolbar": true,
+  "SearchMaxG": 98,
+  "WorthAtLeast": 15000,
+  "SearchPercentage": 5,
+  "MinSellRate": -1,
+  "IconIndex": 190,
+  "SearchFrequency": 1,
+  "SearchFraction": 1,
+  "MinItemLevel": 0,
+  "MaxItemLevel": 9999,
+  "Threshold": 20,
+  "StringFilter": "",
+  "MainOptions": 100,
+  "Class": 563,
+  "Quality": 28
+}

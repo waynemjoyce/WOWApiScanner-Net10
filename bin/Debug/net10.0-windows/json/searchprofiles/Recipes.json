@@ -1,0 +1,18 @@
+{
+  "ProfileName": "Recipes",
+  "InToolbar": true,
+  "SearchMaxG": 500,
+  "WorthAtLeast": 20000,
+  "SearchPercentage": 2,
+  "MinSellRate": -1,
+  "IconIndex": 41,
+  "SearchFrequency": 1,
+  "SearchFraction": 0,
+  "MinItemLevel": 0,
+  "MaxItemLevel": 9999,
+  "Threshold": 20,
+  "StringFilter": "",
+  "MainOptions": 100,
+  "Class": 512,
+  "Quality": 28
+}

@@ -1,0 +1,18 @@
+{
+  "ProfileName": "[Default]",
+  "InToolbar": true,
+  "SearchMaxG": 100,
+  "WorthAtLeast": 5000,
+  "SearchPercentage": 5,
+  "MinSellRate": -1,
+  "IconIndex": 94,
+  "SearchFrequency": 0,
+  "SearchFraction": 1,
+  "MinItemLevel": 0,
+  "MaxItemLevel": 9999,
+  "Threshold": 20,
+  "StringFilter": "",
+  "MainOptions": 108,
+  "Class": 0,
+  "Quality": 30
+}

@@ -1,0 +1,104 @@
+{
+  "ScriptName": "wowahbuy",
+  "Events": [
+    {
+      "EventName": "Activate",
+      "EventType": "Activate",
+      "MouseClickType": "Left",
+      "X": 0,
+      "Y": 0,
+      "DelayBefore": 300,
+      "DelayBetween": 0,
+      "DelayAfter": 300,
+      "KeysToSend": "NA"
+    },
+    {
+      "EventName": "Click AH search box",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 8406,
+      "Y": 322,
+      "DelayBefore": 0,
+      "DelayBetween": 200,
+      "DelayAfter": 200,
+      "KeysToSend": "NA"
+    },
+    {
+      "EventName": "Select all",
+      "EventType": "SendKeys",
+      "MouseClickType": "Left",
+      "X": 100,
+      "Y": 200,
+      "DelayBefore": 0,
+      "DelayBetween": 0,
+      "DelayAfter": 200,
+      "KeysToSend": "^a"
+    },
+    {
+      "EventName": "Paste from clipboard",
+      "EventType": "SendKeys",
+      "MouseClickType": "Left",
+      "X": 100,
+      "Y": 200,
+      "DelayBefore": 0,
+      "DelayBetween": 0,
+      "DelayAfter": 200,
+      "KeysToSend": "^v"
+    },
+    {
+      "EventName": "Click search",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 9184,
+      "Y": 322,
+      "DelayBefore": 0,
+      "DelayBetween": 200,
+      "DelayAfter": 200,
+      "KeysToSend": "NA"
+    },
+    {
+      "EventName": "Click top item",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 8584,
+      "Y": 462,
+      "DelayBefore": 0,
+      "DelayBetween": 200,
+      "DelayAfter": 200,
+      "KeysToSend": "NA"
+    },
+    {
+      "EventName": "Select item",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 8554,
+      "Y": 730,
+      "DelayBefore": 0,
+      "DelayBetween": 200,
+      "DelayAfter": 200,
+      "KeysToSend": "NA"
+    },
+    {
+      "EventName": "Click buyout",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 9226,
+      "Y": 1274,
+      "DelayBefore": 0,
+      "DelayBetween": 200,
+      "DelayAfter": 200,
+      "KeysToSend": "NA"
+    },
+    {
+      "EventName": "Move to accept button",
+      "EventType": "MouseMove",
+      "MouseClickType": "Left",
+      "X": 9472,
+      "Y": 406,
+      "DelayBefore": 0,
+      "DelayBetween": 0,
+      "DelayAfter": 200,
+      "KeysToSend": "Test"
+    }
+  ]
+}

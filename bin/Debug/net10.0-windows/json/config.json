@@ -1,0 +1,213 @@
+{
+  "BlizzClientID": "364aef7289e24a3b838c778baf56133c",
+  "BlizzClientSecret": "3OlsVa5pklqoI2VvHYc2kpfagY8itsAg",
+  "TSMKey": "A7iR0Pu0leO4Fl_lBjqZc1rl0GMt8ms8",
+  "TSMClientID": "c260f00d-1071-409a-992f-dda2e5498536",
+  "DefaultSearch": "Small Value",
+  "OnlyFirst": 0,
+  "LatestXpacItemId": 21000,
+  "RefreshAuctionsOnStart": false,
+  "WowInteraction": false,
+  "Realms": [
+    {
+      "RealmName": "Aerie Peak",
+      "RealmId": 1426,
+      "BackColor": "#A64D79"
+    },
+    {
+      "RealmName": "Alleria",
+      "RealmId": 52,
+      "BackColor": "#660000"
+    },
+    {
+      "RealmName": "Area 52",
+      "RealmId": 3676,
+      "BackColor": "#674EA6"
+    },
+    {
+      "RealmName": "Black Dragonflight",
+      "RealmId": 96,
+      "BackColor": "#434343"
+    },
+    {
+      "RealmName": "Bleeding Hollow",
+      "RealmId": 73,
+      "BackColor": "#990000"
+    },
+    {
+      "RealmName": "Boulderfist",
+      "RealmId": 1185,
+      "BackColor": "#6AA84F"
+    },
+    {
+      "RealmName": "Cenarion Circle",
+      "RealmId": 125,
+      "BackColor": "#3C78D8"
+    },
+    {
+      "RealmName": "Dalaran",
+      "RealmId": 3683,
+      "BackColor": "#FD7800"
+    },
+    {
+      "RealmName": "Dawnbringer",
+      "RealmId": 160,
+      "BackColor": "#A64D79"
+    },
+    {
+      "RealmName": "Darrowmere",
+      "RealmId": 113,
+      "BackColor": "#434343"
+    },
+    {
+      "RealmName": "Elune",
+      "RealmId": 67,
+      "BackColor": "#DBA40A"
+    },
+    {
+      "RealmName": "Emerald Dream",
+      "RealmId": 162,
+      "BackColor": "#6AA84F"
+    },
+    {
+      "RealmName": "Fizzcrank",
+      "RealmId": 106,
+      "BackColor": "#FD7800"
+    },
+    {
+      "RealmName": "Garithos",
+      "RealmId": 1138,
+      "BackColor": "#674EA6"
+    },
+    {
+      "RealmName": "Ghostlands",
+      "RealmId": 1175,
+      "BackColor": "#434343"
+    },
+    {
+      "RealmName": "Hakkar",
+      "RealmId": 1136,
+      "BackColor": "#6AA84F"
+    },
+    {
+      "RealmName": "Hyjal",
+      "RealmId": 3661,
+      "BackColor": "#660000"
+    },
+    {
+      "RealmName": "Illidan",
+      "RealmId": 57,
+      "BackColor": "#DBA40A"
+    },
+    {
+      "RealmName": "Jaedenar",
+      "RealmId": 1129,
+      "BackColor": "#3C78D8"
+    },
+    {
+      "RealmName": "Kil\u0027Jaeden",
+      "RealmId": 9,
+      "BackColor": "#674EA6"
+    },
+    {
+      "RealmName": "Kel\u0027Thuzad",
+      "RealmId": 3693,
+      "BackColor": "#990000"
+    },
+    {
+      "RealmName": "Lightbringer",
+      "RealmId": 3694,
+      "BackColor": "#434343"
+    },
+    {
+      "RealmName": "Mal\u0027Ganis",
+      "RealmId": 3684,
+      "BackColor": "#FD7800"
+    },
+    {
+      "RealmName": "Moon Guard",
+      "RealmId": 3675,
+      "BackColor": "#6AA84F"
+    },
+    {
+      "RealmName": "Nazjatar",
+      "RealmId": 77,
+      "BackColor": "#434343"
+    },
+    {
+      "RealmName": "Nordrassil",
+      "RealmId": 121,
+      "BackColor": "#A64D79"
+    },
+    {
+      "RealmName": "Onyxia",
+      "RealmId": 104,
+      "BackColor": "#990000"
+    },
+    {
+      "RealmName": "Perenolde",
+      "RealmId": 1168,
+      "BackColor": "#674EA6"
+    },
+    {
+      "RealmName": "Proudmoore",
+      "RealmId": 5,
+      "BackColor": "#DBA40A"
+    },
+    {
+      "RealmName": "Sargeras",
+      "RealmId": 76,
+      "BackColor": "#6AA84F"
+    },
+    {
+      "RealmName": "Silvermoon",
+      "RealmId": 86,
+      "BackColor": "#FD7800"
+    },
+    {
+      "RealmName": "Stormrage",
+      "RealmId": 60,
+      "BackColor": "#434343"
+    },
+    {
+      "RealmName": "Thrall",
+      "RealmId": 3678,
+      "BackColor": "#674EA6"
+    },
+    {
+      "RealmName": "Tichondrius",
+      "RealmId": 11,
+      "BackColor": "#FD7800"
+    },
+    {
+      "RealmName": "Uldum",
+      "RealmId": 84,
+      "BackColor": "#990000"
+    },
+    {
+      "RealmName": "Vashj",
+      "RealmId": 127,
+      "BackColor": "#434343"
+    },
+    {
+      "RealmName": "Warsong",
+      "RealmId": 71,
+      "BackColor": "#6AA84F"
+    },
+    {
+      "RealmName": "Wildhammer",
+      "RealmId": 53,
+      "BackColor": "#674EA6"
+    },
+    {
+      "RealmName": "Wyrmrest Accord",
+      "RealmId": 1171,
+      "BackColor": "#C43F1D"
+    },
+    {
+      "RealmName": "Zul\u0027jin",
+      "RealmId": 61,
+      "BackColor": "#DBA40A"
+    }
+  ]
+}

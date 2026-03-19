@@ -1,0 +1,45 @@
+{
+  "ScriptName": "TestScript2",
+  "Events": [
+    {
+      "EventType": "MouseMove",
+      "MouseClickType": "Left",
+      "X": 100,
+      "Y": 200,
+      "DelayBefore": 500,
+      "DelayBetween": 500,
+      "DelayAfter": 500,
+      "KeysToSend": "Test"
+    },
+    {
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 100,
+      "Y": 200,
+      "DelayBefore": 500,
+      "DelayBetween": 500,
+      "DelayAfter": 500,
+      "KeysToSend": "Test"
+    },
+    {
+      "EventType": "Activate",
+      "MouseClickType": "Left",
+      "X": 100,
+      "Y": 200,
+      "DelayBefore": 500,
+      "DelayBetween": 500,
+      "DelayAfter": 500,
+      "KeysToSend": "Test"
+    },
+    {
+      "EventType": "SendKeys",
+      "MouseClickType": "Left",
+      "X": 100,
+      "Y": 200,
+      "DelayBefore": 500,
+      "DelayBetween": 500,
+      "DelayAfter": 500,
+      "KeysToSend": "Test"
+    }
+  ]
+}
