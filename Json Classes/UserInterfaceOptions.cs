@@ -17,7 +17,7 @@ namespace WOWAuctionApi_Net10
         public ToggleAttributes? Toggle { get; set; }
 
         [JsonIgnore]
-        public SystemColorMode ColorMode = HelpAppSettings.GetColorMode();   
+        public SystemColorMode ColorMode = AppSettingsHelper.GetColorMode();   
 
         public void Save()
         {

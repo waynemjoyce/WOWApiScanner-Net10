@@ -47,17 +47,17 @@ namespace WOWAuctionApi_Net10
                 {
                     case InteractionEventType.MouseMove:
                     default:
-                        HelpMouse.Move(ev.X.Value, ev.Y.Value, ev.DelayBefore.Value, ev.DelayAfter.Value);
+                        MouseHelper.Move(ev.X.Value, ev.Y.Value, ev.DelayBefore.Value, ev.DelayAfter.Value);
                         break;
 
                     case InteractionEventType.MouseMoveAndClick:
-                        HelpMouse.MoveAndClick(ev.X.Value, ev.Y.Value, ev.MouseClickType, 
+                        MouseHelper.MoveAndClick(ev.X.Value, ev.Y.Value, ev.MouseClickType, 
                             ev.DelayBefore.Value, ev.DelayBetween.Value, ev.DelayAfter.Value);
 
                         break;
 
                     case InteractionEventType.Activate:
-                        HelpProc.ActivateApp(ProcessID, ev.DelayBefore.Value, ev.DelayAfter.Value);
+                        ProcHelper.ActivateApp(ProcessID, ev.DelayBefore.Value, ev.DelayAfter.Value);
                         break;
 
                     case InteractionEventType.SendKeys:

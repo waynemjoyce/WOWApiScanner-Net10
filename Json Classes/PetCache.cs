@@ -4,12 +4,17 @@ using System.Text.Json.Serialization;
 
 namespace WOWAuctionApi_Net10
 {
-    public class PetCache : JsonBase
+    public class PetCache : CacheBase
     {
         public List<Pet> Pets { get; set; }
 
         [JsonIgnore]
         public List<long> PetIds = new List<long>();
+
+        public PetCache()
+        {
+            Pets = new List<Pet>();
+        }
 
         public void FillPetIds()
         {
@@ -30,6 +35,33 @@ namespace WOWAuctionApi_Net10
         {
             SaveToFile(Paths.PetCache);
         }
+        public void SaveAsNewlyAdded(SortDirection direction = SortDirection.Ascending)
+        {
+            Sort(direction);
+            SaveToFile($@"{Paths.PetCachePath}newlyadded-{DateTime.Now.ToString("-yyyyMMdd_mmss")}.json");
+        }
+
+        public void Sort(SortDirection direction)
+        {
+            switch (direction)
+            {
+                case SortDirection.Ascending:
+                default:
+                    this.Pets = this.Pets.OrderBy(pet => pet.Id).ToList();
+                    break;
+                case SortDirection.Descending:
+                    this.Pets = this.Pets.OrderByDescending(pet => pet.Id).ToList();
+                    break;
+            }
+
+        }
+
+        public void SortAndSave(SortDirection direction = SortDirection.Ascending)
+        {
+            Sort(direction);
+            this.Save();
+        }
+
 
         public static PetCache Load()
         {
@@ -51,24 +83,22 @@ namespace WOWAuctionApi_Net10
         {
 
         }
-        public static void BuildPetCache(
+        public static (int newPets, PetCache newCache) BuildPetCache(
             ToolStripProgressBar tspCache,
             Label lblCache,
-            Dictionary<long, TsmItem> regionPets,
-            string accessToken,
+            FormCache formCache,
             bool updateOnly)
         {
-            Cursor.Current = Cursors.WaitCursor;
             BackupPetCache();
 
-            string itemName;
             int count = 0;
             int hundredCount = 0;
             int addedCount = 0;
-            int regionCount = regionPets.Count;
+            int regionCount = formCache.Dictionaries.RegionPets.Count;
             tspCache.Maximum = regionCount;
 
             PetCache petCache = new PetCache();
+            PetCache newlyAddedCache = new PetCache();
 
             if (updateOnly)
             {
@@ -81,7 +111,7 @@ namespace WOWAuctionApi_Net10
                 petCache.Pets.Clear();
             }
 
-            foreach (KeyValuePair<long, TsmItem> item in regionPets)
+            foreach (KeyValuePair<long, TsmItem> item in formCache.Dictionaries.RegionPets)
             {
                 count++;
                 hundredCount++;
@@ -90,7 +120,7 @@ namespace WOWAuctionApi_Net10
                 {
                     hundredCount = 0;
                     tspCache.Value = count;
-                    lblCache.Text = "Count: " + count.ToString();
+                    lblCache.Text = $"Updating pet cache from region items, processed: {count}";
                     Application.DoEvents();
                 }
 
@@ -99,8 +129,8 @@ namespace WOWAuctionApi_Net10
                     if (((updateOnly) && (!(petCache.PetIds.Contains(item.Key))))
                         || (!updateOnly))
                     {
-                        addedCount += 1;
-                        BlizzPet blizzPet = API_Blizzard.GetBlizzPetFromItemId(accessToken, item.Key);
+
+                        BlizzPet blizzPet = API_Blizzard.GetBlizzPetFromItemId(formCache.BlizzAccessToken, item.Key);
 
                         if (blizzPet != null)
                         {
@@ -122,6 +152,12 @@ namespace WOWAuctionApi_Net10
                             pet1.Description = blizzPet.description;
 
                             petCache.AddPet(pet1);
+                            if (updateOnly)
+                            {
+                                newlyAddedCache.AddPet(pet1);
+                            }
+                            addedCount += 1;
+                            addedCount += 1;
                         }
                     }
                 }
@@ -131,11 +167,14 @@ namespace WOWAuctionApi_Net10
             }
 
             petCache.Save();
+            if (updateOnly && newlyAddedCache.Pets.Count > 0)
+            {
+                newlyAddedCache.SaveAsNewlyAdded(formCache.Config.SortCacheOrderDefault.Value);
+            }
             BackupPetCache();
             tspCache.Value = tspCache.Maximum;
             Application.DoEvents();
-            lblCache.Text = "Completed. " + count.ToString() + " items scanned, " + addedCount.ToString() + " new pets added.";
-            Cursor.Current = Cursors.Default;
+            return (addedCount, petCache);
         }
     }
     public class Pet

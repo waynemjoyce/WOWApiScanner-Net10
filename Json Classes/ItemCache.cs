@@ -1,15 +1,20 @@
-﻿using System.Text.Json;
+﻿using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace WOWAuctionApi_Net10
 {
-    public class ItemCache : JsonBase
+    public class ItemCache : CacheBase
     {
         public List<Item> Items { get; set; }
 
         [JsonIgnore]
         public List<long> ItemIds = new List<long>();
 
+        public ItemCache()
+        {
+            Items = new List<Item>();
+        }
         public void FillItemIds()
         {
             ItemIds.Clear();
@@ -30,6 +35,33 @@ namespace WOWAuctionApi_Net10
             SaveToFile(Paths.ItemCache);
         }
 
+        public void SaveAsNewlyAdded(SortDirection direction = SortDirection.Ascending)
+        {
+            Sort(direction);
+            SaveToFile($@"{Paths.ItemCachePath}newlyadded-{DateTime.Now.ToString("-yyyyMMdd_mmss")}.json");
+        }
+
+        public void Sort(SortDirection direction)
+        {
+            switch (direction)
+            {
+                case SortDirection.Ascending: default:
+                    this.Items = this.Items.OrderBy(item => item.Id).ToList();
+                    break;
+                case SortDirection.Descending:
+                    this.Items = this.Items.OrderByDescending(item => item.Id).ToList();
+                    break;
+            }
+
+        }
+
+        public void SortAndSave(SortDirection direction = SortDirection.Ascending)
+        {
+            Sort(direction);
+            this.Save();
+        }
+
+
         public static ItemCache Load()
         {
             return ItemCache.LoadFromFile(Paths.ItemCache);
@@ -46,37 +78,36 @@ namespace WOWAuctionApi_Net10
         {
 
         }
-        public static void BuildItemCache(
+        public static (int newItems, ItemCache newCache) BuildItemCache(
             ToolStripProgressBar tspCache,
             Label lblCache,
-            Dictionary<long, TsmItem> regionItems,
-            string accessToken,
+            FormCache formCache,
             bool updateOnly)
         {
-            Cursor.Current = Cursors.WaitCursor;
             BackupItemCache();
 
             string itemName;
             int count = 0;
             int hundredCount = 0;
             int addedCount = 0;
-            int regionCount = regionItems.Count;
+            int regionCount = formCache.Dictionaries.RegionItems.Count;
             tspCache.Maximum = regionCount;
 
-            ItemCache ic = new ItemCache();
+            ItemCache itemCache = new ItemCache();
+            ItemCache newlyAddedCache = new ItemCache();
 
             if (updateOnly)
             {
-                ic = ItemCache.Load();
-                ic.FillItemIds();
+                itemCache = ItemCache.Load();
+                itemCache.FillItemIds();
             }
             else
             {
-                ic.Items = new List<Item>();
-                ic.Items.Clear();
+                itemCache.Items = new List<Item>();
+                itemCache.Items.Clear();
             }
 
-            foreach (KeyValuePair<long, TsmItem> item in regionItems)
+            foreach (KeyValuePair<long, TsmItem> item in formCache.Dictionaries.RegionItems)
             {
                 count++;
                 hundredCount++;
@@ -85,17 +116,17 @@ namespace WOWAuctionApi_Net10
                 {
                     hundredCount = 0;
                     tspCache.Value = count;
-                    lblCache.Text = "Count: " + count.ToString();
+                    lblCache.Text = $"Updating item cache from region items, processed: {count}";
                     Application.DoEvents();
                 }
 
                 try
                 {
-                    if (((updateOnly) && (!(ic.ItemIds.Contains(item.Key))))
+                    if (((updateOnly) && (!(itemCache.ItemIds.Contains(item.Key))))
                         || (!updateOnly))
                     {
-                        addedCount += 1;
-                        BlizzItem bi = API_Blizzard.GetBlizzItemFromItemId(accessToken, item.Key);
+                        
+                        BlizzItem bi = API_Blizzard.GetBlizzItemFromItemId(formCache.BlizzAccessToken, item.Key);
 
                         if (bi != null)
                         {
@@ -129,7 +160,12 @@ namespace WOWAuctionApi_Net10
                             item1.Level = bi.level.Value;
                             item1.RequiredLevel = bi.required_level.Value;
 
-                            ic.AddItem(item1);
+                            itemCache.AddItem(item1);
+                            if (updateOnly)
+                            {
+                                newlyAddedCache.AddItem(item1); 
+                            }
+                            addedCount += 1;
                         }
                     }
                 }
@@ -138,12 +174,14 @@ namespace WOWAuctionApi_Net10
 
             }
 
-            ic.Save();
-            BackupItemCache();
+            itemCache.Save();
+            if (updateOnly && newlyAddedCache.Items.Count > 0)
+            {
+                newlyAddedCache.SaveAsNewlyAdded(formCache.Config.SortCacheOrderDefault.Value);
+            }
             tspCache.Value = tspCache.Maximum;
             Application.DoEvents();
-            lblCache.Text = "Completed. " + count.ToString() + " items scanned, " + addedCount.ToString() + " new items added.";
-            Cursor.Current = Cursors.Default;
+            return (addedCount, itemCache);
         }
     }
     public class Item

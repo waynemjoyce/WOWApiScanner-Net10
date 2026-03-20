@@ -18,6 +18,12 @@ namespace WOWAuctionApi_Net10
 
         public long? LatestXpacItemId { get; set; }
 
+        public SortDirection? SortCacheOrderDefault { get; set; }
+
+        public bool? SortCacheOnUpdate { get; set; }
+
+        public bool? UpdateAllDataOnStart { get; set; }
+
         public bool? RefreshAuctionsOnStart { get; set; }
 
         public bool? WowInteraction { get; set; }
@@ -29,7 +35,7 @@ namespace WOWAuctionApi_Net10
         {
             var options = new JsonSerializerOptions
             {
-                Converters = { new ColorConverter() }
+                Converters = { new ColorConverter(), new JsonStringEnumConverter() }
             };
             var returnRI = JsonSerializer.Deserialize<Config>(System.IO.File.ReadAllText(fileName), options);
             return returnRI;

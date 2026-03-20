@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UXsp5z1+P98=",
+  "dgSpecHash": "TDBu0d8kRNU=",
   "success": true,
-  "projectFilePath": "C:\\Dev\\VSRepo\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
+  "projectFilePath": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.5\\microsoft.extensions.configuration.10.0.5.nupkg.sha512",
     "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.5\\microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512",

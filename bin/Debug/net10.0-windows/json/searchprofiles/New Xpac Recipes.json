@@ -1,0 +1,18 @@
+{
+  "ProfileName": "New Xpac Recipes",
+  "InToolbar": true,
+  "SearchMaxG": 100,
+  "WorthAtLeast": 20000,
+  "SearchPercentage": 5,
+  "MinSellRate": -1,
+  "IconIndex": 72,
+  "SearchFrequency": 1,
+  "SearchFraction": 0,
+  "MinItemLevel": 0,
+  "MaxItemLevel": 9999,
+  "Threshold": 20,
+  "StringFilter": "",
+  "MainOptions": 102,
+  "Class": 512,
+  "Quality": 28
+}

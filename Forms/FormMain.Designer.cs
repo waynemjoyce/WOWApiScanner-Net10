@@ -30,15 +30,15 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             lvRealms = new ListView();
             colRealms_S = new ColumnHeader();
             colRealms_RealmName = new ColumnHeader();
@@ -55,13 +55,21 @@
             tsbDeleteSearch = new ToolStripButton();
             tsbSearchDefault = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
+            tsbUpdateAllData = new ToolStripButton();
+            toolStripSeparator7 = new ToolStripSeparator();
+            tsbWriteRegionData = new ToolStripButton();
+            toolStripSeparator5 = new ToolStripSeparator();
             tsddItemCache = new ToolStripDropDownButton();
             tsmUpdateItemCache = new ToolStripMenuItem();
+            tsmSortItemCacheAsc = new ToolStripMenuItem();
+            tsmSortItemCacheDesc = new ToolStripMenuItem();
             tsmBuildItemCache = new ToolStripMenuItem();
+            toolStripSeparator6 = new ToolStripSeparator();
             tsddPets = new ToolStripDropDownButton();
             tsmUpdatePetCache = new ToolStripMenuItem();
+            tsmSortPetCacheAsc = new ToolStripMenuItem();
+            tsmSortPetCacheDesc = new ToolStripMenuItem();
             tsmBuildPetCache = new ToolStripMenuItem();
-            tsbWriteRegionData = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             tsbThemeLight = new ToolStripButton();
             tsbThemeDark = new ToolStripButton();
@@ -121,8 +129,12 @@
             btnSearch_Quality_OnOff = new Button();
             label13 = new Label();
             panel2 = new Panel();
+            tslVersion = new Label();
+            tslDataCountPets = new Label();
+            tslDataCountItems = new Label();
+            tslDataCountRegion = new Label();
             tslQuickSearches = new Label();
-            lblStatus = new Label();
+            lblProgress = new Label();
             label18 = new Label();
             label17 = new Label();
             label16 = new Label();
@@ -180,7 +192,7 @@
             // toolStripMain
             // 
             toolStripMain.ImageScalingSize = new Size(48, 48);
-            toolStripMain.Items.AddRange(new ToolStripItem[] { tsbRefreshAuctionData, tsbSearch, tsSep1, tsbSaveSearch, tsbSaveSearchAs, tsbRenameSearch, tsbNewSearch, tsbDeleteSearch, tsbSearchDefault, toolStripSeparator1, tsddItemCache, tsddPets, tsbWriteRegionData, toolStripSeparator2, tsbThemeLight, tsbThemeDark, toolStripSeparator3, tspProgress, toolStripSeparator4, tsbTest, tsbRefreshWoWProcesses, tsbActivate });
+            toolStripMain.Items.AddRange(new ToolStripItem[] { tsbRefreshAuctionData, tsbSearch, tsSep1, tsbSaveSearch, tsbSaveSearchAs, tsbRenameSearch, tsbNewSearch, tsbDeleteSearch, tsbSearchDefault, toolStripSeparator1, tsbUpdateAllData, toolStripSeparator7, tsbWriteRegionData, toolStripSeparator5, tsddItemCache, toolStripSeparator6, tsddPets, toolStripSeparator2, tsbThemeLight, tsbThemeDark, toolStripSeparator3, tspProgress, toolStripSeparator4, tsbTest, tsbRefreshWoWProcesses, tsbActivate });
             toolStripMain.Location = new Point(0, 0);
             toolStripMain.Name = "toolStripMain";
             toolStripMain.RenderMode = ToolStripRenderMode.Professional;
@@ -280,59 +292,21 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(60, 58);
             // 
-            // tsddItemCache
+            // tsbUpdateAllData
             // 
-            tsddItemCache.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            tsddItemCache.DropDownItems.AddRange(new ToolStripItem[] { tsmUpdateItemCache, tsmBuildItemCache });
-            tsddItemCache.Image = (Image)resources.GetObject("tsddItemCache.Image");
-            tsddItemCache.ImageTransparentColor = Color.Magenta;
-            tsddItemCache.Name = "tsddItemCache";
-            tsddItemCache.Size = new Size(70, 52);
-            tsddItemCache.Text = "Item Cache";
-            tsddItemCache.ToolTipText = "Item Cache";
+            tsbUpdateAllData.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbUpdateAllData.Image = (Image)resources.GetObject("tsbUpdateAllData.Image");
+            tsbUpdateAllData.ImageTransparentColor = Color.Magenta;
+            tsbUpdateAllData.Name = "tsbUpdateAllData";
+            tsbUpdateAllData.Size = new Size(52, 52);
+            tsbUpdateAllData.Text = "Update All Data";
+            tsbUpdateAllData.Click += tsbUpdateAllData_Click;
             // 
-            // tsmUpdateItemCache
+            // toolStripSeparator7
             // 
-            tsmUpdateItemCache.Image = (Image)resources.GetObject("tsmUpdateItemCache.Image");
-            tsmUpdateItemCache.Name = "tsmUpdateItemCache";
-            tsmUpdateItemCache.Size = new Size(351, 44);
-            tsmUpdateItemCache.Text = "Update Item Cache";
-            tsmUpdateItemCache.Click += tsmUpdateItemCache_Click;
-            // 
-            // tsmBuildItemCache
-            // 
-            tsmBuildItemCache.Image = (Image)resources.GetObject("tsmBuildItemCache.Image");
-            tsmBuildItemCache.Name = "tsmBuildItemCache";
-            tsmBuildItemCache.Size = new Size(351, 44);
-            tsmBuildItemCache.Text = "Build Item Cache";
-            tsmBuildItemCache.Click += tsmBuildItemCache_Click;
-            // 
-            // tsddPets
-            // 
-            tsddPets.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            tsddPets.DropDownItems.AddRange(new ToolStripItem[] { tsmUpdatePetCache, tsmBuildPetCache });
-            tsddPets.Image = (Image)resources.GetObject("tsddPets.Image");
-            tsddPets.ImageTransparentColor = Color.Magenta;
-            tsddPets.Name = "tsddPets";
-            tsddPets.Size = new Size(70, 52);
-            tsddPets.Text = "Pet Cache";
-            tsddPets.ToolTipText = "Pet Cache";
-            // 
-            // tsmUpdatePetCache
-            // 
-            tsmUpdatePetCache.Image = (Image)resources.GetObject("tsmUpdatePetCache.Image");
-            tsmUpdatePetCache.Name = "tsmUpdatePetCache";
-            tsmUpdatePetCache.Size = new Size(336, 44);
-            tsmUpdatePetCache.Text = "Update Pet Cache";
-            tsmUpdatePetCache.Click += tsmUpdatePetCache_Click;
-            // 
-            // tsmBuildPetCache
-            // 
-            tsmBuildPetCache.Image = (Image)resources.GetObject("tsmBuildPetCache.Image");
-            tsmBuildPetCache.Name = "tsmBuildPetCache";
-            tsmBuildPetCache.Size = new Size(336, 44);
-            tsmBuildPetCache.Text = "Build Pet Cache";
-            tsmBuildPetCache.Click += tsmBuildPetCache_Click;
+            toolStripSeparator7.AutoSize = false;
+            toolStripSeparator7.Name = "toolStripSeparator7";
+            toolStripSeparator7.Size = new Size(70, 58);
             // 
             // tsbWriteRegionData
             // 
@@ -344,6 +318,106 @@
             tsbWriteRegionData.Text = "tsbWriteRegionData";
             tsbWriteRegionData.ToolTipText = "Write Region Data";
             tsbWriteRegionData.Click += tsbWriteRegionData_Click;
+            // 
+            // toolStripSeparator5
+            // 
+            toolStripSeparator5.AutoSize = false;
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new Size(30, 58);
+            // 
+            // tsddItemCache
+            // 
+            tsddItemCache.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsddItemCache.DropDownItems.AddRange(new ToolStripItem[] { tsmUpdateItemCache, tsmSortItemCacheAsc, tsmSortItemCacheDesc, tsmBuildItemCache });
+            tsddItemCache.Image = (Image)resources.GetObject("tsddItemCache.Image");
+            tsddItemCache.ImageTransparentColor = Color.Magenta;
+            tsddItemCache.Name = "tsddItemCache";
+            tsddItemCache.Size = new Size(70, 52);
+            tsddItemCache.Text = "Item Cache";
+            tsddItemCache.ToolTipText = "Item Cache";
+            // 
+            // tsmUpdateItemCache
+            // 
+            tsmUpdateItemCache.Image = (Image)resources.GetObject("tsmUpdateItemCache.Image");
+            tsmUpdateItemCache.Name = "tsmUpdateItemCache";
+            tsmUpdateItemCache.Size = new Size(354, 44);
+            tsmUpdateItemCache.Text = "Update Item Cache";
+            tsmUpdateItemCache.Click += tsmUpdateItemCache_Click;
+            // 
+            // tsmSortItemCacheAsc
+            // 
+            tsmSortItemCacheAsc.Image = (Image)resources.GetObject("tsmSortItemCacheAsc.Image");
+            tsmSortItemCacheAsc.Name = "tsmSortItemCacheAsc";
+            tsmSortItemCacheAsc.Size = new Size(354, 44);
+            tsmSortItemCacheAsc.Text = "Sort (Asc)";
+            tsmSortItemCacheAsc.ToolTipText = "Sort (Asc)";
+            tsmSortItemCacheAsc.Click += tsmSortItemCacheAsc_Click;
+            // 
+            // tsmSortItemCacheDesc
+            // 
+            tsmSortItemCacheDesc.Image = (Image)resources.GetObject("tsmSortItemCacheDesc.Image");
+            tsmSortItemCacheDesc.Name = "tsmSortItemCacheDesc";
+            tsmSortItemCacheDesc.Size = new Size(354, 44);
+            tsmSortItemCacheDesc.Text = "Sort (Desc)";
+            tsmSortItemCacheDesc.Click += tsmSortItemCacheDesc_Click;
+            // 
+            // tsmBuildItemCache
+            // 
+            tsmBuildItemCache.Image = (Image)resources.GetObject("tsmBuildItemCache.Image");
+            tsmBuildItemCache.Name = "tsmBuildItemCache";
+            tsmBuildItemCache.Size = new Size(354, 44);
+            tsmBuildItemCache.Text = "Rebuild Item Cache";
+            tsmBuildItemCache.Click += tsmBuildItemCache_Click;
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.AutoSize = false;
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new Size(10, 58);
+            // 
+            // tsddPets
+            // 
+            tsddPets.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsddPets.DropDownItems.AddRange(new ToolStripItem[] { tsmUpdatePetCache, tsmSortPetCacheAsc, tsmSortPetCacheDesc, tsmBuildPetCache });
+            tsddPets.Image = (Image)resources.GetObject("tsddPets.Image");
+            tsddPets.ImageTransparentColor = Color.Magenta;
+            tsddPets.Name = "tsddPets";
+            tsddPets.Size = new Size(70, 52);
+            tsddPets.Text = "Pet Cache";
+            tsddPets.ToolTipText = "Pet Cache";
+            // 
+            // tsmUpdatePetCache
+            // 
+            tsmUpdatePetCache.Image = (Image)resources.GetObject("tsmUpdatePetCache.Image");
+            tsmUpdatePetCache.Name = "tsmUpdatePetCache";
+            tsmUpdatePetCache.Size = new Size(339, 44);
+            tsmUpdatePetCache.Text = "Update Pet Cache";
+            tsmUpdatePetCache.Click += tsmUpdatePetCache_Click;
+            // 
+            // tsmSortPetCacheAsc
+            // 
+            tsmSortPetCacheAsc.Image = (Image)resources.GetObject("tsmSortPetCacheAsc.Image");
+            tsmSortPetCacheAsc.Name = "tsmSortPetCacheAsc";
+            tsmSortPetCacheAsc.Size = new Size(339, 44);
+            tsmSortPetCacheAsc.Text = "Sort (Asc)";
+            tsmSortPetCacheAsc.ToolTipText = "Sort (Asc)";
+            tsmSortPetCacheAsc.Click += tsmSortPetCacheAsc_Click;
+            // 
+            // tsmSortPetCacheDesc
+            // 
+            tsmSortPetCacheDesc.Image = (Image)resources.GetObject("tsmSortPetCacheDesc.Image");
+            tsmSortPetCacheDesc.Name = "tsmSortPetCacheDesc";
+            tsmSortPetCacheDesc.Size = new Size(339, 44);
+            tsmSortPetCacheDesc.Text = "Sort (Desc)";
+            tsmSortPetCacheDesc.Click += tsmSortPetCacheDesc_Click;
+            // 
+            // tsmBuildPetCache
+            // 
+            tsmBuildPetCache.Image = (Image)resources.GetObject("tsmBuildPetCache.Image");
+            tsmBuildPetCache.Name = "tsmBuildPetCache";
+            tsmBuildPetCache.Size = new Size(339, 44);
+            tsmBuildPetCache.Text = "Rebuild Pet Cache";
+            tsmBuildPetCache.Click += tsmBuildPetCache_Click;
             // 
             // toolStripSeparator2
             // 
@@ -384,7 +458,7 @@
             // 
             tspProgress.AutoSize = false;
             tspProgress.Name = "tspProgress";
-            tspProgress.Size = new Size(700, 32);
+            tspProgress.Size = new Size(1300, 32);
             // 
             // toolStripSeparator4
             // 
@@ -1166,8 +1240,12 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ControlDark;
+            panel2.Controls.Add(tslVersion);
+            panel2.Controls.Add(tslDataCountPets);
+            panel2.Controls.Add(tslDataCountItems);
+            panel2.Controls.Add(tslDataCountRegion);
             panel2.Controls.Add(tslQuickSearches);
-            panel2.Controls.Add(lblStatus);
+            panel2.Controls.Add(lblProgress);
             panel2.Controls.Add(label18);
             panel2.Controls.Add(label17);
             panel2.Controls.Add(label16);
@@ -1177,57 +1255,106 @@
             panel2.Size = new Size(3834, 48);
             panel2.TabIndex = 107;
             // 
+            // tslVersion
+            // 
+            tslVersion.Font = new Font("Segoe UI", 7.875F, FontStyle.Bold);
+            tslVersion.Location = new Point(3308, 8);
+            tslVersion.Name = "tslVersion";
+            tslVersion.Size = new Size(500, 30);
+            tslVersion.TabIndex = 9;
+            tslVersion.Text = "[Version]";
+            tslVersion.TextAlign = ContentAlignment.TopRight;
+            // 
+            // tslDataCountPets
+            // 
+            tslDataCountPets.Font = new Font("Segoe UI", 7.875F);
+            tslDataCountPets.Location = new Point(834, 8);
+            tslDataCountPets.Name = "tslDataCountPets";
+            tslDataCountPets.Size = new Size(66, 32);
+            tslDataCountPets.TabIndex = 8;
+            tslDataCountPets.Text = "9999";
+            tslDataCountPets.TextAlign = ContentAlignment.TopCenter;
+            tslDataCountPets.Visible = false;
+            // 
+            // tslDataCountItems
+            // 
+            tslDataCountItems.Font = new Font("Segoe UI", 7.875F);
+            tslDataCountItems.Location = new Point(744, 8);
+            tslDataCountItems.Name = "tslDataCountItems";
+            tslDataCountItems.Size = new Size(80, 32);
+            tslDataCountItems.TabIndex = 7;
+            tslDataCountItems.Text = "99999";
+            tslDataCountItems.TextAlign = ContentAlignment.TopCenter;
+            tslDataCountItems.Visible = false;
+            // 
+            // tslDataCountRegion
+            // 
+            tslDataCountRegion.Font = new Font("Segoe UI", 7.875F);
+            tslDataCountRegion.Location = new Point(661, 8);
+            tslDataCountRegion.Name = "tslDataCountRegion";
+            tslDataCountRegion.Size = new Size(80, 32);
+            tslDataCountRegion.TabIndex = 6;
+            tslDataCountRegion.Text = "99999";
+            tslDataCountRegion.TextAlign = ContentAlignment.TopCenter;
+            tslDataCountRegion.Visible = false;
+            // 
             // tslQuickSearches
             // 
             tslQuickSearches.AutoSize = true;
-            tslQuickSearches.Location = new Point(1744, 8);
+            tslQuickSearches.Font = new Font("Segoe UI", 7.875F);
+            tslQuickSearches.Location = new Point(2502, 8);
             tslQuickSearches.Name = "tslQuickSearches";
-            tslQuickSearches.Size = new Size(246, 32);
+            tslQuickSearches.Size = new Size(188, 30);
             tslQuickSearches.TabIndex = 5;
-            tslQuickSearches.Text = "Quick Searches  ---->";
+            tslQuickSearches.Text = "Quick Searches  ->";
             // 
-            // lblStatus
+            // lblProgress
             // 
-            lblStatus.Location = new Point(971, 8);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(701, 32);
-            lblStatus.TabIndex = 4;
-            lblStatus.Text = "Progress";
-            lblStatus.TextAlign = ContentAlignment.TopCenter;
+            lblProgress.Font = new Font("Segoe UI", 7.875F);
+            lblProgress.Location = new Point(1138, 8);
+            lblProgress.Name = "lblProgress";
+            lblProgress.Size = new Size(1300, 32);
+            lblProgress.TabIndex = 4;
+            lblProgress.Text = "Progress";
+            lblProgress.TextAlign = ContentAlignment.TopCenter;
             // 
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(25, 8);
+            label18.Font = new Font("Segoe UI", 7.875F);
+            label18.Location = new Point(27, 8);
             label18.Name = "label18";
-            label18.Size = new Size(85, 32);
+            label18.Size = new Size(75, 30);
             label18.TabIndex = 3;
             label18.Text = "Search";
             // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(578, 8);
+            label17.Font = new Font("Segoe UI", 7.875F);
+            label17.Location = new Point(553, 8);
             label17.Name = "label17";
-            label17.Size = new Size(144, 32);
+            label17.Size = new Size(85, 30);
             label17.TabIndex = 2;
-            label17.Text = "Item Caches";
+            label17.Text = "Data ->";
             // 
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(813, 8);
+            label16.Font = new Font("Segoe UI", 7.875F);
+            label16.Location = new Point(980, 8);
             label16.Name = "label16";
-            label16.Size = new Size(88, 32);
+            label16.Size = new Size(76, 30);
             label16.TabIndex = 1;
             label16.Text = "Theme";
             // 
             // label15
             // 
             label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 7.875F);
             label15.Location = new Point(249, 9);
             label15.Name = "label15";
-            label15.Size = new Size(170, 32);
+            label15.Size = new Size(149, 30);
             label15.TabIndex = 0;
             label15.Text = "Search Profiles";
             // 
@@ -1247,16 +1374,16 @@
             // chartTotalAuctions
             // 
             chartTotalAuctions.BackColor = SystemColors.Control;
-            chartArea4.Name = "ChartArea1";
-            chartTotalAuctions.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            chartTotalAuctions.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            chartTotalAuctions.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartTotalAuctions.Legends.Add(legend1);
             chartTotalAuctions.Location = new Point(2484, 1406);
             chartTotalAuctions.Name = "chartTotalAuctions";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            chartTotalAuctions.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartTotalAuctions.Series.Add(series1);
             chartTotalAuctions.Size = new Size(1279, 600);
             chartTotalAuctions.TabIndex = 129;
             chartTotalAuctions.Text = "chart1";
@@ -1264,17 +1391,17 @@
             // chartTopSearches
             // 
             chartTopSearches.BackColor = SystemColors.Control;
-            chartArea5.Name = "ChartArea1";
-            chartTopSearches.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            chartTopSearches.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            chartTopSearches.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chartTopSearches.Legends.Add(legend2);
             chartTopSearches.Location = new Point(2484, 767);
             chartTopSearches.Name = "chartTopSearches";
             chartTopSearches.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            chartTopSearches.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chartTopSearches.Series.Add(series2);
             chartTopSearches.Size = new Size(1279, 600);
             chartTopSearches.TabIndex = 130;
             chartTopSearches.Text = "chart2";
@@ -1282,16 +1409,16 @@
             // chartTotalValue
             // 
             chartTotalValue.BackColor = SystemColors.Control;
-            chartArea6.Name = "ChartArea1";
-            chartTotalValue.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            chartTotalValue.Legends.Add(legend6);
+            chartArea3.Name = "ChartArea1";
+            chartTotalValue.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            chartTotalValue.Legends.Add(legend3);
             chartTotalValue.Location = new Point(2484, 120);
             chartTotalValue.Name = "chartTotalValue";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            chartTotalValue.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            chartTotalValue.Series.Add(series3);
             chartTotalValue.Size = new Size(1279, 600);
             chartTotalValue.TabIndex = 131;
             chartTotalValue.Text = "chart1";
@@ -1416,7 +1543,7 @@
         private Label label17;
         private ToolStripSeparator toolStripSeparator4;
         private Label tslQuickSearches;
-        private Label lblStatus;
+        private Label lblProgress;
         private ToolStripButton tsbSearchDefault;
         private Button btnToggleRealms;
         private ColumnHeader colSide;
@@ -1433,5 +1560,17 @@
         private ToolStripButton tsbRefreshWoWProcesses;
         private Label label1;
         private TextBox txtSearchStringFilter;
+        private ToolStripMenuItem tsmSortItemCacheAsc;
+        private ToolStripMenuItem tsmSortItemCacheDesc;
+        private ToolStripMenuItem tsmSortPetCacheAsc;
+        private ToolStripMenuItem tsmSortPetCacheDesc;
+        private ToolStripButton tsbUpdateAllData;
+        private ToolStripSeparator toolStripSeparator7;
+        private ToolStripSeparator toolStripSeparator5;
+        private Label tslDataCountPets;
+        private Label tslDataCountItems;
+        private Label tslDataCountRegion;
+        private ToolStripSeparator toolStripSeparator6;
+        private Label tslVersion;
     }
 }

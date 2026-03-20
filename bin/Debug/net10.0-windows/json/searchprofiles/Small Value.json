@@ -6,7 +6,7 @@
   "SearchPercentage": 5,
   "MinSellRate": -1,
   "IconIndex": 190,
-  "SearchFrequency": 1,
+  "SearchFrequency": 0,
   "SearchFraction": 1,
   "MinItemLevel": 0,
   "MaxItemLevel": 9999,

@@ -1,0 +1,18 @@
+{
+  "ProfileName": "Latest Xpac All",
+  "InToolbar": true,
+  "SearchMaxG": 500,
+  "WorthAtLeast": 20000,
+  "SearchPercentage": 5,
+  "MinSellRate": -1,
+  "IconIndex": 255,
+  "SearchFrequency": 1,
+  "SearchFraction": 0,
+  "MinItemLevel": 0,
+  "MaxItemLevel": 9999,
+  "Threshold": 20,
+  "StringFilter": "",
+  "MainOptions": 102,
+  "Class": 8191,
+  "Quality": 127
+}

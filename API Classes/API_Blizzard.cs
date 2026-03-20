@@ -25,6 +25,51 @@ namespace WOWAuctionApi_Net10
             return tokenResponse.access_token;
 
         }
+
+        public static AuctionFileContents GetAuctionsFromAPI(string token, Realm r, out HttpStatusCode statusCode, out string lastModified)
+        {
+            var client = new RestClient("https://us.api.blizzard.com");
+            var request = new RestRequest($"/data/wow/connected-realm/{r.RealmId.ToString()}/auctions", Method.Get);
+            AuctionFileContents afc = new AuctionFileContents();
+
+            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+            request.AddParameter("namespace", "dynamic-us");
+            request.AddParameter("locale", "en_US");
+
+            if (r.LastModified != String.Empty)
+            {
+                request.AddHeader("If-Modified-Since", r.LastModified);
+            }
+            request.AddHeader("Accept-Encoding", "gzip, deflate");
+            request.AddHeader("Authorization", $"Bearer {token}");
+                
+            RestResponse response = client.Execute(request);
+
+            statusCode = response.StatusCode;
+
+            try
+            {
+                afc = JsonSerializer.Deserialize<AuctionFileContents>(response.Content);
+            }
+            catch { }
+            ;
+
+            Dictionary<string, string> headersList = new Dictionary<string, string>();
+
+            foreach (HeaderParameter item in response.ContentHeaders)
+            {
+                if (!headersList.ContainsKey(item.Name))
+                {
+                    headersList.Add(item.Name, item.Value.ToString());
+                }
+            }
+
+            headersList.TryGetValue("Last-Modified", out lastModified);
+
+            return afc;
+        }
+
+        /*
         public static async Task<string> GetDataFromServiceAsync(string url)
         {
             using var client = new HttpClient();
@@ -35,7 +80,7 @@ namespace WOWAuctionApi_Net10
         public static async Task<AuctionEventInfo> GetAuctionsFromAPI(string token, Realm r)
         {
             var client = new RestClient("https://us.api.blizzard.com");
-            var request = new RestRequest($"/data/wow/connected-realm/" + r.RealmId.ToString() + "/auctions", Method.Get);
+            var request = new RestRequest($"/data/wow/connected-realm/{r.RealmId.ToString()}/auctions", Method.Get);
             AuctionEventInfo ae = new AuctionEventInfo();
             AuctionFileContents afc = new AuctionFileContents();
 
@@ -81,6 +126,7 @@ namespace WOWAuctionApi_Net10
             ae.LastModified = lastModified;     
             return ae;
         }
+        */
 
         public static BlizzItem GetBlizzItemFromItemId(string accessToken, long itemId)
         {

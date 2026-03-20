@@ -10,7 +10,7 @@ namespace WOWAuctionApi_Net10
         [STAThread]
         static void Main()
         {
-            Application.SetColorMode(HelpAppSettings.GetColorMode());
+            Application.SetColorMode(AppSettingsHelper.GetColorMode());
             ApplicationConfiguration.Initialize();
             Application.Run(new FormMain());
         }

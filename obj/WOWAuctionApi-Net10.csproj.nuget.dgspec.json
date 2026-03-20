@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\VSRepo\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj": {}
+    "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\VSRepo\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj": {
-      "version": "1.0.0",
+    "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj": {
+      "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\VSRepo\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
+        "projectUniqueName": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
         "projectName": "WOWAuctionApi-Net10",
-        "projectPath": "C:\\Dev\\VSRepo\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
+        "projectPath": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
         "packagesPath": "C:\\Users\\wayne\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\VSRepo\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10\\obj\\",
+        "outputPath": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

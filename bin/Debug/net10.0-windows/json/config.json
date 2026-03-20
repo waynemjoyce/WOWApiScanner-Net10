@@ -3,10 +3,13 @@
   "BlizzClientSecret": "3OlsVa5pklqoI2VvHYc2kpfagY8itsAg",
   "TSMKey": "A7iR0Pu0leO4Fl_lBjqZc1rl0GMt8ms8",
   "TSMClientID": "c260f00d-1071-409a-992f-dda2e5498536",
-  "DefaultSearch": "Small Value",
+  "DefaultSearch": "Recipes",
   "OnlyFirst": 0,
-  "LatestXpacItemId": 21000,
-  "RefreshAuctionsOnStart": false,
+  "LatestXpacItemId": 236900,
+  "SortCacheOrderDefault": "Descending",
+  "SortCacheOnUpdate": true,
+  "UpdateAllDataOnStart": false,
+  "RefreshAuctionsOnStart": true,
   "WowInteraction": false,
   "Realms": [
     {

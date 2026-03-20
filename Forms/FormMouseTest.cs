@@ -11,7 +11,7 @@ namespace WOWAuctionApi_Net10
     public partial class FormMouseTest : Form
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public int ProcessId { get; set; }
+        public FormCache fc { get; set; }
         public FormMouseTest()
         {
             InitializeComponent();
@@ -19,7 +19,7 @@ namespace WOWAuctionApi_Net10
 
         private void btnGetMouseXY_Click(object sender, EventArgs e)
         {
-            HelpProc.ActivateApp(ProcessId);
+            ProcHelper.ActivateApp(fc.CurrentWoWProcess);
             Thread.Sleep(2000);
             this.txtX.Text = Cursor.Position.X.ToString();
             this.txtY.Text = Cursor.Position.Y.ToString();
@@ -44,58 +44,13 @@ namespace WOWAuctionApi_Net10
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var interactionScript = new InteractionScript();
-            interactionScript.ScriptName = "TestScript2";
 
-            interactionScript.Events = new List<InteractionEvent>
-                {
-                    new InteractionEvent
-                    {
-                        EventType = InteractionEventType.MouseMove,
-                        MouseClickType = InteractionMouseClickType.Left,
-                        X = 100,
-                        Y = 200,
-                        DelayBefore = 500,
-                        DelayBetween = 500,
-                        DelayAfter = 500,
-                        KeysToSend = "Test"
-                    },
-                    new InteractionEvent
-                    {
-                        EventType = InteractionEventType.MouseMoveAndClick,
-                        MouseClickType = InteractionMouseClickType.Left,
-                        X = 100,
-                        Y = 200,
-                        DelayBefore = 500,
-                        DelayBetween = 500,
-                        DelayAfter = 500,
-                        KeysToSend = "Test"
-                    },
-                    new InteractionEvent
-                    {
-                        EventType = InteractionEventType.Activate,
-                        MouseClickType = InteractionMouseClickType.Left,
-                        X = 100,
-                        Y = 200,
-                        DelayBefore = 500,
-                        DelayBetween = 500,
-                        DelayAfter = 500,
-                        KeysToSend = "Test"
-                    },
-                    new InteractionEvent
-                    {
-                        EventType = InteractionEventType.SendKeys,
-                        MouseClickType = InteractionMouseClickType.Left,
-                        X = 100,
-                        Y = 200,
-                        DelayBefore = 500,
-                        DelayBetween = 500,
-                        DelayAfter = 500,
-                        KeysToSend = "Test"
-                    }
-                };
-            this.textBox1.Text = interactionScript.ToJson();
-            interactionScript.Save();
+            BlizzItem bi = API_Blizzard.GetBlizzItemFromItemId(fc.BlizzAccessToken, long.Parse(this.textBox1.Text));
+                    
+            if (bi != null)
+            {
+                //break point here
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
