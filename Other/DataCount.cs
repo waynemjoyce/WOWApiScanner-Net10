@@ -9,7 +9,6 @@ namespace WOWAuctionApi_Net10
         public ListCount ItemCache = new ListCount();
         public ListCount PetCache = new ListCount();
         public ListCount RegionItems = new ListCount();
-        public ListCount RegionPets = new ListCount();
 
         public RealmCount Realm = new RealmCount(); 
     }

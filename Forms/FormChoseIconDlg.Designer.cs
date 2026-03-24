@@ -32,14 +32,18 @@
             lvImages = new ListView();
             btnOK = new Button();
             btnCancel = new Button();
+            txtFilter = new TextBox();
+            btnFilterByName = new Button();
+            label1 = new Label();
+            btnClearFilter = new Button();
             SuspendLayout();
             // 
             // lvImages
             // 
-            lvImages.Location = new Point(36, 26);
+            lvImages.Location = new Point(36, 103);
             lvImages.MultiSelect = false;
             lvImages.Name = "lvImages";
-            lvImages.Size = new Size(1214, 593);
+            lvImages.Size = new Size(1214, 516);
             lvImages.TabIndex = 0;
             lvImages.UseCompatibleStateImageBehavior = false;
             lvImages.SelectedIndexChanged += lvImages_SelectedIndexChanged;
@@ -64,11 +68,57 @@
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
+            // txtFilter
+            // 
+            txtFilter.Location = new Point(224, 47);
+            txtFilter.Name = "txtFilter";
+            txtFilter.Size = new Size(299, 39);
+            txtFilter.TabIndex = 3;
+            // 
+            // btnFilterByName
+            // 
+            btnFilterByName.BackColor = SystemColors.Control;
+            btnFilterByName.FlatAppearance.BorderSize = 0;
+            btnFilterByName.FlatStyle = FlatStyle.Flat;
+            btnFilterByName.Image = (Image)resources.GetObject("btnFilterByName.Image");
+            btnFilterByName.Location = new Point(529, 39);
+            btnFilterByName.Name = "btnFilterByName";
+            btnFilterByName.Size = new Size(52, 52);
+            btnFilterByName.TabIndex = 148;
+            btnFilterByName.UseVisualStyleBackColor = false;
+            btnFilterByName.Click += btnFilterByName_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(36, 47);
+            label1.Name = "label1";
+            label1.Size = new Size(171, 32);
+            label1.TabIndex = 149;
+            label1.Text = "Filter By Name";
+            // 
+            // btnClearFilter
+            // 
+            btnClearFilter.BackColor = SystemColors.Control;
+            btnClearFilter.FlatAppearance.BorderSize = 0;
+            btnClearFilter.FlatStyle = FlatStyle.Flat;
+            btnClearFilter.Image = (Image)resources.GetObject("btnClearFilter.Image");
+            btnClearFilter.Location = new Point(581, 39);
+            btnClearFilter.Name = "btnClearFilter";
+            btnClearFilter.Size = new Size(52, 52);
+            btnClearFilter.TabIndex = 150;
+            btnClearFilter.UseVisualStyleBackColor = false;
+            btnClearFilter.Click += btnClearFilter_Click;
+            // 
             // FormChoseIconDlg
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1284, 708);
+            Controls.Add(btnClearFilter);
+            Controls.Add(label1);
+            Controls.Add(btnFilterByName);
+            Controls.Add(txtFilter);
             Controls.Add(btnCancel);
             Controls.Add(btnOK);
             Controls.Add(lvImages);
@@ -78,6 +128,7 @@
             Text = "Choose Your Icon";
             Load += FormChoseIcon_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -85,5 +136,9 @@
         private ListView lvImages;
         private Button btnOK;
         private Button btnCancel;
+        private TextBox txtFilter;
+        private Button btnFilterByName;
+        private Label label1;
+        private Button btnClearFilter;
     }
 }

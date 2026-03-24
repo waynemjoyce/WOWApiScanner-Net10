@@ -54,7 +54,6 @@ C:\Dev\Git\WOWAuctionApi-Net10\bin\Debug\net10.0-windows\WinForms.DataVisualizat
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi-Net10.csproj.AssemblyReference.cache
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi_Net10.FormChoseIconDlg.resources
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi_Net10.FormMouseTest.resources
-C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi_Net10.FormSaveSearchDlg.resources
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi_Net10.Properties.Resources.resources
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi-Net10.csproj.GenerateResource.cache
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi-Net10.GeneratedMSBuildEditorConfig.editorconfig
@@ -69,3 +68,5 @@ C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi-Net10.pdb
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi-Net10.genruntimeconfig.cache
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\ref\WOWAuctionApi-Net10.dll
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi_Net10.FormMain.resources
+C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi_Net10.Forms.FormOrderToolbarSearches.resources
+C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi_Net10.FormSaveProfileDialog.resources

@@ -6,27 +6,27 @@ namespace WOWAuctionApi_Net10
 {
     public class PetCache : CacheBase
     {
-        public List<Pet> Pets { get; set; }
+        public List<CachePet> Pets { get; set; }
 
         [JsonIgnore]
         public List<long> PetIds = new List<long>();
 
         public PetCache()
         {
-            Pets = new List<Pet>();
+            Pets = new List<CachePet>();
         }
 
         public void FillPetIds()
         {
             PetIds.Clear();
 
-            foreach (Pet pet in Pets)
+            foreach (CachePet pet in Pets)
             {
                 PetIds.Add(pet.Id.Value);
             }
         }
 
-        public void AddPet(Pet petToAdd)
+        public void AddPet(CachePet petToAdd)
         {
             Pets.Add(petToAdd);
         }
@@ -38,7 +38,12 @@ namespace WOWAuctionApi_Net10
         public void SaveAsNewlyAdded(SortDirection direction = SortDirection.Ascending)
         {
             Sort(direction);
-            SaveToFile($@"{Paths.PetCachePath}newlyadded-{DateTime.Now.ToString("-yyyyMMdd_mmss")}.json");
+            SaveToFile($@"{Paths.Json}\newlyadded\newlyadded-pets-{DateTime.Now.ToString("-yyyyMMdd_hhmmss")}.json");
+        }
+
+        public void SaveAsNewFile(string fileName)
+        {
+            SaveToFile($@"{Paths.Json}{fileName}.json");
         }
 
         public void Sort(SortDirection direction)
@@ -85,7 +90,7 @@ namespace WOWAuctionApi_Net10
         }
         public static (int newPets, PetCache newCache) BuildPetCache(
             ToolStripProgressBar tspCache,
-            Label lblCache,
+            ToolStripStatusLabel lblCache,
             FormCache formCache,
             bool updateOnly)
         {
@@ -94,7 +99,10 @@ namespace WOWAuctionApi_Net10
             int count = 0;
             int hundredCount = 0;
             int addedCount = 0;
-            int regionCount = formCache.Dictionaries.RegionPets.Count;
+
+            Dictionary<long, TsmItem> localRegionItems = formCache.Dictionaries.RegionItems
+                .Where(item => item.Value.petSpeciesId == null).ToDictionary();
+            int regionCount = localRegionItems.Count;
             tspCache.Maximum = regionCount;
 
             PetCache petCache = new PetCache();
@@ -107,11 +115,11 @@ namespace WOWAuctionApi_Net10
             }
             else
             {
-                petCache.Pets = new List<Pet>();
+                petCache.Pets = new List<CachePet>();
                 petCache.Pets.Clear();
             }
 
-            foreach (KeyValuePair<long, TsmItem> item in formCache.Dictionaries.RegionPets)
+            foreach (KeyValuePair<long, TsmItem> item in localRegionItems)
             {
                 count++;
                 hundredCount++;
@@ -140,7 +148,7 @@ namespace WOWAuctionApi_Net10
                                 Application.DoEvents();
                             }
 
-                            Pet pet1 = new Pet();
+                            CachePet pet1 = new CachePet();
                             pet1.Id = item.Key;
                             pet1.Name = blizzPet.name;
                             pet1.IsTradable = blizzPet.is_tradable;
@@ -150,13 +158,13 @@ namespace WOWAuctionApi_Net10
                             pet1.IsBattlePet = blizzPet.is_battlepet;
                             pet1.BattlePetType = blizzPet.battle_pet_type.name;
                             pet1.Description = blizzPet.description;
+                            pet1.RegionItem = item.Value;
 
                             petCache.AddPet(pet1);
                             if (updateOnly)
                             {
                                 newlyAddedCache.AddPet(pet1);
                             }
-                            addedCount += 1;
                             addedCount += 1;
                         }
                     }
@@ -177,7 +185,7 @@ namespace WOWAuctionApi_Net10
             return (addedCount, petCache);
         }
     }
-    public class Pet
+    public class CachePet
     {
         public long? Id { get; set; }
         
@@ -198,5 +206,7 @@ namespace WOWAuctionApi_Net10
         public string? Description { get; set; }
 
         public string? Source { get; set; }
+        [JsonIgnore]
+        public TsmItem RegionItem = new TsmItem();
     }
 }

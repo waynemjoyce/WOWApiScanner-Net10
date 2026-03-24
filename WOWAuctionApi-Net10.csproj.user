@@ -13,7 +13,10 @@
     <Compile Update="Forms\FormMouseTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormSaveSearchDlg.cs">
+    <Compile Update="Forms\FormOrderToolbarSearches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormSaveProfileDialog.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

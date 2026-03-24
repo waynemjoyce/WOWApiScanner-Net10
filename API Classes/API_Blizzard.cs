@@ -38,7 +38,7 @@ namespace WOWAuctionApi_Net10
 
             if (r.LastModified != String.Empty)
             {
-                request.AddHeader("If-Modified-Since", r.LastModified);
+                //request.AddHeader("If-Modified-Since", r.LastModified);
             }
             request.AddHeader("Accept-Encoding", "gzip, deflate");
             request.AddHeader("Authorization", $"Bearer {token}");

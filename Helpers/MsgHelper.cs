@@ -66,7 +66,7 @@ namespace WOWAuctionApi_Net10
 
             public static bool OverwriteProfile()
             {
-                return Message("This will overrite the current search profile.", "Save Search Profile");
+                return Message("This will overwrite the current search profile.", "Save Search Profile");
             }
 
             public static bool DefaultProfile()
@@ -76,7 +76,17 @@ namespace WOWAuctionApi_Net10
 
             public static bool DeleteProfile()
             {
-                return Message("This will delete the currently selected Search Profile.","Delete Search Profile");
+                return Message("This will delete the currently selected search profile.","Delete Search Profile");
+            }
+
+            public static bool OverwriteItemList()
+            {
+                return Message("This will overwrite the current search profile.", "Save Item List");
+            }
+
+            public static bool DeleteItemList()
+            {
+                return Message("This will delete the currently selected item list.", "Delete Item List");
             }
         }
 

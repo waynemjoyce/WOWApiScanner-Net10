@@ -21,12 +21,18 @@ namespace WOWAuctionApi_Net10
         public SortDirection? SortCacheOrderDefault { get; set; }
 
         public bool? SortCacheOnUpdate { get; set; }
-
         public bool? UpdateAllDataOnStart { get; set; }
+
+        public bool? NewDataOnlyDefault { get; set; }
+        public bool? SearchOnSelectDefault { get; set; }
 
         public bool? RefreshAuctionsOnStart { get; set; }
 
-        public bool? WowInteraction { get; set; }
+        public bool? WowInteraction { get; set; }  //LivePollInterval
+
+        public int? LivePollInterval { get; set; }
+
+        public int? AuctionsCap { get; set; }
 
         public List<Realm>? Realms { get; set; }
 
@@ -56,6 +62,8 @@ namespace WOWAuctionApi_Net10
         public string LastModified = String.Empty;
         [JsonIgnore]
         public int NumAuctions = 0;
+        [JsonIgnore]
+        public bool OldData = false;
 
         public string? RealmName { get; set; }
 

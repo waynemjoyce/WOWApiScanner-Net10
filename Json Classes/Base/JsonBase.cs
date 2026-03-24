@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using WOWAuctionApi_Net10.Json_Classes;
 
 namespace WOWAuctionApi_Net10
 {
@@ -17,6 +18,10 @@ namespace WOWAuctionApi_Net10
             return JsonSerializer.Serialize(this, this.GetType(), options);
         }
 
+        public SearchProfile ShallowCopy()
+        {
+            return (SearchProfile)this.MemberwiseClone();
+        }
 
         public void SaveToFile(string filePath)
         {

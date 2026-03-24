@@ -6,19 +6,13 @@ namespace WOWAuctionApi_Net10
 {
     public static class StrHelper
     {
-        public static string FormatItemPrice(long price)
+        public static string FormatLongN0(long price)
         {
             try
             {
-                
-                string gold = price.ToString().Substring(0, price.ToString().Length - 4);
-                //string silver = price.ToString().Substring(price.ToString().Length - 4, 2);
-                //Note copper should always be zero now so ignore last 2 chars
-
-                //return gold + "g " + silver + "s ";
-                long newPrice = long.Parse(gold);
-                string formatted = newPrice.ToString("N0");
-                return gold + "g";
+                if (price < 10000) { price = 0; }
+                price = price / 10000;
+                return price.ToString("N0");
             }
             catch
             {

@@ -6,26 +6,26 @@ namespace WOWAuctionApi_Net10
 {
     public class ItemCache : CacheBase
     {
-        public List<Item> Items { get; set; }
+        public List<CacheItem> Items { get; set; }
 
         [JsonIgnore]
         public List<long> ItemIds = new List<long>();
 
         public ItemCache()
         {
-            Items = new List<Item>();
+            Items = new List<CacheItem>();
         }
         public void FillItemIds()
         {
             ItemIds.Clear();
 
-            foreach (Item it in Items)
+            foreach (CacheItem it in Items)
             {
                 ItemIds.Add(it.Id);
             }
         }
 
-        public void AddItem(Item itemToAdd)
+        public void AddItem(CacheItem itemToAdd)
         {
             Items.Add(itemToAdd);
         }
@@ -38,7 +38,12 @@ namespace WOWAuctionApi_Net10
         public void SaveAsNewlyAdded(SortDirection direction = SortDirection.Ascending)
         {
             Sort(direction);
-            SaveToFile($@"{Paths.ItemCachePath}newlyadded-{DateTime.Now.ToString("-yyyyMMdd_mmss")}.json");
+            SaveToFile($@"{Paths.Json}newlyadded-{DateTime.Now.ToString("-yyyyMMdd_hhmmss")}.json");
+        }
+        
+        public void SaveAsNewFile(string fileName)
+        {
+            SaveToFile($@"{Paths.Json}{fileName}.json");
         }
 
         public void Sort(SortDirection direction)
@@ -67,6 +72,23 @@ namespace WOWAuctionApi_Net10
             return ItemCache.LoadFromFile(Paths.ItemCache);
         }
 
+        public static ItemCache LoadWithRegionItems(FormCache fc)
+        {
+            ItemCache itemCache = ItemCache.LoadFromFile(Paths.ItemCache);
+
+            foreach (var item in itemCache.Items)
+            {
+                TsmItem tsmItem;
+                fc.Dictionaries.RegionItems.TryGetValue(item.Id, out tsmItem);
+                if (tsmItem != null)
+                {
+                    item.RegionItem = tsmItem;
+                }
+            }
+
+            return itemCache;
+        }
+
         public static ItemCache LoadFromFile(string fileName)
         {
             string items = File.ReadAllText(fileName);
@@ -80,7 +102,7 @@ namespace WOWAuctionApi_Net10
         }
         public static (int newItems, ItemCache newCache) BuildItemCache(
             ToolStripProgressBar tspCache,
-            Label lblCache,
+            ToolStripStatusLabel lblCache,
             FormCache formCache,
             bool updateOnly)
         {
@@ -90,7 +112,10 @@ namespace WOWAuctionApi_Net10
             int count = 0;
             int hundredCount = 0;
             int addedCount = 0;
-            int regionCount = formCache.Dictionaries.RegionItems.Count;
+
+            Dictionary<long, TsmItem> localRegionItems = formCache.Dictionaries.RegionItems
+                .Where(item => item.Value.petSpeciesId != null).ToDictionary();
+            int regionCount = localRegionItems.Count;
             tspCache.Maximum = regionCount;
 
             ItemCache itemCache = new ItemCache();
@@ -103,11 +128,11 @@ namespace WOWAuctionApi_Net10
             }
             else
             {
-                itemCache.Items = new List<Item>();
+                itemCache.Items = new List<CacheItem>();
                 itemCache.Items.Clear();
             }
 
-            foreach (KeyValuePair<long, TsmItem> item in formCache.Dictionaries.RegionItems)
+            foreach (KeyValuePair<long, TsmItem> item in localRegionItems)
             {
                 count++;
                 hundredCount++;
@@ -132,7 +157,7 @@ namespace WOWAuctionApi_Net10
                         {
                             itemName = bi.name;
 
-                            Item item1 = new Item();
+                            CacheItem item1 = new CacheItem();
                             item1.Id = item.Key;
                             item1.Name = itemName;
                             if (bi.item_class != null)
@@ -159,6 +184,7 @@ namespace WOWAuctionApi_Net10
 
                             item1.Level = bi.level.Value;
                             item1.RequiredLevel = bi.required_level.Value;
+                            item1.RegionItem = item.Value;
 
                             itemCache.AddItem(item1);
                             if (updateOnly)
@@ -184,7 +210,7 @@ namespace WOWAuctionApi_Net10
             return (addedCount, itemCache);
         }
     }
-    public class Item
+    public class CacheItem
     {
         public long Id { get; set; }
         public string? Name { get; set; }
@@ -197,5 +223,13 @@ namespace WOWAuctionApi_Net10
         public string? BindingType { get; set; }
         public long Level { get; set; }
         public long RequiredLevel { get; set; }
+        public long BuyPrice { get; set; }
+        [JsonIgnore]
+        public TsmItem RegionItem = new TsmItem();
+
+        public CacheItem()
+        {
+            BuyPrice = 0;
+        }
     }
 }

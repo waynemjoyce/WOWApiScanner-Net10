@@ -13,19 +13,20 @@ namespace WOWAuctionApi_Net10
         public List<ToggleOption>? Main { get; set; }
         public List<ToggleOption>? Class { get; set; }
         public List<ToggleOption>? Quality { get; set; }
+        public List<ToggleOption>? Bonuses { get; set; }
 
         public ToggleAttributes? Toggle { get; set; }
 
         [JsonIgnore]
-        public SystemColorMode ColorMode = AppSettingsHelper.GetColorMode();   
+        public SystemColorMode ColorMode = AppSettingsHelper.GetColorMode();
 
         public void Save()
         {
-            SaveToFile($@"{Paths.UIOptions}\options.json");
+            SaveToFile(Paths.UIOptions);
         }
         public static UserInterfaceOptions LoadFromFile()
         {
-            string fileName = $@"{Paths.UIOptions}\options.json";
+            string fileName = Paths.UIOptions;
             string uioptions = File.ReadAllText(fileName);
             return JsonSerializer.Deserialize<UserInterfaceOptions>(uioptions);
         }
@@ -40,6 +41,8 @@ namespace WOWAuctionApi_Net10
             public int YRowOffset { get; set; }
             public int XColumnOffset { get; set; }
             public int XLabelGap { get; set; }
-        }        
+        }
     }
 }
+
+
