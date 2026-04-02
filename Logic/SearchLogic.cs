@@ -37,15 +37,16 @@ namespace WOWAuctionApi_Net10
                     (item.RegionItem.saleRate <= fc.CurrentProfile.MinSellRate))
                 //Latest xpac only
                 .Where(item => Options.LatestXpac == false
-                    || (Options.LatestXpac == true && item.Id >= fc.Config.LatestXpacItemId))
+                    || (Options.LatestXpac == true && item.Id >= fc.Config.LatestXpacItemId)
+                    || (Options.LatestXpac == true && fc.ItemData.MidnightItemIds.Contains(item.Id)))
                 //Filter only an items we don't already have in the list
                 .Where(item => !itemIdsInList.Contains(item.Id))
                 //String filter
                 .Where(item => Options.UseStringFilter == false
                     || (Options.UseStringFilter == true
                     && item.Name.Contains(Options.StringFilter, StringComparison.OrdinalIgnoreCase)))
-                //Apply auctions cap
-                .Take(fc.Config.AuctionsCap.Value)
+                //Apply items search cap
+                .Take(fc.Config.ItemsSearchCap.Value)
                 .ToList();
 
             if (Options.AtoZ)
@@ -65,7 +66,7 @@ namespace WOWAuctionApi_Net10
             if (fc.CurrentProfile.ListOption != 0)
             {
                 auctions = auctions
-                    .Where(auction => fc.CurrentItemList.ItemCache.ItemIds.Contains(auction.item.id))
+                    .Where(auction => Options.CombinedSearchCache.ItemIds.Contains(auction.item.id))
                     .ToList();
             }
 
@@ -73,7 +74,7 @@ namespace WOWAuctionApi_Net10
             {
                 auctions = auctions
                     .Where(auction =>
-                        ((fc.CurrentItemList.ItemCache.Items.Single(
+                        ((Options.CombinedSearchCache.Items.Single(
                             item => item.Id == auction.item.id).BuyPrice * 10000) >=
                             auction.buyout))
                     .Take(fc.Config.AuctionsCap.Value)
@@ -174,8 +175,8 @@ namespace WOWAuctionApi_Net10
             {
                 foreach (long bonus in auction.item.bonus_lists)
                 {
-                    DeepItemDataBonus deepItemDataBonus;
-                    fc.Dictionaries.DeepItemData.TryGetValue(bonus.ToString(), out deepItemDataBonus);
+                    CrypticBonus deepItemDataBonus;
+                    fc.Dictionaries.CrypticBonuses.TryGetValue(bonus.ToString(), out deepItemDataBonus);
 
                     if (deepItemDataBonus != null)
                     {
@@ -198,8 +199,8 @@ namespace WOWAuctionApi_Net10
             {
                 foreach (long bonus in auction.item.bonus_lists)
                 {
-                    DeepItemDataBonus deepItemDataBonus;
-                    fc.Dictionaries.DeepItemData.TryGetValue(bonus.ToString(), out deepItemDataBonus);
+                    CrypticBonus deepItemDataBonus;
+                    fc.Dictionaries.CrypticBonuses.TryGetValue(bonus.ToString(), out deepItemDataBonus);
 
                     if (deepItemDataBonus != null)
                     {
@@ -380,6 +381,8 @@ namespace WOWAuctionApi_Net10
         public List<string> Class;
         public List<string> Quality;
         public List<string> Bonuses;
+
+        public ItemCache CombinedSearchCache = new ItemCache();
     }
 
     public class ItemProps

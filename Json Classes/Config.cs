@@ -34,6 +34,8 @@ namespace WOWAuctionApi_Net10
 
         public int? AuctionsCap { get; set; }
 
+        public int? ItemsSearchCap { get; set; }
+
         public List<Realm>? Realms { get; set; }
 
 

@@ -29,26 +29,25 @@ namespace WOWAuctionApi_Net10
             tllNewVersion.Text = $".Net Version {Environment.Version}   "
                 + $"Application Version {Assembly.GetExecutingAssembly().GetName().Version}";
             auctionEventDelegate = new AuctionEvent.AuctionRetrievedEventHandler(AuctionEvent_AuctionRetrieved);
-            
+
             LoadConfig();
+            LoadSearchProfiles();
             LoadItemLists();
             fc.UIOptions = UserInterfaceOptions.LoadFromFile();
             RenderUIOptionsControls();
             LoadRealms();
             LoadRegionData();
-            LoadSearchProfiles();
+
             LoadItemCache();
             LoadPetCache();
-            
-            ListItemsPBSView(false);
-            fc.Dictionaries.DeepItemData = DeepItemData.Load();
 
+            ListItemsPBSView(false);
+            fc.Dictionaries.CrypticBonuses = CrypticBonuses.Load();
+            fc.ItemData = ItemData.Load();
             fc.BlizzAccessToken = API_Blizzard.GetAccessToken(fc.Config.BlizzClientID, fc.Config.BlizzClientSecret);
 
 
             lvRealms.SmallImageList = imgStatus;
-            lvItems.SmallImageList = imgProfile48;
-            lvItems.LargeImageList = imgProfile48;
 
             toolStripMain.ImageList = imgToolbar48;
             toolStripMain.Renderer = new ToolStripBlankSeparatorRenderer();
@@ -103,54 +102,38 @@ namespace WOWAuctionApi_Net10
             pnlSearch_Quality.Visible = true;
             pnlSearch_MoreOptions.Visible = true;
             pnlSearch_GlobalOptions.Visible = true;
-        }
+        } 
+
 
         private void LoadItemLists()
         {
-            lvItems.Items.Clear();
+            lbItems.Items.Clear();
             fc.ItemLists = ItemLists.Load();
             fc.ItemLists.Lists = fc.ItemLists.Lists.OrderBy(list => list.Name).ToList();
+
             foreach (ItemList itemList in fc.ItemLists.Lists)
             {
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = itemList.Name;
-                lvi.Tag = itemList;
-                lvi.ImageIndex = itemList.IconIndex.Value;
-                lvItems.Items.Add(lvi);
-
-                if (itemList.Name == fc.CurrentItemList.Name)
+                lbItems.Items.Add(new ListBoxItem
                 {
-                    lvItems.Items[lvi.Index].Focused = true;
-                    lvItems.Items[lvi.Index].Selected = true;
+                    ListName = itemList.Name,
+                    IconIndex = itemList.IconIndex.Value,
+                    List = itemList,
+                    Picture = imgProfile48.Images[itemList.IconIndex.Value]
                 }
-            }
-
-
-            //If we didn't select a current profile and we have at least 1 item in the list, then select the first one
-            if ((lvItems.Items.Count > 0) && (lvItems.SelectedItems.Count == 0))
-            {
-                lvItems.Items[0].Focused = true;
-                lvItems.Items[0].Selected = true;
-                ItemList currentList = lvItems.Items[0].Tag as ItemList;
-                if (currentList != null)
-                {
-                    fc.CurrentItemList = currentList;
-                }
+                );
             }
         }
 
         private void LoadItemList(ItemList itemList)
         {
             fc.CurrentItemList = itemList;
-            picCurrentList.Image = imgProfile48.Images[fc.CurrentItemList.IconIndex.Value];
-            lblCurrentList.Text = fc.CurrentItemList.Name;
             itemList.ItemCache.Items = itemList.ItemCache.Items.OrderBy(item => item.Name).ToList();
             RenderItemResults(itemList.ItemCache, lvItemsItemsInList);
         }
 
         private void ListView_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
-            ListView listView = sender as ListView;   
+            ListView listView = sender as ListView;
             if (listView != null)
             {
                 if (e.Item.Selected)
@@ -234,9 +217,9 @@ namespace WOWAuctionApi_Net10
             pnlSearch_MoreOptions_SubOptions.Visible = auctions;
             pnlSearch_GlobalOptions_SubOptions.Visible = auctions;
             pnlSearch_Bonuses.Visible = auctions;
-           
+
             pnlSearch_List_Buttons.Visible = !auctions;
-            pnlSearch_List_Options.Visible = auctions;      
+            pnlSearch_List_Options.Visible = auctions;
 
             switch (displayMode)
             {
@@ -246,6 +229,8 @@ namespace WOWAuctionApi_Net10
                     tssMain.BackColor = Color.Brown;
                     lblSearchMode.Text = "Auctions Mode";
                     lblSearchList.Text = "List Options For This Search";
+                    lbItems.SelectionMode = SelectionMode.MultiExtended;
+                    SetListItems(fc.CurrentProfile);
                     break;
 
                 case DisplayMode.ItemsLists:
@@ -253,6 +238,8 @@ namespace WOWAuctionApi_Net10
                     tssMain.BackColor = Color.SteelBlue;
                     lblSearchMode.Text = "Lists Mode";
                     lblSearchList.Text = "Managed My Lists";
+                    lbItems.SelectionMode = SelectionMode.One;
+                    SetListItems(0);
                     break;
             }
         }
@@ -537,10 +524,25 @@ namespace WOWAuctionApi_Net10
             }
         }
 
-        private void SetItemListFromName(string listName)
+        private void SetListItems(int index)
         {
-            fc.CurrentItemList = fc.ItemLists.Lists.Single(list => list.Name == listName);
+            for (int i = 0; i < lbItems.Items.Count; i++)
+            {
+                lbItems.SetSelected(i, (i == index));
+            }
         }
+        private void SetListItems(SearchProfile sp)
+        {
+            for (int i = 0; i < lbItems.Items.Count; i++)
+            {
+                ListBoxItem lbi = lbItems.Items[i] as ListBoxItem;
+                if (lbi != null)
+                {
+                    lbItems.SetSelected(i, sp.Lists.Contains(lbi.ListName));
+                }
+            }
+        }
+
         private void SearchProfileToUI(SearchProfile sp)
         {
             this.rbSearchRemoveDuplicates.Checked = (sp.SearchFrequency == 0);
@@ -551,10 +553,7 @@ namespace WOWAuctionApi_Net10
             this.rbSearch_List_AdditionalCriteria.Checked = (sp.ListOption == 1);
             this.rbSearch_List_OnlyByList.Checked = (sp.ListOption == 2);
 
-
-            SetItemListFromName(sp.ListName);
-            this.lblCurrentList.Text = sp.ListName;
-            this.picCurrentList.Image = imgProfile48.Images[fc.CurrentItemList.IconIndex.Value];
+            SetListItems(sp);
 
             this.txtSearchMaxG.Text = sp.SearchMaxG.Value.ToString();
             this.txtSearchMaxItemLevel.Text = sp.MaxItemLevel.Value.ToString();
@@ -606,7 +605,12 @@ namespace WOWAuctionApi_Net10
             if (this.rbSearch_List_AdditionalCriteria.Checked) { sp.ListOption = 1; }
             if (this.rbSearch_List_OnlyByList.Checked) { sp.ListOption = 2; }
 
-            sp.ListName = lblCurrentList.Text;
+            fc.CurrentProfile.Lists.Clear();
+            foreach (ListBoxItem lbi in lbItems.SelectedItems)
+            {
+                fc.CurrentProfile.Lists.Add(lbi.ListName);
+            }
+
             sp.SearchMaxG = int.Parse(this.txtSearchMaxG.Text.Trim());
             sp.MaxItemLevel = int.Parse(this.txtSearchMaxItemLevel.Text.Trim());
             sp.MinItemLevel = int.Parse(this.txtSearchMinItemLevel.Text.Trim());
@@ -760,7 +764,7 @@ namespace WOWAuctionApi_Net10
                 fc.CurrentProfile.ProfileName, "Search Profile");
             if (profileName != null && profileName.Trim() != "")
             {
-                CopySearch(profileName, iconIndex, false, false);
+                AddNewProfile(fc.CurrentProfile.ShallowCopy(), profileName, iconIndex);
             }
         }
 
@@ -847,10 +851,33 @@ namespace WOWAuctionApi_Net10
 
             if (fc.CurrentProfile.ListOption != 0)
             {
-                fc.CurrentItemList.ItemCache.FillItemIds();
+                searchLogic.Options.CombinedSearchCache = GetCacheOfSearchLists();
             }
 
             searchLogic.fc = fc;
+        }
+
+        private ItemCache GetCacheOfSearchLists()
+        {
+            ItemCache newCache = new ItemCache();
+
+            foreach (string listName in fc.CurrentProfile.Lists)
+            {
+
+                ItemList list = GetItemListByName(listName);
+                newCache.Items.AddRange(list.ItemCache.Items);
+
+            }
+
+            newCache.Items = newCache.Items.DistinctBy(item => item.Id).ToList();
+            newCache.FillItemIds();
+
+            return newCache;
+        }
+
+        private ItemList GetItemListByName(string listName)
+        {
+            return fc.ItemLists.Lists.Single(list => list.Name == listName);
         }
 
         private void Search()
@@ -1314,10 +1341,8 @@ namespace WOWAuctionApi_Net10
 
         private void tsbTest_Click(object sender, EventArgs e)
         {
-            fc.Dictionaries.DeepItemData = DeepItemData.Load();
 
-            DeepItemDataBonus itemBonus = DeepItemData.GetDataForBonus(txtSearchStringFilter.Text, fc.Dictionaries.DeepItemData);
-            MessageBox.Show(itemBonus.default_level.ToString());
+
         }
 
         private void RefreshWowButtons()
@@ -1481,15 +1506,19 @@ namespace WOWAuctionApi_Net10
             var (profileName, iconIndex) = GetProfileDetails(2, 0, "", "Search Profile");
             if (profileName != null && profileName.Trim() != "")
             {
-                SearchProfile newProfile = GetCopyOfDefault();
-                newProfile.ProfileName = profileName;
-                newProfile.IconIndex = iconIndex;
-                fc.SearchProfiles.Profiles.Add(newProfile);
-                fc.CurrentProfile = newProfile;
-                fc.SearchProfiles.Save();
-                RefreshToolbarSearchButtons();
-                SearchProfileToUI(newProfile);
+                AddNewProfile(GetCopyOfDefault(), profileName, iconIndex);
             }
+        }
+
+        private void AddNewProfile(SearchProfile profile, string profileName, int iconIndex)
+        {
+            profile.ProfileName = profileName;
+            profile.IconIndex = iconIndex;
+            fc.SearchProfiles.Profiles.Add(profile);
+            fc.CurrentProfile = profile;
+            fc.SearchProfiles.Save();
+            RefreshToolbarSearchButtons();
+            SearchProfileToUI(profile);
         }
 
         private void ChangeDefaultProfile(string newName)
@@ -1497,52 +1526,6 @@ namespace WOWAuctionApi_Net10
             fc.Config.DefaultSearch = newName;
             fc.Config.Save();
         }
-
-        private void CopySearch(string newName, int newIndex, bool deleteOriginal, bool newSearchIsDefault)
-        {
-
-            //If we are deleting the original then if it was the default, the renamed profile should be the default
-            if (deleteOriginal)
-            {
-                DeleteSearchProfile(fc.CurrentProfile);
-            }
-            if (newSearchIsDefault)
-            {
-                ChangeDefaultProfile(newName);
-            }
-            GlobalSearchStuff(newName, newIndex);
-
-            /*
-            SearchProfile sp = new SearchProfile();
-            UIToSearchProfile(sp);
-            sp.ProfileName = newName;
-            sp.IconIndex = newIndex;
-            sp.IsDefault = false;
-            sp.Save();
-
-            RefreshToolbarSearchButtons();
-            cache.CurrentProfile = sp;
-            SearchProfileToUI(sp);
-            IterateToolstripButtons(tsbOp.Check, tsbFrequency.Single, tsbType.tsbSearch_Quick_, null, newName);
-            */
-
-        }
-
-        private void GlobalSearchStuff(string newName, int newIndex)
-        {
-            SearchProfile sp = new SearchProfile();
-            UIToSearchProfile(sp);
-            sp.ProfileName = newName;
-            sp.IconIndex = newIndex;
-            fc.SearchProfiles.Save();
-
-            LoadSearchProfiles();
-            fc.CurrentProfile = sp;
-            SearchProfileToUI(sp);
-            tslCurrentProfile.Text = fc.CurrentProfile.ProfileName;
-            IterateToolstripButtons(tsbOp.Check, tsbFrequency.Single, tsbType.tsbSearch_Quick_, null, newName);
-        }
-
 
         private (string profileName, int iconIndex) GetProfileDetails(
             int searchType, int startingIndex, string startingProfileName, string itemTitle)
@@ -1578,7 +1561,7 @@ namespace WOWAuctionApi_Net10
 
         private void DeleteSearchProfile(SearchProfile profile)
         {
-                fc.SearchProfiles.Profiles.Remove(profile);
+            fc.SearchProfiles.Profiles.Remove(profile);
         }
 
         private void tsbDeleteSearch_Click(object sender, EventArgs e)
@@ -1802,18 +1785,6 @@ namespace WOWAuctionApi_Net10
             return copyCache;
         }
 
-        private void lvItems_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lvItems.SelectedItems.Count > 0)
-            {
-                ItemList list = lvItems.SelectedItems[0].Tag as ItemList;
-                if (list != null)
-                {
-                    LoadItemList(list);
-                }
-            }
-        }
-
         private void btnItemListEdit_Click(object sender, EventArgs e)
         {
             var (profileName, iconIndex) = GetProfileDetails(1, fc.CurrentItemList.IconIndex.Value,
@@ -1867,12 +1838,14 @@ namespace WOWAuctionApi_Net10
 
         private void btnItemListDelete_Click(object sender, EventArgs e)
         {
+            /*
             if (MsgHelper.Confirm.DeleteItemList())
             {
                 fc.ItemLists.Lists.Remove(fc.CurrentItemList);
                 fc.ItemLists.Save();
                 LoadItemLists();
             }
+            */
         }
 
         private void lvItemsItemsInList_KeyDown(object sender, KeyEventArgs e)
@@ -1888,6 +1861,15 @@ namespace WOWAuctionApi_Net10
                     lvItemsItemsInList.Items.Remove(selectedItem);
                 }
                 SaveItems();
+            }
+            else if (e.KeyCode == Keys.A && e.Control)
+            {
+                // Select all items in the ListView
+                foreach (ListViewItem item in lvItemsItemsInList.Items)
+                {
+                    item.Selected = true;
+                }
+                e.Handled = true; // Mark the event as handled to prevent further processing if necessary
             }
         }
 
@@ -1990,6 +1972,73 @@ namespace WOWAuctionApi_Net10
         private void btnRefreshAuctionsTotal_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRefreshAuctions2_Click(object sender, EventArgs e)
+        {
+            LoadAuctionData();
+        }
+
+        private void txtSearchStringFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Search();
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            List<string> subItems = new List<string>(["Misc Items 1", "Misc Items 2"]);
+            //fc.CurrentItemList.SubLists = subItems;
+            fc.ItemLists.Save();
+        }
+
+        private void lbItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (fc.DisplayMode == DisplayMode.ItemsLists && lbItems.SelectedItems.Count > 0)
+            {
+                ListBoxItem lbi = lbItems.SelectedItems[0] as ListBoxItem;
+                if (lbi != null)
+                {
+                    LoadItemList(lbi.List);
+                    fc.CurrentItemList = lbi.List;
+                }
+            }
+        }
+
+        private void lbItems_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0 || e.Index >= lbItems.Items.Count) return;
+
+            ListBoxItem item = (ListBoxItem)lbItems.Items[e.Index];
+
+            // Draw the background
+            e.DrawBackground();
+
+            // Draw the image
+            // The Y coordinate positions the image vertically within the item bounds
+            e.Graphics.DrawImage(item.Picture, e.Bounds.X, e.Bounds.Y, 48, 48); // Draw a 32x32 image
+
+            // Draw the text
+            // Adjust the X coordinate to position text next to the image
+            e.Graphics.DrawString(item.ListName, e.Font, new SolidBrush(Color.White), e.Bounds.X + 54, e.Bounds.Y + 5);
+
+            // Draw the focus rectangle if the item is selected
+            e.DrawFocusRectangle();
+        }
+
+        private void lvItemsSearchResults_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.A && e.Control)
+            {
+                // Select all items in the ListView
+                foreach (ListViewItem item in lvItemsSearchResults.Items)
+                {
+                    item.Selected = true;
+                }
+                e.Handled = true; // Mark the event as handled to prevent further processing if necessary
+            }
         }
 
         public enum BuyPriceSelectType

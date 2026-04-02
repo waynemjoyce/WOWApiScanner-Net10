@@ -177,20 +177,19 @@
             colItemsClass = new ColumnHeader();
             label9 = new Label();
             lblSearchList = new Label();
-            lvItems = new ListView();
-            columnHeader7 = new ColumnHeader();
             btnItemListSaveAs = new Button();
             btnItemListEdit = new Button();
             btnItemListDelete = new Button();
             btnItemListNew = new Button();
             pnlLists_Main = new Panel();
+            lbItems = new ListBox();
             pnlSearch_List_Buttons = new Panel();
-            lblCurrentList = new Label();
-            picCurrentList = new PictureBox();
+            button6 = new Button();
             pnlSearch_List_Options = new Panel();
             rbSearch_List_OnlyByList = new RadioButton();
             rbSearch_List_AdditionalCriteria = new RadioButton();
             rbSearch_List_DontUse = new RadioButton();
+            imgProfile48 = new ImageList(components);
             pnlRealms = new Panel();
             btnToggleRealms = new Button();
             lvRealms = new ListView();
@@ -198,7 +197,6 @@
             colRealms_RealmName = new ColumnHeader();
             colRealms_LastModified = new ColumnHeader();
             colRealms_Auctions = new ColumnHeader();
-            imgProfile48 = new ImageList(components);
             pnlAuctionData = new Panel();
             chartTotalValue = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chartTopSearches = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -213,6 +211,7 @@
             colRegion = new ColumnHeader();
             colPetLv = new ColumnHeader();
             colLatestXpac = new ColumnHeader();
+            btnRefreshAuctions2 = new Button();
             toolStripMain.SuspendLayout();
             pnlSearch_Bonuses.SuspendLayout();
             pnlSearch_Main.SuspendLayout();
@@ -230,7 +229,6 @@
             pnlItemsSearchPBS.SuspendLayout();
             pnlLists_Main.SuspendLayout();
             pnlSearch_List_Buttons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picCurrentList).BeginInit();
             pnlSearch_List_Options.SuspendLayout();
             pnlRealms.SuspendLayout();
             pnlAuctionData.SuspendLayout();
@@ -1327,7 +1325,7 @@
             tllNewVersion.DisplayStyle = ToolStripItemDisplayStyle.Text;
             tllNewVersion.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             tllNewVersion.Name = "tllNewVersion";
-            tllNewVersion.Size = new Size(500, 40);
+            tllNewVersion.Size = new Size(800, 40);
             tllNewVersion.Text = "[Version]";
             tllNewVersion.TextAlign = ContentAlignment.TopRight;
             // 
@@ -1412,6 +1410,7 @@
             txtSearchStringFilter.Name = "txtSearchStringFilter";
             txtSearchStringFilter.Size = new Size(688, 39);
             txtSearchStringFilter.TabIndex = 138;
+            txtSearchStringFilter.KeyDown += txtSearchStringFilter_KeyDown;
             // 
             // button4
             // 
@@ -1830,6 +1829,7 @@
             lvItemsSearchResults.UseCompatibleStateImageBehavior = false;
             lvItemsSearchResults.View = View.Details;
             lvItemsSearchResults.ItemDrag += lvItemsSearchResults_ItemDrag;
+            lvItemsSearchResults.KeyDown += lvItemsSearchResults_KeyDown;
             // 
             // columnHeader6
             // 
@@ -1884,26 +1884,6 @@
             lblSearchList.TabIndex = 126;
             lblSearchList.Text = "My Item Lists";
             lblSearchList.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lvItems
-            // 
-            lvItems.BackColor = SystemColors.Control;
-            lvItems.Columns.AddRange(new ColumnHeader[] { columnHeader7 });
-            lvItems.Font = new Font("Segoe UI", 9F);
-            lvItems.FullRowSelect = true;
-            lvItems.Location = new Point(30, 274);
-            lvItems.MultiSelect = false;
-            lvItems.Name = "lvItems";
-            lvItems.Size = new Size(485, 1533);
-            lvItems.TabIndex = 137;
-            lvItems.UseCompatibleStateImageBehavior = false;
-            lvItems.View = View.Details;
-            lvItems.SelectedIndexChanged += lvItems_SelectedIndexChanged;
-            // 
-            // columnHeader7
-            // 
-            columnHeader7.Text = "Lists";
-            columnHeader7.Width = 430;
             // 
             // btnItemListSaveAs
             // 
@@ -1961,11 +1941,10 @@
             // 
             pnlLists_Main.BackColor = SystemColors.ControlLight;
             pnlLists_Main.BorderStyle = BorderStyle.FixedSingle;
+            pnlLists_Main.Controls.Add(lbItems);
             pnlLists_Main.Controls.Add(pnlSearch_List_Buttons);
-            pnlLists_Main.Controls.Add(lblCurrentList);
-            pnlLists_Main.Controls.Add(picCurrentList);
+            pnlLists_Main.Controls.Add(button6);
             pnlLists_Main.Controls.Add(pnlSearch_List_Options);
-            pnlLists_Main.Controls.Add(lvItems);
             pnlLists_Main.Controls.Add(lblSearchList);
             pnlLists_Main.Location = new Point(29, 128);
             pnlLists_Main.Name = "pnlLists_Main";
@@ -1973,63 +1952,68 @@
             pnlLists_Main.TabIndex = 139;
             pnlLists_Main.Visible = false;
             // 
+            // lbItems
+            // 
+            lbItems.BackColor = SystemColors.Control;
+            lbItems.DrawMode = DrawMode.OwnerDrawFixed;
+            lbItems.FormattingEnabled = true;
+            lbItems.ItemHeight = 48;
+            lbItems.Location = new Point(20, 120);
+            lbItems.Name = "lbItems";
+            lbItems.Size = new Size(513, 1684);
+            lbItems.TabIndex = 149;
+            lbItems.DrawItem += lbItems_DrawItem;
+            lbItems.SelectedIndexChanged += lbItems_SelectedIndexChanged;
+            // 
             // pnlSearch_List_Buttons
             // 
             pnlSearch_List_Buttons.Controls.Add(btnItemListSaveAs);
             pnlSearch_List_Buttons.Controls.Add(btnItemListEdit);
             pnlSearch_List_Buttons.Controls.Add(btnItemListDelete);
             pnlSearch_List_Buttons.Controls.Add(btnItemListNew);
-            pnlSearch_List_Buttons.Location = new Point(30, 212);
+            pnlSearch_List_Buttons.Location = new Point(17, 50);
             pnlSearch_List_Buttons.Name = "pnlSearch_List_Buttons";
             pnlSearch_List_Buttons.Size = new Size(227, 63);
             pnlSearch_List_Buttons.TabIndex = 146;
             // 
-            // lblCurrentList
+            // button6
             // 
-            lblCurrentList.AutoSize = true;
-            lblCurrentList.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblCurrentList.Location = new Point(86, 78);
-            lblCurrentList.Name = "lblCurrentList";
-            lblCurrentList.Size = new Size(147, 32);
-            lblCurrentList.TabIndex = 145;
-            lblCurrentList.Text = "Current List";
-            // 
-            // picCurrentList
-            // 
-            picCurrentList.Location = new Point(32, 69);
-            picCurrentList.Name = "picCurrentList";
-            picCurrentList.Size = new Size(48, 48);
-            picCurrentList.TabIndex = 144;
-            picCurrentList.TabStop = false;
+            button6.Location = new Point(480, -5);
+            button6.Name = "button6";
+            button6.Size = new Size(66, 46);
+            button6.TabIndex = 148;
+            button6.Text = "button6";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // pnlSearch_List_Options
             // 
             pnlSearch_List_Options.Controls.Add(rbSearch_List_OnlyByList);
             pnlSearch_List_Options.Controls.Add(rbSearch_List_AdditionalCriteria);
             pnlSearch_List_Options.Controls.Add(rbSearch_List_DontUse);
-            pnlSearch_List_Options.Location = new Point(17, 129);
+            pnlSearch_List_Options.Location = new Point(17, 52);
             pnlSearch_List_Options.Name = "pnlSearch_List_Options";
-            pnlSearch_List_Options.Size = new Size(498, 138);
+            pnlSearch_List_Options.Size = new Size(513, 60);
             pnlSearch_List_Options.TabIndex = 143;
             // 
             // rbSearch_List_OnlyByList
             // 
             rbSearch_List_OnlyByList.AutoSize = true;
-            rbSearch_List_OnlyByList.Location = new Point(15, 97);
+            rbSearch_List_OnlyByList.Location = new Point(129, 12);
             rbSearch_List_OnlyByList.Name = "rbSearch_List_OnlyByList";
-            rbSearch_List_OnlyByList.Size = new Size(407, 36);
+            rbSearch_List_OnlyByList.Size = new Size(95, 36);
             rbSearch_List_OnlyByList.TabIndex = 115;
-            rbSearch_List_OnlyByList.Text = "ONLY filter on list, using Buy Price";
+            rbSearch_List_OnlyByList.Text = "Only";
             rbSearch_List_OnlyByList.UseVisualStyleBackColor = true;
             // 
             // rbSearch_List_AdditionalCriteria
             // 
             rbSearch_List_AdditionalCriteria.AutoSize = true;
-            rbSearch_List_AdditionalCriteria.Location = new Point(15, 55);
+            rbSearch_List_AdditionalCriteria.Location = new Point(247, 13);
             rbSearch_List_AdditionalCriteria.Name = "rbSearch_List_AdditionalCriteria";
-            rbSearch_List_AdditionalCriteria.Size = new Size(342, 36);
+            rbSearch_List_AdditionalCriteria.Size = new Size(251, 36);
             rbSearch_List_AdditionalCriteria.TabIndex = 114;
-            rbSearch_List_AdditionalCriteria.Text = "Use list as additional criteria";
+            rbSearch_List_AdditionalCriteria.Text = "Criteria + List Items";
             rbSearch_List_AdditionalCriteria.UseVisualStyleBackColor = true;
             // 
             // rbSearch_List_DontUse
@@ -2038,68 +2022,11 @@
             rbSearch_List_DontUse.Checked = true;
             rbSearch_List_DontUse.Location = new Point(15, 12);
             rbSearch_List_DontUse.Name = "rbSearch_List_DontUse";
-            rbSearch_List_DontUse.Size = new Size(342, 36);
+            rbSearch_List_DontUse.Size = new Size(104, 36);
             rbSearch_List_DontUse.TabIndex = 113;
             rbSearch_List_DontUse.TabStop = true;
-            rbSearch_List_DontUse.Text = "Don't use lists in this search";
+            rbSearch_List_DontUse.Text = "None";
             rbSearch_List_DontUse.UseVisualStyleBackColor = true;
-            // 
-            // pnlRealms
-            // 
-            pnlRealms.Controls.Add(btnToggleRealms);
-            pnlRealms.Controls.Add(lvRealms);
-            pnlRealms.Location = new Point(3394, 485);
-            pnlRealms.Name = "pnlRealms";
-            pnlRealms.Size = new Size(406, 1490);
-            pnlRealms.TabIndex = 142;
-            pnlRealms.Visible = false;
-            // 
-            // btnToggleRealms
-            // 
-            btnToggleRealms.BackColor = SystemColors.ControlLightLight;
-            btnToggleRealms.FlatAppearance.BorderSize = 0;
-            btnToggleRealms.FlatStyle = FlatStyle.Flat;
-            btnToggleRealms.Image = (Image)resources.GetObject("btnToggleRealms.Image");
-            btnToggleRealms.Location = new Point(2, 2);
-            btnToggleRealms.Name = "btnToggleRealms";
-            btnToggleRealms.Size = new Size(36, 36);
-            btnToggleRealms.TabIndex = 147;
-            btnToggleRealms.UseVisualStyleBackColor = false;
-            btnToggleRealms.Click += btnToggleRealms_Click;
-            // 
-            // lvRealms
-            // 
-            lvRealms.BackColor = SystemColors.ControlLight;
-            lvRealms.CheckBoxes = true;
-            lvRealms.Columns.AddRange(new ColumnHeader[] { colRealms_S, colRealms_RealmName, colRealms_LastModified, colRealms_Auctions });
-            lvRealms.Font = new Font("Segoe UI", 9F);
-            lvRealms.Location = new Point(3, -4);
-            lvRealms.Name = "lvRealms";
-            lvRealms.Size = new Size(406, 1490);
-            lvRealms.TabIndex = 1;
-            lvRealms.UseCompatibleStateImageBehavior = false;
-            lvRealms.View = View.Details;
-            // 
-            // colRealms_S
-            // 
-            colRealms_S.Text = "";
-            colRealms_S.Width = 70;
-            // 
-            // colRealms_RealmName
-            // 
-            colRealms_RealmName.Text = "Realm Name";
-            colRealms_RealmName.Width = 220;
-            // 
-            // colRealms_LastModified
-            // 
-            colRealms_LastModified.Text = "Modified";
-            colRealms_LastModified.Width = 110;
-            // 
-            // colRealms_Auctions
-            // 
-            colRealms_Auctions.Text = "#";
-            colRealms_Auctions.TextAlign = HorizontalAlignment.Right;
-            colRealms_Auctions.Width = 0;
             // 
             // imgProfile48
             // 
@@ -3061,6 +2988,63 @@
             imgProfile48.Images.SetKeyName(952, "x-ray.png");
             imgProfile48.Images.SetKeyName(953, "yinyang.png");
             // 
+            // pnlRealms
+            // 
+            pnlRealms.Controls.Add(btnToggleRealms);
+            pnlRealms.Controls.Add(lvRealms);
+            pnlRealms.Location = new Point(3394, 485);
+            pnlRealms.Name = "pnlRealms";
+            pnlRealms.Size = new Size(406, 1490);
+            pnlRealms.TabIndex = 142;
+            pnlRealms.Visible = false;
+            // 
+            // btnToggleRealms
+            // 
+            btnToggleRealms.BackColor = SystemColors.ControlLightLight;
+            btnToggleRealms.FlatAppearance.BorderSize = 0;
+            btnToggleRealms.FlatStyle = FlatStyle.Flat;
+            btnToggleRealms.Image = (Image)resources.GetObject("btnToggleRealms.Image");
+            btnToggleRealms.Location = new Point(2, 2);
+            btnToggleRealms.Name = "btnToggleRealms";
+            btnToggleRealms.Size = new Size(36, 36);
+            btnToggleRealms.TabIndex = 147;
+            btnToggleRealms.UseVisualStyleBackColor = false;
+            btnToggleRealms.Click += btnToggleRealms_Click;
+            // 
+            // lvRealms
+            // 
+            lvRealms.BackColor = SystemColors.ControlLight;
+            lvRealms.CheckBoxes = true;
+            lvRealms.Columns.AddRange(new ColumnHeader[] { colRealms_S, colRealms_RealmName, colRealms_LastModified, colRealms_Auctions });
+            lvRealms.Font = new Font("Segoe UI", 9F);
+            lvRealms.Location = new Point(3, -4);
+            lvRealms.Name = "lvRealms";
+            lvRealms.Size = new Size(406, 1490);
+            lvRealms.TabIndex = 1;
+            lvRealms.UseCompatibleStateImageBehavior = false;
+            lvRealms.View = View.Details;
+            // 
+            // colRealms_S
+            // 
+            colRealms_S.Text = "";
+            colRealms_S.Width = 70;
+            // 
+            // colRealms_RealmName
+            // 
+            colRealms_RealmName.Text = "Realm Name";
+            colRealms_RealmName.Width = 220;
+            // 
+            // colRealms_LastModified
+            // 
+            colRealms_LastModified.Text = "Modified";
+            colRealms_LastModified.Width = 110;
+            // 
+            // colRealms_Auctions
+            // 
+            colRealms_Auctions.Text = "#";
+            colRealms_Auctions.TextAlign = HorizontalAlignment.Right;
+            colRealms_Auctions.Width = 0;
+            // 
             // pnlAuctionData
             // 
             pnlAuctionData.Controls.Add(chartTotalValue);
@@ -3142,6 +3126,7 @@
             lvAuctions.TabIndex = 101;
             lvAuctions.UseCompatibleStateImageBehavior = false;
             lvAuctions.View = View.Details;
+            lvAuctions.KeyPress += lvAuctions_KeyPress;
             // 
             // colSide
             // 
@@ -3190,17 +3175,31 @@
             // 
             colLatestXpac.Text = "LX";
             // 
+            // btnRefreshAuctions2
+            // 
+            btnRefreshAuctions2.BackColor = SystemColors.Control;
+            btnRefreshAuctions2.FlatAppearance.BorderSize = 0;
+            btnRefreshAuctions2.FlatStyle = FlatStyle.Flat;
+            btnRefreshAuctions2.Image = (Image)resources.GetObject("btnRefreshAuctions2.Image");
+            btnRefreshAuctions2.Location = new Point(3747, 430);
+            btnRefreshAuctions2.Name = "btnRefreshAuctions2";
+            btnRefreshAuctions2.Size = new Size(52, 52);
+            btnRefreshAuctions2.TabIndex = 148;
+            btnRefreshAuctions2.UseVisualStyleBackColor = false;
+            btnRefreshAuctions2.Click += btnRefreshAuctions2_Click;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(3808, 2044);
+            Controls.Add(tssMain);
+            Controls.Add(btnRefreshAuctions2);
             Controls.Add(pnlRealms);
             Controls.Add(pnlLists_Main);
             Controls.Add(pnlSearch_GlobalOptions);
             Controls.Add(pnlSearch_MoreOptions);
-            Controls.Add(tssMain);
             Controls.Add(pnlSearch_Bonuses);
             Controls.Add(panelRibbon);
             Controls.Add(toolStripMain);
@@ -3213,6 +3212,7 @@
             Font = new Font("Segoe UI", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormMain";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "WOW Auction API Scanner for .Net 10";
             WindowState = FormWindowState.Maximized;
             Load += FormMain_Load;
@@ -3243,9 +3243,7 @@
             pnlItemsSearchPBS.ResumeLayout(false);
             pnlItemsSearchPBS.PerformLayout();
             pnlLists_Main.ResumeLayout(false);
-            pnlLists_Main.PerformLayout();
             pnlSearch_List_Buttons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picCurrentList).EndInit();
             pnlSearch_List_Options.ResumeLayout(false);
             pnlSearch_List_Options.PerformLayout();
             pnlRealms.ResumeLayout(false);
@@ -3397,8 +3395,6 @@
         private TextBox txtSearchMinSellRate;
         private TextBox txtSearchWorth;
         private Label lblSearchList;
-        private ListView lvItems;
-        private ColumnHeader columnHeader7;
         private Button btnItemListSave;
         private Button btnItemListSaveAs;
         private Button btnItemListEdit;
@@ -3431,8 +3427,9 @@
         private RadioButton rbSearch_List_OnlyByList;
         private RadioButton rbSearch_List_AdditionalCriteria;
         private RadioButton rbSearch_List_DontUse;
-        private Label lblCurrentList;
-        private PictureBox picCurrentList;
         private Panel pnlSearch_List_Buttons;
+        private Button btnRefreshAuctions2;
+        private Button button6;
+        private ListBox lbItems;
     }
 }

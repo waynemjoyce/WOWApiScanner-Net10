@@ -55,9 +55,12 @@ namespace WOWAuctionApi_Net10
 
         public ItemCache? ItemCache { get; set; }
 
+        public List<string>? SubLists { get; set; }
+
         public ItemList()
         {
             ItemCache = new ItemCache();    
+            SubLists = new List<string>();
         }
     }
 }

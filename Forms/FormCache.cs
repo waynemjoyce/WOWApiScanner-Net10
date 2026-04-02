@@ -14,7 +14,8 @@ namespace WOWAuctionApi_Net10
         public ItemLists ItemLists = new ItemLists();
         public SearchProfiles SearchProfiles = new SearchProfiles();
         public SearchProfile CurrentProfile = new SearchProfile();
-        public ItemList CurrentItemList = new ItemList();            
+        public ItemList CurrentItemList = new ItemList();
+        public ItemData ItemData = new ItemData();  
 
         public UserInterfaceOptions UIOptions = new UserInterfaceOptions();
         public DataCount DataCount = new DataCount();
@@ -43,7 +44,7 @@ namespace WOWAuctionApi_Net10
 
     public class FormCacheDictionaries
     {
-        public Dictionary<string, DeepItemDataBonus> DeepItemData = new Dictionary<string, DeepItemDataBonus>();
+        public Dictionary<string, CrypticBonus> CrypticBonuses = new Dictionary<string, CrypticBonus>();
         public Dictionary<int, AuctionFileContents> RealmAuctions = new Dictionary<int, AuctionFileContents>();
         public Dictionary<long, TsmItem> RegionItems = new Dictionary<long, TsmItem>();
         public SortedDictionary<long, CacheItem> DictionaryItemCache = new SortedDictionary<long, CacheItem>();

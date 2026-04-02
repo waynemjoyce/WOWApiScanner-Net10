@@ -15,8 +15,9 @@ namespace WOWAuctionApi_Net10
         public static string UIOptions = $@"{Json}uioptions.json";
         public static string TsmRegionData = $@"{Json}tsmdata.json";
         public static string ItemLists = $@"{Json}itemlists.json";
-        public static string DeepItemData = $@"{Json}deepitemdata.json";
+        public static string CrypticBonuses = $@"{Json}crypticbonuses.json";
         public static string SearchProfiles = $@"{Json}searchprofiles.json";
+        public static string ItemData = $@"{Json}itemdata.json";
 
         public static string SearchProfile = $@"{Json}searchprofiles\";
         public static string InteractionScripts = $@"{Json}interactionscripts\";

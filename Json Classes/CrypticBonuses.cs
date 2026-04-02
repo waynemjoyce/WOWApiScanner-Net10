@@ -5,24 +5,24 @@ using System.Text.Json;
 
 namespace WOWAuctionApi_Net10
 {
-    public class DeepItemData : JsonBase
+    public class CrypticBonuses : JsonBase
     {
-        public static Dictionary<string, DeepItemDataBonus> Load()
+        public static Dictionary<string, CrypticBonus> Load()
         {
-            string items = File.ReadAllText(Paths.DeepItemData);
-            return JsonSerializer.Deserialize<Dictionary<string, DeepItemDataBonus>>(items);
+            string items = File.ReadAllText(Paths.CrypticBonuses);
+            return JsonSerializer.Deserialize<Dictionary<string, CrypticBonus>>(items);
         }
 
-        public static DeepItemDataBonus GetDataForBonus(string key, Dictionary<string, DeepItemDataBonus> dict)
+        public static CrypticBonus GetDataForBonus(string key, Dictionary<string, CrypticBonus> dict)
         {
-            DeepItemDataBonus returnVal;
+            CrypticBonus returnVal;
             dict.TryGetValue(key, out returnVal);
             return returnVal;
         }
 
     }
 
-    public class DeepItemDataBonus
+    public class CrypticBonus
     {
         public string? op {  get; set; }
         public long? curve_id { get; set; }

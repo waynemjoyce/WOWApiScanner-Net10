@@ -66,7 +66,7 @@ namespace WOWAuctionApi_Net10.Json_Classes
         public int? Quality { get; set; }
         public int? Bonuses { get; set; }
 
-        public string? ListName { get; set; }   
+        public List<string>? Lists { get; set; }   
         public int? ListOption { get; set; }
 
     }
