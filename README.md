@@ -1,9 +1,9 @@
 # WOWApiScanner-Net10
 World Of Warcraft API Auction Scanner - completely re-written in .Net 10 /  C# 14 - cross-platform compatitble. Scans the World of Warcraft Auction House for a configurable number of realms using their REST Api, then allowed searching using a wide variety of criteria to find bargains.
 
-![API Scanner In Dark Mode](Screenshots/DarkMode-01.png)
+![API Scanner In Dark Mode](Screenshots/1.2.0%20-%20Auctions%20View.png)
 
-![API Scanner In Light Mode](Screenshots/LightMode-01.png)
+![API Scanner In Light Mode](Screenshots/1.2.0%20-%20Lists%20View.png)
 
 Brief overview of improvements in this new version:
 - Completely re-written in .Net 10 / C# 14
