@@ -11,7 +11,7 @@ namespace WOWAuctionApi_Net10
 
         public static ItemData Load()
         {
-            return ItemData.LoadFromFile(Paths.ItemData);
+            return ItemData.LoadFromFile(sc.Paths.ItemData);
         }
 
         public static ItemData LoadFromFile(string fileName)

@@ -30,15 +30,15 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             toolStripMain = new ToolStrip();
             tsbRefreshAuctionData = new ToolStripButton();
             tsbUpdateAllData = new ToolStripButton();
@@ -71,6 +71,8 @@
             tsbDeleteSearch = new ToolStripButton();
             tsbSearchDefault = new ToolStripButton();
             tsbSearch = new ToolStripButton();
+            tsbRefreshAuctionData2 = new ToolStripButton();
+            tsbPreferences = new ToolStripButton();
             tsbTest = new ToolStripButton();
             tsbRefreshWoWProcesses = new ToolStripButton();
             tsbActivate = new ToolStripButton();
@@ -81,34 +83,7 @@
             toolStripSeparator9 = new ToolStripSeparator();
             imgStatus = new ImageList(components);
             imgColorMode = new ImageList(components);
-            pnlSearch_Bonuses = new Panel();
-            button1 = new Button();
-            label10 = new Label();
             imgToolbar48 = new ImageList(components);
-            pnlSearch_Main = new Panel();
-            lblSellRate = new Label();
-            lblSearchWorth = new Label();
-            txtSearchMinSellRate = new TextBox();
-            txtSearchWorth = new TextBox();
-            pnlSearch_Main_SubOptions = new Panel();
-            rbSearch_MaxG = new RadioButton();
-            rbSearch_Percentage = new RadioButton();
-            txtSearchMaxG = new TextBox();
-            txtSearchPercentage = new TextBox();
-            lblSearchCharLevel = new Label();
-            txtSearchMaxCharLevel = new TextBox();
-            txtSearchMinCharLevel = new TextBox();
-            button3 = new Button();
-            label14 = new Label();
-            lblSearchItemLevel = new Label();
-            txtSearchMaxItemLevel = new TextBox();
-            txtSearchMinItemLevel = new TextBox();
-            pnlSearch_Class = new Panel();
-            button2 = new Button();
-            label12 = new Label();
-            pnlSearch_Quality = new Panel();
-            btnSearch_Quality_OnOff = new Button();
-            label13 = new Label();
             panelRibbon = new Panel();
             lblSearchMode = new Label();
             label4 = new Label();
@@ -124,41 +99,11 @@
             tllProgress = new ToolStripStatusLabel();
             tllNewVersion = new ToolStripStatusLabel();
             colorDialog1 = new ColorDialog();
-            pnlSearch_MoreOptions = new Panel();
-            pnlSearch_MoreOptions_SubOptions = new Panel();
-            panelSearch_Frequency = new Panel();
-            rbSearchShowAllItems = new RadioButton();
-            rbSearchShowCheapest = new RadioButton();
-            rbSearchRemoveDuplicates = new RadioButton();
-            label1 = new Label();
-            txtSearchStringFilter = new TextBox();
-            button4 = new Button();
-            label7 = new Label();
-            lblSearchOnSelect = new Label();
-            tslSearchOnSelect = new ToggleSlider();
-            pnlSearch_GlobalOptions = new Panel();
-            pnlSearch_GlobalOptions_SubOptions = new Panel();
-            lblNewDataOnly = new Label();
-            txtSearchThreshold = new TextBox();
-            tslNewDataOnly = new ToggleSlider();
-            lblSearchThreshold = new Label();
-            button5 = new Button();
-            label6 = new Label();
             pnlLists_Items = new Panel();
             btnItemListPBSUpdateZeroValue = new Button();
             btnItemListPBSUpdateAll = new Button();
             btnItemListPBSUpdateSelected = new Button();
             txtItemsSearchPBSValue = new TextBox();
-            btnItemsExportToPBS = new Button();
-            pnlItemsSearchPBS = new Panel();
-            label3 = new Label();
-            label2 = new Label();
-            btnsbtnItemsSearchCopyKeys = new Button();
-            btnItemsSearchCopyExport = new Button();
-            txtItemsSearchPBSKeys = new TextBox();
-            txtItemsSearchPBSExport = new TextBox();
-            btnItemsListPBSView = new Button();
-            btnItemListSearchView = new Button();
             lblItemListName = new Label();
             lvItemsItemsInList = new ListView();
             columnHeader5 = new ColumnHeader();
@@ -176,27 +121,7 @@
             colItemsItemLevel = new ColumnHeader();
             colItemsClass = new ColumnHeader();
             label9 = new Label();
-            lblSearchList = new Label();
-            btnItemListSaveAs = new Button();
-            btnItemListEdit = new Button();
-            btnItemListDelete = new Button();
-            btnItemListNew = new Button();
-            pnlLists_Main = new Panel();
-            lbItems = new ListBox();
-            pnlSearch_List_Buttons = new Panel();
-            button6 = new Button();
-            pnlSearch_List_Options = new Panel();
-            rbSearch_List_OnlyByList = new RadioButton();
-            rbSearch_List_AdditionalCriteria = new RadioButton();
-            rbSearch_List_DontUse = new RadioButton();
             imgProfile48 = new ImageList(components);
-            pnlRealms = new Panel();
-            btnToggleRealms = new Button();
-            lvRealms = new ListView();
-            colRealms_S = new ColumnHeader();
-            colRealms_RealmName = new ColumnHeader();
-            colRealms_LastModified = new ColumnHeader();
-            colRealms_Auctions = new ColumnHeader();
             pnlAuctionData = new Panel();
             chartTotalValue = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chartTopSearches = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -211,26 +136,20 @@
             colRegion = new ColumnHeader();
             colPetLv = new ColumnHeader();
             colLatestXpac = new ColumnHeader();
-            btnRefreshAuctions2 = new Button();
+            mainOptions1 = new MainOptions();
+            itemClassOptions1 = new ItemClassOptions();
+            qualityOptions1 = new QualityOptions();
+            bonusOptions1 = new BonusOptions();
+            moreOptions1 = new MoreOptions();
+            globalOptions1 = new GlobalOptions();
+            itemListOptions1 = new ItemListOptions(components);
+            pbsExport1 = new PBSExport();
+            realmOptions1 = new RealmOptions();
+            tsbWoWInteraction = new ToolStripButton();
             toolStripMain.SuspendLayout();
-            pnlSearch_Bonuses.SuspendLayout();
-            pnlSearch_Main.SuspendLayout();
-            pnlSearch_Main_SubOptions.SuspendLayout();
-            pnlSearch_Class.SuspendLayout();
-            pnlSearch_Quality.SuspendLayout();
             panelRibbon.SuspendLayout();
             tssMain.SuspendLayout();
-            pnlSearch_MoreOptions.SuspendLayout();
-            pnlSearch_MoreOptions_SubOptions.SuspendLayout();
-            panelSearch_Frequency.SuspendLayout();
-            pnlSearch_GlobalOptions.SuspendLayout();
-            pnlSearch_GlobalOptions_SubOptions.SuspendLayout();
             pnlLists_Items.SuspendLayout();
-            pnlItemsSearchPBS.SuspendLayout();
-            pnlLists_Main.SuspendLayout();
-            pnlSearch_List_Buttons.SuspendLayout();
-            pnlSearch_List_Options.SuspendLayout();
-            pnlRealms.SuspendLayout();
             pnlAuctionData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartTotalValue).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartTopSearches).BeginInit();
@@ -241,7 +160,7 @@
             // 
             toolStripMain.BackColor = SystemColors.Control;
             toolStripMain.ImageScalingSize = new Size(48, 48);
-            toolStripMain.Items.AddRange(new ToolStripItem[] { tsbRefreshAuctionData, tsbUpdateAllData, toolStripSeparator7, tsbWriteRegionData, toolStripSeparator5, tsddItemCache, toolStripSeparator6, tsddPets, toolStripSeparator2, tsbThemeLight, tsbThemeDark, toolStripSeparator3, tslModeAuctions, tslModeLists, toolStripSeparator1, toolStripSeparator4, tslCurrentProfile, tsbSaveSearch, tsbSaveSearchAs, tsbRenameSearch, tsbDeleteSearch, tsbSearchDefault, tsbSearch, tsbTest, tsbRefreshWoWProcesses, tsbActivate, tsbLivePoll, toolStripSeparator10, tsbNewSearch, toolStripSeparator8, toolStripSeparator9 });
+            toolStripMain.Items.AddRange(new ToolStripItem[] { tsbRefreshAuctionData, tsbUpdateAllData, toolStripSeparator7, tsbWriteRegionData, toolStripSeparator5, tsddItemCache, toolStripSeparator6, tsddPets, toolStripSeparator2, tsbThemeLight, tsbThemeDark, toolStripSeparator3, tslModeAuctions, tslModeLists, toolStripSeparator1, toolStripSeparator4, tslCurrentProfile, tsbSaveSearch, tsbSaveSearchAs, tsbRenameSearch, tsbDeleteSearch, tsbSearchDefault, tsbSearch, tsbRefreshAuctionData2, tsbPreferences, tsbTest, tsbRefreshWoWProcesses, tsbWoWInteraction, tsbActivate, tsbLivePoll, toolStripSeparator10, tsbNewSearch, toolStripSeparator8, toolStripSeparator9 });
             toolStripMain.Location = new Point(0, 0);
             toolStripMain.Name = "toolStripMain";
             toolStripMain.RenderMode = ToolStripRenderMode.Professional;
@@ -526,6 +445,28 @@
             tsbSearch.Text = "Search";
             tsbSearch.Click += tsbSearch_Click;
             // 
+            // tsbRefreshAuctionData2
+            // 
+            tsbRefreshAuctionData2.Alignment = ToolStripItemAlignment.Right;
+            tsbRefreshAuctionData2.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbRefreshAuctionData2.Image = (Image)resources.GetObject("tsbRefreshAuctionData2.Image");
+            tsbRefreshAuctionData2.ImageTransparentColor = Color.Magenta;
+            tsbRefreshAuctionData2.Name = "tsbRefreshAuctionData2";
+            tsbRefreshAuctionData2.Size = new Size(52, 52);
+            tsbRefreshAuctionData2.Text = "Refresh Auction Data";
+            tsbRefreshAuctionData2.Click += tsbRefreshAuctionData_Click;
+            // 
+            // tsbPreferences
+            // 
+            tsbPreferences.Alignment = ToolStripItemAlignment.Right;
+            tsbPreferences.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbPreferences.Image = (Image)resources.GetObject("tsbPreferences.Image");
+            tsbPreferences.ImageTransparentColor = Color.Magenta;
+            tsbPreferences.Name = "tsbPreferences";
+            tsbPreferences.Size = new Size(52, 52);
+            tsbPreferences.ToolTipText = "Preferences";
+            tsbPreferences.Click += tsbPreferences_Click;
+            // 
             // tsbTest
             // 
             tsbTest.Alignment = ToolStripItemAlignment.Right;
@@ -619,42 +560,6 @@
             imgColorMode.Images.SetKeyName(0, "window_sidebar.png");
             imgColorMode.Images.SetKeyName(1, "moon_half.png");
             imgColorMode.Images.SetKeyName(2, "sun.png");
-            // 
-            // pnlSearch_Bonuses
-            // 
-            pnlSearch_Bonuses.BackColor = SystemColors.ControlLight;
-            pnlSearch_Bonuses.BorderStyle = BorderStyle.FixedSingle;
-            pnlSearch_Bonuses.Controls.Add(button1);
-            pnlSearch_Bonuses.Controls.Add(label10);
-            pnlSearch_Bonuses.Location = new Point(3394, 131);
-            pnlSearch_Bonuses.Name = "pnlSearch_Bonuses";
-            pnlSearch_Bonuses.Size = new Size(408, 331);
-            pnlSearch_Bonuses.TabIndex = 101;
-            pnlSearch_Bonuses.Visible = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = SystemColors.ControlDark;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(2, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(36, 36);
-            button1.TabIndex = 134;
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += btnSearch_TogglesOnOff_Click;
-            // 
-            // label10
-            // 
-            label10.BackColor = SystemColors.ControlDark;
-            label10.Dock = DockStyle.Top;
-            label10.Location = new Point(0, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(406, 41);
-            label10.TabIndex = 127;
-            label10.Text = "      Bonuses";
-            label10.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // imgToolbar48
             // 
@@ -923,265 +828,6 @@
             imgToolbar48.Images.SetKeyName(259, "star_empty.png");
             imgToolbar48.Images.SetKeyName(260, "star_full.png");
             // 
-            // pnlSearch_Main
-            // 
-            pnlSearch_Main.BackColor = SystemColors.ControlLight;
-            pnlSearch_Main.BorderStyle = BorderStyle.FixedSingle;
-            pnlSearch_Main.Controls.Add(lblSellRate);
-            pnlSearch_Main.Controls.Add(lblSearchWorth);
-            pnlSearch_Main.Controls.Add(txtSearchMinSellRate);
-            pnlSearch_Main.Controls.Add(txtSearchWorth);
-            pnlSearch_Main.Controls.Add(pnlSearch_Main_SubOptions);
-            pnlSearch_Main.Controls.Add(lblSearchCharLevel);
-            pnlSearch_Main.Controls.Add(txtSearchMaxCharLevel);
-            pnlSearch_Main.Controls.Add(txtSearchMinCharLevel);
-            pnlSearch_Main.Controls.Add(button3);
-            pnlSearch_Main.Controls.Add(label14);
-            pnlSearch_Main.Controls.Add(lblSearchItemLevel);
-            pnlSearch_Main.Controls.Add(txtSearchMaxItemLevel);
-            pnlSearch_Main.Controls.Add(txtSearchMinItemLevel);
-            pnlSearch_Main.Location = new Point(610, 129);
-            pnlSearch_Main.Name = "pnlSearch_Main";
-            pnlSearch_Main.Size = new Size(657, 331);
-            pnlSearch_Main.TabIndex = 104;
-            pnlSearch_Main.Visible = false;
-            // 
-            // lblSellRate
-            // 
-            lblSellRate.AutoSize = true;
-            lblSellRate.Location = new Point(311, 192);
-            lblSellRate.Name = "lblSellRate";
-            lblSellRate.Size = new Size(106, 32);
-            lblSellRate.TabIndex = 142;
-            lblSellRate.Text = "Sell Rate";
-            // 
-            // lblSearchWorth
-            // 
-            lblSearchWorth.AutoSize = true;
-            lblSearchWorth.Location = new Point(311, 147);
-            lblSearchWorth.Name = "lblSearchWorth";
-            lblSearchWorth.Size = new Size(79, 32);
-            lblSearchWorth.TabIndex = 141;
-            lblSearchWorth.Text = "Worth";
-            // 
-            // txtSearchMinSellRate
-            // 
-            txtSearchMinSellRate.Location = new Point(458, 190);
-            txtSearchMinSellRate.Name = "txtSearchMinSellRate";
-            txtSearchMinSellRate.Size = new Size(128, 39);
-            txtSearchMinSellRate.TabIndex = 140;
-            txtSearchMinSellRate.Text = "-1";
-            // 
-            // txtSearchWorth
-            // 
-            txtSearchWorth.Location = new Point(458, 145);
-            txtSearchWorth.Name = "txtSearchWorth";
-            txtSearchWorth.Size = new Size(128, 39);
-            txtSearchWorth.TabIndex = 139;
-            txtSearchWorth.Text = "20000";
-            // 
-            // pnlSearch_Main_SubOptions
-            // 
-            pnlSearch_Main_SubOptions.Controls.Add(rbSearch_MaxG);
-            pnlSearch_Main_SubOptions.Controls.Add(rbSearch_Percentage);
-            pnlSearch_Main_SubOptions.Controls.Add(txtSearchMaxG);
-            pnlSearch_Main_SubOptions.Controls.Add(txtSearchPercentage);
-            pnlSearch_Main_SubOptions.Location = new Point(310, 229);
-            pnlSearch_Main_SubOptions.Name = "pnlSearch_Main_SubOptions";
-            pnlSearch_Main_SubOptions.Size = new Size(315, 89);
-            pnlSearch_Main_SubOptions.TabIndex = 138;
-            pnlSearch_Main_SubOptions.Visible = false;
-            // 
-            // rbSearch_MaxG
-            // 
-            rbSearch_MaxG.AutoSize = true;
-            rbSearch_MaxG.Checked = true;
-            rbSearch_MaxG.Location = new Point(6, 50);
-            rbSearch_MaxG.Name = "rbSearch_MaxG";
-            rbSearch_MaxG.Size = new Size(95, 36);
-            rbSearch_MaxG.TabIndex = 130;
-            rbSearch_MaxG.TabStop = true;
-            rbSearch_MaxG.Text = "Gold";
-            rbSearch_MaxG.UseVisualStyleBackColor = true;
-            // 
-            // rbSearch_Percentage
-            // 
-            rbSearch_Percentage.AutoSize = true;
-            rbSearch_Percentage.Location = new Point(6, 5);
-            rbSearch_Percentage.Name = "rbSearch_Percentage";
-            rbSearch_Percentage.Size = new Size(65, 36);
-            rbSearch_Percentage.TabIndex = 129;
-            rbSearch_Percentage.Text = "%";
-            rbSearch_Percentage.UseVisualStyleBackColor = true;
-            // 
-            // txtSearchMaxG
-            // 
-            txtSearchMaxG.Location = new Point(148, 48);
-            txtSearchMaxG.Name = "txtSearchMaxG";
-            txtSearchMaxG.Size = new Size(128, 39);
-            txtSearchMaxG.TabIndex = 126;
-            txtSearchMaxG.Text = "199";
-            // 
-            // txtSearchPercentage
-            // 
-            txtSearchPercentage.Location = new Point(148, 4);
-            txtSearchPercentage.Name = "txtSearchPercentage";
-            txtSearchPercentage.Size = new Size(128, 39);
-            txtSearchPercentage.TabIndex = 125;
-            txtSearchPercentage.Text = "5";
-            // 
-            // lblSearchCharLevel
-            // 
-            lblSearchCharLevel.AutoSize = true;
-            lblSearchCharLevel.Location = new Point(311, 102);
-            lblSearchCharLevel.Name = "lblSearchCharLevel";
-            lblSearchCharLevel.Size = new Size(125, 32);
-            lblSearchCharLevel.TabIndex = 137;
-            lblSearchCharLevel.Text = "Char Level";
-            // 
-            // txtSearchMaxCharLevel
-            // 
-            txtSearchMaxCharLevel.Location = new Point(526, 100);
-            txtSearchMaxCharLevel.MaxLength = 3;
-            txtSearchMaxCharLevel.Name = "txtSearchMaxCharLevel";
-            txtSearchMaxCharLevel.Size = new Size(60, 39);
-            txtSearchMaxCharLevel.TabIndex = 136;
-            txtSearchMaxCharLevel.Text = "80";
-            // 
-            // txtSearchMinCharLevel
-            // 
-            txtSearchMinCharLevel.Location = new Point(458, 100);
-            txtSearchMinCharLevel.MaxLength = 3;
-            txtSearchMinCharLevel.Name = "txtSearchMinCharLevel";
-            txtSearchMinCharLevel.Size = new Size(60, 39);
-            txtSearchMinCharLevel.TabIndex = 135;
-            txtSearchMinCharLevel.Text = "0";
-            // 
-            // button3
-            // 
-            button3.BackColor = SystemColors.ControlDark;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Image = (Image)resources.GetObject("button3.Image");
-            button3.Location = new Point(2, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(36, 36);
-            button3.TabIndex = 127;
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += btnSearch_TogglesOnOff_Click;
-            // 
-            // label14
-            // 
-            label14.BackColor = SystemColors.ControlDark;
-            label14.Dock = DockStyle.Top;
-            label14.Location = new Point(0, 0);
-            label14.Name = "label14";
-            label14.Size = new Size(655, 41);
-            label14.TabIndex = 126;
-            label14.Text = "      Main Options";
-            label14.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblSearchItemLevel
-            // 
-            lblSearchItemLevel.AutoSize = true;
-            lblSearchItemLevel.Location = new Point(311, 57);
-            lblSearchItemLevel.Name = "lblSearchItemLevel";
-            lblSearchItemLevel.Size = new Size(124, 32);
-            lblSearchItemLevel.TabIndex = 123;
-            lblSearchItemLevel.Text = "Item Level";
-            // 
-            // txtSearchMaxItemLevel
-            // 
-            txtSearchMaxItemLevel.Location = new Point(526, 55);
-            txtSearchMaxItemLevel.MaxLength = 3;
-            txtSearchMaxItemLevel.Name = "txtSearchMaxItemLevel";
-            txtSearchMaxItemLevel.Size = new Size(60, 39);
-            txtSearchMaxItemLevel.TabIndex = 121;
-            txtSearchMaxItemLevel.Text = "999";
-            // 
-            // txtSearchMinItemLevel
-            // 
-            txtSearchMinItemLevel.Location = new Point(458, 55);
-            txtSearchMinItemLevel.MaxLength = 3;
-            txtSearchMinItemLevel.Name = "txtSearchMinItemLevel";
-            txtSearchMinItemLevel.Size = new Size(60, 39);
-            txtSearchMinItemLevel.TabIndex = 117;
-            txtSearchMinItemLevel.Text = "0";
-            // 
-            // pnlSearch_Class
-            // 
-            pnlSearch_Class.BackColor = SystemColors.ControlLight;
-            pnlSearch_Class.BorderStyle = BorderStyle.FixedSingle;
-            pnlSearch_Class.Controls.Add(button2);
-            pnlSearch_Class.Controls.Add(label12);
-            pnlSearch_Class.Font = new Font("Segoe UI", 9F);
-            pnlSearch_Class.Location = new Point(1296, 129);
-            pnlSearch_Class.Name = "pnlSearch_Class";
-            pnlSearch_Class.Size = new Size(576, 331);
-            pnlSearch_Class.TabIndex = 105;
-            pnlSearch_Class.Visible = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = SystemColors.ControlDark;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.Location = new Point(2, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(36, 36);
-            button2.TabIndex = 106;
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += btnSearch_TogglesOnOff_Click;
-            // 
-            // label12
-            // 
-            label12.BackColor = SystemColors.ControlDark;
-            label12.Dock = DockStyle.Top;
-            label12.Font = new Font("Segoe UI", 9F);
-            label12.Location = new Point(0, 0);
-            label12.Name = "label12";
-            label12.Size = new Size(574, 41);
-            label12.TabIndex = 103;
-            label12.Text = "      Item Class";
-            label12.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // pnlSearch_Quality
-            // 
-            pnlSearch_Quality.BackColor = SystemColors.ControlLight;
-            pnlSearch_Quality.BorderStyle = BorderStyle.FixedSingle;
-            pnlSearch_Quality.Controls.Add(btnSearch_Quality_OnOff);
-            pnlSearch_Quality.Controls.Add(label13);
-            pnlSearch_Quality.Location = new Point(1903, 128);
-            pnlSearch_Quality.Name = "pnlSearch_Quality";
-            pnlSearch_Quality.Size = new Size(274, 331);
-            pnlSearch_Quality.TabIndex = 106;
-            pnlSearch_Quality.Visible = false;
-            // 
-            // btnSearch_Quality_OnOff
-            // 
-            btnSearch_Quality_OnOff.BackColor = SystemColors.ControlDark;
-            btnSearch_Quality_OnOff.FlatAppearance.BorderSize = 0;
-            btnSearch_Quality_OnOff.FlatStyle = FlatStyle.Flat;
-            btnSearch_Quality_OnOff.Image = (Image)resources.GetObject("btnSearch_Quality_OnOff.Image");
-            btnSearch_Quality_OnOff.Location = new Point(2, 2);
-            btnSearch_Quality_OnOff.Name = "btnSearch_Quality_OnOff";
-            btnSearch_Quality_OnOff.Size = new Size(36, 36);
-            btnSearch_Quality_OnOff.TabIndex = 105;
-            btnSearch_Quality_OnOff.UseVisualStyleBackColor = false;
-            btnSearch_Quality_OnOff.Click += btnSearch_TogglesOnOff_Click;
-            // 
-            // label13
-            // 
-            label13.BackColor = SystemColors.ControlDark;
-            label13.Dock = DockStyle.Top;
-            label13.Location = new Point(0, 0);
-            label13.Name = "label13";
-            label13.Size = new Size(272, 41);
-            label13.TabIndex = 104;
-            label13.Text = "      Item Quality";
-            label13.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // panelRibbon
             // 
             panelRibbon.BackColor = Color.Brown;
@@ -1297,7 +943,7 @@
             tssMain.BackColor = Color.Brown;
             tssMain.ImageScalingSize = new Size(32, 32);
             tssMain.Items.AddRange(new ToolStripItem[] { tssProgress, tllProgress, tllNewVersion });
-            tssMain.Location = new Point(0, 1994);
+            tssMain.Location = new Point(0, 1192);
             tssMain.Name = "tssMain";
             tssMain.RenderMode = ToolStripRenderMode.Professional;
             tssMain.Size = new Size(3808, 50);
@@ -1329,239 +975,6 @@
             tllNewVersion.Text = "[Version]";
             tllNewVersion.TextAlign = ContentAlignment.TopRight;
             // 
-            // pnlSearch_MoreOptions
-            // 
-            pnlSearch_MoreOptions.BackColor = SystemColors.ControlLight;
-            pnlSearch_MoreOptions.BorderStyle = BorderStyle.FixedSingle;
-            pnlSearch_MoreOptions.Controls.Add(pnlSearch_MoreOptions_SubOptions);
-            pnlSearch_MoreOptions.Controls.Add(label1);
-            pnlSearch_MoreOptions.Controls.Add(txtSearchStringFilter);
-            pnlSearch_MoreOptions.Controls.Add(button4);
-            pnlSearch_MoreOptions.Controls.Add(label7);
-            pnlSearch_MoreOptions.Location = new Point(2206, 131);
-            pnlSearch_MoreOptions.Name = "pnlSearch_MoreOptions";
-            pnlSearch_MoreOptions.Size = new Size(750, 331);
-            pnlSearch_MoreOptions.TabIndex = 134;
-            pnlSearch_MoreOptions.Visible = false;
-            // 
-            // pnlSearch_MoreOptions_SubOptions
-            // 
-            pnlSearch_MoreOptions_SubOptions.Controls.Add(panelSearch_Frequency);
-            pnlSearch_MoreOptions_SubOptions.Location = new Point(17, 141);
-            pnlSearch_MoreOptions_SubOptions.Name = "pnlSearch_MoreOptions_SubOptions";
-            pnlSearch_MoreOptions_SubOptions.Size = new Size(706, 179);
-            pnlSearch_MoreOptions_SubOptions.TabIndex = 140;
-            pnlSearch_MoreOptions_SubOptions.Visible = false;
-            // 
-            // panelSearch_Frequency
-            // 
-            panelSearch_Frequency.Controls.Add(rbSearchShowAllItems);
-            panelSearch_Frequency.Controls.Add(rbSearchShowCheapest);
-            panelSearch_Frequency.Controls.Add(rbSearchRemoveDuplicates);
-            panelSearch_Frequency.Location = new Point(389, 20);
-            panelSearch_Frequency.Name = "panelSearch_Frequency";
-            panelSearch_Frequency.Size = new Size(313, 138);
-            panelSearch_Frequency.TabIndex = 142;
-            // 
-            // rbSearchShowAllItems
-            // 
-            rbSearchShowAllItems.AutoSize = true;
-            rbSearchShowAllItems.Location = new Point(15, 97);
-            rbSearchShowAllItems.Name = "rbSearchShowAllItems";
-            rbSearchShowAllItems.Size = new Size(199, 36);
-            rbSearchShowAllItems.TabIndex = 115;
-            rbSearchShowAllItems.Text = "Show all items";
-            rbSearchShowAllItems.UseVisualStyleBackColor = true;
-            // 
-            // rbSearchShowCheapest
-            // 
-            rbSearchShowCheapest.AutoSize = true;
-            rbSearchShowCheapest.Location = new Point(15, 55);
-            rbSearchShowCheapest.Name = "rbSearchShowCheapest";
-            rbSearchShowCheapest.Size = new Size(205, 36);
-            rbSearchShowCheapest.TabIndex = 114;
-            rbSearchShowCheapest.Text = "Show cheapest";
-            rbSearchShowCheapest.UseVisualStyleBackColor = true;
-            // 
-            // rbSearchRemoveDuplicates
-            // 
-            rbSearchRemoveDuplicates.AutoSize = true;
-            rbSearchRemoveDuplicates.Checked = true;
-            rbSearchRemoveDuplicates.Location = new Point(15, 12);
-            rbSearchRemoveDuplicates.Name = "rbSearchRemoveDuplicates";
-            rbSearchRemoveDuplicates.Size = new Size(246, 36);
-            rbSearchRemoveDuplicates.TabIndex = 113;
-            rbSearchRemoveDuplicates.TabStop = true;
-            rbSearchRemoveDuplicates.Text = "Remove duplicates";
-            rbSearchRemoveDuplicates.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(30, 57);
-            label1.Name = "label1";
-            label1.Size = new Size(402, 32);
-            label1.TabIndex = 139;
-            label1.Text = "Filter by all or part of the item name";
-            // 
-            // txtSearchStringFilter
-            // 
-            txtSearchStringFilter.Location = new Point(35, 98);
-            txtSearchStringFilter.Name = "txtSearchStringFilter";
-            txtSearchStringFilter.Size = new Size(688, 39);
-            txtSearchStringFilter.TabIndex = 138;
-            txtSearchStringFilter.KeyDown += txtSearchStringFilter_KeyDown;
-            // 
-            // button4
-            // 
-            button4.BackColor = SystemColors.ControlDark;
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.Location = new Point(2, 2);
-            button4.Name = "button4";
-            button4.Size = new Size(36, 36);
-            button4.TabIndex = 134;
-            button4.UseVisualStyleBackColor = false;
-            // 
-            // label7
-            // 
-            label7.BackColor = SystemColors.ControlDark;
-            label7.Dock = DockStyle.Top;
-            label7.Location = new Point(0, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(748, 41);
-            label7.TabIndex = 127;
-            label7.Text = "      More Options";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblSearchOnSelect
-            // 
-            lblSearchOnSelect.AutoSize = true;
-            lblSearchOnSelect.Font = new Font("Segoe UI", 9F);
-            lblSearchOnSelect.ForeColor = Color.MediumPurple;
-            lblSearchOnSelect.Location = new Point(89, 63);
-            lblSearchOnSelect.Name = "lblSearchOnSelect";
-            lblSearchOnSelect.Size = new Size(195, 32);
-            lblSearchOnSelect.TabIndex = 143;
-            lblSearchOnSelect.Text = "Search On Select";
-            // 
-            // tslSearchOnSelect
-            // 
-            tslSearchOnSelect.Checked = true;
-            tslSearchOnSelect.CheckState = CheckState.Checked;
-            tslSearchOnSelect.ForeColor = Color.LimeGreen;
-            tslSearchOnSelect.Location = new Point(27, 64);
-            tslSearchOnSelect.MinimumSize = new Size(46, 22);
-            tslSearchOnSelect.Name = "tslSearchOnSelect";
-            tslSearchOnSelect.OffBackColor = Color.Gray;
-            tslSearchOnSelect.OffToggleColor = Color.Gainsboro;
-            tslSearchOnSelect.OnBackColor = Color.MediumPurple;
-            tslSearchOnSelect.OnToggleColor = Color.MistyRose;
-            tslSearchOnSelect.OptionBit = 0;
-            tslSearchOnSelect.OptionValue = "";
-            tslSearchOnSelect.Size = new Size(60, 32);
-            tslSearchOnSelect.TabIndex = 142;
-            tslSearchOnSelect.Tag = "!EXCLUDE";
-            tslSearchOnSelect.UseVisualStyleBackColor = true;
-            // 
-            // pnlSearch_GlobalOptions
-            // 
-            pnlSearch_GlobalOptions.BackColor = SystemColors.ControlLight;
-            pnlSearch_GlobalOptions.BorderStyle = BorderStyle.FixedSingle;
-            pnlSearch_GlobalOptions.Controls.Add(lblSearchOnSelect);
-            pnlSearch_GlobalOptions.Controls.Add(tslSearchOnSelect);
-            pnlSearch_GlobalOptions.Controls.Add(pnlSearch_GlobalOptions_SubOptions);
-            pnlSearch_GlobalOptions.Controls.Add(button5);
-            pnlSearch_GlobalOptions.Controls.Add(label6);
-            pnlSearch_GlobalOptions.Location = new Point(2987, 131);
-            pnlSearch_GlobalOptions.Name = "pnlSearch_GlobalOptions";
-            pnlSearch_GlobalOptions.Size = new Size(379, 331);
-            pnlSearch_GlobalOptions.TabIndex = 135;
-            pnlSearch_GlobalOptions.Visible = false;
-            // 
-            // pnlSearch_GlobalOptions_SubOptions
-            // 
-            pnlSearch_GlobalOptions_SubOptions.Controls.Add(lblNewDataOnly);
-            pnlSearch_GlobalOptions_SubOptions.Controls.Add(txtSearchThreshold);
-            pnlSearch_GlobalOptions_SubOptions.Controls.Add(tslNewDataOnly);
-            pnlSearch_GlobalOptions_SubOptions.Controls.Add(lblSearchThreshold);
-            pnlSearch_GlobalOptions_SubOptions.Location = new Point(25, 94);
-            pnlSearch_GlobalOptions_SubOptions.Name = "pnlSearch_GlobalOptions_SubOptions";
-            pnlSearch_GlobalOptions_SubOptions.Size = new Size(332, 128);
-            pnlSearch_GlobalOptions_SubOptions.TabIndex = 144;
-            pnlSearch_GlobalOptions_SubOptions.Visible = false;
-            // 
-            // lblNewDataOnly
-            // 
-            lblNewDataOnly.AutoSize = true;
-            lblNewDataOnly.Font = new Font("Segoe UI", 9F);
-            lblNewDataOnly.ForeColor = Color.Firebrick;
-            lblNewDataOnly.Location = new Point(65, 3);
-            lblNewDataOnly.Name = "lblNewDataOnly";
-            lblNewDataOnly.Size = new Size(175, 32);
-            lblNewDataOnly.TabIndex = 145;
-            lblNewDataOnly.Text = "New Data Only";
-            // 
-            // txtSearchThreshold
-            // 
-            txtSearchThreshold.Location = new Point(152, 55);
-            txtSearchThreshold.Name = "txtSearchThreshold";
-            txtSearchThreshold.Size = new Size(128, 39);
-            txtSearchThreshold.TabIndex = 142;
-            txtSearchThreshold.Text = "20";
-            // 
-            // tslNewDataOnly
-            // 
-            tslNewDataOnly.Checked = true;
-            tslNewDataOnly.CheckState = CheckState.Checked;
-            tslNewDataOnly.ForeColor = Color.LimeGreen;
-            tslNewDataOnly.Location = new Point(3, 4);
-            tslNewDataOnly.MinimumSize = new Size(46, 22);
-            tslNewDataOnly.Name = "tslNewDataOnly";
-            tslNewDataOnly.OffBackColor = Color.Gray;
-            tslNewDataOnly.OffToggleColor = Color.Gainsboro;
-            tslNewDataOnly.OnBackColor = Color.Firebrick;
-            tslNewDataOnly.OnToggleColor = Color.MistyRose;
-            tslNewDataOnly.OptionBit = 0;
-            tslNewDataOnly.OptionValue = "";
-            tslNewDataOnly.Size = new Size(60, 32);
-            tslNewDataOnly.TabIndex = 144;
-            tslNewDataOnly.Tag = "!EXCLUDE";
-            tslNewDataOnly.UseVisualStyleBackColor = true;
-            // 
-            // lblSearchThreshold
-            // 
-            lblSearchThreshold.AutoSize = true;
-            lblSearchThreshold.Location = new Point(5, 58);
-            lblSearchThreshold.Name = "lblSearchThreshold";
-            lblSearchThreshold.Size = new Size(120, 32);
-            lblSearchThreshold.TabIndex = 143;
-            lblSearchThreshold.Text = "Threshold";
-            // 
-            // button5
-            // 
-            button5.BackColor = SystemColors.ControlDark;
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Image = (Image)resources.GetObject("button5.Image");
-            button5.Location = new Point(2, 2);
-            button5.Name = "button5";
-            button5.Size = new Size(36, 36);
-            button5.TabIndex = 134;
-            button5.UseVisualStyleBackColor = false;
-            // 
-            // label6
-            // 
-            label6.BackColor = SystemColors.ControlDark;
-            label6.Dock = DockStyle.Top;
-            label6.Location = new Point(0, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(377, 41);
-            label6.TabIndex = 127;
-            label6.Text = "      Global Options";
-            label6.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // pnlLists_Items
             // 
             pnlLists_Items.BackColor = SystemColors.ControlLight;
@@ -1570,10 +983,6 @@
             pnlLists_Items.Controls.Add(btnItemListPBSUpdateAll);
             pnlLists_Items.Controls.Add(btnItemListPBSUpdateSelected);
             pnlLists_Items.Controls.Add(txtItemsSearchPBSValue);
-            pnlLists_Items.Controls.Add(btnItemsExportToPBS);
-            pnlLists_Items.Controls.Add(pnlItemsSearchPBS);
-            pnlLists_Items.Controls.Add(btnItemsListPBSView);
-            pnlLists_Items.Controls.Add(btnItemListSearchView);
             pnlLists_Items.Controls.Add(lblItemListName);
             pnlLists_Items.Controls.Add(lvItemsItemsInList);
             pnlLists_Items.Controls.Add(lblItemsSearchLabel);
@@ -1633,121 +1042,6 @@
             txtItemsSearchPBSValue.TabIndex = 148;
             txtItemsSearchPBSValue.Text = "0";
             txtItemsSearchPBSValue.TextAlign = HorizontalAlignment.Right;
-            // 
-            // btnItemsExportToPBS
-            // 
-            btnItemsExportToPBS.BackColor = SystemColors.Control;
-            btnItemsExportToPBS.FlatAppearance.BorderSize = 0;
-            btnItemsExportToPBS.FlatStyle = FlatStyle.Flat;
-            btnItemsExportToPBS.Image = (Image)resources.GetObject("btnItemsExportToPBS.Image");
-            btnItemsExportToPBS.Location = new Point(1427, 63);
-            btnItemsExportToPBS.Name = "btnItemsExportToPBS";
-            btnItemsExportToPBS.Size = new Size(52, 52);
-            btnItemsExportToPBS.TabIndex = 147;
-            btnItemsExportToPBS.UseVisualStyleBackColor = false;
-            btnItemsExportToPBS.Click += btnItemsExportToPBS_Click;
-            // 
-            // pnlItemsSearchPBS
-            // 
-            pnlItemsSearchPBS.BackColor = SystemColors.ControlLight;
-            pnlItemsSearchPBS.Controls.Add(label3);
-            pnlItemsSearchPBS.Controls.Add(label2);
-            pnlItemsSearchPBS.Controls.Add(btnsbtnItemsSearchCopyKeys);
-            pnlItemsSearchPBS.Controls.Add(btnItemsSearchCopyExport);
-            pnlItemsSearchPBS.Controls.Add(txtItemsSearchPBSKeys);
-            pnlItemsSearchPBS.Controls.Add(txtItemsSearchPBSExport);
-            pnlItemsSearchPBS.Location = new Point(1572, 125);
-            pnlItemsSearchPBS.Name = "pnlItemsSearchPBS";
-            pnlItemsSearchPBS.Size = new Size(1699, 1329);
-            pnlItemsSearchPBS.TabIndex = 146;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(29, 735);
-            label3.Name = "label3";
-            label3.Size = new Size(184, 32);
-            label3.TabIndex = 149;
-            label3.Text = "PBS Export Keys";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(29, 73);
-            label2.Name = "label2";
-            label2.Size = new Size(197, 32);
-            label2.TabIndex = 148;
-            label2.Text = "PBS Export String";
-            // 
-            // btnsbtnItemsSearchCopyKeys
-            // 
-            btnsbtnItemsSearchCopyKeys.BackColor = SystemColors.Control;
-            btnsbtnItemsSearchCopyKeys.FlatAppearance.BorderSize = 0;
-            btnsbtnItemsSearchCopyKeys.FlatStyle = FlatStyle.Flat;
-            btnsbtnItemsSearchCopyKeys.Image = (Image)resources.GetObject("btnsbtnItemsSearchCopyKeys.Image");
-            btnsbtnItemsSearchCopyKeys.Location = new Point(1353, 725);
-            btnsbtnItemsSearchCopyKeys.Name = "btnsbtnItemsSearchCopyKeys";
-            btnsbtnItemsSearchCopyKeys.Size = new Size(52, 52);
-            btnsbtnItemsSearchCopyKeys.TabIndex = 147;
-            btnsbtnItemsSearchCopyKeys.UseVisualStyleBackColor = false;
-            btnsbtnItemsSearchCopyKeys.Click += btnsbtnItemsSearchCopyKeys_Click;
-            // 
-            // btnItemsSearchCopyExport
-            // 
-            btnItemsSearchCopyExport.BackColor = SystemColors.Control;
-            btnItemsSearchCopyExport.FlatAppearance.BorderSize = 0;
-            btnItemsSearchCopyExport.FlatStyle = FlatStyle.Flat;
-            btnItemsSearchCopyExport.Image = (Image)resources.GetObject("btnItemsSearchCopyExport.Image");
-            btnItemsSearchCopyExport.Location = new Point(1353, 62);
-            btnItemsSearchCopyExport.Name = "btnItemsSearchCopyExport";
-            btnItemsSearchCopyExport.Size = new Size(52, 52);
-            btnItemsSearchCopyExport.TabIndex = 146;
-            btnItemsSearchCopyExport.UseVisualStyleBackColor = false;
-            btnItemsSearchCopyExport.Click += btnItemsSearchCopyExport_Click;
-            // 
-            // txtItemsSearchPBSKeys
-            // 
-            txtItemsSearchPBSKeys.Location = new Point(29, 783);
-            txtItemsSearchPBSKeys.Multiline = true;
-            txtItemsSearchPBSKeys.Name = "txtItemsSearchPBSKeys";
-            txtItemsSearchPBSKeys.ScrollBars = ScrollBars.Vertical;
-            txtItemsSearchPBSKeys.Size = new Size(1376, 519);
-            txtItemsSearchPBSKeys.TabIndex = 1;
-            // 
-            // txtItemsSearchPBSExport
-            // 
-            txtItemsSearchPBSExport.Location = new Point(29, 119);
-            txtItemsSearchPBSExport.Multiline = true;
-            txtItemsSearchPBSExport.Name = "txtItemsSearchPBSExport";
-            txtItemsSearchPBSExport.ScrollBars = ScrollBars.Vertical;
-            txtItemsSearchPBSExport.Size = new Size(1376, 519);
-            txtItemsSearchPBSExport.TabIndex = 0;
-            // 
-            // btnItemsListPBSView
-            // 
-            btnItemsListPBSView.BackColor = SystemColors.Control;
-            btnItemsListPBSView.FlatAppearance.BorderSize = 0;
-            btnItemsListPBSView.FlatStyle = FlatStyle.Flat;
-            btnItemsListPBSView.Image = (Image)resources.GetObject("btnItemsListPBSView.Image");
-            btnItemsListPBSView.Location = new Point(2904, 63);
-            btnItemsListPBSView.Name = "btnItemsListPBSView";
-            btnItemsListPBSView.Size = new Size(52, 52);
-            btnItemsListPBSView.TabIndex = 145;
-            btnItemsListPBSView.UseVisualStyleBackColor = false;
-            btnItemsListPBSView.Click += btnItemsListPBSView_Click;
-            // 
-            // btnItemListSearchView
-            // 
-            btnItemListSearchView.BackColor = SystemColors.Control;
-            btnItemListSearchView.FlatAppearance.BorderSize = 0;
-            btnItemListSearchView.FlatStyle = FlatStyle.Flat;
-            btnItemListSearchView.Image = (Image)resources.GetObject("btnItemListSearchView.Image");
-            btnItemListSearchView.Location = new Point(2959, 63);
-            btnItemListSearchView.Name = "btnItemListSearchView";
-            btnItemListSearchView.Size = new Size(52, 52);
-            btnItemListSearchView.TabIndex = 144;
-            btnItemListSearchView.UseVisualStyleBackColor = false;
-            btnItemListSearchView.Click += btnItemListSearchView_Click;
             // 
             // lblItemListName
             // 
@@ -1873,160 +1167,6 @@
             label9.TabIndex = 126;
             label9.Text = "Manage Items";
             label9.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblSearchList
-            // 
-            lblSearchList.BackColor = SystemColors.ControlDark;
-            lblSearchList.Dock = DockStyle.Top;
-            lblSearchList.Location = new Point(0, 0);
-            lblSearchList.Name = "lblSearchList";
-            lblSearchList.Size = new Size(549, 41);
-            lblSearchList.TabIndex = 126;
-            lblSearchList.Text = "My Item Lists";
-            lblSearchList.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // btnItemListSaveAs
-            // 
-            btnItemListSaveAs.BackColor = SystemColors.Control;
-            btnItemListSaveAs.FlatAppearance.BorderSize = 0;
-            btnItemListSaveAs.FlatStyle = FlatStyle.Flat;
-            btnItemListSaveAs.Image = (Image)resources.GetObject("btnItemListSaveAs.Image");
-            btnItemListSaveAs.Location = new Point(3, 4);
-            btnItemListSaveAs.Name = "btnItemListSaveAs";
-            btnItemListSaveAs.Size = new Size(52, 52);
-            btnItemListSaveAs.TabIndex = 139;
-            btnItemListSaveAs.UseVisualStyleBackColor = false;
-            btnItemListSaveAs.Click += btnItemListSaveAs_Click;
-            // 
-            // btnItemListEdit
-            // 
-            btnItemListEdit.BackColor = SystemColors.Control;
-            btnItemListEdit.FlatAppearance.BorderSize = 0;
-            btnItemListEdit.FlatStyle = FlatStyle.Flat;
-            btnItemListEdit.Image = (Image)resources.GetObject("btnItemListEdit.Image");
-            btnItemListEdit.Location = new Point(56, 4);
-            btnItemListEdit.Name = "btnItemListEdit";
-            btnItemListEdit.Size = new Size(52, 52);
-            btnItemListEdit.TabIndex = 140;
-            btnItemListEdit.UseVisualStyleBackColor = false;
-            btnItemListEdit.Click += btnItemListEdit_Click;
-            // 
-            // btnItemListDelete
-            // 
-            btnItemListDelete.BackColor = SystemColors.Control;
-            btnItemListDelete.FlatAppearance.BorderSize = 0;
-            btnItemListDelete.FlatStyle = FlatStyle.Flat;
-            btnItemListDelete.Image = (Image)resources.GetObject("btnItemListDelete.Image");
-            btnItemListDelete.Location = new Point(111, 4);
-            btnItemListDelete.Name = "btnItemListDelete";
-            btnItemListDelete.Size = new Size(52, 52);
-            btnItemListDelete.TabIndex = 141;
-            btnItemListDelete.UseVisualStyleBackColor = false;
-            btnItemListDelete.Click += btnItemListDelete_Click;
-            // 
-            // btnItemListNew
-            // 
-            btnItemListNew.BackColor = SystemColors.Control;
-            btnItemListNew.FlatAppearance.BorderSize = 0;
-            btnItemListNew.FlatStyle = FlatStyle.Flat;
-            btnItemListNew.Image = (Image)resources.GetObject("btnItemListNew.Image");
-            btnItemListNew.Location = new Point(169, 5);
-            btnItemListNew.Name = "btnItemListNew";
-            btnItemListNew.Size = new Size(52, 52);
-            btnItemListNew.TabIndex = 142;
-            btnItemListNew.UseVisualStyleBackColor = false;
-            btnItemListNew.Click += btnItemListNew_Click;
-            // 
-            // pnlLists_Main
-            // 
-            pnlLists_Main.BackColor = SystemColors.ControlLight;
-            pnlLists_Main.BorderStyle = BorderStyle.FixedSingle;
-            pnlLists_Main.Controls.Add(lbItems);
-            pnlLists_Main.Controls.Add(pnlSearch_List_Buttons);
-            pnlLists_Main.Controls.Add(button6);
-            pnlLists_Main.Controls.Add(pnlSearch_List_Options);
-            pnlLists_Main.Controls.Add(lblSearchList);
-            pnlLists_Main.Location = new Point(29, 128);
-            pnlLists_Main.Name = "pnlLists_Main";
-            pnlLists_Main.Size = new Size(551, 1840);
-            pnlLists_Main.TabIndex = 139;
-            pnlLists_Main.Visible = false;
-            // 
-            // lbItems
-            // 
-            lbItems.BackColor = SystemColors.Control;
-            lbItems.DrawMode = DrawMode.OwnerDrawFixed;
-            lbItems.FormattingEnabled = true;
-            lbItems.ItemHeight = 48;
-            lbItems.Location = new Point(20, 120);
-            lbItems.Name = "lbItems";
-            lbItems.Size = new Size(513, 1684);
-            lbItems.TabIndex = 149;
-            lbItems.DrawItem += lbItems_DrawItem;
-            lbItems.SelectedIndexChanged += lbItems_SelectedIndexChanged;
-            // 
-            // pnlSearch_List_Buttons
-            // 
-            pnlSearch_List_Buttons.Controls.Add(btnItemListSaveAs);
-            pnlSearch_List_Buttons.Controls.Add(btnItemListEdit);
-            pnlSearch_List_Buttons.Controls.Add(btnItemListDelete);
-            pnlSearch_List_Buttons.Controls.Add(btnItemListNew);
-            pnlSearch_List_Buttons.Location = new Point(17, 50);
-            pnlSearch_List_Buttons.Name = "pnlSearch_List_Buttons";
-            pnlSearch_List_Buttons.Size = new Size(227, 63);
-            pnlSearch_List_Buttons.TabIndex = 146;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(480, -5);
-            button6.Name = "button6";
-            button6.Size = new Size(66, 46);
-            button6.TabIndex = 148;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
-            // 
-            // pnlSearch_List_Options
-            // 
-            pnlSearch_List_Options.Controls.Add(rbSearch_List_OnlyByList);
-            pnlSearch_List_Options.Controls.Add(rbSearch_List_AdditionalCriteria);
-            pnlSearch_List_Options.Controls.Add(rbSearch_List_DontUse);
-            pnlSearch_List_Options.Location = new Point(17, 52);
-            pnlSearch_List_Options.Name = "pnlSearch_List_Options";
-            pnlSearch_List_Options.Size = new Size(513, 60);
-            pnlSearch_List_Options.TabIndex = 143;
-            // 
-            // rbSearch_List_OnlyByList
-            // 
-            rbSearch_List_OnlyByList.AutoSize = true;
-            rbSearch_List_OnlyByList.Location = new Point(129, 12);
-            rbSearch_List_OnlyByList.Name = "rbSearch_List_OnlyByList";
-            rbSearch_List_OnlyByList.Size = new Size(95, 36);
-            rbSearch_List_OnlyByList.TabIndex = 115;
-            rbSearch_List_OnlyByList.Text = "Only";
-            rbSearch_List_OnlyByList.UseVisualStyleBackColor = true;
-            // 
-            // rbSearch_List_AdditionalCriteria
-            // 
-            rbSearch_List_AdditionalCriteria.AutoSize = true;
-            rbSearch_List_AdditionalCriteria.Location = new Point(247, 13);
-            rbSearch_List_AdditionalCriteria.Name = "rbSearch_List_AdditionalCriteria";
-            rbSearch_List_AdditionalCriteria.Size = new Size(251, 36);
-            rbSearch_List_AdditionalCriteria.TabIndex = 114;
-            rbSearch_List_AdditionalCriteria.Text = "Criteria + List Items";
-            rbSearch_List_AdditionalCriteria.UseVisualStyleBackColor = true;
-            // 
-            // rbSearch_List_DontUse
-            // 
-            rbSearch_List_DontUse.AutoSize = true;
-            rbSearch_List_DontUse.Checked = true;
-            rbSearch_List_DontUse.Location = new Point(15, 12);
-            rbSearch_List_DontUse.Name = "rbSearch_List_DontUse";
-            rbSearch_List_DontUse.Size = new Size(104, 36);
-            rbSearch_List_DontUse.TabIndex = 113;
-            rbSearch_List_DontUse.TabStop = true;
-            rbSearch_List_DontUse.Text = "None";
-            rbSearch_List_DontUse.UseVisualStyleBackColor = true;
             // 
             // imgProfile48
             // 
@@ -2988,63 +2128,6 @@
             imgProfile48.Images.SetKeyName(952, "x-ray.png");
             imgProfile48.Images.SetKeyName(953, "yinyang.png");
             // 
-            // pnlRealms
-            // 
-            pnlRealms.Controls.Add(btnToggleRealms);
-            pnlRealms.Controls.Add(lvRealms);
-            pnlRealms.Location = new Point(3394, 485);
-            pnlRealms.Name = "pnlRealms";
-            pnlRealms.Size = new Size(406, 1490);
-            pnlRealms.TabIndex = 142;
-            pnlRealms.Visible = false;
-            // 
-            // btnToggleRealms
-            // 
-            btnToggleRealms.BackColor = SystemColors.ControlLightLight;
-            btnToggleRealms.FlatAppearance.BorderSize = 0;
-            btnToggleRealms.FlatStyle = FlatStyle.Flat;
-            btnToggleRealms.Image = (Image)resources.GetObject("btnToggleRealms.Image");
-            btnToggleRealms.Location = new Point(2, 2);
-            btnToggleRealms.Name = "btnToggleRealms";
-            btnToggleRealms.Size = new Size(36, 36);
-            btnToggleRealms.TabIndex = 147;
-            btnToggleRealms.UseVisualStyleBackColor = false;
-            btnToggleRealms.Click += btnToggleRealms_Click;
-            // 
-            // lvRealms
-            // 
-            lvRealms.BackColor = SystemColors.ControlLight;
-            lvRealms.CheckBoxes = true;
-            lvRealms.Columns.AddRange(new ColumnHeader[] { colRealms_S, colRealms_RealmName, colRealms_LastModified, colRealms_Auctions });
-            lvRealms.Font = new Font("Segoe UI", 9F);
-            lvRealms.Location = new Point(3, -4);
-            lvRealms.Name = "lvRealms";
-            lvRealms.Size = new Size(406, 1490);
-            lvRealms.TabIndex = 1;
-            lvRealms.UseCompatibleStateImageBehavior = false;
-            lvRealms.View = View.Details;
-            // 
-            // colRealms_S
-            // 
-            colRealms_S.Text = "";
-            colRealms_S.Width = 70;
-            // 
-            // colRealms_RealmName
-            // 
-            colRealms_RealmName.Text = "Realm Name";
-            colRealms_RealmName.Width = 220;
-            // 
-            // colRealms_LastModified
-            // 
-            colRealms_LastModified.Text = "Modified";
-            colRealms_LastModified.Width = 110;
-            // 
-            // colRealms_Auctions
-            // 
-            colRealms_Auctions.Text = "#";
-            colRealms_Auctions.TextAlign = HorizontalAlignment.Right;
-            colRealms_Auctions.Width = 0;
-            // 
             // pnlAuctionData
             // 
             pnlAuctionData.Controls.Add(chartTotalValue);
@@ -3060,17 +2143,17 @@
             // chartTotalValue
             // 
             chartTotalValue.BackColor = SystemColors.Control;
-            chartArea1.Name = "ChartArea1";
-            chartTotalValue.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            chartTotalValue.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            chartTotalValue.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            chartTotalValue.Legends.Add(legend4);
             chartTotalValue.Location = new Point(1506, 4);
             chartTotalValue.Name = "chartTotalValue";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chartTotalValue.Series.Add(series1);
-            chartTotalValue.Size = new Size(1257, 480);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            chartTotalValue.Series.Add(series4);
+            chartTotalValue.Size = new Size(1100, 480);
             chartTotalValue.TabIndex = 134;
             chartTotalValue.Text = "chart1";
             chartTotalValue.Visible = false;
@@ -3078,18 +2161,18 @@
             // chartTopSearches
             // 
             chartTopSearches.BackColor = SystemColors.Control;
-            chartArea2.Name = "ChartArea1";
-            chartTopSearches.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            chartTopSearches.Legends.Add(legend2);
+            chartArea5.Name = "ChartArea1";
+            chartTopSearches.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            chartTopSearches.Legends.Add(legend5);
             chartTopSearches.Location = new Point(1506, 503);
             chartTopSearches.Name = "chartTopSearches";
             chartTopSearches.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chartTopSearches.Series.Add(series2);
-            chartTopSearches.Size = new Size(1257, 480);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            chartTopSearches.Series.Add(series5);
+            chartTopSearches.Size = new Size(1100, 480);
             chartTopSearches.TabIndex = 133;
             chartTopSearches.Text = "chart2";
             chartTopSearches.Visible = false;
@@ -3097,17 +2180,17 @@
             // chartTotalAuctions
             // 
             chartTotalAuctions.BackColor = SystemColors.Control;
-            chartArea3.Name = "ChartArea1";
-            chartTotalAuctions.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            chartTotalAuctions.Legends.Add(legend3);
+            chartArea6.Name = "ChartArea1";
+            chartTotalAuctions.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            chartTotalAuctions.Legends.Add(legend6);
             chartTotalAuctions.Location = new Point(1506, 1011);
             chartTotalAuctions.Name = "chartTotalAuctions";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            chartTotalAuctions.Series.Add(series3);
-            chartTotalAuctions.Size = new Size(1257, 480);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            chartTotalAuctions.Series.Add(series6);
+            chartTotalAuctions.Size = new Size(1100, 480);
             chartTotalAuctions.TabIndex = 132;
             chartTotalAuctions.Tag = "";
             chartTotalAuctions.Text = "chart1";
@@ -3175,39 +2258,141 @@
             // 
             colLatestXpac.Text = "LX";
             // 
-            // btnRefreshAuctions2
+            // mainOptions1
             // 
-            btnRefreshAuctions2.BackColor = SystemColors.Control;
-            btnRefreshAuctions2.FlatAppearance.BorderSize = 0;
-            btnRefreshAuctions2.FlatStyle = FlatStyle.Flat;
-            btnRefreshAuctions2.Image = (Image)resources.GetObject("btnRefreshAuctions2.Image");
-            btnRefreshAuctions2.Location = new Point(3747, 430);
-            btnRefreshAuctions2.Name = "btnRefreshAuctions2";
-            btnRefreshAuctions2.Size = new Size(52, 52);
-            btnRefreshAuctions2.TabIndex = 148;
-            btnRefreshAuctions2.UseVisualStyleBackColor = false;
-            btnRefreshAuctions2.Click += btnRefreshAuctions2_Click;
+            mainOptions1.BackColor = SystemColors.ControlLight;
+            mainOptions1.Location = new Point(29, 128);
+            mainOptions1.Name = "mainOptions1";
+            mainOptions1.OptionsTitle = "      Main Options";
+            mainOptions1.ShowToggleButton = true;
+            mainOptions1.Size = new Size(551, 331);
+            mainOptions1.TabIndex = 149;
+            mainOptions1.Visible = false;
+            // 
+            // itemClassOptions1
+            // 
+            itemClassOptions1.BackColor = SystemColors.ControlLight;
+            itemClassOptions1.Location = new Point(611, 128);
+            itemClassOptions1.Name = "itemClassOptions1";
+            itemClassOptions1.OptionsTitle = "      Item Class";
+            itemClassOptions1.ShowToggleButton = true;
+            itemClassOptions1.Size = new Size(576, 331);
+            itemClassOptions1.TabIndex = 150;
+            itemClassOptions1.Visible = false;
+            // 
+            // qualityOptions1
+            // 
+            qualityOptions1.BackColor = SystemColors.ControlLight;
+            qualityOptions1.Location = new Point(1217, 128);
+            qualityOptions1.Name = "qualityOptions1";
+            qualityOptions1.OptionsTitle = "      Quality";
+            qualityOptions1.ShowToggleButton = true;
+            qualityOptions1.Size = new Size(280, 331);
+            qualityOptions1.TabIndex = 151;
+            qualityOptions1.Visible = false;
+            // 
+            // bonusOptions1
+            // 
+            bonusOptions1.BackColor = SystemColors.ControlLight;
+            bonusOptions1.Location = new Point(2711, 128);
+            bonusOptions1.Name = "bonusOptions1";
+            bonusOptions1.OptionsTitle = "      Bonuses";
+            bonusOptions1.ShowToggleButton = true;
+            bonusOptions1.Size = new Size(408, 331);
+            bonusOptions1.TabIndex = 152;
+            bonusOptions1.Visible = false;
+            // 
+            // moreOptions1
+            // 
+            moreOptions1.BackColor = SystemColors.ControlLight;
+            moreOptions1.Location = new Point(1523, 128);
+            moreOptions1.Name = "moreOptions1";
+            moreOptions1.OptionsTitle = " More Options";
+            moreOptions1.ShowToggleButton = false;
+            moreOptions1.Size = new Size(750, 331);
+            moreOptions1.TabIndex = 153;
+            moreOptions1.Visible = false;
+            // 
+            // globalOptions1
+            // 
+            globalOptions1.BackColor = SystemColors.ControlLight;
+            globalOptions1.Location = new Point(2304, 128);
+            globalOptions1.Name = "globalOptions1";
+            globalOptions1.NewDataOnly = true;
+            globalOptions1.OptionsTitle = " Global Options";
+            globalOptions1.SearchOnSelect = true;
+            globalOptions1.ShowToggleButton = false;
+            globalOptions1.Size = new Size(379, 331);
+            globalOptions1.TabIndex = 154;
+            globalOptions1.Threshold = 20;
+            globalOptions1.Visible = false;
+            // 
+            // itemListOptions1
+            // 
+            itemListOptions1.BackColor = SystemColors.ControlLight;
+            itemListOptions1.Location = new Point(29, 484);
+            itemListOptions1.Name = "itemListOptions1";
+            itemListOptions1.OptionsTitle = " My Item Lists";
+            itemListOptions1.ShowToggleButton = false;
+            itemListOptions1.Size = new Size(551, 1490);
+            itemListOptions1.TabIndex = 155;
+            itemListOptions1.Visible = false;
+            itemListOptions1.SelectedChanged += itemListOptions1_SelectedChanged;
+            // 
+            // pbsExport1
+            // 
+            pbsExport1.BackColor = SystemColors.ControlLight;
+            pbsExport1.Location = new Point(2711, 128);
+            pbsExport1.Name = "pbsExport1";
+            pbsExport1.OptionsTitle = "      PBS Export";
+            pbsExport1.ShowToggleButton = false;
+            pbsExport1.Size = new Size(1090, 331);
+            pbsExport1.TabIndex = 156;
+            pbsExport1.Visible = false;
+            // 
+            // realmOptions1
+            // 
+            realmOptions1.BackColor = SystemColors.ControlLight;
+            realmOptions1.Location = new Point(3299, 128);
+            realmOptions1.Name = "realmOptions1";
+            realmOptions1.OptionsTitle = "      Realms";
+            realmOptions1.ShowToggleButton = false;
+            realmOptions1.Size = new Size(500, 1700);
+            realmOptions1.TabIndex = 157;
+            realmOptions1.Visible = false;
+            // 
+            // tsbWoWInteraction
+            // 
+            tsbWoWInteraction.Alignment = ToolStripItemAlignment.Right;
+            tsbWoWInteraction.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbWoWInteraction.Image = (Image)resources.GetObject("tsbWoWInteraction.Image");
+            tsbWoWInteraction.ImageTransparentColor = Color.Magenta;
+            tsbWoWInteraction.Name = "tsbWoWInteraction";
+            tsbWoWInteraction.Size = new Size(52, 52);
+            tsbWoWInteraction.Text = "Testing";
+            tsbWoWInteraction.Visible = false;
+            tsbWoWInteraction.Click += tsbWoWInteraction_Click;
             // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(3808, 2044);
+            ClientSize = new Size(3808, 1242);
+            Controls.Add(realmOptions1);
+            Controls.Add(pbsExport1);
+            Controls.Add(itemListOptions1);
+            Controls.Add(globalOptions1);
+            Controls.Add(moreOptions1);
+            Controls.Add(bonusOptions1);
+            Controls.Add(qualityOptions1);
+            Controls.Add(itemClassOptions1);
+            Controls.Add(mainOptions1);
             Controls.Add(tssMain);
-            Controls.Add(btnRefreshAuctions2);
-            Controls.Add(pnlRealms);
-            Controls.Add(pnlLists_Main);
-            Controls.Add(pnlSearch_GlobalOptions);
-            Controls.Add(pnlSearch_MoreOptions);
-            Controls.Add(pnlSearch_Bonuses);
             Controls.Add(panelRibbon);
             Controls.Add(toolStripMain);
-            Controls.Add(pnlSearch_Main);
-            Controls.Add(pnlSearch_Class);
-            Controls.Add(pnlSearch_Quality);
-            Controls.Add(pnlLists_Items);
             Controls.Add(pnlAuctionData);
+            Controls.Add(pnlLists_Items);
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -3218,35 +2403,12 @@
             Load += FormMain_Load;
             toolStripMain.ResumeLayout(false);
             toolStripMain.PerformLayout();
-            pnlSearch_Bonuses.ResumeLayout(false);
-            pnlSearch_Main.ResumeLayout(false);
-            pnlSearch_Main.PerformLayout();
-            pnlSearch_Main_SubOptions.ResumeLayout(false);
-            pnlSearch_Main_SubOptions.PerformLayout();
-            pnlSearch_Class.ResumeLayout(false);
-            pnlSearch_Quality.ResumeLayout(false);
             panelRibbon.ResumeLayout(false);
             panelRibbon.PerformLayout();
             tssMain.ResumeLayout(false);
             tssMain.PerformLayout();
-            pnlSearch_MoreOptions.ResumeLayout(false);
-            pnlSearch_MoreOptions.PerformLayout();
-            pnlSearch_MoreOptions_SubOptions.ResumeLayout(false);
-            panelSearch_Frequency.ResumeLayout(false);
-            panelSearch_Frequency.PerformLayout();
-            pnlSearch_GlobalOptions.ResumeLayout(false);
-            pnlSearch_GlobalOptions.PerformLayout();
-            pnlSearch_GlobalOptions_SubOptions.ResumeLayout(false);
-            pnlSearch_GlobalOptions_SubOptions.PerformLayout();
             pnlLists_Items.ResumeLayout(false);
             pnlLists_Items.PerformLayout();
-            pnlItemsSearchPBS.ResumeLayout(false);
-            pnlItemsSearchPBS.PerformLayout();
-            pnlLists_Main.ResumeLayout(false);
-            pnlSearch_List_Buttons.ResumeLayout(false);
-            pnlSearch_List_Options.ResumeLayout(false);
-            pnlSearch_List_Options.PerformLayout();
-            pnlRealms.ResumeLayout(false);
             pnlAuctionData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chartTotalValue).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartTopSearches).EndInit();
@@ -3267,24 +2429,10 @@
         private ToolStripMenuItem tsmBuildPetCache;
         private ToolStripButton tsbRefreshAuctionData;
         private ImageList imgColorMode;
-        private Panel pnlSearch_Bonuses;
         private ImageList imgToolbar48;
-        private Panel pnlSearch_Main;
-        private Panel pnlSearch_Class;
-        private Panel pnlSearch_Quality;
         private ToolStripButton tsbSearch;
         private ToolStripButton tsbSaveSearch;
         private ToolStripButton tsbSaveSearchAs;
-        private Label lblSearchItemLevel;
-        private TextBox txtSearchMaxItemLevel;
-        private TextBox txtSearchMinItemLevel;
-        private Label label12;
-        private Label label10;
-        private Label label14;
-        private Label label13;
-        private Button btnSearch_Quality_OnOff;
-        private Button button2;
-        private Button button3;
         private Panel panelRibbon;
         private Label label15;
         private ToolStripSeparator toolStripSeparator2;
@@ -3312,7 +2460,6 @@
         private Label tslDataCountItems;
         private Label tslDataCountRegion;
         private ToolStripSeparator toolStripSeparator6;
-        private Button button1;
         private ToolStripLabel tslCurrentProfile;
         private ToolStripSeparator toolStripSeparator8;
         private ToolStripSeparator toolStripSeparator10;
@@ -3326,23 +2473,10 @@
         private ColorDialog colorDialog1;
         private ToolStripStatusLabel tllNewVersion;
         private ToolStripButton tsbLivePoll;
-        private Label lblSearchCharLevel;
-        private TextBox txtSearchMaxCharLevel;
-        private TextBox txtSearchMinCharLevel;
         private ToolStripButton tslModeAuctions;
         private ToolStripButton tslModeLists;
         private ToolStripSeparator toolStripSeparator1;
         private Label lblSearchMode;
-        private Panel pnlSearch_MoreOptions;
-        private Label lblSearchOnSelect;
-        private ToggleSlider tslSearchOnSelect;
-        private Label label1;
-        private TextBox txtSearchStringFilter;
-        private Button button4;
-        private Label label7;
-        private Panel pnlSearch_GlobalOptions;
-        private Button button5;
-        private Label label6;
         private Panel pnlLists_Items;
         private Label label9;
         private ListView lvItemsSearchResults;
@@ -3357,57 +2491,15 @@
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
         private Label lblItemsSearchLabel;
-        private Panel pnlSearch_Main_SubOptions;
-        private RadioButton rbSearch_MaxG;
-        private RadioButton rbSearch_Percentage;
-        private TextBox txtSearchMaxG;
-        private TextBox txtSearchPercentage;
-        private Panel pnlSearch_MoreOptions_SubOptions;
-        private Panel panelSearch_Frequency;
-        private RadioButton rbSearchShowAllItems;
-        private RadioButton rbSearchShowCheapest;
-        private RadioButton rbSearchRemoveDuplicates;
-        private Panel pnlSearch_GlobalOptions_SubOptions;
-        private Label lblNewDataOnly;
-        private TextBox txtSearchThreshold;
-        private ToggleSlider tslNewDataOnly;
-        private Label lblSearchThreshold;
         private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
-        private Button btnItemListSearchView;
-        private Button btnItemsListPBSView;
-        private Panel pnlItemsSearchPBS;
-        private Button btnItemsSearchCopyExport;
-        private TextBox txtItemsSearchPBSKeys;
-        private TextBox txtItemsSearchPBSExport;
-        private Label label3;
-        private Label label2;
-        private Button btnsbtnItemsSearchCopyKeys;
-        private Button btnItemsExportToPBS;
         private ColumnHeader columnHeader8;
         private ColumnHeader columnHeader9;
         private Button btnItemListPBSUpdateSelected;
         private TextBox txtItemsSearchPBSValue;
         private Button btnItemListPBSUpdateZeroValue;
         private Button btnItemListPBSUpdateAll;
-        private Label lblSellRate;
-        private Label lblSearchWorth;
-        private TextBox txtSearchMinSellRate;
-        private TextBox txtSearchWorth;
-        private Label lblSearchList;
         private Button btnItemListSave;
-        private Button btnItemListSaveAs;
-        private Button btnItemListEdit;
-        private Button btnItemListDelete;
-        private Button btnItemListNew;
-        private Panel pnlLists_Main;
-        private Panel pnlRealms;
-        private Button btnToggleRealms;
-        private ListView lvRealms;
-        private ColumnHeader colRealms_S;
-        private ColumnHeader colRealms_RealmName;
-        private ColumnHeader colRealms_LastModified;
-        private ColumnHeader colRealms_Auctions;
         private ImageList imgProfile48;
         private Panel pnlAuctionData;
         private ListView lvAuctions;
@@ -3423,13 +2515,17 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTotalValue;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTopSearches;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTotalAuctions;
-        private Panel pnlSearch_List_Options;
-        private RadioButton rbSearch_List_OnlyByList;
-        private RadioButton rbSearch_List_AdditionalCriteria;
-        private RadioButton rbSearch_List_DontUse;
-        private Panel pnlSearch_List_Buttons;
-        private Button btnRefreshAuctions2;
-        private Button button6;
-        private ListBox lbItems;
+        private MainOptions mainOptions1;
+        private ItemClassOptions itemClassOptions1;
+        private QualityOptions qualityOptions1;
+        private BonusOptions bonusOptions1;
+        private MoreOptions moreOptions1;
+        private GlobalOptions globalOptions1;
+        private ItemListOptions itemListOptions1;
+        private ToolStripButton tsbRefreshAuctionData2;
+        private ToolStripButton tsbPreferences;
+        private PBSExport pbsExport1;
+        private RealmOptions realmOptions1;
+        private ToolStripButton tsbWoWInteraction;
     }
 }

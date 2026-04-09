@@ -8,7 +8,6 @@ namespace WOWAuctionApi_Net10
     public class SearchLogic
     {
         public SearchOptions Options = new SearchOptions();
-        public FormCache fc = new FormCache();
 
         //Searches items from an item cache rather than auctions
         public ItemCache DoItemSearch(ItemCache itemsAsCacheCopy)
@@ -20,25 +19,25 @@ namespace WOWAuctionApi_Net10
             HashSet<long> itemIdsInList = new HashSet<long>(copyCache.Items.Select(item => item.Id));
 
             ItemCache searchResults = new ItemCache();
-            searchResults.Items = fc.Caches.ItemCache.Items
+            searchResults.Items = sc.Caches.ItemCache.Items
                 //Quality
                 .Where(item => Options.Quality.Contains(item.QualityType))
                 //Item Class
                 .Where(item => Options.Class.Contains(item.ClassName))
                 //Character required level
-                .Where(item => item.RequiredLevel >= fc.CurrentProfile.MinCharLevel && item.RequiredLevel <= fc.CurrentProfile.MaxCharLevel)
+                .Where(item => item.RequiredLevel >= sc.CurrentProfile.MinCharLevel && item.RequiredLevel <= sc.CurrentProfile.MaxCharLevel)
                 //Item level
-                .Where(item => item.Level >= fc.CurrentProfile.MinItemLevel && item.Level <= fc.CurrentProfile.MaxItemLevel)
+                .Where(item => item.Level >= sc.CurrentProfile.MinItemLevel && item.Level <= sc.CurrentProfile.MaxItemLevel)
                 //Worth at least
                 .Where(item => Options.FixedWorthAtLeast == -1 || (Options.FixedWorthAtLeast > -1
                     && (item.RegionItem.marketValue >= Options.FixedWorthAtLeast)))
                 //Minimum sell rate
-                .Where(item => fc.CurrentProfile.MinSellRate == -1 ||
-                    (item.RegionItem.saleRate <= fc.CurrentProfile.MinSellRate))
+                .Where(item => sc.CurrentProfile.MinSellRate == -1 ||
+                    (item.RegionItem.saleRate <= sc.CurrentProfile.MinSellRate))
                 //Latest xpac only
                 .Where(item => Options.LatestXpac == false
-                    || (Options.LatestXpac == true && item.Id >= fc.Config.LatestXpacItemId)
-                    || (Options.LatestXpac == true && fc.ItemData.MidnightItemIds.Contains(item.Id)))
+                    || (Options.LatestXpac == true && item.Id >= sc.Config.LatestXpacItemId)
+                    || (Options.LatestXpac == true && sc.ItemData.MidnightItemIds.Contains(item.Id)))
                 //Filter only an items we don't already have in the list
                 .Where(item => !itemIdsInList.Contains(item.Id))
                 //String filter
@@ -46,7 +45,7 @@ namespace WOWAuctionApi_Net10
                     || (Options.UseStringFilter == true
                     && item.Name.Contains(Options.StringFilter, StringComparison.OrdinalIgnoreCase)))
                 //Apply items search cap
-                .Take(fc.Config.ItemsSearchCap.Value)
+                .Take(sc.Config.ItemsSearchCap.Value)
                 .ToList();
 
             if (Options.AtoZ)
@@ -61,23 +60,23 @@ namespace WOWAuctionApi_Net10
         public List<SearchResult> DoAuctionSearch(Realm realm)
         {
             var searchResults = new List<SearchResult>();
-            List<Auction> auctions = fc.Dictionaries.RealmAuctions[realm.RealmId.Value].auctions;
+            List<Auction> auctions = sc.Dictionaries.RealmAuctions[realm.RealmId.Value].auctions;
 
-            if (fc.CurrentProfile.ListOption != 0)
+            if (sc.CurrentProfile.ListOption != 0)
             {
                 auctions = auctions
                     .Where(auction => Options.CombinedSearchCache.ItemIds.Contains(auction.item.id))
                     .ToList();
             }
 
-            if (fc.CurrentProfile.ListOption == 2)
+            if (sc.CurrentProfile.ListOption == 2)
             {
                 auctions = auctions
                     .Where(auction =>
                         ((Options.CombinedSearchCache.Items.Single(
                             item => item.Id == auction.item.id).BuyPrice * 10000) >=
                             auction.buyout))
-                    .Take(fc.Config.AuctionsCap.Value)
+                    .Take(sc.Config.AuctionsCap.Value)
                     .ToList(); 
             }
             else
@@ -88,37 +87,37 @@ namespace WOWAuctionApi_Net10
                          (Options.IncludeItems && !auction.item.isPet))
 
                      //Sell rate
-                     .Where(auction => auction.item.regionItem.saleRate > fc.CurrentProfile.MinSellRate)
+                     .Where(auction => auction.item.regionItem.saleRate > sc.CurrentProfile.MinSellRate)
                      //Quality
                      .Where(auction => Options.Quality.Contains(auction.item.quality))
                      //Class - include if it's a pet OR it's an item and item class matches
                      .Where(auction => auction.item.isPet || (!auction.item.isPet)
                          && Options.Class.Contains(auction.item.cacheItem.ClassName))
                      //Item level
-                     .Where(auction => (auction.item.itemLevel >= fc.CurrentProfile.MinItemLevel)
-                         && (auction.item.itemLevel <= fc.CurrentProfile.MaxItemLevel))
+                     .Where(auction => (auction.item.itemLevel >= sc.CurrentProfile.MinItemLevel)
+                         && (auction.item.itemLevel <= sc.CurrentProfile.MaxItemLevel))
                      //Minimum sell rate
-                     .Where(auction => fc.CurrentProfile.MinSellRate == -1 ||
-                         (auction.item.regionItem.saleRate >= fc.CurrentProfile.MinSellRate))
+                     .Where(auction => sc.CurrentProfile.MinSellRate == -1 ||
+                         (auction.item.regionItem.saleRate >= sc.CurrentProfile.MinSellRate))
                      //Worth at least
                      .Where(auction => Options.FixedWorthAtLeast == -1 || (Options.FixedWorthAtLeast > -1
                          && (auction.item.regionItem.marketValue >= Options.FixedWorthAtLeast)))
                      //Latest xpac
                      .Where(auction => Options.LatestXpac == false
-                         || (Options.LatestXpac == true && auction.item.id >= fc.Config.LatestXpacItemId))
+                         || (Options.LatestXpac == true && auction.item.id >= sc.Config.LatestXpacItemId))
                      //Percentage or Max G
                      .Where(auction =>
-                         (fc.CurrentProfile.SearchFraction == 0
+                         (sc.CurrentProfile.SearchFraction == 0
                          && ((auction.buyout < (auction.item.regionItem.marketValue * Options.FixedSearchPercentage)))
                          ||
-                         (fc.CurrentProfile.SearchFraction == 1
+                         (sc.CurrentProfile.SearchFraction == 1
                          && (auction.buyout < Options.FixedMaxG)))
                          )
                      //String filter
                      .Where(auction => Options.UseStringFilter == false
                          || (Options.UseStringFilter == true
                          && auction.auctionitemName.Contains(Options.StringFilter, StringComparison.OrdinalIgnoreCase)))
-                     .Take(fc.Config.AuctionsCap.Value)
+                     .Take(sc.Config.AuctionsCap.Value)
                      .ToList();
             }
 
@@ -143,7 +142,7 @@ namespace WOWAuctionApi_Net10
             //1 = Show cheapest
             List<SearchResult> refinedResults = searchResults;
 
-            if (fc.CurrentProfile.SearchFrequency == 1)
+            if (sc.CurrentProfile.SearchFrequency == 1)
             {
                 refinedResults = searchResults
                     .GroupBy(p => p.ItemId)                         // Group by the property value (Id)
@@ -152,7 +151,7 @@ namespace WOWAuctionApi_Net10
             }
 
             //0 = Remove duplicates
-            if (fc.CurrentProfile.SearchFrequency == 0)
+            if (sc.CurrentProfile.SearchFrequency == 0)
             {
                 refinedResults = searchResults
                     .GroupBy(p => p.ItemId)         // Group by the property value (Id)
@@ -169,14 +168,14 @@ namespace WOWAuctionApi_Net10
             return refinedResults;
         }
 
-        public static void ModifyItemLevel(Auction auction, FormCache fc)
+        public static void ModifyItemLevel(Auction auction)
         {
             if (auction.item.bonus_lists != null)
             {
                 foreach (long bonus in auction.item.bonus_lists)
                 {
                     CrypticBonus deepItemDataBonus;
-                    fc.Dictionaries.CrypticBonuses.TryGetValue(bonus.ToString(), out deepItemDataBonus);
+                    sc.Dictionaries.CrypticBonuses.TryGetValue(bonus.ToString(), out deepItemDataBonus);
 
                     if (deepItemDataBonus != null)
                     {
@@ -193,14 +192,14 @@ namespace WOWAuctionApi_Net10
             }
         }
 
-        private void ModifyItemLevelOld(Auction auction, ItemProps itemProps, FormCache fc)
+        private void ModifyItemLevelOld(Auction auction, ItemProps itemProps)
         {
             if (auction.item.bonus_lists != null)
             {
                 foreach (long bonus in auction.item.bonus_lists)
                 {
                     CrypticBonus deepItemDataBonus;
-                    fc.Dictionaries.CrypticBonuses.TryGetValue(bonus.ToString(), out deepItemDataBonus);
+                    sc.Dictionaries.CrypticBonuses.TryGetValue(bonus.ToString(), out deepItemDataBonus);
 
                     if (deepItemDataBonus != null)
                     {
@@ -454,12 +453,12 @@ namespace WOWAuctionApi_Net10
             int count = 0;
 
             
-            List<Auction> auctions = fc.Dictionaries.RealmAuctions[realm.RealmId.Value].auctions;
+            List<Auction> auctions = sc.Dictionaries.RealmAuctions[realm.RealmId.Value].auctions;
 
             if (ItemInList(Options.Main, "Latest Xpac"))
             {
                 auctions = auctions
-                    .Where(auction => auction.item.id > fc.Config.LatestXpacItemId)
+                    .Where(auction => auction.item.id > sc.Config.LatestXpacItemId)
                     .ToList();
             }
 
@@ -475,22 +474,22 @@ namespace WOWAuctionApi_Net10
                 if (auction.item.pet_species_id > 0)
                 {
                     if (!ItemInList(Options.Main, "Include Pets") ) { continue; }
-                    fc.Dictionaries.RegionItems.TryGetValue(auction.item.pet_species_id, out itemProps.RegionItem);
-                    fc.Dictionaries.DictionaryPetCache.TryGetValue(auction.item.pet_species_id, out itemProps.CachedPet);
+                    sc.Dictionaries.RegionItems.TryGetValue(auction.item.pet_species_id, out itemProps.RegionItem);
+                    sc.Dictionaries.DictionaryPetCache.TryGetValue(auction.item.pet_species_id, out itemProps.CachedPet);
                     if (itemProps.RegionItem == null || itemProps.CachedPet == null) { continue; }
                     SetPetProps(auction, itemProps);
                 }
                 else
                 {
                     if (!ItemInList(Options.Main, "Include Items")) { continue; }
-                    fc.Dictionaries.RegionItems.TryGetValue(auction.item.id, out itemProps.RegionItem);
-                    fc.Dictionaries.DictionaryItemCache.TryGetValue(auction.item.id, out itemProps.CachedItem);
+                    sc.Dictionaries.RegionItems.TryGetValue(auction.item.id, out itemProps.RegionItem);
+                    sc.Dictionaries.DictionaryItemCache.TryGetValue(auction.item.id, out itemProps.CachedItem);
                     if (itemProps.RegionItem == null || itemProps.CachedItem == null) { continue; }
                     SetItemProps(auction, itemProps);
                 }
 
                 //STRING FILTER
-                if ((fc.CurrentProfile.StringFilter.Trim() != "") && (!(itemProps.ItemName.ToUpper().Contains(fc.CurrentProfile.StringFilter.ToUpper())))) { continue; }
+                if ((sc.CurrentProfile.StringFilter.Trim() != "") && (!(itemProps.ItemName.ToUpper().Contains(sc.CurrentProfile.StringFilter.ToUpper())))) { continue; }
 
 
                 //QUALITY
@@ -502,24 +501,24 @@ namespace WOWAuctionApi_Net10
                 //CHECK CHAR REQUIRED LEVEL
                 if (!itemProps.IsPet)
                 {
-                    if ((itemProps.CharLevel <= fc.CurrentProfile.MinCharLevel) || 
-                        (itemProps.CharLevel >= fc.CurrentProfile.MaxCharLevel)) { continue; }
+                    if ((itemProps.CharLevel <= sc.CurrentProfile.MinCharLevel) || 
+                        (itemProps.CharLevel >= sc.CurrentProfile.MaxCharLevel)) { continue; }
                 }
 
     
                 //CHECK VALUES
                 //0 - Percentage
-                if ((fc.CurrentProfile.SearchFraction == 0)
+                if ((sc.CurrentProfile.SearchFraction == 0)
                     && (((itemProps.MarketValue * this.Options.FixedSearchPercentage) < auction.buyout)
                     || (this.Options.FixedWorthAtLeast > itemProps.MarketValue))) { continue; }
 
                 //1 - Max G
-                if ((fc.CurrentProfile.SearchFraction == 1)
+                if ((sc.CurrentProfile.SearchFraction == 1)
                     && ((this.Options.FixedMaxG < auction.buyout)
                     || (this.Options.FixedWorthAtLeast > itemProps.MarketValue))) { continue; }
 
                 //SELL RATE
-                if ((fc.CurrentProfile.MinSellRate > -1) && (itemProps.SaleRate < fc.CurrentProfile.MinSellRate)) { continue; }
+                if ((sc.CurrentProfile.MinSellRate > -1) && (itemProps.SaleRate < sc.CurrentProfile.MinSellRate)) { continue; }
 
                 //WORTH AT LEAST
                 if ((Options.FixedWorthAtLeast > -1) && (itemProps.MarketValue < Options.FixedWorthAtLeast)) { continue; }
@@ -545,8 +544,8 @@ namespace WOWAuctionApi_Net10
                     ModifyItemLevelOld(auction, itemProps, fc);
 
                     //CHECK ITEM LEVEL
-                    if ((itemProps.Level <= fc.CurrentProfile.MinItemLevel) ||
-                        (itemProps.Level >= fc.CurrentProfile.MaxItemLevel)) { continue; }
+                    if ((itemProps.Level <= sc.CurrentProfile.MinItemLevel) ||
+                        (itemProps.Level >= sc.CurrentProfile.MaxItemLevel)) { continue; }
                 }
                 count++;
 

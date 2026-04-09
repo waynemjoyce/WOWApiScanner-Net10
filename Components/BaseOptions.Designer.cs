@@ -1,0 +1,77 @@
+﻿namespace WOWAuctionApi_Net10
+{
+    partial class BaseOptions
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseOptions));
+            lblTitle = new Label();
+            btnToggle = new Button();
+            SuspendLayout();
+            // 
+            // lblTitle
+            // 
+            lblTitle.BackColor = SystemColors.ControlDark;
+            lblTitle.Dock = DockStyle.Top;
+            lblTitle.Location = new Point(0, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(1081, 41);
+            lblTitle.TabIndex = 129;
+            lblTitle.Text = "      [Set OptionsTitle]";
+            lblTitle.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // btnToggle
+            // 
+            btnToggle.BackColor = SystemColors.ControlDark;
+            btnToggle.FlatAppearance.BorderSize = 0;
+            btnToggle.FlatStyle = FlatStyle.Flat;
+            btnToggle.Image = (Image)resources.GetObject("btnToggle.Image");
+            btnToggle.Location = new Point(3, 3);
+            btnToggle.Name = "btnToggle";
+            btnToggle.Size = new Size(36, 36);
+            btnToggle.TabIndex = 130;
+            btnToggle.UseVisualStyleBackColor = false;
+            btnToggle.Click += btnToggle_Click;
+            // 
+            // BaseOptions
+            // 
+            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLight;
+            Controls.Add(btnToggle);
+            Controls.Add(lblTitle);
+            Name = "BaseOptions";
+            Size = new Size(1081, 570);
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Label lblTitle;
+        private Button btnToggle;
+    }
+}

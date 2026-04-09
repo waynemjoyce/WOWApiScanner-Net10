@@ -27,7 +27,7 @@ namespace WOWAuctionApi_Net10
 
         public static List<TsmItem> GetRegionTsmItemsFromFile()
         {
-            string regionItems = File.ReadAllText(Paths.TsmRegionData);
+            string regionItems = File.ReadAllText(sc.Paths.TsmRegionData);
             return JsonSerializer.Deserialize<List<TsmItem>>(regionItems);
         }
 
@@ -43,7 +43,7 @@ namespace WOWAuctionApi_Net10
             request.AddHeader("authorization", $"Bearer {access_token}");
             RestResponse response = client.Execute(request);
 
-            File.WriteAllText(Paths.TsmRegionData, response.Content);
+            File.WriteAllText(sc.Paths.TsmRegionData, response.Content);
         }
     }
 }

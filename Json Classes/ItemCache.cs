@@ -32,18 +32,18 @@ namespace WOWAuctionApi_Net10
 
         public void Save()
         {
-            SaveToFile(Paths.ItemCache);
+            SaveToFile(sc.Paths.ItemCache);
         }
 
         public void SaveAsNewlyAdded(SortDirection direction = SortDirection.Ascending)
         {
             Sort(direction);
-            SaveToFile($@"{Paths.Json}newlyadded-{DateTime.Now.ToString("-yyyyMMdd_hhmmss")}.json");
+            SaveToFile($@"{sc.Paths.Json}newlyadded-{DateTime.Now.ToString("-yyyyMMdd_hhmmss")}.json");
         }
         
         public void SaveAsNewFile(string fileName)
         {
-            SaveToFile($@"{Paths.Json}{fileName}.json");
+            SaveToFile($@"{sc.Paths.Json}{fileName}.json");
         }
 
         public void Sort(SortDirection direction)
@@ -69,17 +69,17 @@ namespace WOWAuctionApi_Net10
 
         public static ItemCache Load()
         {
-            return ItemCache.LoadFromFile(Paths.ItemCache);
+            return ItemCache.LoadFromFile(sc.Paths.ItemCache);
         }
 
-        public static ItemCache LoadWithRegionItems(FormCache fc)
+        public static ItemCache LoadWithRegionItems()
         {
-            ItemCache itemCache = ItemCache.LoadFromFile(Paths.ItemCache);
+            ItemCache itemCache = ItemCache.LoadFromFile(sc.Paths.ItemCache);
 
             foreach (var item in itemCache.Items)
             {
                 TsmItem tsmItem;
-                fc.Dictionaries.RegionItems.TryGetValue(item.Id, out tsmItem);
+                sc.Dictionaries.RegionItems.TryGetValue(item.Id, out tsmItem);
                 if (tsmItem != null)
                 {
                     item.RegionItem = tsmItem;
@@ -103,7 +103,6 @@ namespace WOWAuctionApi_Net10
         public static (int newItems, ItemCache newCache) BuildItemCache(
             ToolStripProgressBar tspCache,
             ToolStripStatusLabel lblCache,
-            FormCache formCache,
             bool updateOnly)
         {
             BackupItemCache();
@@ -113,7 +112,7 @@ namespace WOWAuctionApi_Net10
             int hundredCount = 0;
             int addedCount = 0;
 
-            Dictionary<long, TsmItem> localRegionItems = formCache.Dictionaries.RegionItems
+            Dictionary<long, TsmItem> localRegionItems = sc.Dictionaries.RegionItems
                 .Where(item => item.Value.petSpeciesId != null).ToDictionary();
             int regionCount = localRegionItems.Count;
             tspCache.Maximum = regionCount;
@@ -151,7 +150,7 @@ namespace WOWAuctionApi_Net10
                         || (!updateOnly))
                     {
                         
-                        BlizzItem bi = API_Blizzard.GetBlizzItemFromItemId(formCache.BlizzAccessToken, item.Key);
+                        BlizzItem bi = API_Blizzard.GetBlizzItemFromItemId(sc.BlizzAccessToken, item.Key);
 
                         if (bi != null)
                         {
@@ -203,7 +202,7 @@ namespace WOWAuctionApi_Net10
             itemCache.Save();
             if (updateOnly && newlyAddedCache.Items.Count > 0)
             {
-                newlyAddedCache.SaveAsNewlyAdded(formCache.Config.SortCacheOrderDefault.Value);
+                newlyAddedCache.SaveAsNewlyAdded(sc.Config.SortCacheOrderDefault.Value);
             }
             tspCache.Value = tspCache.Maximum;
             Application.DoEvents();

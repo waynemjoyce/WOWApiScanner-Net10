@@ -136,11 +136,11 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(680, 76);
+            textBox1.Location = new Point(685, 34);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(1108, 670);
+            textBox1.Size = new Size(427, 141);
             textBox1.TabIndex = 10;
             // 
             // button2
@@ -157,7 +157,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1843, 805);
+            ClientSize = new Size(2158, 1085);
             Controls.Add(button2);
             Controls.Add(textBox1);
             Controls.Add(button1);

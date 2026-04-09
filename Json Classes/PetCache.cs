@@ -33,17 +33,17 @@ namespace WOWAuctionApi_Net10
 
         public void Save()
         {
-            SaveToFile(Paths.PetCache);
+            SaveToFile(sc.Paths.PetCache);
         }
         public void SaveAsNewlyAdded(SortDirection direction = SortDirection.Ascending)
         {
             Sort(direction);
-            SaveToFile($@"{Paths.Json}\newlyadded\newlyadded-pets-{DateTime.Now.ToString("-yyyyMMdd_hhmmss")}.json");
+            SaveToFile($@"{sc.Paths.Json}\newlyadded\newlyadded-pets-{DateTime.Now.ToString("-yyyyMMdd_hhmmss")}.json");
         }
 
         public void SaveAsNewFile(string fileName)
         {
-            SaveToFile($@"{Paths.Json}{fileName}.json");
+            SaveToFile($@"{sc.Paths.Json}{fileName}.json");
         }
 
         public void Sort(SortDirection direction)
@@ -70,7 +70,7 @@ namespace WOWAuctionApi_Net10
 
         public static PetCache Load()
         {
-            return PetCache.LoadFromFile(Paths.PetCache);
+            return PetCache.LoadFromFile(sc.Paths.PetCache);
         }
 
         public static PetCache LoadFromFile(string fileName)
@@ -91,7 +91,6 @@ namespace WOWAuctionApi_Net10
         public static (int newPets, PetCache newCache) BuildPetCache(
             ToolStripProgressBar tspCache,
             ToolStripStatusLabel lblCache,
-            FormCache formCache,
             bool updateOnly)
         {
             BackupPetCache();
@@ -100,7 +99,7 @@ namespace WOWAuctionApi_Net10
             int hundredCount = 0;
             int addedCount = 0;
 
-            Dictionary<long, TsmItem> localRegionItems = formCache.Dictionaries.RegionItems
+            Dictionary<long, TsmItem> localRegionItems = sc.Dictionaries.RegionItems
                 .Where(item => item.Value.petSpeciesId == null).ToDictionary();
             int regionCount = localRegionItems.Count;
             tspCache.Maximum = regionCount;
@@ -138,7 +137,7 @@ namespace WOWAuctionApi_Net10
                         || (!updateOnly))
                     {
 
-                        BlizzPet blizzPet = API_Blizzard.GetBlizzPetFromItemId(formCache.BlizzAccessToken, item.Key);
+                        BlizzPet blizzPet = API_Blizzard.GetBlizzPetFromItemId(sc.BlizzAccessToken, item.Key);
 
                         if (blizzPet != null)
                         {
@@ -177,7 +176,7 @@ namespace WOWAuctionApi_Net10
             petCache.Save();
             if (updateOnly && newlyAddedCache.Pets.Count > 0)
             {
-                newlyAddedCache.SaveAsNewlyAdded(formCache.Config.SortCacheOrderDefault.Value);
+                newlyAddedCache.SaveAsNewlyAdded(sc.Config.SortCacheOrderDefault.Value);
             }
             BackupPetCache();
             tspCache.Value = tspCache.Maximum;

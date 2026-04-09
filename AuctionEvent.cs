@@ -21,7 +21,6 @@ namespace WOWAuctionApi_Net10
         }
 
         public void DoAuctionProcess(
-            FormCache fc,
             Realm realm,
             int newDataThreshholdMinutes,
             bool livePoll, 
@@ -33,7 +32,7 @@ namespace WOWAuctionApi_Net10
             
 
             //Process the auction
-            afc = API_Blizzard.GetAuctionsFromAPI(fc.BlizzAccessToken, realm, out statusCode, out lastModified);
+            afc = API_Blizzard.GetAuctionsFromAPI(sc.BlizzAccessToken, realm, out statusCode, out lastModified);
 
             
             DateTime lastModifiedTime = DateTime.Parse(lastModified);
@@ -46,7 +45,7 @@ namespace WOWAuctionApi_Net10
                 {
                     // It was more than X minutes ago - old data so re-poll
                     Thread.Sleep(livePollIntervalSeconds);
-                    DoAuctionProcess(fc, realm, newDataThreshholdMinutes, livePoll, livePollIntervalSeconds);
+                    DoAuctionProcess(realm, newDataThreshholdMinutes, livePoll, livePollIntervalSeconds);
                 }
             }
 
@@ -67,8 +66,8 @@ namespace WOWAuctionApi_Net10
                     if (auction.item.pet_species_id > 0)
                     {
                         auction.item.isPet = true;
-                        fc.Dictionaries.RegionItems.TryGetValue(auction.item.pet_species_id, out auction.item.regionItem);
-                        fc.Dictionaries.DictionaryPetCache.TryGetValue(auction.item.pet_species_id, out auction.item.cachePet);
+                        sc.Dictionaries.RegionItems.TryGetValue(auction.item.pet_species_id, out auction.item.regionItem);
+                        sc.Dictionaries.DictionaryPetCache.TryGetValue(auction.item.pet_species_id, out auction.item.cachePet);
                         if (auction.item.cachePet == null || auction.item.regionItem == null)
                         {
                             afc.auctions.RemoveAt(i);
@@ -80,8 +79,8 @@ namespace WOWAuctionApi_Net10
                     else
                     {
                         auction.item.isPet = false;
-                        fc.Dictionaries.RegionItems.TryGetValue(auction.item.id, out auction.item.regionItem);
-                        fc.Dictionaries.DictionaryItemCache.TryGetValue(auction.item.id, out auction.item.cacheItem);
+                        sc.Dictionaries.RegionItems.TryGetValue(auction.item.id, out auction.item.regionItem);
+                        sc.Dictionaries.DictionaryItemCache.TryGetValue(auction.item.id, out auction.item.cacheItem);
                         if (auction.item.cacheItem == null || auction.item.regionItem == null)
                         {
                             afc.auctions.RemoveAt(i); ;
@@ -91,8 +90,8 @@ namespace WOWAuctionApi_Net10
                         auction.item.itemLevel = auction.item.cacheItem.Level;
                         auction.auctionitemName = auction.item.cacheItem.Name;
                     }
-
-                    SearchLogic.ModifyItemLevel(auction, fc);
+                    
+                    SearchLogic.ModifyItemLevel(auction);
                 }
 
                 //Preload the realm auctions with the cacheItem and tsmItem

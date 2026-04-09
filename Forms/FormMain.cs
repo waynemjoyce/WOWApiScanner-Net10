@@ -1,15 +1,17 @@
 
 using System.Diagnostics;
 using System.Globalization;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Windows.Forms.DataVisualization.Charting;
+using WOWAuctionApi_Net10.Forms;
 using WOWAuctionApi_Net10.Json_Classes;
+using static WOWAuctionApi_Net10.UserInterfaceOptions;
 
 namespace WOWAuctionApi_Net10
 {
     public partial class FormMain : Form
     {
-        public FormCache fc = new FormCache();
         public SearchLogic searchLogic = new SearchLogic();
         public TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
 
@@ -30,40 +32,29 @@ namespace WOWAuctionApi_Net10
                 + $"Application Version {Assembly.GetExecutingAssembly().GetName().Version}";
             auctionEventDelegate = new AuctionEvent.AuctionRetrievedEventHandler(AuctionEvent_AuctionRetrieved);
 
+            SetupOptionsPanels();
+            sc.UIOptions = UserInterfaceOptions.LoadFromFile();
             LoadConfig();
-            LoadSearchProfiles();
-            LoadItemLists();
-            fc.UIOptions = UserInterfaceOptions.LoadFromFile();
+            itemListOptions1.LoadItemLists();
             RenderUIOptionsControls();
-            LoadRealms();
+            LoadSearchProfiles();
+            realmOptions1.LoadRealms();
             LoadRegionData();
-
             LoadItemCache();
             LoadPetCache();
 
-            ListItemsPBSView(false);
-            fc.Dictionaries.CrypticBonuses = CrypticBonuses.Load();
-            fc.ItemData = ItemData.Load();
-            fc.BlizzAccessToken = API_Blizzard.GetAccessToken(fc.Config.BlizzClientID, fc.Config.BlizzClientSecret);
+            sc.Dictionaries.CrypticBonuses = CrypticBonuses.Load();
+            sc.ItemData = ItemData.Load();
+            sc.BlizzAccessToken = API_Blizzard.GetAccessToken(sc.Config.BlizzClientID, sc.Config.BlizzClientSecret);
 
-
-            lvRealms.SmallImageList = imgStatus;
+            realmOptions1.SmallImageList = imgStatus;
 
             toolStripMain.ImageList = imgToolbar48;
             toolStripMain.Renderer = new ToolStripBlankSeparatorRenderer();
-            tslSearchOnSelect.Checked = fc.Config.SearchOnSelectDefault.Value;
-            tslNewDataOnly.Checked = fc.Config.NewDataOnlyDefault.Value;
+            globalOptions1.SearchOnSelect = sc.Config.SearchOnSelectDefault;
+            globalOptions1.NewDataOnly = sc.Config.NewDataOnlyDefault;
 
-            //If OnlyFirst is set, only check the first X realms and uncheck the rest to speed up loading for users who don't care about all realms
-            if (fc.Config.OnlyFirst > 0)
-            {
-                ToggleRealms();
-                Application.DoEvents();
-                for (int i = 0; i < fc.Config.OnlyFirst; i++)
-                {
-                    lvRealms.Items[i].Checked = true;
-                }
-            }
+            realmOptions1.CheckOnlyFirst();
 
             SetMainPanelsVisible();
             SetAppColorMode();
@@ -73,62 +64,50 @@ namespace WOWAuctionApi_Net10
             SetUpChart(chartTopSearches, "Top 10 Realms - Search Hits For This Search", SeriesChartType.Doughnut);
             SetUpChart(chartTotalValue, "Top 5 Realms - Total Region Market Value For This Search", SeriesChartType.Bar);
 
-            if (fc.Config.WowInteraction.Value)
+            if (sc.Config.WowInteraction)
             {
-                fc.WowBuyScript = InteractionScript.LoadFromFile("", "wowahbuy");
+                sc.WowBuyScript = InteractionScript.LoadFromFile("", "wowahbuy");
                 tsbTest.Visible = true;
                 tsbRefreshWoWProcesses.Visible = true;
                 tsbActivate.Visible = true;
+                tsbWoWInteraction.Visible = true;
                 RefreshWowButtons();
             }
 
-            if (fc.Config.UpdateAllDataOnStart.Value)
+            if (sc.Config.UpdateAllDataOnStart)
             {
                 UpdateAllData();
             }
 
-            if (fc.Config.RefreshAuctionsOnStart.Value)
+            if (sc.Config.RefreshAuctionsOnStart)
             {
-                //RefreshAuctionData();
                 LoadAuctionData();
             }
         }
 
+        private void SetupOptionsPanels()
+        {
+            itemListOptions1.ProfileImageList = imgProfile48;
+        }
+
         private void SetMainPanelsVisible()
         {
-            pnlLists_Main.Visible = true;
-            pnlSearch_Main.Visible = true;
-            pnlSearch_Class.Visible = true;
-            pnlSearch_Quality.Visible = true;
-            pnlSearch_MoreOptions.Visible = true;
-            pnlSearch_GlobalOptions.Visible = true;
-        } 
-
-
-        private void LoadItemLists()
-        {
-            lbItems.Items.Clear();
-            fc.ItemLists = ItemLists.Load();
-            fc.ItemLists.Lists = fc.ItemLists.Lists.OrderBy(list => list.Name).ToList();
-
-            foreach (ItemList itemList in fc.ItemLists.Lists)
-            {
-                lbItems.Items.Add(new ListBoxItem
-                {
-                    ListName = itemList.Name,
-                    IconIndex = itemList.IconIndex.Value,
-                    List = itemList,
-                    Picture = imgProfile48.Images[itemList.IconIndex.Value]
-                }
-                );
-            }
+            mainOptions1.Visible = true;
+            itemClassOptions1.Visible = true;
+            qualityOptions1.Visible = true;
+            bonusOptions1.Visible = true;
+            moreOptions1.Visible = true;
+            globalOptions1.Visible = true;
+            realmOptions1.Visible = true;
+            itemListOptions1.Visible = true;
         }
 
         private void LoadItemList(ItemList itemList)
         {
-            fc.CurrentItemList = itemList;
+            sc.CurrentItemList = itemList;
             itemList.ItemCache.Items = itemList.ItemCache.Items.OrderBy(item => item.Name).ToList();
             RenderItemResults(itemList.ItemCache, lvItemsItemsInList);
+            pbsExport1.ItemListToPBS(lvItemsItemsInList);
         }
 
         private void ListView_DrawItem(object sender, DrawListViewItemEventArgs e)
@@ -151,48 +130,48 @@ namespace WOWAuctionApi_Net10
 
         private void RenderUIOptionsControls()
         {
-            UIHelper.RenderUIOptionsSet(fc.UIOptions.Main, pnlSearch_Main, fc);
-            UIHelper.RenderUIOptionsSet(fc.UIOptions.Class, pnlSearch_Class, fc);
-            UIHelper.RenderUIOptionsSet(fc.UIOptions.Quality, pnlSearch_Quality, fc);
-            UIHelper.RenderUIOptionsSet(fc.UIOptions.Bonuses, pnlSearch_Bonuses, fc);
+            UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "Main"), mainOptions1);
+            UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "Class"), itemClassOptions1);
+            UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "Quality"), qualityOptions1);
+            UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "Bonuses"), bonusOptions1);
 
             Application.DoEvents();
         }
 
         private void LoadItemCache()
         {
-            fc.Dictionaries.DictionaryItemCache.Clear();
-            //fc.Caches.ItemCache = ItemCache.Load();
-            fc.Caches.ItemCache = ItemCache.LoadWithRegionItems(fc);
-            foreach (CacheItem item in fc.Caches.ItemCache.Items)
+            sc.Dictionaries.DictionaryItemCache.Clear();
+            sc.Caches.ItemCache = ItemCache.LoadWithRegionItems();
+            foreach (CacheItem item in sc.Caches.ItemCache.Items)
             {
-                fc.Dictionaries.DictionaryItemCache.Add(item.Id, item);
+                sc.Dictionaries.DictionaryItemCache.Add(item.Id, item);
             }
-            UpdateCountLabel(tslDataCountItems, fc.Caches.ItemCache.Items.Count);
+            UpdateCountLabel(tslDataCountItems, sc.Caches.ItemCache.Items.Count);
         }
 
         private void LoadPetCache()
         {
-            fc.Dictionaries.DictionaryPetCache.Clear();
-            fc.Caches.PetCache = PetCache.Load();
-            foreach (CachePet pet in fc.Caches.PetCache.Pets)
+            sc.Dictionaries.DictionaryPetCache.Clear();
+            sc.Caches.PetCache = PetCache.Load();
+            foreach (CachePet pet in sc.Caches.PetCache.Pets)
             {
-                fc.Dictionaries.DictionaryPetCache.Add(pet.Id.Value, pet);
+                sc.Dictionaries.DictionaryPetCache.Add(pet.Id.Value, pet);
             }
-            UpdateCountLabel(tslDataCountPets, fc.Caches.PetCache.Pets.Count);
+            UpdateCountLabel(tslDataCountPets, sc.Caches.PetCache.Pets.Count);
         }
 
 
 
         private void LoadSearchProfiles()
         {
-            fc.SearchProfiles = SearchProfiles.Load();
-            foreach (SearchProfile profile in fc.SearchProfiles.Profiles)
+            sc.SearchProfiles = SearchProfiles.Load();
+            foreach (SearchProfile profile in sc.SearchProfiles.Profiles)
             {
-                if (profile.ProfileName == fc.Config.DefaultSearch)
+                if (profile.ProfileName == sc.Config.DefaultSearch)
                 {
                     tslCurrentProfile.Text = profile.ProfileName;
-                    this.SearchProfileToUI(profile);
+                    sc.CurrentProfile = profile;
+                    SearchProfileToUI();
                 }
             }
 
@@ -208,18 +187,18 @@ namespace WOWAuctionApi_Net10
         private void SetDisplayMode(DisplayMode displayMode)
         {
             bool auctions = (displayMode == DisplayMode.Auctions);
-            fc.DisplayMode = displayMode;
+            sc.DisplayMode = displayMode;
             pnlAuctionData.Visible = auctions;
+
+            realmOptions1.Visible = auctions;
+
+            mainOptions1.ShowSuboptions = auctions;
+            bonusOptions1.Visible = auctions;
+            moreOptions1.ShowSuboptions = auctions;
+            globalOptions1.ShowSuboptions = auctions;
+            itemListOptions1.SetDisplayMode(displayMode);
+            pbsExport1.Visible = !auctions;
             pnlLists_Items.Visible = !auctions;
-            pnlRealms.Visible = auctions;
-
-            pnlSearch_Main_SubOptions.Visible = auctions;
-            pnlSearch_MoreOptions_SubOptions.Visible = auctions;
-            pnlSearch_GlobalOptions_SubOptions.Visible = auctions;
-            pnlSearch_Bonuses.Visible = auctions;
-
-            pnlSearch_List_Buttons.Visible = !auctions;
-            pnlSearch_List_Options.Visible = auctions;
 
             switch (displayMode)
             {
@@ -228,18 +207,14 @@ namespace WOWAuctionApi_Net10
                     panelRibbon.BackColor = Color.Brown;
                     tssMain.BackColor = Color.Brown;
                     lblSearchMode.Text = "Auctions Mode";
-                    lblSearchList.Text = "List Options For This Search";
-                    lbItems.SelectionMode = SelectionMode.MultiExtended;
-                    SetListItems(fc.CurrentProfile);
+                    itemListOptions1.SetListItems();
                     break;
 
                 case DisplayMode.ItemsLists:
                     panelRibbon.BackColor = Color.SteelBlue;
                     tssMain.BackColor = Color.SteelBlue;
                     lblSearchMode.Text = "Lists Mode";
-                    lblSearchList.Text = "Managed My Lists";
-                    lbItems.SelectionMode = SelectionMode.One;
-                    SetListItems(0);
+                    itemListOptions1.SetListItems(0);
                     break;
             }
         }
@@ -252,72 +227,44 @@ namespace WOWAuctionApi_Net10
 
         private void LoadConfig()
         {
-            fc.Config = Config.LoadFromFile(Paths.Config);
+            sc.Config = Config.LoadFromFile(sc.Paths.Config);
+
+            List<int> checkOptions = UIHelper.GetIntsFromBitwise(sc.Config.ConfigChecks.Value);
+            OptionSet configOptions = sc.UIOptions.OptionSets.Single(set => set.SetName == "Config");
+
+            ToggleOption tc;
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Search On Select Default");
+            sc.Config.SearchOnSelectDefault = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "New Data Only Default");
+            sc.Config.NewDataOnlyDefault = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Sort Cache On Update");
+            sc.Config.SortCacheOnUpdate = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Update All Data On Start");
+            sc.Config.UpdateAllDataOnStart = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Refresh Auctions On Start");
+            sc.Config.RefreshAuctionsOnStart = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "WOW Interaction Enabled");
+            sc.Config.WowInteraction = checkOptions.Contains(tc.Id.Value);
         }
-
-        private Color StringToColor(string hexColor)
-        {
-            return System.Drawing.ColorTranslator.FromHtml(hexColor);
-        }
-
-        private void LoadRealms()
-        {
-            var items = new List<ListViewItem>();
-            foreach (var r in fc.Config.Realms)
-            {
-                // Create ListViewItem with subitems
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = "";
-                lvi.UseItemStyleForSubItems = false;
-                lvi.SubItems.Add(r.RealmName);
-                lvi.SubItems[1].BackColor = StringToColor(r.BackColor);
-                lvi.SubItems[1].ForeColor = Color.White;
-                lvi.SubItems.Add("Stale");
-                lvi.SubItems[2].BackColor = StringToColor(r.BackColor);
-                lvi.SubItems[2].ForeColor = Color.White;
-                lvi.SubItems.Add("0");
-                lvi.SubItems[3].BackColor = StringToColor(r.BackColor);
-                lvi.SubItems[3].ForeColor = Color.White;
-
-                //Realm status
-                //0 Blue = live data not loaded
-                //1 Red = loading
-                //2 Yellow = old data
-                //3 Green = new data
-
-                lvi.ImageIndex = 0;
-                lvi.Tag = r;
-                lvi.Checked = true;
-
-                items.Add(lvi);
-            }
-
-            lvRealms.BeginUpdate();
-            lvRealms.Items.Clear(); // Clear existing
-            lvRealms.Items.AddRange(items.ToArray()); // Add all at once
-            lvRealms.EndUpdate();
-        }
-
         private void tsbRefreshAuctionData_Click(object sender, EventArgs e)
         {
             LoadAuctionData();
         }
-
         private void LoadAuctionData()
         {
-            fc.AllRealmsAuctionTotal = 0;
+            sc.AllRealmsAuctionTotal = 0;
 
-            if (!fc.LivePoll)
+            if (!sc.LivePoll)
             {
-                fc.Lists.TotalAuctionsCount.Clear();
+                sc.Lists.TotalAuctionsCount.Clear();
             }
 
-            foreach (Realm r in fc.Config.Realms)
+            foreach (Realm r in sc.Config.Realms)
             {
-                if (RealmChecked(r.RealmId.Value))
+                if (realmOptions1.RealmChecked(r.RealmId.Value))
                 {
                     Thread ProcessAuctionsThread = new Thread(() => ProcessAuctionsForRealm(r,
-                        fc.LivePoll, fc.Config.LivePollInterval.Value, fc.CurrentProfile.Threshold.Value));
+                        sc.LivePoll, sc.Config.LivePollInterval.Value, sc.Config.Threshold.Value));
 
                     ProcessAuctionsThread.SetApartmentState(ApartmentState.MTA);
                     ProcessAuctionsThread.Start();
@@ -333,7 +280,7 @@ namespace WOWAuctionApi_Net10
         {
             AuctionEvent auctionEvent = new AuctionEvent();
             auctionEvent.AuctionRetrieved += AuctionEvent_AuctionRetrieved;
-            auctionEvent.DoAuctionProcess(fc, realm, newDataThreshholdMinutes, livePoll, livePollIntervalSeconds);
+            auctionEvent.DoAuctionProcess(realm, newDataThreshholdMinutes, livePoll, livePollIntervalSeconds);
         }
 
         private void AuctionEvent_AuctionRetrieved(object sender, AuctionEventArgs e)
@@ -351,14 +298,14 @@ namespace WOWAuctionApi_Net10
         private void WriteRegionData()
         {
             Application.DoEvents();
-            fc.DataCount.RegionItems.Old = fc.Dictionaries.RegionItems.Count;
+            sc.DataCount.RegionItems.Old = sc.Dictionaries.RegionItems.Count;
             LogProgressMessage("Writing region data to \\tsm\\tsmdata.json");
-            string tsmAccessToken = API_TSM.GetAccessToken(fc.Config.TSMKey, fc.Config.TSMClientID);
+            string tsmAccessToken = API_TSM.GetAccessToken(sc.Config.TSMKey, sc.Config.TSMClientID);
             API_TSM.WriteRegionTsmItems(tsmAccessToken);
             LoadRegionData();
-            fc.DataCount.RegionItems.Total = fc.Dictionaries.RegionItems.Count;
-            fc.DataCount.RegionItems.New = fc.DataCount.RegionItems.Total - fc.DataCount.RegionItems.Old;
-            LogProgressMessage($"Completed. {fc.DataCount.RegionItems.Total} total region items, {fc.DataCount.RegionItems.New} new.",
+            sc.DataCount.RegionItems.Total = sc.Dictionaries.RegionItems.Count;
+            sc.DataCount.RegionItems.New = sc.DataCount.RegionItems.Total - sc.DataCount.RegionItems.Old;
+            LogProgressMessage($"Completed. {sc.DataCount.RegionItems.Total} total region items, {sc.DataCount.RegionItems.New} new.",
                 tssProgress.Maximum);
             Application.DoEvents();
             Thread.Sleep(2000);
@@ -366,39 +313,39 @@ namespace WOWAuctionApi_Net10
 
         private void SetAuctionData(int realmId, AuctionFileContents afc, string lastModified, Realm realm)
         {
-            fc.Lists.TotalAuctionsCount.Add(new RealmCount
+            sc.Lists.TotalAuctionsCount.Add(new RealmCount
             {
                 RealmId = realm.RealmId.Value,
                 RealmName = realm.RealmName,
                 Count = afc.auctions.Count
             });
-            fc.Dictionaries.RealmAuctions[realmId] = afc;
+            sc.Dictionaries.RealmAuctions[realmId] = afc;
             int newStatus = 2;
 
             try
             {
                 DateTime lastModifiedDate = DateTime.Parse(lastModified);
-                DateTime thresholdDate = DateTime.Now.AddMinutes(-(int.Parse(this.txtSearchThreshold.Text)));
+                DateTime thresholdDate = DateTime.Now.AddMinutes(-globalOptions1.Threshold);
 
                 if (lastModifiedDate > thresholdDate)
                 {
                     newStatus = 3;
                 }
 
-                SetRealmStatus(realm, newStatus, lastModified, afc.auctions.Count);
-                if (fc.LivePoll)
+                realmOptions1.SetRealmStatus(realm, newStatus, lastModified, afc.auctions.Count);
+                if (sc.LivePoll)
                 {
                     if (
-                        RealmChecked(realm.RealmId.Value))
+                        realmOptions1.RealmChecked(realm.RealmId.Value))
                     {
                         var searchResults = searchLogic.DoAuctionSearch(realm);
 
                         if (searchResults != null)
                         {
                             RenderSearchResults(searchResults, realm, 1);
-                            fc.NumRealmsReturned += 1;
+                            sc.NumRealmsReturned += 1;
 
-                            fc.Lists.RealmSearchCount.Add(new RealmCount
+                            sc.Lists.RealmSearchCount.Add(new RealmCount
                             {
                                 RealmId = realm.RealmId.Value,
                                 RealmName = realm.RealmName,
@@ -413,40 +360,6 @@ namespace WOWAuctionApi_Net10
             {
                 //SetRealmStatus(connectedRealmId, 1, "ERROR", 0);
             }
-        }
-
-        private void SetRealmStatus(Realm realm, int status, string lastModified, int auctionCount)
-        {
-
-            lvRealms.SuspendLayout();
-            realm.Status = status;
-            realm.NumAuctions = auctionCount;
-            //r.NumAuctionColor = GetNumAuctionColor(auctionCount);
-
-            foreach (ListViewItem lvi in lvRealms.Items)
-            {
-                if (lvi.Tag != null)
-                {
-                    if (((Realm)lvi.Tag).RealmId == realm.RealmId)
-                    {
-                        //Realm status
-                        //0 Blue = live data not loaded
-                        //1 Red = loading
-                        //2 Yellow = old data
-                        //3 Green = new data
-
-                        lvi.ImageIndex = status;
-
-                        if (lastModified != String.Empty)
-                        {
-                            lvi.SubItems[2].Text = DateTime.Parse(lastModified).ToString("hh:mm:ss");
-                            lvi.SubItems[3].Text = auctionCount.ToString("N0");
-                        }
-                    }
-                }
-
-            }
-            lvRealms.ResumeLayout();
         }
 
         private void tsbWriteRegionData_Click(object sender, EventArgs e)
@@ -471,7 +384,7 @@ namespace WOWAuctionApi_Net10
 
         private void LoadRegionData()
         {
-            fc.Dictionaries.RegionItems.Clear();
+            sc.Dictionaries.RegionItems.Clear();
             long itemId;
 
             List<TsmItem> AllRegionItems = API_TSM.GetRegionTsmItemsFromFile();
@@ -481,22 +394,22 @@ namespace WOWAuctionApi_Net10
                 if (item.itemId != null)
                 {
                     itemId = item.itemId.Value;
-                    if (!fc.Dictionaries.RegionItems.ContainsKey(itemId))
+                    if (!sc.Dictionaries.RegionItems.ContainsKey(itemId))
                     {
-                        fc.Dictionaries.RegionItems.Add(itemId, item);
+                        sc.Dictionaries.RegionItems.Add(itemId, item);
                     }
                 }
                 else if (item.petSpeciesId != null)
                 {
                     itemId = item.petSpeciesId.Value;
-                    if (!fc.Dictionaries.RegionItems.ContainsKey(itemId))
+                    if (!sc.Dictionaries.RegionItems.ContainsKey(itemId))
                     {
-                        fc.Dictionaries.RegionItems.Add(itemId, item);
+                        sc.Dictionaries.RegionItems.Add(itemId, item);
                         itemId = item.petSpeciesId.Value;
                     }
                 }
             }
-            UpdateCountLabel(tslDataCountRegion, fc.Dictionaries.RegionItems.Count);
+            UpdateCountLabel(tslDataCountRegion, sc.Dictionaries.RegionItems.Count);
         }
 
         private void UpdateCountLabel(Label countLabel, int count)
@@ -514,71 +427,29 @@ namespace WOWAuctionApi_Net10
         {
             if (MsgHelper.Confirm.RebuildCache("item"))
             {
-                var (newItems, newCache) = ItemCache.BuildItemCache(tssProgress, tllProgress, fc, false);
-                fc.Caches.ItemCache = newCache;
-                if (fc.Config.SortCacheOnUpdate.Value)
+                var (newItems, newCache) = ItemCache.BuildItemCache(tssProgress, tllProgress, false);
+                sc.Caches.ItemCache = newCache;
+                if (sc.Config.SortCacheOnUpdate)
                 {
-                    SortItemCache(fc.Config.SortCacheOrderDefault.Value);
+                    SortItemCache(sc.Config.SortCacheOrderDefault.Value);
                 }
-                UpdateCountLabel(tslDataCountItems, fc.Caches.ItemCache.Items.Count);
+                UpdateCountLabel(tslDataCountItems, sc.Caches.ItemCache.Items.Count);
             }
         }
 
-        private void SetListItems(int index)
+
+        private void SearchProfileToUI()
         {
-            for (int i = 0; i < lbItems.Items.Count; i++)
-            {
-                lbItems.SetSelected(i, (i == index));
-            }
-        }
-        private void SetListItems(SearchProfile sp)
-        {
-            for (int i = 0; i < lbItems.Items.Count; i++)
-            {
-                ListBoxItem lbi = lbItems.Items[i] as ListBoxItem;
-                if (lbi != null)
-                {
-                    lbItems.SetSelected(i, sp.Lists.Contains(lbi.ListName));
-                }
-            }
-        }
+            mainOptions1.ProfileToUI();
+            itemClassOptions1.ProfileToUI();
+            qualityOptions1.ProfileToUI();
+            bonusOptions1.ProfileToUI();
+            moreOptions1.ProfileToUI();
+            itemListOptions1.ProfileToUI();
 
-        private void SearchProfileToUI(SearchProfile sp)
-        {
-            this.rbSearchRemoveDuplicates.Checked = (sp.SearchFrequency == 0);
-            this.rbSearchShowCheapest.Checked = (sp.SearchFrequency == 1);
-            this.rbSearchShowAllItems.Checked = (sp.SearchFrequency == 2);
-
-            this.rbSearch_List_DontUse.Checked = (sp.ListOption == 0);
-            this.rbSearch_List_AdditionalCriteria.Checked = (sp.ListOption == 1);
-            this.rbSearch_List_OnlyByList.Checked = (sp.ListOption == 2);
-
-            SetListItems(sp);
-
-            this.txtSearchMaxG.Text = sp.SearchMaxG.Value.ToString();
-            this.txtSearchMaxItemLevel.Text = sp.MaxItemLevel.Value.ToString();
-            this.txtSearchMinItemLevel.Text = sp.MinItemLevel.Value.ToString();
-            this.txtSearchMaxCharLevel.Text = sp.MaxCharLevel.Value.ToString();
-            this.txtSearchMinCharLevel.Text = sp.MinCharLevel.Value.ToString();
-            this.txtSearchMinSellRate.Text = sp.MinSellRate.Value.ToString();
-            this.txtSearchPercentage.Text = sp.SearchPercentage.Value.ToString();
-            this.txtSearchWorth.Text = sp.WorthAtLeast.Value.ToString();
-
-            this.txtSearchThreshold.Text = sp.Threshold.Value.ToString();
-            this.txtSearchStringFilter.Text = sp.StringFilter;
-
-            UIHelper.SetPanelBitwiseValues(this.pnlSearch_Main, sp.MainOptions.Value);
-            UIHelper.SetPanelBitwiseValues(this.pnlSearch_Class, sp.Class.Value);
-            UIHelper.SetPanelBitwiseValues(this.pnlSearch_Quality, sp.Quality.Value);
-            UIHelper.SetPanelBitwiseValues(this.pnlSearch_Bonuses, sp.Bonuses.Value);
-
-            tslCurrentProfile.Text = sp.ProfileName;
-            tslCurrentProfile.Image = imgProfile48.Images[sp.IconIndex.Value];
-            ButtonProfileDefault(tsbSearchDefault, (fc.Config.DefaultSearch == sp.ProfileName));
-
-            this.rbSearch_Percentage.Checked = (sp.SearchFraction.Value == 0);
-            this.rbSearch_MaxG.Checked = (sp.SearchFraction.Value == 1);
-            fc.CurrentProfile = sp;
+            tslCurrentProfile.Text = sc.CurrentProfile.ProfileName;
+            tslCurrentProfile.Image = imgProfile48.Images[sc.CurrentProfile.IconIndex.Value];
+            ButtonProfileDefault(tsbSearchDefault, (sc.Config.DefaultSearch == sc.CurrentProfile.ProfileName));
         }
 
         private void ButtonProfileDefault(ToolStripButton button1, bool makeDefault)
@@ -595,54 +466,16 @@ namespace WOWAuctionApi_Net10
             }
         }
 
-        private void UIToSearchProfile(SearchProfile sp)
+        private void UIToSearchProfile()
         {
-            if (this.rbSearchRemoveDuplicates.Checked) { sp.SearchFrequency = 0; }
-            if (this.rbSearchShowCheapest.Checked) { sp.SearchFrequency = 1; }
-            if (this.rbSearchShowAllItems.Checked) { sp.SearchFrequency = 2; }
-
-            if (this.rbSearch_List_DontUse.Checked) { sp.ListOption = 0; }
-            if (this.rbSearch_List_AdditionalCriteria.Checked) { sp.ListOption = 1; }
-            if (this.rbSearch_List_OnlyByList.Checked) { sp.ListOption = 2; }
-
-            fc.CurrentProfile.Lists.Clear();
-            foreach (ListBoxItem lbi in lbItems.SelectedItems)
-            {
-                fc.CurrentProfile.Lists.Add(lbi.ListName);
-            }
-
-            sp.SearchMaxG = int.Parse(this.txtSearchMaxG.Text.Trim());
-            sp.MaxItemLevel = int.Parse(this.txtSearchMaxItemLevel.Text.Trim());
-            sp.MinItemLevel = int.Parse(this.txtSearchMinItemLevel.Text.Trim());
-            sp.MaxCharLevel = int.Parse(this.txtSearchMaxCharLevel.Text.Trim());
-            sp.MinCharLevel = int.Parse(this.txtSearchMinCharLevel.Text.Trim());
-            sp.WorthAtLeast = int.Parse(this.txtSearchWorth.Text.Trim());
-            sp.Threshold = int.Parse(this.txtSearchThreshold.Text.Trim());
-            sp.StringFilter = this.txtSearchStringFilter.Text.Trim();
-
-            sp.MinSellRate = float.Parse(this.txtSearchMinSellRate.Text);
-            sp.SearchPercentage = float.Parse(this.txtSearchPercentage.Text);
-            sp.SearchFraction = (rbSearch_Percentage.Checked) ? 0 : 1;
-
-            sp.MainOptions = GetPanelBitwiseValue(this.pnlSearch_Main);
-            sp.Class = GetPanelBitwiseValue(this.pnlSearch_Class);
-            sp.Quality = GetPanelBitwiseValue(this.pnlSearch_Quality);
-            sp.Bonuses = GetPanelBitwiseValue(this.pnlSearch_Bonuses);
+            mainOptions1.UIToProfile();
+            itemClassOptions1.UIToProfile();
+            qualityOptions1.UIToProfile();
+            bonusOptions1.UIToProfile();
+            moreOptions1.UIToProfile();
+            itemListOptions1.UIToProfile();
         }
 
-        private int GetPanelBitwiseValue(Panel searchPanel)
-        {
-            var returnValue = 0;
-
-            var checkedBoxes = searchPanel.Controls.OfType<ToggleSlider>().Where(c => c.Checked);
-
-            foreach (ToggleSlider checkBox in checkedBoxes)
-            {
-                returnValue += checkBox.OptionBit;
-            }
-
-            return returnValue;
-        }
 
         private void AddNewToolStripButton(int iconIndex, string profileName, tsbType type, int processId = 0, bool buttonChecked = false)
         {
@@ -683,7 +516,7 @@ namespace WOWAuctionApi_Net10
 
         private void LoadToolbarSearchButtons()
         {
-            foreach (SearchProfile profile in fc.SearchProfiles.Profiles)
+            foreach (SearchProfile profile in sc.SearchProfiles.Profiles)
             {
                 AddNewToolStripButton(profile.IconIndex.Value, profile.ProfileName, tsbType.tsbSearch_Quick_);
             }
@@ -698,9 +531,9 @@ namespace WOWAuctionApi_Net10
 
         private void HighlightCurrentSearch()
         {
-            IterateToolstripButtons(tsbOp.Check, tsbFrequency.Single, tsbType.tsbSearch_Quick_, null, fc.CurrentProfile.ProfileName);
-            tslCurrentProfile.Text = fc.CurrentProfile.ProfileName;
-            tslCurrentProfile.Image = imgProfile48.Images[fc.CurrentProfile.IconIndex.Value];
+            IterateToolstripButtons(tsbOp.Check, tsbFrequency.Single, tsbType.tsbSearch_Quick_, null, sc.CurrentProfile.ProfileName);
+            tslCurrentProfile.Text = sc.CurrentProfile.ProfileName;
+            tslCurrentProfile.Image = imgProfile48.Images[sc.CurrentProfile.IconIndex.Value];
         }
 
         private void ClearToolbarSearchButtons()
@@ -720,7 +553,7 @@ namespace WOWAuctionApi_Net10
                     HighlightCurrentSearch();
                 }
             }
-            if (tslSearchOnSelect.Checked)
+            if (globalOptions1.SearchOnSelect)
             {
                 Search();
             }
@@ -734,7 +567,7 @@ namespace WOWAuctionApi_Net10
                 var processId = button1.Tag as int?;
                 if (processId != null)
                 {
-                    fc.CurrentWoWProcess = processId.Value;
+                    sc.CurrentWoWProcess = processId.Value;
                     IterateToolstripButtons(tsbOp.Check, tsbFrequency.Single, tsbType.tsbWowProcess_, processId.Value);
                 }
             }
@@ -742,15 +575,16 @@ namespace WOWAuctionApi_Net10
 
         private void GetSearch(string profileName)
         {
-            SearchProfileToUI(fc.SearchProfiles.Profiles.Single(profile => profile.ProfileName == profileName));
+            sc.CurrentProfile = sc.SearchProfiles.Profiles.Single(profile => profile.ProfileName == profileName);
+            SearchProfileToUI();
         }
 
         private void tsbSaveSearch_Click(object sender, EventArgs e)
         {
             if (MsgHelper.Confirm.OverwriteProfile())
             {
-                UIToSearchProfile(fc.CurrentProfile);
-                fc.SearchProfiles.Save();
+                UIToSearchProfile();
+                sc.SearchProfiles.Save();
                 RefreshToolbarSearchButtons();
             }
         }
@@ -760,11 +594,11 @@ namespace WOWAuctionApi_Net10
             if (CheckIfDefaultProfileForDelete()) { return; }
 
             //If we are copying as, the copy shouldn't be the default as part of this operation
-            var (profileName, iconIndex) = GetProfileDetails(0, fc.CurrentProfile.IconIndex.Value,
-                fc.CurrentProfile.ProfileName, "Search Profile");
+            var (profileName, iconIndex) = UIHelper.GetProfileDetails(0, sc.CurrentProfile.IconIndex.Value,
+                sc.CurrentProfile.ProfileName, "Search Profile", this.imgProfile48);
             if (profileName != null && profileName.Trim() != "")
             {
-                AddNewProfile(fc.CurrentProfile.ShallowCopy(), profileName, iconIndex);
+                AddNewProfile(sc.CurrentProfile.ShallowCopy(), profileName, iconIndex);
             }
         }
 
@@ -775,11 +609,11 @@ namespace WOWAuctionApi_Net10
 
         private void tsbSearchDefault_Click(object sender, EventArgs e)
         {
-            if (fc.CurrentProfile.ProfileName != fc.Config.DefaultSearch)
+            if (sc.CurrentProfile.ProfileName != sc.Config.DefaultSearch)
             {
                 if (MsgHelper.Confirm.DefaultProfile())
                 {
-                    ChangeDefaultProfile(fc.CurrentProfile.ProfileName);
+                    ChangeDefaultProfile(sc.CurrentProfile.ProfileName);
                     ButtonProfileDefault(tsbSearchDefault, true);
                 }
             }
@@ -789,35 +623,15 @@ namespace WOWAuctionApi_Net10
         {
             Search();
         }
-        private bool CheckAllRealmsHaveData()
-        {
-            foreach (ListViewItem listItem in lvRealms.Items)
-            {
-                if (listItem == null)
-                {
-                    return false;
-                }
-                if (listItem.Checked)
-                {
-                    int numAuctions = int.Parse(listItem.SubItems[3].Text.Replace(",", ""));
-
-                    if (numAuctions == 0)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
 
         private void SearchInit()
         {
-            switch (fc.DisplayMode)
+            switch (sc.DisplayMode)
             {
                 case DisplayMode.Auctions:
                 default:
                     lvAuctions.Items.Clear();
-                    fc.Lists.RealmSearchCount.Clear();
+                    sc.Lists.RealmSearchCount.Clear();
                     break;
                 case DisplayMode.ItemsLists:
 
@@ -827,41 +641,39 @@ namespace WOWAuctionApi_Net10
 
             tllProgress.Text = "Progress";
             tssProgress.Value = 0;
-            this.UIToSearchProfile(fc.CurrentProfile);
+            this.UIToSearchProfile();
 
 
             searchLogic.Options = new SearchOptions();
-            searchLogic.Options.Main = UIHelper.GetPanelCheckedList(pnlSearch_Main);
-            searchLogic.Options.Class = UIHelper.GetPanelCheckedList(pnlSearch_Class);
-            searchLogic.Options.Quality = UIHelper.GetPanelCheckedList(pnlSearch_Quality);
-            searchLogic.Options.Bonuses = UIHelper.GetPanelCheckedList(pnlSearch_Bonuses);
+            searchLogic.Options.Main = UIHelper.GetControlCheckedList(mainOptions1);
+            searchLogic.Options.Class = UIHelper.GetControlCheckedList(itemClassOptions1);
+            searchLogic.Options.Quality = UIHelper.GetControlCheckedList(qualityOptions1);
+            searchLogic.Options.Bonuses = UIHelper.GetControlCheckedList(bonusOptions1);
 
-            searchLogic.Options.NewDataOnly = this.tslNewDataOnly.Checked;
+            searchLogic.Options.NewDataOnly = globalOptions1.NewDataOnly;
             searchLogic.Options.LatestXpac = searchLogic.Options.Main.Contains("Latest Xpac");
             searchLogic.Options.IncludeItems = searchLogic.Options.Main.Contains("Include Items");
             searchLogic.Options.IncludePets = searchLogic.Options.Main.Contains("Include Pets");
             searchLogic.Options.HasSockets = searchLogic.Options.Main.Contains("Socket");
             searchLogic.Options.AtoZ = searchLogic.Options.Main.Contains("A to Z");
-            searchLogic.Options.UseStringFilter = (txtSearchStringFilter.Text != "");
-            searchLogic.Options.StringFilter = txtSearchStringFilter.Text;
+            searchLogic.Options.UseStringFilter = (sc.CurrentProfile.StringFilter != "");
+            searchLogic.Options.StringFilter = sc.CurrentProfile.StringFilter;
 
-            searchLogic.Options.FixedMaxG = (fc.CurrentProfile.SearchMaxG.Value * 10000);
-            searchLogic.Options.FixedWorthAtLeast = (fc.CurrentProfile.WorthAtLeast.Value * 10000);
-            searchLogic.Options.FixedSearchPercentage = (fc.CurrentProfile.SearchPercentage.Value / 100);
+            searchLogic.Options.FixedMaxG = (sc.CurrentProfile.SearchMaxG.Value * 10000);
+            searchLogic.Options.FixedWorthAtLeast = (sc.CurrentProfile.WorthAtLeast.Value * 10000);
+            searchLogic.Options.FixedSearchPercentage = (sc.CurrentProfile.SearchPercentage.Value / 100);
 
-            if (fc.CurrentProfile.ListOption != 0)
+            if (sc.CurrentProfile.ListOption != 0)
             {
                 searchLogic.Options.CombinedSearchCache = GetCacheOfSearchLists();
             }
-
-            searchLogic.fc = fc;
         }
 
         private ItemCache GetCacheOfSearchLists()
         {
             ItemCache newCache = new ItemCache();
 
-            foreach (string listName in fc.CurrentProfile.Lists)
+            foreach (string listName in sc.CurrentProfile.Lists)
             {
 
                 ItemList list = GetItemListByName(listName);
@@ -877,14 +689,14 @@ namespace WOWAuctionApi_Net10
 
         private ItemList GetItemListByName(string listName)
         {
-            return fc.ItemLists.Lists.Single(list => list.Name == listName);
+            return sc.ItemLists.Lists.Single(list => list.Name == listName);
         }
 
         private void Search()
         {
             SearchInit();
 
-            switch (fc.DisplayMode)
+            switch (sc.DisplayMode)
             {
                 case DisplayMode.Auctions:
                 default:
@@ -912,12 +724,12 @@ namespace WOWAuctionApi_Net10
                 ListViewItem lvi = new ListViewItem(item.Id.ToString());
                 lvi.UseItemStyleForSubItems = false;
                 lvi.SubItems.Add(item.Name);
-                lvi.SubItems[1].ForeColor = UIHelper.GetColorForQuality(item.QualityType, fc);
+                lvi.SubItems[1].ForeColor = UIHelper.GetColorForQuality(item.QualityType);
 
                 TsmItem ritem = null;
                 try
                 {
-                    ritem = fc.Dictionaries.RegionItems.First(regionItem => regionItem.Key == item.Id).Value as TsmItem;
+                    ritem = sc.Dictionaries.RegionItems.First(regionItem => regionItem.Key == item.Id).Value as TsmItem;
                 }
                 catch { }
 
@@ -951,8 +763,8 @@ namespace WOWAuctionApi_Net10
         private void AuctionsSearch()
         {
 
-            fc.LivePoll = false;
-            if (!CheckAllRealmsHaveData())
+            sc.LivePoll = false;
+            if (!realmOptions1.CheckAllRealmsHaveData())
             {
                 MsgHelper.Error.RealmsNotLoaded();
                 return;
@@ -961,9 +773,9 @@ namespace WOWAuctionApi_Net10
 
             int count = 0;
 
-            foreach (Realm realm in fc.Config.Realms)
+            foreach (Realm realm in sc.Config.Realms)
             {
-                if (RealmChecked(realm.RealmId.Value))
+                if (realmOptions1.RealmChecked(realm.RealmId.Value))
                 {
                     if (searchLogic.Options.NewDataOnly == true
                         && realm.Status != 2) { continue; }
@@ -973,8 +785,8 @@ namespace WOWAuctionApi_Net10
                     if (searchResults != null)
                     {
                         RenderSearchResults(searchResults, realm, count);
-                        fc.AllRealmsAuctionTotal += searchResults.Count;
-                        fc.Lists.RealmSearchCount.Add(new RealmCount
+                        sc.AllRealmsAuctionTotal += searchResults.Count;
+                        sc.Lists.RealmSearchCount.Add(new RealmCount
                         {
                             RealmId = realm.RealmId.Value,
                             RealmName = realm.RealmName,
@@ -993,7 +805,7 @@ namespace WOWAuctionApi_Net10
         {
 
             Color mainText;
-            if (fc.UIOptions.ColorMode == SystemColorMode.Dark)
+            if (sc.UIOptions.ColorMode == SystemColorMode.Dark)
             {
                 mainText = Color.White;
             }
@@ -1050,13 +862,13 @@ namespace WOWAuctionApi_Net10
         private void RenderPieCharts()
         {
             //Render Top X Total Value
-            RenderChart(fc.Lists.RealmSearchCount, 5, chartTotalValue);
+            RenderChart(sc.Lists.RealmSearchCount, 5, chartTotalValue);
 
             //Render Top 10 Search Hit Realms
-            RenderChart(fc.Lists.RealmSearchCount, 10, chartTopSearches);
+            RenderChart(sc.Lists.RealmSearchCount, 10, chartTopSearches);
 
             //Render Top 5 Total Auctions
-            RenderChart(fc.Lists.TotalAuctionsCount, 5, chartTotalAuctions);
+            RenderChart(sc.Lists.TotalAuctionsCount, 5, chartTotalAuctions);
         }
 
         private void RenderChart(List<RealmCount> originalList, int realmCount, Chart chartToRender)
@@ -1121,7 +933,7 @@ namespace WOWAuctionApi_Net10
                 ListViewItem lvi = new ListViewItem();
                 lvi.UseItemStyleForSubItems = false;
                 lvi.Text = " ";
-                lvi.BackColor = StringToColor(realm.BackColor);
+                lvi.BackColor = UIHelper.StringToColor(realm.BackColor);
                 lvi.Tag = result;
                 toolTip = $"{result.ItemId.ToString()}, {StrHelper.FormatLongN0(result.Buyout)}"
                     + $", ItemLevel = ({result.Level.ToString()}) {result.Modifiers} {result.BonusLists}";
@@ -1137,7 +949,7 @@ namespace WOWAuctionApi_Net10
                     lvi.SubItems.Add(result.ItemName);
                 }
 
-                lvi.SubItems[1].ForeColor = UIHelper.GetColorForQuality(result.Quality, fc);
+                lvi.SubItems[1].ForeColor = UIHelper.GetColorForQuality(result.Quality);
 
                 lvi.SubItems.Add(result.Level.ToString());
 
@@ -1157,7 +969,7 @@ namespace WOWAuctionApi_Net10
                 lvi.SubItems.Add(result.PetLevel.ToString()); //Pet Level
                 if (result.PetLevel > 0)
                 {
-                    lvi.SubItems[7].ForeColor = UIHelper.GetColorForQuality(result.Quality, fc);
+                    lvi.SubItems[7].ForeColor = UIHelper.GetColorForQuality(result.Quality);
                 }
 
                 lvi.SubItems.Add(LXItem(result.ItemId));
@@ -1168,7 +980,7 @@ namespace WOWAuctionApi_Net10
 
         private string LXItem(long itemid)
         {
-            if (itemid > fc.Config.LatestXpacItemId)
+            if (itemid > sc.Config.LatestXpacItemId)
             {
                 return "Y";
             }
@@ -1187,7 +999,7 @@ namespace WOWAuctionApi_Net10
             }
 
             ListViewItem lvi2 = new ListViewItem();
-            lvi2.BackColor = StringToColor(realm.BackColor);
+            lvi2.BackColor = UIHelper.StringToColor(realm.BackColor);
             lvi2.ForeColor = Color.White;
             lvi2.SubItems.Add(realm.RealmName);
             lvAuctions.Items.Add(lvi2);
@@ -1195,7 +1007,7 @@ namespace WOWAuctionApi_Net10
 
         private Color GetColorForSellRate(float sellRate)
         {
-            switch (fc.UIOptions.ColorMode)
+            switch (sc.UIOptions.ColorMode)
             {
                 case SystemColorMode.Classic:
                     if (sellRate < 0.001) { return Color.DimGray; }
@@ -1214,26 +1026,6 @@ namespace WOWAuctionApi_Net10
                         ;
 
             }
-        }
-
-        private void btnToggleRealms_Click(object sender, EventArgs e)
-        {
-            ToggleRealms();
-        }
-
-        private void ToggleRealms()
-        {
-            bool newValue = !lvRealms.Items[0].Checked;
-            lvRealms.Items.Cast<ListViewItem>().ToList().ForEach(item => item.Checked = newValue);
-        }
-
-        private bool RealmChecked(int realmId)
-        {
-            return (lvRealms.Items
-                .Cast<ListViewItem>() // Cast the ListViewItemCollection to IEnumerable<ListViewItem>
-                .FirstOrDefault(item =>
-                    item.Tag is Realm tagInfo &&
-                    tagInfo.RealmId == realmId)).Checked;
         }
 
         private void tsbThemeLight_Click(object sender, EventArgs e)
@@ -1261,13 +1053,13 @@ namespace WOWAuctionApi_Net10
         {
             if (MsgHelper.Confirm.RebuildCache("pet"))
             {
-                var (newPets, newCache) = PetCache.BuildPetCache(tssProgress, tllProgress, fc, false);
-                fc.Caches.PetCache = newCache;
-                if (fc.Config.SortCacheOnUpdate.Value)
+                var (newPets, newCache) = PetCache.BuildPetCache(tssProgress, tllProgress, false);
+                sc.Caches.PetCache = newCache;
+                if (sc.Config.SortCacheOnUpdate)
                 {
-                    SortPetCache(fc.Config.SortCacheOrderDefault.Value);
+                    SortPetCache(sc.Config.SortCacheOrderDefault.Value);
                 }
-                UpdateCountLabel(tslDataCountPets, fc.Caches.PetCache.Pets.Count);
+                UpdateCountLabel(tslDataCountPets, sc.Caches.PetCache.Pets.Count);
             }
         }
 
@@ -1278,15 +1070,15 @@ namespace WOWAuctionApi_Net10
 
         private void UpdateItemCache()
         {
-            var (newItems, newCache) = ItemCache.BuildItemCache(tssProgress, tllProgress, fc, true);
-            fc.Caches.ItemCache = newCache;
-            UpdateCountLabel(tslDataCountItems, fc.Caches.ItemCache.Items.Count);
-            fc.DataCount.ItemCache.Total = fc.Caches.ItemCache.Items.Count;
-            fc.DataCount.ItemCache.New = newItems;
-            LogProgressMessage($"Completed. {fc.DataCount.ItemCache.New} new items. {fc.DataCount.ItemCache.Total} total items in cache.");
-            if (fc.Config.SortCacheOnUpdate.Value)
+            var (newItems, newCache) = ItemCache.BuildItemCache(tssProgress, tllProgress, true);
+            sc.Caches.ItemCache = newCache;
+            UpdateCountLabel(tslDataCountItems, sc.Caches.ItemCache.Items.Count);
+            sc.DataCount.ItemCache.Total = sc.Caches.ItemCache.Items.Count;
+            sc.DataCount.ItemCache.New = newItems;
+            LogProgressMessage($"Completed. {sc.DataCount.ItemCache.New} new items. {sc.DataCount.ItemCache.Total} total items in cache.");
+            if (sc.Config.SortCacheOnUpdate)
             {
-                SortItemCache(fc.Config.SortCacheOrderDefault.Value);
+                SortItemCache(sc.Config.SortCacheOrderDefault.Value);
             }
             Thread.Sleep(2000);
         }
@@ -1298,15 +1090,15 @@ namespace WOWAuctionApi_Net10
 
         private void UpdatePetCache()
         {
-            var (newPets, newCache) = PetCache.BuildPetCache(tssProgress, tllProgress, fc, true);
-            fc.Caches.PetCache = newCache;
-            UpdateCountLabel(tslDataCountPets, fc.Caches.PetCache.Pets.Count);
-            fc.DataCount.PetCache.Total = fc.Caches.PetCache.Pets.Count;
-            fc.DataCount.PetCache.New = newPets;
-            LogProgressMessage($"Completed. {fc.DataCount.PetCache.New} new pets. {fc.DataCount.PetCache.Total} total pets in cache.");
-            if (fc.Config.SortCacheOnUpdate.Value)
+            var (newPets, newCache) = PetCache.BuildPetCache(tssProgress, tllProgress, true);
+            sc.Caches.PetCache = newCache;
+            UpdateCountLabel(tslDataCountPets, sc.Caches.PetCache.Pets.Count);
+            sc.DataCount.PetCache.Total = sc.Caches.PetCache.Pets.Count;
+            sc.DataCount.PetCache.New = newPets;
+            LogProgressMessage($"Completed. {sc.DataCount.PetCache.New} new pets. {sc.DataCount.PetCache.Total} total pets in cache.");
+            if (sc.Config.SortCacheOnUpdate)
             {
-                SortPetCache(fc.Config.SortCacheOrderDefault.Value);
+                SortPetCache(sc.Config.SortCacheOrderDefault.Value);
             }
             Thread.Sleep(2000);
         }
@@ -1318,12 +1110,12 @@ namespace WOWAuctionApi_Net10
                 CopyItemToClipboard();
             }
 
-            if (fc.Config.WowInteraction.Value)
+            if (sc.Config.WowInteraction)
             {
                 if (char.ToUpper(e.KeyChar) == (char)Keys.Z)
                 {
                     CopyItemToClipboard();
-                    fc.WowBuyScript.ProcessScript();
+                    sc.WowBuyScript.ProcessScript();
                 }
             }
         }
@@ -1341,7 +1133,8 @@ namespace WOWAuctionApi_Net10
 
         private void tsbTest_Click(object sender, EventArgs e)
         {
-
+            FormBlank1 frm = new FormBlank1();
+            frm.ShowDialog();
 
         }
 
@@ -1359,8 +1152,8 @@ namespace WOWAuctionApi_Net10
             Process[] wowProcesses = ProcHelper.GetWowProcesses();
             foreach (Process pr in ProcHelper.GetWowProcesses())
             {
-                AddNewToolStripButton(0, "", tsbType.tsbWowProcess_, pr.Id);
-                if (pr.Id == fc.CurrentWoWProcess)
+                AddNewToolStripButton(950, "", tsbType.tsbWowProcess_, pr.Id);
+                if (pr.Id == sc.CurrentWoWProcess)
                 {
                     foundProcess = pr.Id;
                 }
@@ -1430,7 +1223,7 @@ namespace WOWAuctionApi_Net10
                                 stripButton.Checked = match;
                                 if (type == tsbType.tsbWowProcess_)
                                 {
-                                    fc.CurrentWoWProcess = (int)stripButton.Tag;
+                                    sc.CurrentWoWProcess = (int)stripButton.Tag;
                                 }
                                 break;
                             case tsbOp.Remove:
@@ -1452,7 +1245,7 @@ namespace WOWAuctionApi_Net10
                         relevantButtons[0].Checked = true;
                         if (type == tsbType.tsbWowProcess_)
                         {
-                            fc.CurrentWoWProcess = (int)relevantButtons[0].Tag;
+                            sc.CurrentWoWProcess = (int)relevantButtons[0].Tag;
                         }
                         break;
                     case tsbOp.Remove:
@@ -1469,7 +1262,7 @@ namespace WOWAuctionApi_Net10
 
         private void tsbActivate_Click(object sender, EventArgs e)
         {
-            ProcHelper.ActivateApp(fc.CurrentWoWProcess);
+            ProcHelper.ActivateApp(sc.CurrentWoWProcess);
         }
 
         private void tsbRefreshWoWProcesses_Click(object sender, EventArgs e)
@@ -1482,28 +1275,28 @@ namespace WOWAuctionApi_Net10
             if (CheckIfDefaultProfileForDelete()) { return; }
 
             //If we are renaming this search, and it is currently the default, it should stay the default
-            bool newSearchIsDefault = (fc.CurrentProfile.ProfileName == fc.Config.DefaultSearch);
-            var (profileName, iconIndex) = GetProfileDetails(1, fc.CurrentProfile.IconIndex.Value,
-                fc.CurrentProfile.ProfileName, "Search Profile");
+            bool newSearchIsDefault = (sc.CurrentProfile.ProfileName == sc.Config.DefaultSearch);
+            var (profileName, iconIndex) = UIHelper.GetProfileDetails(1, sc.CurrentProfile.IconIndex.Value,
+                sc.CurrentProfile.ProfileName, "Search Profile", this.imgProfile48);
 
             if (profileName != null && profileName.Trim() != "")
             {
-                fc.CurrentProfile.ProfileName = profileName;
-                fc.CurrentProfile.IconIndex = iconIndex;
-                fc.SearchProfiles.Save();
+                sc.CurrentProfile.ProfileName = profileName;
+                sc.CurrentProfile.IconIndex = iconIndex;
+                sc.SearchProfiles.Save();
                 RefreshToolbarSearchButtons();
             }
         }
 
         private SearchProfile GetCopyOfDefault()
         {
-            SearchProfile profile = fc.SearchProfiles.Profiles.Single(profile => profile.ProfileName == "[Default]");
+            SearchProfile profile = sc.SearchProfiles.Profiles.Single(profile => profile.ProfileName == "[Default]");
             return profile.ShallowCopy();
         }
 
         private void tsbNewSearch_Click(object sender, EventArgs e)
         {
-            var (profileName, iconIndex) = GetProfileDetails(2, 0, "", "Search Profile");
+            var (profileName, iconIndex) = UIHelper.GetProfileDetails(2, 0, "", "Search Profile", this.imgProfile48);
             if (profileName != null && profileName.Trim() != "")
             {
                 AddNewProfile(GetCopyOfDefault(), profileName, iconIndex);
@@ -1514,44 +1307,22 @@ namespace WOWAuctionApi_Net10
         {
             profile.ProfileName = profileName;
             profile.IconIndex = iconIndex;
-            fc.SearchProfiles.Profiles.Add(profile);
-            fc.CurrentProfile = profile;
-            fc.SearchProfiles.Save();
+            sc.SearchProfiles.Profiles.Add(profile);
+            sc.CurrentProfile = profile;
+            sc.SearchProfiles.Save();
             RefreshToolbarSearchButtons();
-            SearchProfileToUI(profile);
+            SearchProfileToUI();
         }
 
         private void ChangeDefaultProfile(string newName)
         {
-            fc.Config.DefaultSearch = newName;
-            fc.Config.Save();
-        }
-
-        private (string profileName, int iconIndex) GetProfileDetails(
-            int searchType, int startingIndex, string startingProfileName, string itemTitle)
-        {
-            string title;
-
-            switch (searchType)
-            {
-                case 0: default: title = "Save Current {itemTitle} As"; break;
-                case 1: title = $"Rename Current {itemTitle}"; break;
-                case 2: title = $"New {itemTitle}"; break;
-            }
-
-            FormSaveProfileDialog saveDlg = new FormSaveProfileDialog(title,
-                startingProfileName, searchType, startingIndex, this.imgProfile48);
-            if (saveDlg.ShowDialog() == DialogResult.OK)
-            {
-                return (saveDlg.ProfileName, saveDlg.ImageIndex);
-            }
-
-            return ("", 0);
+            sc.Config.DefaultSearch = newName;
+            sc.Config.Save();
         }
 
         private bool CheckIfDefaultProfileForDelete()
         {
-            if (fc.CurrentProfile.ProfileName == "[Default]")
+            if (sc.CurrentProfile.ProfileName == "[Default]")
             {
                 MsgHelper.Error.CannotDeleteDefault();
                 return true;
@@ -1561,7 +1332,7 @@ namespace WOWAuctionApi_Net10
 
         private void DeleteSearchProfile(SearchProfile profile)
         {
-            fc.SearchProfiles.Profiles.Remove(profile);
+            sc.SearchProfiles.Profiles.Remove(profile);
         }
 
         private void tsbDeleteSearch_Click(object sender, EventArgs e)
@@ -1571,12 +1342,12 @@ namespace WOWAuctionApi_Net10
             if (MsgHelper.Confirm.DeleteProfile())
             {
                 //If this was the default profile we need to make the [Default] the default profile
-                if (fc.CurrentProfile.ProfileName == fc.Config.DefaultSearch)
+                if (sc.CurrentProfile.ProfileName == sc.Config.DefaultSearch)
                 {
                     ChangeDefaultProfile("[Default]");
                 }
 
-                DeleteSearchProfile(fc.CurrentProfile);
+                DeleteSearchProfile(sc.CurrentProfile);
                 LoadSearchProfiles();
             }
         }
@@ -1603,11 +1374,11 @@ namespace WOWAuctionApi_Net10
 
         private void SortItemCache(SortDirection direction = SortDirection.Ascending)
         {
-            fc.Caches.ItemCache.SortAndSave(direction);
+            sc.Caches.ItemCache.SortAndSave(direction);
         }
         private void SortPetCache(SortDirection direction = SortDirection.Ascending)
         {
-            fc.Caches.PetCache.SortAndSave(direction);
+            sc.Caches.PetCache.SortAndSave(direction);
         }
         private void tsbUpdateAllData_Click(object sender, EventArgs e)
         {
@@ -1619,7 +1390,7 @@ namespace WOWAuctionApi_Net10
 
         private void UpdateAllData()
         {
-            fc.DataCount = new DataCount();
+            sc.DataCount = new DataCount();
             Application.DoEvents();
             WriteRegionData();
             Application.DoEvents();
@@ -1628,9 +1399,9 @@ namespace WOWAuctionApi_Net10
             UpdatePetCache();
             Application.DoEvents();
             LogProgressMessage(
-                $"Region Items {fc.DataCount.RegionItems.New} new ({fc.DataCount.RegionItems.Total}). " +
-                $"Item Cache {fc.DataCount.ItemCache.New} new ({fc.DataCount.ItemCache.Total}). " +
-                $"Pet Cache {fc.DataCount.PetCache.New} new ({fc.DataCount.PetCache.Total}). "
+                $"Region Items {sc.DataCount.RegionItems.New} new ({sc.DataCount.RegionItems.Total}). " +
+                $"Item Cache {sc.DataCount.ItemCache.New} new ({sc.DataCount.ItemCache.Total}). " +
+                $"Pet Cache {sc.DataCount.PetCache.New} new ({sc.DataCount.PetCache.Total}). "
                 );
         }
 
@@ -1655,7 +1426,7 @@ namespace WOWAuctionApi_Net10
 
         private void DoLivePoll()
         {
-            fc.LivePoll = true;
+            sc.LivePoll = true;
             SearchInit();
             LoadAuctionData();
         }
@@ -1709,11 +1480,6 @@ namespace WOWAuctionApi_Net10
             }
         }
 
-        private void lvItemsItemsInList_ItemDrag(object sender, ItemDragEventArgs e)
-        {
-
-        }
-
         private void lvItemsSearchResults_ItemDrag(object sender, ItemDragEventArgs e)
         {
             // Create a list to hold all selected items
@@ -1749,24 +1515,20 @@ namespace WOWAuctionApi_Net10
             }
         }
 
-        private void btnItemListSave_Click(object sender, EventArgs e)
-        {
-            SaveItems();
-        }
 
         private void SaveItems()
         {
-            fc.CurrentItemList.ItemCache.Items.Clear();
+            sc.CurrentItemList.ItemCache.Items.Clear();
 
             foreach (ListViewItem lvi in lvItemsItemsInList.Items)
             {
                 CacheItem item = lvi.Tag as CacheItem;
                 if (item != null)
                 {
-                    fc.CurrentItemList.ItemCache.AddItem(item);
+                    sc.CurrentItemList.ItemCache.AddItem(item);
                 }
             }
-            fc.ItemLists.Save();
+            sc.ItemLists.Save();
         }
 
         private ItemCache ItemsAsCacheCopy()
@@ -1785,68 +1547,6 @@ namespace WOWAuctionApi_Net10
             return copyCache;
         }
 
-        private void btnItemListEdit_Click(object sender, EventArgs e)
-        {
-            var (profileName, iconIndex) = GetProfileDetails(1, fc.CurrentItemList.IconIndex.Value,
-                    fc.CurrentItemList.Name, "Item List");
-            if (profileName != null && profileName.Trim() != "")
-            {
-                fc.CurrentItemList.Name = profileName;
-                fc.CurrentItemList.IconIndex = iconIndex;
-                fc.ItemLists.Save();
-                LoadItemLists();
-            }
-        }
-
-        private void btnItemListSaveAs_Click(object sender, EventArgs e)
-        {
-            var (profileName, iconIndex) = GetProfileDetails(0, fc.CurrentItemList.IconIndex.Value,
-                fc.CurrentItemList.Name + "@ (Copy)", "Item List");
-            if (profileName != null && profileName.Trim() != "")
-            {
-                ItemList newList = new ItemList();
-
-                newList.Name = profileName;
-                newList.IconIndex = iconIndex;
-                newList.ItemCache = new ItemCache();
-                foreach (CacheItem item in fc.CurrentItemList.ItemCache.Items)
-                {
-                    newList.ItemCache.AddItem(item);
-                }
-                fc.ItemLists.AddList(newList);
-                fc.CurrentItemList = newList;
-                fc.ItemLists.Save();
-                LoadItemLists();
-            }
-        }
-
-        private void btnItemListNew_Click(object sender, EventArgs e)
-        {
-            var (profileName, iconIndex) = GetProfileDetails(2, 0, "(New List)", "Item List");
-            if (profileName != null && profileName.Trim() != "")
-            {
-                ItemList newList = new ItemList();
-
-                newList.Name = profileName;
-                newList.IconIndex = iconIndex;
-                fc.ItemLists.AddList(newList);
-                fc.CurrentItemList = newList;
-                fc.ItemLists.Save();
-                LoadItemLists();
-            }
-        }
-
-        private void btnItemListDelete_Click(object sender, EventArgs e)
-        {
-            /*
-            if (MsgHelper.Confirm.DeleteItemList())
-            {
-                fc.ItemLists.Lists.Remove(fc.CurrentItemList);
-                fc.ItemLists.Save();
-                LoadItemLists();
-            }
-            */
-        }
 
         private void lvItemsItemsInList_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1870,45 +1570,6 @@ namespace WOWAuctionApi_Net10
                     item.Selected = true;
                 }
                 e.Handled = true; // Mark the event as handled to prevent further processing if necessary
-            }
-        }
-
-        private void btnItemListSearchView_Click(object sender, EventArgs e)
-        {
-            ListItemsPBSView(false);
-        }
-
-        private void btnItemsListPBSView_Click(object sender, EventArgs e)
-        {
-            ListItemsPBSView(true);
-        }
-
-        private void ListItemsPBSView(bool pbs)
-        {
-            lblItemsSearchLabel.Visible = !pbs;
-            pnlItemsSearchPBS.Visible = pbs;
-            lvItemsSearchResults.Visible = !pbs;
-        }
-
-        private void btnItemsSearchCopyExport_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(txtItemsSearchPBSExport.Text);
-        }
-
-        private void btnItemsExportToPBS_Click(object sender, EventArgs e)
-        {
-            ListItemsPBSView(true);
-            txtItemsSearchPBSExport.Text = fc.CurrentItemList.Name;
-            txtItemsSearchPBSKeys.Text = "";
-
-            foreach (ListViewItem lvi in lvItemsItemsInList.Items)
-            {
-                CacheItem item = lvi.Tag as CacheItem;
-                if (item != null)
-                {
-                    txtItemsSearchPBSExport.Text += $"^\"{item.Name}\";;0;0;0;0;0;0;0;{item.BuyPrice};;";
-                    txtItemsSearchPBSKeys.Text += $"\"{item.Id} 0 1 0\",\r\n";
-                }
             }
         }
 
@@ -1953,7 +1614,6 @@ namespace WOWAuctionApi_Net10
                 SaveItems();
             }
         }
-
         private void btnItemListPBSUpdateAll_Click(object sender, EventArgs e)
         {
             UpdateBuyPrice(BuyPriceSelectType.All);
@@ -1962,70 +1622,6 @@ namespace WOWAuctionApi_Net10
         private void btnItemListPBSUpdateZeroValue_Click(object sender, EventArgs e)
         {
             UpdateBuyPrice(BuyPriceSelectType.ZeroValue);
-        }
-
-        private void btnsbtnItemsSearchCopyKeys_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(txtItemsSearchPBSKeys.Text);
-        }
-
-        private void btnRefreshAuctionsTotal_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnRefreshAuctions2_Click(object sender, EventArgs e)
-        {
-            LoadAuctionData();
-        }
-
-        private void txtSearchStringFilter_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                Search();
-            }
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            List<string> subItems = new List<string>(["Misc Items 1", "Misc Items 2"]);
-            //fc.CurrentItemList.SubLists = subItems;
-            fc.ItemLists.Save();
-        }
-
-        private void lbItems_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (fc.DisplayMode == DisplayMode.ItemsLists && lbItems.SelectedItems.Count > 0)
-            {
-                ListBoxItem lbi = lbItems.SelectedItems[0] as ListBoxItem;
-                if (lbi != null)
-                {
-                    LoadItemList(lbi.List);
-                    fc.CurrentItemList = lbi.List;
-                }
-            }
-        }
-
-        private void lbItems_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index < 0 || e.Index >= lbItems.Items.Count) return;
-
-            ListBoxItem item = (ListBoxItem)lbItems.Items[e.Index];
-
-            // Draw the background
-            e.DrawBackground();
-
-            // Draw the image
-            // The Y coordinate positions the image vertically within the item bounds
-            e.Graphics.DrawImage(item.Picture, e.Bounds.X, e.Bounds.Y, 48, 48); // Draw a 32x32 image
-
-            // Draw the text
-            // Adjust the X coordinate to position text next to the image
-            e.Graphics.DrawString(item.ListName, e.Font, new SolidBrush(Color.White), e.Bounds.X + 54, e.Bounds.Y + 5);
-
-            // Draw the focus rectangle if the item is selected
-            e.DrawFocusRectangle();
         }
 
         private void lvItemsSearchResults_KeyDown(object sender, KeyEventArgs e)
@@ -2039,6 +1635,32 @@ namespace WOWAuctionApi_Net10
                 }
                 e.Handled = true; // Mark the event as handled to prevent further processing if necessary
             }
+        }
+
+        private void itemListOptions1_SelectedChanged(object sender, ItemListEventArgs e)
+        {
+            LoadItemList(e.ItemList);
+            sc.CurrentItemList = e.ItemList;
+        }
+
+        private void tsbPreferences_Click(object sender, EventArgs e)
+        {
+            FormPreferences frmPref = new FormPreferences();
+            if (frmPref.ShowDialog() == DialogResult.OK)
+            {
+                Application.DoEvents();
+                sc.Config.Save();
+                Application.DoEvents();
+                Application.Restart();
+            }
+        }
+
+        private void tsbWoWInteraction_Click(object sender, EventArgs e)
+        {
+            FormMouseTest frmWow = new FormMouseTest();
+            frmWow.ShowDialog();
+
+
         }
 
         public enum BuyPriceSelectType

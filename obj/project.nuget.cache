@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7QpPAEZtvx4=",
+  "dgSpecHash": "T1HBwXPyp/8=",
   "success": true,
   "projectFilePath": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\wayne\\.nuget\\packages\\cyotek.windows.forms.colorpicker\\2.0.0-beta.7\\cyotek.windows.forms.colorpicker.2.0.0-beta.7.nupkg.sha512",
     "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.5\\microsoft.extensions.configuration.10.0.5.nupkg.sha512",
     "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.5\\microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512",
     "C:\\Users\\wayne\\.nuget\\packages\\microsoft.extensions.configuration.binder\\10.0.5\\microsoft.extensions.configuration.binder.10.0.5.nupkg.sha512",

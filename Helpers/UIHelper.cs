@@ -7,9 +7,9 @@ namespace WOWAuctionApi_Net10
 {
     public static class UIHelper
     {
-        public static void SetPanelBitwiseValues(Panel searchPanel, int bitwiseValue)
+        public static void SetControlBitwiseValue(Control hostControl, int bitwiseValue)
         {
-            var checkedBoxes = searchPanel.Controls.OfType<ToggleSlider>();
+            var checkedBoxes = hostControl.Controls.OfType<ToggleSlider>();
 
             foreach (ToggleSlider checkBox in checkedBoxes)
             {
@@ -17,35 +17,96 @@ namespace WOWAuctionApi_Net10
                 checkBox.Checked = ((bitwiseValue & checkBox.OptionBit) != 0);
             }
         }
-
-
-        public static void RenderUIOptionsSet(List<ToggleOption> optionList, Panel searchPanel, FormCache fc)
+        public static List<int> GetIntsFromBitwise(int bitwise)
         {
-            int x = fc.UIOptions.Toggle.XStart;
-            int y = fc.UIOptions.Toggle.YStart;
+            var activeBits = new List<int>();
+
+            for (int i = 0; i < 32; i++)
+            {
+                int mask = 1 << i;
+                if ((bitwise & mask) != 0)
+                {
+                    activeBits.Add(mask); // Add the value (1, 2, 4...)
+                }
+            }
+
+            return activeBits;  
+        }
+
+        public static (string profileName, int iconIndex) GetProfileDetails(
+            int searchType, int startingIndex, string startingProfileName, string itemTitle, ImageList imgList)
+        {
+            string title;
+
+            switch (searchType)
+            {
+                case 0: default: title = "Save Current {itemTitle} As"; break;
+                case 1: title = $"Rename Current {itemTitle}"; break;
+                case 2: title = $"New {itemTitle}"; break;
+            }
+
+            FormSaveProfileDialog saveDlg = new FormSaveProfileDialog(title,
+                startingProfileName, searchType, startingIndex, imgList);
+            if (saveDlg.ShowDialog() == DialogResult.OK)
+            {
+                return (saveDlg.ProfileName, saveDlg.ImageIndex);
+            }
+
+            return ("", 0);
+        }
+        public static int GetControlBitwiseValue(Control hostControl)
+        {
+            var returnValue = 0;
+
+            var checkedBoxes = hostControl.Controls.OfType<ToggleSlider>().Where(c => c.Checked);
+
+            foreach (ToggleSlider checkBox in checkedBoxes)
+            {
+                returnValue += checkBox.OptionBit;
+            }
+
+            return returnValue;
+        }
+
+
+        public static void RenderUIOptionsSet(OptionSet setToRender, Control hostControl)
+        {
+            ToggleAttributes attributes;
+
+            if (setToRender.UseDefaultAttributes.Value)
+            {
+                attributes = sc.UIOptions.DefaultAttributes;
+            }
+            else
+            {
+                attributes = setToRender.Attributes;
+            }
+
+            int x = sc.UIOptions.DefaultAttributes.XStart;
+            int y = sc.UIOptions.DefaultAttributes.YStart;
             int count = 0;
-            foreach (var option in optionList)
+            foreach (var option in setToRender.ToggleOptions)
             {
                 count++;
-                RenderUIOptionsControl(option, searchPanel, x, y, fc);
-                y += fc.UIOptions.Toggle.YRowOffset;
-                if (count >= fc.UIOptions.Toggle.TogsPerColumn)
+                RenderUIOptionsControl(option, hostControl, x, y);
+                y += attributes.YRowOffset;
+                if (count >= attributes.TogsPerColumn)
                 {
                     count = 0;
-                    y = fc.UIOptions.Toggle.YStart;
-                    x += fc.UIOptions.Toggle.XColumnOffset;
+                    y = attributes.YStart;
+                    x += attributes.XColumnOffset;
                 }
             }
         }
 
 
-        private static void RenderUIOptionsControl(ToggleOption togOption, Panel searchPanel, 
-            int renderX, int renderY, FormCache fc)
+        private static void RenderUIOptionsControl(ToggleOption togOption, Control hostControl, 
+            int renderX, int renderY)
         {
             var newToggle = new ToggleSlider();
             Color backColor;
             Color togColor;
-            if (fc.UIOptions.ColorMode == SystemColorMode.Dark)
+            if (sc.UIOptions.ColorMode == SystemColorMode.Dark)
             {
                 backColor = Color.FromName(togOption.BackColorDark);
                 togColor = Color.FromName(togOption.ToggleColorDark);
@@ -59,35 +120,35 @@ namespace WOWAuctionApi_Net10
             newToggle.Checked = true;
             newToggle.CheckState = CheckState.Checked;
             newToggle.Location = new Point(renderX, renderY);
-            newToggle.Size = new Size(fc.UIOptions.Toggle.Width, fc.UIOptions.Toggle.Height);
+            newToggle.Size = new Size(sc.UIOptions.DefaultAttributes.Width, sc.UIOptions.DefaultAttributes.Height);
             newToggle.UseVisualStyleBackColor = true;
 
             newToggle.OptionValue = togOption.Name;
             newToggle.OptionBit = togOption.Id.Value;
-            newToggle.Name = "tsl_" + searchPanel.Name + togOption.Name.Replace(" ", "");
+            newToggle.Name = "tsl_" + hostControl.Name + togOption.Name.Replace(" ", "");
 
             newToggle.OnBackColor = backColor;
             newToggle.OnToggleColor = togColor;
             newToggle.OffBackColor = Color.Gray;
             newToggle.OffToggleColor = Color.Gainsboro;
 
-            searchPanel.Controls.Add(newToggle);
+            hostControl.Controls.Add(newToggle);
 
             var newLabel = new System.Windows.Forms.Label();
 
             newLabel.AutoSize = true;
             newLabel.ForeColor = backColor;
-            newLabel.Location = new Point(renderX + fc.UIOptions.Toggle.XLabelGap, renderY);
-            newLabel.Name = "lbl_" + searchPanel.Name + togOption.Name.Replace(" ", "");
+            newLabel.Location = new Point(renderX + sc.UIOptions.DefaultAttributes.XLabelGap, renderY);
+            newLabel.Name = "lbl_" + hostControl.Name + togOption.Name.Replace(" ", "");
             newLabel.Text = togOption.Label;
 
-            searchPanel.Controls.Add(newLabel);
+            hostControl.Controls.Add(newLabel);
 
         }
 
-        public static Color GetColorForQuality(string quality, FormCache fc)
+        public static Color GetColorForQuality(string quality)
         {
-            switch (fc.UIOptions.ColorMode)
+            switch (sc.UIOptions.ColorMode)
             {
                 case SystemColorMode.Classic:
                     switch (quality)
@@ -123,10 +184,10 @@ namespace WOWAuctionApi_Net10
             if (clickedButton != null)
             {
                 if ((clickedButton.Tag != null) && (clickedButton.Tag.ToString() == "!EXCLUDE")) { return; }
-                var hostPanel = clickedButton.Parent as Panel;
-                if (hostPanel != null)
+                var hostControl = clickedButton.Parent as Control;
+                if (hostControl != null)
                 {
-                    var checkedBoxes = hostPanel.Controls.OfType<ToggleSlider>();
+                    var checkedBoxes = hostControl.Controls.OfType<ToggleSlider>();
                     bool toggleValue = !(checkedBoxes.First().Checked);
                     foreach (CheckBox checkBox in checkedBoxes)
                     {
@@ -136,11 +197,11 @@ namespace WOWAuctionApi_Net10
             }
         }
 
-        public static List<string> GetPanelCheckedList(Panel searchPanel)
+        public static List<string> GetControlCheckedList(Control hostControl)
         {
             var returnValue = new List<string>();
 
-            var checkedBoxes = searchPanel.Controls.OfType<ToggleSlider>().Where(c => c.Checked);
+            var checkedBoxes = hostControl.Controls.OfType<ToggleSlider>().Where(c => c.Checked);
 
             foreach (ToggleSlider checkBox in checkedBoxes)
             {
@@ -150,11 +211,23 @@ namespace WOWAuctionApi_Net10
             return returnValue;
         }
 
+        public static Color StringToColor(string hexColor)
+        {
+            return System.Drawing.ColorTranslator.FromHtml(hexColor);
+        }
+
+        public static String ColorToString(Color hexColor)
+        {
+            return System.Drawing.ColorTranslator.ToHtml(hexColor);
+        }
+
+
     }
 
     public enum DisplayMode
     {
         Auctions,
-        ItemsLists
+        ItemsLists,
+        Config
     }
 }

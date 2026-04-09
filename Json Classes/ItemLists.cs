@@ -21,7 +21,7 @@ namespace WOWAuctionApi_Net10
 
         public void Save()
         {
-            SaveToFile(Paths.ItemLists);
+            SaveToFile(sc.Paths.ItemLists);
         }
 
         public ItemList? GetListByName(string listName)
@@ -38,7 +38,7 @@ namespace WOWAuctionApi_Net10
 
         public static ItemLists Load()
         {
-            return ItemLists.LoadFromFile(Paths.ItemLists);
+            return ItemLists.LoadFromFile(sc.Paths.ItemLists);
         }
 
         public static ItemLists LoadFromFile(string fileName)

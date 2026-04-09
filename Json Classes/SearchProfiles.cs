@@ -12,7 +12,7 @@ namespace WOWAuctionApi_Net10.Json_Classes
 
         public static SearchProfiles Load()
         {
-            return SearchProfiles.LoadFromFile(Paths.SearchProfiles);
+            return SearchProfiles.LoadFromFile(sc.Paths.SearchProfiles);
         }
 
         public static SearchProfiles LoadFromFile(string fileName)
@@ -23,18 +23,18 @@ namespace WOWAuctionApi_Net10.Json_Classes
 
         public static SearchProfiles GetFileDefault()
         {
-            var returnRI = JsonSerializer.Deserialize<SearchProfiles>(File.ReadAllText($@"{Paths.SearchProfiles}"));
+            var returnRI = JsonSerializer.Deserialize<SearchProfiles>(File.ReadAllText($@"{sc.Paths.SearchProfiles}"));
             return returnRI;
         }
 
         public void Save()
         {
-            SaveToFile($@"{Paths.SearchProfiles}");
+            SaveToFile($@"{sc.Paths.SearchProfiles}");
         }
 
         public string GetFilePath()
         {
-            return $@"{Paths.SearchProfiles}";
+            return $@"{sc.Paths.SearchProfiles}";
         }
 
     }

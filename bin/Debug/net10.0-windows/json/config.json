@@ -7,15 +7,11 @@
   "OnlyFirst": 0,
   "LatestXpacItemId": 236900,
   "SortCacheOrderDefault": "Descending",
-  "SortCacheOnUpdate": true,
-  "UpdateAllDataOnStart": false,
-  "NewDataOnlyDefault": false,
-  "SearchOnSelectDefault": true,
-  "RefreshAuctionsOnStart": false,
-  "WowInteraction": false,
+  "ConfigChecks": 17,
   "LivePollInterval": 5,
   "AuctionsCap": 50,
   "ItemsSearchCap": 500,
+  "Threshold": 20,
   "Realms": [
     {
       "RealmName": "Aerie Peak",
@@ -110,7 +106,7 @@
     {
       "RealmName": "Jaedenar",
       "RealmId": 1129,
-      "BackColor": "#3C78D8"
+      "BackColor": "#0D2343"
     },
     {
       "RealmName": "Kil\u0027Jaeden",

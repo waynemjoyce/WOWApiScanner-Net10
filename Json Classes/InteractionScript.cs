@@ -22,14 +22,14 @@ namespace WOWAuctionApi_Net10
 
         public void Save()
         {
-            SaveToFile($@"{Paths.InteractionScripts}\{ScriptName}.json");
+            SaveToFile($@"{sc.Paths.InteractionScripts}\{ScriptName}.json");
         }
 
         public static InteractionScript LoadFromFile(string fileName, string scriptName = "")
         {
             if (scriptName != "")
             {
-                fileName = $@"{Paths.InteractionScripts}\{scriptName}.json";
+                fileName = $@"{sc.Paths.InteractionScripts}\{scriptName}.json";
             }
             var options = new JsonSerializerOptions
             {

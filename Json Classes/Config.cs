@@ -9,35 +9,31 @@ namespace WOWAuctionApi_Net10
         public string? BlizzClientID { get; set; }
         public string? BlizzClientSecret { get; set; }
         public string? TSMKey { get; set; }
-
         public string? TSMClientID { get; set; }
-
         public string? DefaultSearch { get; set; }
-
         public int? OnlyFirst { get; set; }
-
         public long? LatestXpacItemId { get; set; }
-
         public SortDirection? SortCacheOrderDefault { get; set; }
-
-        public bool? SortCacheOnUpdate { get; set; }
-        public bool? UpdateAllDataOnStart { get; set; }
-
-        public bool? NewDataOnlyDefault { get; set; }
-        public bool? SearchOnSelectDefault { get; set; }
-
-        public bool? RefreshAuctionsOnStart { get; set; }
-
-        public bool? WowInteraction { get; set; }  //LivePollInterval
+        public int? ConfigChecks { get; set; }
 
         public int? LivePollInterval { get; set; }
-
         public int? AuctionsCap { get; set; }
-
         public int? ItemsSearchCap { get; set; }
-
+        public int? Threshold { get; set; } 
         public List<Realm>? Realms { get; set; }
 
+        [JsonIgnore]
+        public bool SortCacheOnUpdate = false;
+        [JsonIgnore]
+        public bool UpdateAllDataOnStart = false;
+        [JsonIgnore]
+        public bool NewDataOnlyDefault = false;
+        [JsonIgnore]
+        public bool SearchOnSelectDefault = false;
+        [JsonIgnore]
+        public bool RefreshAuctionsOnStart = false;
+        [JsonIgnore]
+        public bool WowInteraction = false;
 
         public static Config LoadFromFile(string fileName)
         {
@@ -51,7 +47,7 @@ namespace WOWAuctionApi_Net10
 
         public void Save()
         {
-            SaveToFile(Paths.Config);
+            SaveToFile(sc.Paths.Config);
         }
     }
 

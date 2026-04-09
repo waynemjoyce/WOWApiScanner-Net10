@@ -1,5 +1,5 @@
 {
-  "Toggle": {
+  "DefaultAttributes": {
     "TogsPerColumn": 7,
     "Width": 60,
     "Height": 32,
@@ -9,264 +9,392 @@
     "XColumnOffset": 275,
     "XLabelGap": 61
   },
-  "Main": [
+  "OptionSets": [
     {
-      "Id": 1,
-      "Name": "Latest Xpac",
-      "Label": "Latest Xpac",
-      "BackColorDark": "Silver",
-      "ToggleColorDark": "White",
-      "BackColorLight": "Gray",
-      "ToggleColorLight": "Gainsboro"
+      "SetName": "Main",
+      "UseDefaultAttributes": true,
+      "Attributes": {
+        "TogsPerColumn": 7,
+        "Width": 60,
+        "Height": 32,
+        "XStart": 30,
+        "YStart": 63,
+        "YRowOffset": 34,
+        "XColumnOffset": 275,
+        "XLabelGap": 61
+      },
+      "ToggleOptions": [
+        {
+          "Id": 1,
+          "Name": "Latest Xpac",
+          "Label": "Latest Xpac",
+          "BackColorDark": "Silver",
+          "ToggleColorDark": "White",
+          "BackColorLight": "Gray",
+          "ToggleColorLight": "Gainsboro"
+        },
+        {
+          "Id": 2,
+          "Name": "Include Items",
+          "Label": "Include Items",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 4,
+          "Name": "Include Pets",
+          "Label": "Include Pets",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
+        },
+        {
+          "Id": 8,
+          "Name": "Socket",
+          "Label": "Socket",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
+        },
+        {
+          "Id": 16,
+          "Name": "A to Z",
+          "Label": "A to Z",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
+        }
+      ]
     },
     {
-      "Id": 2,
-      "Name": "Include Items",
-      "Label": "Include Items",
-      "BackColorDark": "LimeGreen",
-      "ToggleColorDark": "PaleGreen",
-      "BackColorLight": "DarkGreen",
-      "ToggleColorLight": "DarkSeaGreen"
+      "SetName": "Class",
+      "UseDefaultAttributes": true,
+      "Attributes": {
+        "TogsPerColumn": 7,
+        "Width": 60,
+        "Height": 32,
+        "XStart": 30,
+        "YStart": 63,
+        "YRowOffset": 34,
+        "XColumnOffset": 275,
+        "XLabelGap": 61
+      },
+      "ToggleOptions": [
+        {
+          "Id": 1,
+          "Name": "Weapon",
+          "Label": "Weapon",
+          "BackColorDark": "Gray",
+          "ToggleColorDark": "Gainsboro",
+          "BackColorLight": "DimGray",
+          "ToggleColorLight": "LightGray"
+        },
+        {
+          "Id": 2,
+          "Name": "Armor",
+          "Label": "Armor",
+          "BackColorDark": "Silver",
+          "ToggleColorDark": "White",
+          "BackColorLight": "Gray",
+          "ToggleColorLight": "Gainsboro"
+        },
+        {
+          "Id": 4,
+          "Name": "Consumable",
+          "Label": "Consumable",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 8,
+          "Name": "Miscellaneous",
+          "Label": "Miscellaneous",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
+        },
+        {
+          "Id": 16,
+          "Name": "Tradeskill",
+          "Label": "Tradeskill",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
+        },
+        {
+          "Id": 32,
+          "Name": "Profession",
+          "Label": "Profession",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
+        },
+        {
+          "Id": 64,
+          "Name": "Container",
+          "Label": "Container",
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
+        },
+        {
+          "Id": 128,
+          "Name": "Quest",
+          "Label": "Quest",
+          "BackColorDark": "Gray",
+          "ToggleColorDark": "Gainsboro",
+          "BackColorLight": "DimGray",
+          "ToggleColorLight": "LightGray"
+        },
+        {
+          "Id": 256,
+          "Name": "Item Enhancement",
+          "Label": "Enhancement",
+          "BackColorDark": "Silver",
+          "ToggleColorDark": "White",
+          "BackColorLight": "Gray",
+          "ToggleColorLight": "Gainsboro"
+        },
+        {
+          "Id": 512,
+          "Name": "Recipe",
+          "Label": "Recipe",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 1024,
+          "Name": "Gem",
+          "Label": "Gem",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
+        },
+        {
+          "Id": 2048,
+          "Name": "Key",
+          "Label": "Key",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
+        },
+        {
+          "Id": 4096,
+          "Name": "Reagent",
+          "Label": "Reagent",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
+        }
+      ]
     },
     {
-      "Id": 4,
-      "Name": "Include Pets",
-      "Label": "Include Pets",
-      "BackColorDark": "CornflowerBlue",
-      "ToggleColorDark": "LightBlue",
-      "BackColorLight": "MidnightBlue",
-      "ToggleColorLight": "LightSkyBlue"
+      "SetName": "Quality",
+      "UseDefaultAttributes": true,
+      "Attributes": {
+        "TogsPerColumn": 7,
+        "Width": 60,
+        "Height": 32,
+        "XStart": 30,
+        "YStart": 63,
+        "YRowOffset": 34,
+        "XColumnOffset": 275,
+        "XLabelGap": 61
+      },
+      "ToggleOptions": [
+        {
+          "Id": 1,
+          "Name": "POOR",
+          "Label": "Poor",
+          "BackColorDark": "Gray",
+          "ToggleColorDark": "Gainsboro",
+          "BackColorLight": "DimGray",
+          "ToggleColorLight": "LightGray"
+        },
+        {
+          "Id": 2,
+          "Name": "COMMON",
+          "Label": "Common",
+          "BackColorDark": "Silver",
+          "ToggleColorDark": "White",
+          "BackColorLight": "Gray",
+          "ToggleColorLight": "Gainsboro"
+        },
+        {
+          "Id": 4,
+          "Name": "UNCOMMON",
+          "Label": "Uncommon",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 8,
+          "Name": "RARE",
+          "Label": "Rare",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
+        },
+        {
+          "Id": 16,
+          "Name": "EPIC",
+          "Label": "Epic",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
+        },
+        {
+          "Id": 32,
+          "Name": "LEGENDARY",
+          "Label": "Legendary",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
+        },
+        {
+          "Id": 64,
+          "Name": "ARTIFACT",
+          "Label": "Artifact",
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
+        }
+      ]
     },
     {
-      "Id": 8,
-      "Name": "Socket",
-      "Label": "Socket",
-      "BackColorDark": "MediumOrchid",
-      "ToggleColorDark": "Thistle",
-      "BackColorLight": "DarkViolet",
-      "ToggleColorLight": "Plum"
+      "SetName": "Bonuses",
+      "UseDefaultAttributes": true,
+      "Attributes": {
+        "TogsPerColumn": 7,
+        "Width": 60,
+        "Height": 32,
+        "XStart": 30,
+        "YStart": 63,
+        "YRowOffset": 34,
+        "XColumnOffset": 275,
+        "XLabelGap": 61
+      },
+      "ToggleOptions": [
+        {
+          "Id": 1,
+          "Name": "41",
+          "Label": "Avoidance",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
+        },
+        {
+          "Id": 2,
+          "Name": "42",
+          "Label": "Speed (42)",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
+        },
+        {
+          "Id": 4,
+          "Name": "43",
+          "Label": "Indestructible (43)",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
+        }
+      ]
     },
     {
-      "Id": 16,
-      "Name": "A to Z",
-      "Label": "A to Z",
-      "BackColorDark": "Orange",
-      "ToggleColorDark": "NavajoWhite",
-      "BackColorLight": "Chocolate",
-      "ToggleColorLight": "Tan"
-    }
-  ],
-  "Class": [
-    {
-      "Id": 1,
-      "Name": "Weapon",
-      "Label": "Weapon",
-      "BackColorDark": "Gray",
-      "ToggleColorDark": "Gainsboro",
-      "BackColorLight": "DimGray",
-      "ToggleColorLight": "LightGray"
-    },
-    {
-      "Id": 2,
-      "Name": "Armor",
-      "Label": "Armor",
-      "BackColorDark": "Silver",
-      "ToggleColorDark": "White",
-      "BackColorLight": "Gray",
-      "ToggleColorLight": "Gainsboro"
-    },
-    {
-      "Id": 4,
-      "Name": "Consumable",
-      "Label": "Consumable",
-      "BackColorDark": "LimeGreen",
-      "ToggleColorDark": "PaleGreen",
-      "BackColorLight": "DarkGreen",
-      "ToggleColorLight": "DarkSeaGreen"
-    },
-    {
-      "Id": 8,
-      "Name": "Miscellaneous",
-      "Label": "Miscellaneous",
-      "BackColorDark": "CornflowerBlue",
-      "ToggleColorDark": "LightBlue",
-      "BackColorLight": "MidnightBlue",
-      "ToggleColorLight": "LightSkyBlue"
-    },
-    {
-      "Id": 16,
-      "Name": "Tradeskill",
-      "Label": "Tradeskill",
-      "BackColorDark": "MediumOrchid",
-      "ToggleColorDark": "Thistle",
-      "BackColorLight": "DarkViolet",
-      "ToggleColorLight": "Plum"
-    },
-    {
-      "Id": 32,
-      "Name": "Profession",
-      "Label": "Profession",
-      "BackColorDark": "Orange",
-      "ToggleColorDark": "NavajoWhite",
-      "BackColorLight": "Chocolate",
-      "ToggleColorLight": "Tan"
-    },
-    {
-      "Id": 64,
-      "Name": "Container",
-      "Label": "Container",
-      "BackColorDark": "Sienna",
-      "ToggleColorDark": "Wheat",
-      "BackColorLight": "Sienna",
-      "ToggleColorLight": "Wheat"
-    },
-    {
-      "Id": 128,
-      "Name": "Quest",
-      "Label": "Quest",
-      "BackColorDark": "Gray",
-      "ToggleColorDark": "Gainsboro",
-      "BackColorLight": "DimGray",
-      "ToggleColorLight": "LightGray"
-    },
-    {
-      "Id": 256,
-      "Name": "Item Enhancement",
-      "Label": "Enhancement",
-      "BackColorDark": "Silver",
-      "ToggleColorDark": "White",
-      "BackColorLight": "Gray",
-      "ToggleColorLight": "Gainsboro"
-    },
-    {
-      "Id": 512,
-      "Name": "Recipe",
-      "Label": "Recipe",
-      "BackColorDark": "LimeGreen",
-      "ToggleColorDark": "PaleGreen",
-      "BackColorLight": "DarkGreen",
-      "ToggleColorLight": "DarkSeaGreen"
-    },
-    {
-      "Id": 1024,
-      "Name": "Gem",
-      "Label": "Gem",
-      "BackColorDark": "CornflowerBlue",
-      "ToggleColorDark": "LightBlue",
-      "BackColorLight": "MidnightBlue",
-      "ToggleColorLight": "LightSkyBlue"
-    },
-    {
-      "Id": 2048,
-      "Name": "Key",
-      "Label": "Key",
-      "BackColorDark": "MediumOrchid",
-      "ToggleColorDark": "Thistle",
-      "BackColorLight": "DarkViolet",
-      "ToggleColorLight": "Plum"
-    },
-    {
-      "Id": 4096,
-      "Name": "Reagent",
-      "Label": "Reagent",
-      "BackColorDark": "Orange",
-      "ToggleColorDark": "NavajoWhite",
-      "BackColorLight": "Chocolate",
-      "ToggleColorLight": "Tan"
-    }
-  ],
-  "Quality": [
-    {
-      "Id": 1,
-      "Name": "POOR",
-      "Label": "Poor",
-      "BackColorDark": "Gray",
-      "ToggleColorDark": "Gainsboro",
-      "BackColorLight": "DimGray",
-      "ToggleColorLight": "LightGray"
-    },
-    {
-      "Id": 2,
-      "Name": "COMMON",
-      "Label": "Common",
-      "BackColorDark": "Silver",
-      "ToggleColorDark": "White",
-      "BackColorLight": "Gray",
-      "ToggleColorLight": "Gainsboro"
-    },
-    {
-      "Id": 4,
-      "Name": "UNCOMMON",
-      "Label": "Uncommon",
-      "BackColorDark": "LimeGreen",
-      "ToggleColorDark": "PaleGreen",
-      "BackColorLight": "DarkGreen",
-      "ToggleColorLight": "DarkSeaGreen"
-    },
-    {
-      "Id": 8,
-      "Name": "RARE",
-      "Label": "Rare",
-      "BackColorDark": "CornflowerBlue",
-      "ToggleColorDark": "LightBlue",
-      "BackColorLight": "MidnightBlue",
-      "ToggleColorLight": "LightSkyBlue"
-    },
-    {
-      "Id": 16,
-      "Name": "EPIC",
-      "Label": "Epic",
-      "BackColorDark": "MediumOrchid",
-      "ToggleColorDark": "Thistle",
-      "BackColorLight": "DarkViolet",
-      "ToggleColorLight": "Plum"
-    },
-    {
-      "Id": 32,
-      "Name": "LEGENDARY",
-      "Label": "Legendary",
-      "BackColorDark": "Orange",
-      "ToggleColorDark": "NavajoWhite",
-      "BackColorLight": "Chocolate",
-      "ToggleColorLight": "Tan"
-    },
-    {
-      "Id": 64,
-      "Name": "ARTIFACT",
-      "Label": "Artifact",
-      "BackColorDark": "Sienna",
-      "ToggleColorDark": "Wheat",
-      "BackColorLight": "Sienna",
-      "ToggleColorLight": "Wheat"
-    }
-  ],
-  "Bonuses": [
-    {
-      "Id": 1,
-      "Name": "41",
-      "Label": "Avoidance",
-      "BackColorDark": "MediumOrchid",
-      "ToggleColorDark": "Thistle",
-      "BackColorLight": "DarkViolet",
-      "ToggleColorLight": "Plum"
-    },
-    {
-      "Id": 2,
-      "Name": "42",
-      "Label": "Speed (42)",
-      "BackColorDark": "Orange",
-      "ToggleColorDark": "NavajoWhite",
-      "BackColorLight": "Chocolate",
-      "ToggleColorLight": "Tan"
-    },
-    {
-      "Id": 4,
-      "Name": "43",
-      "Label": "Indestructible (43)",
-      "BackColorDark": "CornflowerBlue",
-      "ToggleColorDark": "LightBlue",
-      "BackColorLight": "MidnightBlue",
-      "ToggleColorLight": "LightSkyBlue"
+      "SetName": "Config",
+      "UseDefaultAttributes": false,
+      "Attributes": {
+        "TogsPerColumn": 7,
+        "Width": 60,
+        "Height": 32,
+        "XStart": 30,
+        "YStart": 63,
+        "YRowOffset": 45,
+        "XColumnOffset": 360,
+        "XLabelGap": 61
+      },
+      "ToggleOptions": [
+        {
+          "Id": 1,
+          "Name": "Search On Select Default",
+          "Label": "Search On Select Default",
+          "BackColorDark": "MediumPurple",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "MediumPurple",
+          "ToggleColorLight": "Thistle"
+        },
+        {
+          "Id": 2,
+          "Name": "New Data Only Default",
+          "Label": "New Data Only Default",
+          "BackColorDark": "Firebrick",
+          "ToggleColorDark": "MistyRose",
+          "BackColorLight": "Firebrick",
+          "ToggleColorLight": "MistyRose"
+        },
+        {
+          "Id": 4,
+          "Name": "Sort Cache On Update",
+          "Label": "Sort Cache On Update",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "Azure",
+          "BackColorLight": "CornflowerBlue",
+          "ToggleColorLight": "Azure"
+        },
+        {
+          "Id": 8,
+          "Name": "Update All Data On Start",
+          "Label": "Update All Data On Start",
+          "BackColorDark": "ForestGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "ForestGreen",
+          "ToggleColorLight": "PaleGreen"
+        },
+        {
+          "Id": 16,
+          "Name": "Refresh Auctions On Start",
+          "Label": "Refresh Auctions On Start",
+          "BackColorDark": "MediumVioletRed",
+          "ToggleColorDark": "MistyRose",
+          "BackColorLight": "MediumVioletRed",
+          "ToggleColorLight": "MistyRose"
+        },
+        {
+          "Id": 32,
+          "Name": "WOW Interaction Enabled",
+          "Label": "WOW Interaction Enabled",
+          "BackColorDark": "DarkOrange",
+          "ToggleColorDark": "PeachPuff",
+          "BackColorLight": "DarkOrange",
+          "ToggleColorLight": "PeachPuff"
+        }
+      ]
     }
   ]
 }

@@ -1,10 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Components\BaseOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\BonusOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\ConfigCheckOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\ConfigNumberOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\ConfigTextOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\ManageRealm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\GlobalOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\ItemClassOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\ItemListOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\MoreOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\PBSExport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\QualityOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\RealmOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Components\ToggleSlider.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Components\MainOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Forms\FormBlank1.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\FormChoseIconDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormPreferences.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FormMain.cs">

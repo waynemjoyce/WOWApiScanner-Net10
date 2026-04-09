@@ -9,7 +9,7 @@ namespace WOWAuctionApi_Net10
     {
         public static Dictionary<string, CrypticBonus> Load()
         {
-            string items = File.ReadAllText(Paths.CrypticBonuses);
+            string items = File.ReadAllText(sc.Paths.CrypticBonuses);
             return JsonSerializer.Deserialize<Dictionary<string, CrypticBonus>>(items);
         }
 

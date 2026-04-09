@@ -19,7 +19,7 @@ namespace WOWAuctionApi_Net10
                 WriteIndented = true
             };
 
-            var updatedJsonContent = JsonSerializer.Serialize(appNode, options);
+            var updatedJsonContent = JsonSerializer.Serialize(appNode, options);  
             File.WriteAllText(filePath, updatedJsonContent);
 
         }
