@@ -7,7 +7,6 @@ World Of Warcraft API Auction Scanner - completely re-written in .Net 10 /  C# 1
 
 Brief overview of improvements in this new version:
 - Completely re-written in .Net 10 / C# 14
-- Cross-platform support between Windows, Mac and Linux
 - Native support for Dark and Light Themes, easily changeable from drop-down menu
 - Much more efficient coding making use of new LINQ queries on lists
 - Code decluttered, simplified and more modularized
