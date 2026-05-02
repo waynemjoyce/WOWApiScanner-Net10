@@ -40,6 +40,7 @@
             button1 = new Button();
             textBox1 = new TextBox();
             button2 = new Button();
+            btnPostAuctions = new Button();
             SuspendLayout();
             // 
             // txtX
@@ -153,11 +154,22 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // btnPostAuctions
+            // 
+            btnPostAuctions.Location = new Point(1104, 387);
+            btnPostAuctions.Name = "btnPostAuctions";
+            btnPostAuctions.Size = new Size(374, 46);
+            btnPostAuctions.TabIndex = 12;
+            btnPostAuctions.Text = "Post Auctions";
+            btnPostAuctions.UseVisualStyleBackColor = true;
+            btnPostAuctions.Click += btnPostAuctions_Click;
+            // 
             // FormMouseTest
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2158, 1085);
+            Controls.Add(btnPostAuctions);
             Controls.Add(button2);
             Controls.Add(textBox1);
             Controls.Add(button1);
@@ -193,5 +205,6 @@
         private Button button1;
         private TextBox textBox1;
         private Button button2;
+        private Button btnPostAuctions;
     }
 }

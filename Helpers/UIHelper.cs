@@ -99,6 +99,29 @@ namespace WOWAuctionApi_Net10
             }
         }
 
+        public static Color GetColorForSellRate(float sellRate)
+        {
+            switch (sc.UIOptions.ColorMode)
+            {
+                case SystemColorMode.Classic:
+                    if (sellRate < 0.001) { return Color.DimGray; }
+                    else if (sellRate < 0.002) { return Color.DarkRed; }
+                    else if (sellRate < 0.010) { return Color.DarkGoldenrod; }
+                    else if (sellRate < 0.100) { return Color.MediumBlue; }
+                    else { return Color.Green; }
+                        ;
+                case SystemColorMode.Dark:
+                default:
+                    if (sellRate < 0.001) { return Color.LightGray; }
+                    else if (sellRate < 0.002) { return Color.Red; }
+                    else if (sellRate < 0.010) { return Color.Orange; }
+                    else if (sellRate < 0.100) { return Color.LightBlue; }
+                    else { return Color.LimeGreen; }
+                        ;
+
+            }
+        }
+
 
         private static void RenderUIOptionsControl(ToggleOption togOption, Control hostControl, 
             int renderX, int renderY)

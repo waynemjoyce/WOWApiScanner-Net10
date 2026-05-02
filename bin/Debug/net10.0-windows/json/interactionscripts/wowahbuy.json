@@ -10,7 +10,8 @@
       "DelayBefore": 300,
       "DelayBetween": 0,
       "DelayAfter": 300,
-      "KeysToSend": "NA"
+      "KeysToSend": "NA",
+      "Frequency": 1
     },
     {
       "EventName": "Click AH search box",
@@ -21,7 +22,8 @@
       "DelayBefore": 0,
       "DelayBetween": 200,
       "DelayAfter": 200,
-      "KeysToSend": "NA"
+      "KeysToSend": "NA",
+      "Frequency": 1
     },
     {
       "EventName": "Select all",
@@ -32,7 +34,8 @@
       "DelayBefore": 0,
       "DelayBetween": 0,
       "DelayAfter": 200,
-      "KeysToSend": "^a"
+      "KeysToSend": "^a",
+      "Frequency": 1
     },
     {
       "EventName": "Paste from clipboard",
@@ -43,7 +46,8 @@
       "DelayBefore": 0,
       "DelayBetween": 0,
       "DelayAfter": 200,
-      "KeysToSend": "^v"
+      "KeysToSend": "^v",
+      "Frequency": 1
     },
     {
       "EventName": "Click search",
@@ -54,7 +58,8 @@
       "DelayBefore": 0,
       "DelayBetween": 200,
       "DelayAfter": 200,
-      "KeysToSend": "NA"
+      "KeysToSend": "NA",
+      "Frequency": 1
     },
     {
       "EventName": "Click top item",
@@ -65,7 +70,8 @@
       "DelayBefore": 0,
       "DelayBetween": 200,
       "DelayAfter": 200,
-      "KeysToSend": "NA"
+      "KeysToSend": "NA",
+      "Frequency": 1
     },
     {
       "EventName": "Select item",
@@ -76,7 +82,8 @@
       "DelayBefore": 0,
       "DelayBetween": 200,
       "DelayAfter": 200,
-      "KeysToSend": "NA"
+      "KeysToSend": "NA",
+      "Frequency": 1
     },
     {
       "EventName": "Click buyout",
@@ -87,7 +94,8 @@
       "DelayBefore": 0,
       "DelayBetween": 200,
       "DelayAfter": 200,
-      "KeysToSend": "NA"
+      "KeysToSend": "NA",
+      "Frequency": 1
     },
     {
       "EventName": "Move to accept button",
@@ -98,7 +106,8 @@
       "DelayBefore": 0,
       "DelayBetween": 0,
       "DelayAfter": 200,
-      "KeysToSend": "Test"
+      "KeysToSend": "Test",
+      "Frequency": 1
     }
   ]
 }

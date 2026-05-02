@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class BaseOptions : UserControl
+    public partial class OptionsBase : ComponentBase
     {
         [Category("WOWAPI Options")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -26,7 +26,7 @@ namespace WOWAuctionApi_Net10
             set { btnToggle.Visible = value; } 
         }
 
-        public BaseOptions()
+        public OptionsBase()
         {
             InitializeComponent();
         }

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class PBSExport : BaseOptions
+    public partial class PBSExport : OptionsBase
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ExportText

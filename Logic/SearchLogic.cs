@@ -113,6 +113,13 @@ namespace WOWAuctionApi_Net10
                          (sc.CurrentProfile.SearchFraction == 1
                          && (auction.buyout < Options.FixedMaxG)))
                          )
+                     //Bid only or buyout only
+                     .Where(
+                        (auction => 
+                            (auction.buyout == 0 && Options.IncludeBid == true)
+                        ||
+                            (auction.buyout > 0 && Options.IncludeBuyout == true)
+                        ))
                      //String filter
                      .Where(auction => Options.UseStringFilter == false
                          || (Options.UseStringFilter == true
@@ -371,6 +378,8 @@ namespace WOWAuctionApi_Net10
         public bool HasSockets;
         public bool AtoZ;
         public bool UseStringFilter;
+        public bool IncludeBuyout;
+        public bool IncludeBid;
         public string StringFilter;
         public long FixedMaxG = 0;
         public long FixedWorthAtLeast = 0;

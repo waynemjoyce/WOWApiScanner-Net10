@@ -1,10 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="Components\BaseOptions.cs">
+    <Compile Update="Components\AuctionsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\Base\ComponentBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Components\BonusOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\Base\OptionsBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\Charts.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Components\ConfigCheckOptions.cs">
@@ -16,9 +25,6 @@
     <Compile Update="Components\ConfigTextOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Components\ManageRealm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Components\GlobalOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -26,6 +32,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Components\ItemListOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\MainOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\ManageRealm.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Components\MoreOptions.cs">
@@ -42,9 +54,6 @@
     </Compile>
     <Compile Update="Components\ToggleSlider.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Components\MainOptions.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Forms\FormBlank1.cs">
       <SubType>Form</SubType>

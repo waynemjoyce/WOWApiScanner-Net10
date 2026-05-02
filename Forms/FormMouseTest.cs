@@ -45,7 +45,7 @@ namespace WOWAuctionApi_Net10
         {
 
             BlizzItem bi = API_Blizzard.GetBlizzItemFromItemId(sc.BlizzAccessToken, long.Parse(this.textBox1.Text));
-                    
+
             if (bi != null)
             {
                 //break point here
@@ -56,6 +56,12 @@ namespace WOWAuctionApi_Net10
         {
             InteractionScript ins = (InteractionScript)InteractionScript.LoadFromFile("", "wowahbuy");
             ins.ProcessScript();
+        }
+
+        private void btnPostAuctions_Click(object sender, EventArgs e)
+        {
+            InteractionScript postAuctions = InteractionScript.LoadFromFile("", "postauctions");
+            postAuctions.ProcessScript();
         }
     }
 }

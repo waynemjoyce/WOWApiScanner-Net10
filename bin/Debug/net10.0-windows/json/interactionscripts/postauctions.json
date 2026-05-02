@@ -1,0 +1,28 @@
+{
+  "ScriptName": "postauctions",
+  "Events": [
+    {
+      "EventName": "Activate",
+      "EventType": "Activate",
+      "MouseClickType": "Left",
+      "X": 0,
+      "Y": 0,
+      "DelayBefore": 300,
+      "DelayBetween": 0,
+      "DelayAfter": 300,
+      "KeysToSend": "NA"
+    },
+    {
+      "EventName": "Click post",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 9318,
+      "Y": 1400,
+      "DelayBefore": 0,
+      "DelayBetween": 300,
+      "DelayAfter": 200,
+      "KeysToSend": "NA",
+      "Frequency": 200
+    }
+  ]
+}

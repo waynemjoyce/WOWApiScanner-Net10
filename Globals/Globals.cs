@@ -21,6 +21,7 @@ namespace WOWAuctionApi_Net10
         public static DataCount DataCount = new DataCount();
         public static InteractionScript WowBuyScript = new InteractionScript();
         public static Config Config = new Config();
+        public static SearchLogic SearchLogic = new SearchLogic();
 
         public static string BlizzAccessToken = "";
         public static int CurrentWoWProcess = 0;

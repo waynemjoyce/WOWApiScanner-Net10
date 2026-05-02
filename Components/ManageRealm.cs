@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class ManageRealm : BaseOptions
+    public partial class ManageRealm : OptionsBase
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Realm Realm

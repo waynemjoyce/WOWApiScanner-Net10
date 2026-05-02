@@ -9,7 +9,7 @@ using WOWAuctionApi_Net10.Json_Classes;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class ConfigTextOptions : BaseOptions
+    public partial class ConfigTextOptions : OptionsBase
     {
         public ConfigTextOptions()
         {

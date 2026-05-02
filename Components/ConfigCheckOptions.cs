@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class ConfigCheckOptions : BaseOptions
+    public partial class ConfigCheckOptions : OptionsBase
     {
         public ConfigCheckOptions()
         {

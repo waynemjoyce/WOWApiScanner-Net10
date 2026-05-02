@@ -1,6 +1,6 @@
 ﻿namespace WOWAuctionApi_Net10
 {
-    partial class BaseOptions
+    partial class OptionsBase
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseOptions));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsBase));
             lblTitle = new Label();
             btnToggle = new Button();
             SuspendLayout();

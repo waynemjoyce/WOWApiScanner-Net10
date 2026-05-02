@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class GlobalOptions : BaseOptions
+    public partial class GlobalOptions : OptionsBase
     {
         [Category("WOWAPI Options")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]

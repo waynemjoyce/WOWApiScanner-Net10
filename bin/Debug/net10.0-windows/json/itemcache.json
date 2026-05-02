@@ -422057,6 +422057,48 @@
       "Level": 1,
       "RequiredLevel": 1,
       "BuyPrice": 0
+    },
+    {
+      "Id": 5020,
+      "Name": "Kolkar Booty Key",
+      "ClassName": "Key",
+      "ClassId": 13,
+      "SubClassName": "Key",
+      "SubClassId": 0,
+      "QualityType": "COMMON",
+      "InventoryType": "NON_EQUIP",
+      "BindingType": null,
+      "Level": 1,
+      "RequiredLevel": 0,
+      "BuyPrice": 0
+    },
+    {
+      "Id": 5038,
+      "Name": "Tear of the Moons",
+      "ClassName": "Quest",
+      "ClassId": 12,
+      "SubClassName": "Quest",
+      "SubClassId": 0,
+      "QualityType": "COMMON",
+      "InventoryType": "NON_EQUIP",
+      "BindingType": null,
+      "Level": 1,
+      "RequiredLevel": 0,
+      "BuyPrice": 0
+    },
+    {
+      "Id": 5040,
+      "Name": "Shadow Hunter Knife",
+      "ClassName": "Weapon",
+      "ClassId": 2,
+      "SubClassName": "Dagger",
+      "SubClassId": 15,
+      "QualityType": "COMMON",
+      "InventoryType": "WEAPON",
+      "BindingType": null,
+      "Level": 19,
+      "RequiredLevel": 12,
+      "BuyPrice": 0
     }
   ]
 }

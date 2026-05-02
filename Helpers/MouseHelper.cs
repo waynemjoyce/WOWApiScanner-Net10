@@ -81,23 +81,28 @@ namespace WOWAuctionApi_Net10
             InteractionMouseClickType? clickType,
             int delayBefore = 100,
             int delayBetween = 100,
-            int delayAfter = 100
+            int delayAfter = 100,
+            int numClicks = 1
             )
         {
             Thread.Sleep(delayBefore);
             SetCursorPos(x, y);
-            if (clickType != null)
+            for (int i = 0; i < numClicks; i++)
             {
-                Thread.Sleep(delayBetween);
-                if (clickType == InteractionMouseClickType.Left)
+                if (clickType != null)
                 {
-                    DoClick(MouseEventFlags.MOUSEEVENTF_LEFTDOWN, MouseEventFlags.MOUSEEVENTF_LEFTUP);
-                }
-                else
-                {
-                    DoClick(MouseEventFlags.MOUSEEVENTF_RIGHTDOWN, MouseEventFlags.MOUSEEVENTF_RIGHTUP);
+                    Thread.Sleep(delayBetween);
+                    if (clickType == InteractionMouseClickType.Left)
+                    {
+                        DoClick(MouseEventFlags.MOUSEEVENTF_LEFTDOWN, MouseEventFlags.MOUSEEVENTF_LEFTUP);
+                    }
+                    else
+                    {
+                        DoClick(MouseEventFlags.MOUSEEVENTF_RIGHTDOWN, MouseEventFlags.MOUSEEVENTF_RIGHTUP);
+                    }
                 }
             }
+
             Thread.Sleep(delayAfter);
         }
 

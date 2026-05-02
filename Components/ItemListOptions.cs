@@ -8,7 +8,7 @@ using WOWAuctionApi_Net10.Json_Classes;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class ItemListOptions : BaseOptions
+    public partial class ItemListOptions : OptionsBase
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ImageList ProfileImageList { get; set; }

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class MoreOptions : BaseOptions
+    public partial class MoreOptions : OptionsBase
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ShowSuboptions

@@ -1,5 +1,4 @@
-﻿using Cyotek.Windows.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,14 +6,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WOWAuctionApi_Net10.Forms
+namespace WOWAuctionApi_Net10
 {
-    public partial class FormBlank1 : Form
+    public partial class ComponentBase : UserControl
     {
-        public FormBlank1()
+        public ComponentBase()
         {
             InitializeComponent();
         }
-
     }
 }

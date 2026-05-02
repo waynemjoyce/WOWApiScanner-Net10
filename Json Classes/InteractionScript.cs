@@ -52,7 +52,7 @@ namespace WOWAuctionApi_Net10
 
                     case InteractionEventType.MouseMoveAndClick:
                         MouseHelper.MoveAndClick(ev.X.Value, ev.Y.Value, ev.MouseClickType, 
-                            ev.DelayBefore.Value, ev.DelayBetween.Value, ev.DelayAfter.Value);
+                            ev.DelayBefore.Value, ev.DelayBetween.Value, ev.DelayAfter.Value, ev.Frequency.Value);
 
                         break;
 
@@ -83,7 +83,7 @@ namespace WOWAuctionApi_Net10
         public int? DelayBefore { get; set; }    
         public int? DelayBetween { get; set; }
         public int? DelayAfter { get; set; }
-
+        public int? Frequency { get; set; }
         public string? KeysToSend { get; set; }
     }
 

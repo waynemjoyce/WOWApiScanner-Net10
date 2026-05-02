@@ -68,6 +68,24 @@
           "ToggleColorDark": "NavajoWhite",
           "BackColorLight": "Chocolate",
           "ToggleColorLight": "Tan"
+        },
+        {
+          "Id": 32,
+          "Name": "Include Buyout",
+          "Label": "Include Buyout",
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
+        },
+        {
+          "Id": 64,
+          "Name": "Include Bid",
+          "Label": "Include Bid",
+          "BackColorDark": "Silver",
+          "ToggleColorDark": "White",
+          "BackColorLight": "Gray",
+          "ToggleColorLight": "Gainsboro"
         }
       ]
     },

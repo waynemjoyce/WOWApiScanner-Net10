@@ -41,7 +41,7 @@
             // btnSave
             // 
             btnSave.DialogResult = DialogResult.OK;
-            btnSave.Location = new Point(1459, 1412);
+            btnSave.Location = new Point(1501, 1411);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(150, 46);
             btnSave.TabIndex = 0;
@@ -52,7 +52,7 @@
             // btnCancel
             // 
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(1303, 1412);
+            btnCancel.Location = new Point(1345, 1411);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(150, 46);
             btnCancel.TabIndex = 1;
@@ -66,7 +66,7 @@
             configCheckOptions1.Name = "configCheckOptions1";
             configCheckOptions1.OptionsTitle = "      Config Check Options";
             configCheckOptions1.ShowToggleButton = true;
-            configCheckOptions1.Size = new Size(473, 361);
+            configCheckOptions1.Size = new Size(515, 361);
             configCheckOptions1.TabIndex = 175;
             // 
             // configTextOptions1
@@ -76,17 +76,17 @@
             configTextOptions1.Name = "configTextOptions1";
             configTextOptions1.OptionsTitle = " Config Main Options";
             configTextOptions1.ShowToggleButton = false;
-            configTextOptions1.Size = new Size(1027, 307);
+            configTextOptions1.Size = new Size(1069, 307);
             configTextOptions1.TabIndex = 176;
             // 
             // configNumberOptions1
             // 
             configNumberOptions1.BackColor = SystemColors.ControlLight;
-            configNumberOptions1.Location = new Point(1095, 375);
+            configNumberOptions1.Location = new Point(1136, 375);
             configNumberOptions1.Name = "configNumberOptions1";
             configNumberOptions1.OptionsTitle = " Config Number Options";
             configNumberOptions1.ShowToggleButton = false;
-            configNumberOptions1.Size = new Size(514, 361);
+            configNumberOptions1.Size = new Size(515, 361);
             configNumberOptions1.TabIndex = 177;
             // 
             // realmOptions1
@@ -107,14 +107,14 @@
             manageRealm1.Name = "manageRealm1";
             manageRealm1.OptionsTitle = " Manage Realm";
             manageRealm1.ShowToggleButton = false;
-            manageRealm1.Size = new Size(1027, 611);
+            manageRealm1.Size = new Size(1069, 611);
             manageRealm1.TabIndex = 179;
             // 
             // FormPreferences
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1648, 1489);
+            ClientSize = new Size(1682, 1489);
             Controls.Add(manageRealm1);
             Controls.Add(realmOptions1);
             Controls.Add(configNumberOptions1);

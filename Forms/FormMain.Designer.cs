@@ -30,15 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             toolStripMain = new ToolStrip();
             tsbRefreshAuctionData = new ToolStripButton();
             tsbUpdateAllData = new ToolStripButton();
@@ -75,6 +66,7 @@
             tsbPreferences = new ToolStripButton();
             tsbTest = new ToolStripButton();
             tsbRefreshWoWProcesses = new ToolStripButton();
+            tsbWoWInteraction = new ToolStripButton();
             tsbActivate = new ToolStripButton();
             tsbLivePoll = new ToolStripButton();
             toolStripSeparator10 = new ToolStripSeparator();
@@ -123,19 +115,8 @@
             label9 = new Label();
             imgProfile48 = new ImageList(components);
             pnlAuctionData = new Panel();
-            chartTotalValue = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            chartTopSearches = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            chartTotalAuctions = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            lvAuctions = new ListView();
-            colSide = new ColumnHeader();
-            colItemName = new ColumnHeader();
-            colLevel = new ColumnHeader();
-            colSaleRate = new ColumnHeader();
-            colPerc = new ColumnHeader();
-            colBuyout = new ColumnHeader();
-            colRegion = new ColumnHeader();
-            colPetLv = new ColumnHeader();
-            colLatestXpac = new ColumnHeader();
+            charts1 = new Charts();
+            auctionsView1 = new AuctionsView();
             mainOptions1 = new MainOptions();
             itemClassOptions1 = new ItemClassOptions();
             qualityOptions1 = new QualityOptions();
@@ -145,15 +126,11 @@
             itemListOptions1 = new ItemListOptions(components);
             pbsExport1 = new PBSExport();
             realmOptions1 = new RealmOptions();
-            tsbWoWInteraction = new ToolStripButton();
             toolStripMain.SuspendLayout();
             panelRibbon.SuspendLayout();
             tssMain.SuspendLayout();
             pnlLists_Items.SuspendLayout();
             pnlAuctionData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chartTotalValue).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartTopSearches).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartTotalAuctions).BeginInit();
             SuspendLayout();
             // 
             // toolStripMain
@@ -490,6 +467,18 @@
             tsbRefreshWoWProcesses.Text = "Refresh Wow Processes";
             tsbRefreshWoWProcesses.Visible = false;
             tsbRefreshWoWProcesses.Click += tsbRefreshWoWProcesses_Click;
+            // 
+            // tsbWoWInteraction
+            // 
+            tsbWoWInteraction.Alignment = ToolStripItemAlignment.Right;
+            tsbWoWInteraction.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbWoWInteraction.Image = (Image)resources.GetObject("tsbWoWInteraction.Image");
+            tsbWoWInteraction.ImageTransparentColor = Color.Magenta;
+            tsbWoWInteraction.Name = "tsbWoWInteraction";
+            tsbWoWInteraction.Size = new Size(52, 52);
+            tsbWoWInteraction.Text = "Testing";
+            tsbWoWInteraction.Visible = false;
+            tsbWoWInteraction.Click += tsbWoWInteraction_Click;
             // 
             // tsbActivate
             // 
@@ -943,7 +932,7 @@
             tssMain.BackColor = Color.Brown;
             tssMain.ImageScalingSize = new Size(32, 32);
             tssMain.Items.AddRange(new ToolStripItem[] { tssProgress, tllProgress, tllNewVersion });
-            tssMain.Location = new Point(0, 1192);
+            tssMain.Location = new Point(0, 1979);
             tssMain.Name = "tssMain";
             tssMain.RenderMode = ToolStripRenderMode.Professional;
             tssMain.Size = new Size(3808, 50);
@@ -2130,133 +2119,29 @@
             // 
             // pnlAuctionData
             // 
-            pnlAuctionData.Controls.Add(chartTotalValue);
-            pnlAuctionData.Controls.Add(chartTopSearches);
-            pnlAuctionData.Controls.Add(chartTotalAuctions);
-            pnlAuctionData.Controls.Add(lvAuctions);
+            pnlAuctionData.Controls.Add(charts1);
+            pnlAuctionData.Controls.Add(auctionsView1);
             pnlAuctionData.Location = new Point(610, 484);
             pnlAuctionData.Name = "pnlAuctionData";
             pnlAuctionData.Size = new Size(2750, 1490);
             pnlAuctionData.TabIndex = 143;
             pnlAuctionData.Visible = false;
             // 
-            // chartTotalValue
+            // charts1
             // 
-            chartTotalValue.BackColor = SystemColors.Control;
-            chartArea4.Name = "ChartArea1";
-            chartTotalValue.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            chartTotalValue.Legends.Add(legend4);
-            chartTotalValue.Location = new Point(1506, 4);
-            chartTotalValue.Name = "chartTotalValue";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            chartTotalValue.Series.Add(series4);
-            chartTotalValue.Size = new Size(1100, 480);
-            chartTotalValue.TabIndex = 134;
-            chartTotalValue.Text = "chart1";
-            chartTotalValue.Visible = false;
+            charts1.Location = new Point(1520, 4);
+            charts1.Name = "charts1";
+            charts1.Size = new Size(1100, 1490);
+            charts1.TabIndex = 136;
+            charts1.Visible = false;
             // 
-            // chartTopSearches
+            // auctionsView1
             // 
-            chartTopSearches.BackColor = SystemColors.Control;
-            chartArea5.Name = "ChartArea1";
-            chartTopSearches.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            chartTopSearches.Legends.Add(legend5);
-            chartTopSearches.Location = new Point(1506, 503);
-            chartTopSearches.Name = "chartTopSearches";
-            chartTopSearches.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            chartTopSearches.Series.Add(series5);
-            chartTopSearches.Size = new Size(1100, 480);
-            chartTopSearches.TabIndex = 133;
-            chartTopSearches.Text = "chart2";
-            chartTopSearches.Visible = false;
-            // 
-            // chartTotalAuctions
-            // 
-            chartTotalAuctions.BackColor = SystemColors.Control;
-            chartArea6.Name = "ChartArea1";
-            chartTotalAuctions.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            chartTotalAuctions.Legends.Add(legend6);
-            chartTotalAuctions.Location = new Point(1506, 1011);
-            chartTotalAuctions.Name = "chartTotalAuctions";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            chartTotalAuctions.Series.Add(series6);
-            chartTotalAuctions.Size = new Size(1100, 480);
-            chartTotalAuctions.TabIndex = 132;
-            chartTotalAuctions.Tag = "";
-            chartTotalAuctions.Text = "chart1";
-            chartTotalAuctions.Visible = false;
-            // 
-            // lvAuctions
-            // 
-            lvAuctions.BackColor = SystemColors.Control;
-            lvAuctions.Columns.AddRange(new ColumnHeader[] { colSide, colItemName, colLevel, colSaleRate, colPerc, colBuyout, colRegion, colPetLv, colLatestXpac });
-            lvAuctions.Font = new Font("Segoe UI", 9F);
-            lvAuctions.FullRowSelect = true;
-            lvAuctions.Location = new Point(0, 0);
-            lvAuctions.Name = "lvAuctions";
-            lvAuctions.ShowItemToolTips = true;
-            lvAuctions.Size = new Size(1500, 1490);
-            lvAuctions.TabIndex = 101;
-            lvAuctions.UseCompatibleStateImageBehavior = false;
-            lvAuctions.View = View.Details;
-            lvAuctions.KeyPress += lvAuctions_KeyPress;
-            // 
-            // colSide
-            // 
-            colSide.Text = "";
-            colSide.Width = 40;
-            // 
-            // colItemName
-            // 
-            colItemName.Text = "Item Name";
-            colItemName.Width = 620;
-            // 
-            // colLevel
-            // 
-            colLevel.Text = "Level";
-            colLevel.Width = 80;
-            // 
-            // colSaleRate
-            // 
-            colSaleRate.Text = "Sale Rate";
-            colSaleRate.Width = 120;
-            // 
-            // colPerc
-            // 
-            colPerc.Text = "%";
-            colPerc.TextAlign = HorizontalAlignment.Right;
-            colPerc.Width = 120;
-            // 
-            // colBuyout
-            // 
-            colBuyout.Text = "Buyout";
-            colBuyout.TextAlign = HorizontalAlignment.Right;
-            colBuyout.Width = 170;
-            // 
-            // colRegion
-            // 
-            colRegion.Text = "Region Price";
-            colRegion.TextAlign = HorizontalAlignment.Right;
-            colRegion.Width = 150;
-            // 
-            // colPetLv
-            // 
-            colPetLv.Text = "Pet Lv";
-            colPetLv.Width = 90;
-            // 
-            // colLatestXpac
-            // 
-            colLatestXpac.Text = "LX";
+            auctionsView1.Location = new Point(0, 0);
+            auctionsView1.Name = "auctionsView1";
+            auctionsView1.Size = new Size(1500, 1490);
+            auctionsView1.TabIndex = 135;
+            auctionsView1.Visible = false;
             // 
             // mainOptions1
             // 
@@ -2298,7 +2183,7 @@
             bonusOptions1.Name = "bonusOptions1";
             bonusOptions1.OptionsTitle = "      Bonuses";
             bonusOptions1.ShowToggleButton = true;
-            bonusOptions1.Size = new Size(408, 331);
+            bonusOptions1.Size = new Size(561, 331);
             bonusOptions1.TabIndex = 152;
             bonusOptions1.Visible = false;
             // 
@@ -2357,30 +2242,17 @@
             realmOptions1.Name = "realmOptions1";
             realmOptions1.OptionsTitle = "      Realms";
             realmOptions1.ShowToggleButton = false;
-            realmOptions1.Size = new Size(500, 1700);
+            realmOptions1.Size = new Size(500, 1850);
             realmOptions1.TabIndex = 157;
             realmOptions1.Visible = false;
-            // 
-            // tsbWoWInteraction
-            // 
-            tsbWoWInteraction.Alignment = ToolStripItemAlignment.Right;
-            tsbWoWInteraction.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            tsbWoWInteraction.Image = (Image)resources.GetObject("tsbWoWInteraction.Image");
-            tsbWoWInteraction.ImageTransparentColor = Color.Magenta;
-            tsbWoWInteraction.Name = "tsbWoWInteraction";
-            tsbWoWInteraction.Size = new Size(52, 52);
-            tsbWoWInteraction.Text = "Testing";
-            tsbWoWInteraction.Visible = false;
-            tsbWoWInteraction.Click += tsbWoWInteraction_Click;
             // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(3808, 1242);
+            ClientSize = new Size(3808, 2029);
             Controls.Add(realmOptions1);
-            Controls.Add(pbsExport1);
             Controls.Add(itemListOptions1);
             Controls.Add(globalOptions1);
             Controls.Add(moreOptions1);
@@ -2393,6 +2265,7 @@
             Controls.Add(toolStripMain);
             Controls.Add(pnlAuctionData);
             Controls.Add(pnlLists_Items);
+            Controls.Add(pbsExport1);
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -2410,9 +2283,6 @@
             pnlLists_Items.ResumeLayout(false);
             pnlLists_Items.PerformLayout();
             pnlAuctionData.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)chartTotalValue).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartTopSearches).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartTotalAuctions).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -2502,19 +2372,6 @@
         private Button btnItemListSave;
         private ImageList imgProfile48;
         private Panel pnlAuctionData;
-        private ListView lvAuctions;
-        private ColumnHeader colSide;
-        private ColumnHeader colItemName;
-        private ColumnHeader colLevel;
-        private ColumnHeader colSaleRate;
-        private ColumnHeader colPerc;
-        private ColumnHeader colBuyout;
-        private ColumnHeader colRegion;
-        private ColumnHeader colPetLv;
-        private ColumnHeader colLatestXpac;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartTotalValue;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartTopSearches;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartTotalAuctions;
         private MainOptions mainOptions1;
         private ItemClassOptions itemClassOptions1;
         private QualityOptions qualityOptions1;
@@ -2527,5 +2384,7 @@
         private PBSExport pbsExport1;
         private RealmOptions realmOptions1;
         private ToolStripButton tsbWoWInteraction;
+        private AuctionsView auctionsView1;
+        private Charts charts1;
     }
 }

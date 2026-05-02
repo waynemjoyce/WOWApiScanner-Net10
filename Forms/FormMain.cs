@@ -12,13 +12,13 @@ namespace WOWAuctionApi_Net10
 {
     public partial class FormMain : Form
     {
-        public SearchLogic searchLogic = new SearchLogic();
         public TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
 
         AuctionEvent.AuctionRetrievedEventHandler auctionEventDelegate;
 
         public FormMain()
         {
+            this.DoubleBuffered = true;
             this.SuspendLayout();
             InitializeComponent();
             this.ResumeLayout(true);
@@ -30,7 +30,6 @@ namespace WOWAuctionApi_Net10
             tssMain.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             tllNewVersion.Text = $".Net Version {Environment.Version}   "
                 + $"Application Version {Assembly.GetExecutingAssembly().GetName().Version}";
-            auctionEventDelegate = new AuctionEvent.AuctionRetrievedEventHandler(AuctionEvent_AuctionRetrieved);
 
             SetupOptionsPanels();
             sc.UIOptions = UserInterfaceOptions.LoadFromFile();
@@ -60,9 +59,9 @@ namespace WOWAuctionApi_Net10
             SetAppColorMode();
             SetDisplayMode(DisplayMode.Auctions);
 
-            SetUpChart(chartTotalAuctions, "Top 5 Realms - Total Items On The Auction House", SeriesChartType.Column);
-            SetUpChart(chartTopSearches, "Top 10 Realms - Search Hits For This Search", SeriesChartType.Doughnut);
-            SetUpChart(chartTotalValue, "Top 5 Realms - Total Region Market Value For This Search", SeriesChartType.Bar);
+            auctionsView1.InitAuctionsView(realmOptions1, globalOptions1);
+
+            charts1.SetUpCharts();
 
             if (sc.Config.WowInteraction)
             {
@@ -81,7 +80,7 @@ namespace WOWAuctionApi_Net10
 
             if (sc.Config.RefreshAuctionsOnStart)
             {
-                LoadAuctionData();
+                auctionsView1.LoadAuctionData();
             }
         }
 
@@ -100,6 +99,8 @@ namespace WOWAuctionApi_Net10
             globalOptions1.Visible = true;
             realmOptions1.Visible = true;
             itemListOptions1.Visible = true;
+            charts1.Visible = true;
+            auctionsView1.Visible = true;
         }
 
         private void LoadItemList(ItemList itemList)
@@ -248,51 +249,7 @@ namespace WOWAuctionApi_Net10
         }
         private void tsbRefreshAuctionData_Click(object sender, EventArgs e)
         {
-            LoadAuctionData();
-        }
-        private void LoadAuctionData()
-        {
-            sc.AllRealmsAuctionTotal = 0;
-
-            if (!sc.LivePoll)
-            {
-                sc.Lists.TotalAuctionsCount.Clear();
-            }
-
-            foreach (Realm r in sc.Config.Realms)
-            {
-                if (realmOptions1.RealmChecked(r.RealmId.Value))
-                {
-                    Thread ProcessAuctionsThread = new Thread(() => ProcessAuctionsForRealm(r,
-                        sc.LivePoll, sc.Config.LivePollInterval.Value, sc.Config.Threshold.Value));
-
-                    ProcessAuctionsThread.SetApartmentState(ApartmentState.MTA);
-                    ProcessAuctionsThread.Start();
-                }
-            }
-        }
-
-        private void ProcessAuctionsForRealm(
-            Realm realm,
-            bool livePoll = false,
-            int livePollIntervalSeconds = 5,
-            int newDataThreshholdMinutes = 20)
-        {
-            AuctionEvent auctionEvent = new AuctionEvent();
-            auctionEvent.AuctionRetrieved += AuctionEvent_AuctionRetrieved;
-            auctionEvent.DoAuctionProcess(realm, newDataThreshholdMinutes, livePoll, livePollIntervalSeconds);
-        }
-
-        private void AuctionEvent_AuctionRetrieved(object sender, AuctionEventArgs e)
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(auctionEventDelegate, sender, e);
-            }
-            else
-            {
-                this.SetAuctionData(e.RealmId, e.Auctions, e.LastModified, e.RealmObject);
-            }
+            auctionsView1.LoadAuctionData();
         }
 
         private void WriteRegionData()
@@ -309,57 +266,6 @@ namespace WOWAuctionApi_Net10
                 tssProgress.Maximum);
             Application.DoEvents();
             Thread.Sleep(2000);
-        }
-
-        private void SetAuctionData(int realmId, AuctionFileContents afc, string lastModified, Realm realm)
-        {
-            sc.Lists.TotalAuctionsCount.Add(new RealmCount
-            {
-                RealmId = realm.RealmId.Value,
-                RealmName = realm.RealmName,
-                Count = afc.auctions.Count
-            });
-            sc.Dictionaries.RealmAuctions[realmId] = afc;
-            int newStatus = 2;
-
-            try
-            {
-                DateTime lastModifiedDate = DateTime.Parse(lastModified);
-                DateTime thresholdDate = DateTime.Now.AddMinutes(-globalOptions1.Threshold);
-
-                if (lastModifiedDate > thresholdDate)
-                {
-                    newStatus = 3;
-                }
-
-                realmOptions1.SetRealmStatus(realm, newStatus, lastModified, afc.auctions.Count);
-                if (sc.LivePoll)
-                {
-                    if (
-                        realmOptions1.RealmChecked(realm.RealmId.Value))
-                    {
-                        var searchResults = searchLogic.DoAuctionSearch(realm);
-
-                        if (searchResults != null)
-                        {
-                            RenderSearchResults(searchResults, realm, 1);
-                            sc.NumRealmsReturned += 1;
-
-                            sc.Lists.RealmSearchCount.Add(new RealmCount
-                            {
-                                RealmId = realm.RealmId.Value,
-                                RealmName = realm.RealmName,
-                                Count = searchResults.Count,
-                                TotalValue = searchResults.Sum(r => r.RegionMarket)
-                            });
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                //SetRealmStatus(connectedRealmId, 1, "ERROR", 0);
-            }
         }
 
         private void tsbWriteRegionData_Click(object sender, EventArgs e)
@@ -630,7 +536,7 @@ namespace WOWAuctionApi_Net10
             {
                 case DisplayMode.Auctions:
                 default:
-                    lvAuctions.Items.Clear();
+                    auctionsView1.ClearAuctions();
                     sc.Lists.RealmSearchCount.Clear();
                     break;
                 case DisplayMode.ItemsLists:
@@ -644,28 +550,30 @@ namespace WOWAuctionApi_Net10
             this.UIToSearchProfile();
 
 
-            searchLogic.Options = new SearchOptions();
-            searchLogic.Options.Main = UIHelper.GetControlCheckedList(mainOptions1);
-            searchLogic.Options.Class = UIHelper.GetControlCheckedList(itemClassOptions1);
-            searchLogic.Options.Quality = UIHelper.GetControlCheckedList(qualityOptions1);
-            searchLogic.Options.Bonuses = UIHelper.GetControlCheckedList(bonusOptions1);
+            sc.SearchLogic.Options = new SearchOptions();
+            sc.SearchLogic.Options.Main = UIHelper.GetControlCheckedList(mainOptions1);
+            sc.SearchLogic.Options.Class = UIHelper.GetControlCheckedList(itemClassOptions1);
+            sc.SearchLogic.Options.Quality = UIHelper.GetControlCheckedList(qualityOptions1);
+            sc.SearchLogic.Options.Bonuses = UIHelper.GetControlCheckedList(bonusOptions1);
 
-            searchLogic.Options.NewDataOnly = globalOptions1.NewDataOnly;
-            searchLogic.Options.LatestXpac = searchLogic.Options.Main.Contains("Latest Xpac");
-            searchLogic.Options.IncludeItems = searchLogic.Options.Main.Contains("Include Items");
-            searchLogic.Options.IncludePets = searchLogic.Options.Main.Contains("Include Pets");
-            searchLogic.Options.HasSockets = searchLogic.Options.Main.Contains("Socket");
-            searchLogic.Options.AtoZ = searchLogic.Options.Main.Contains("A to Z");
-            searchLogic.Options.UseStringFilter = (sc.CurrentProfile.StringFilter != "");
-            searchLogic.Options.StringFilter = sc.CurrentProfile.StringFilter;
+            sc.SearchLogic.Options.NewDataOnly = globalOptions1.NewDataOnly;
+            sc.SearchLogic.Options.LatestXpac = sc.SearchLogic.Options.Main.Contains("Latest Xpac");
+            sc.SearchLogic.Options.IncludeItems = sc.SearchLogic.Options.Main.Contains("Include Items");
+            sc.SearchLogic.Options.IncludePets = sc.SearchLogic.Options.Main.Contains("Include Pets");
+            sc.SearchLogic.Options.HasSockets = sc.SearchLogic.Options.Main.Contains("Socket");
+            sc.SearchLogic.Options.AtoZ = sc.SearchLogic.Options.Main.Contains("A to Z");
+            sc.SearchLogic.Options.IncludeBuyout = sc.SearchLogic.Options.Main.Contains("Include Buyout");
+            sc.SearchLogic.Options.IncludeBid = sc.SearchLogic.Options.Main.Contains("Include Bid");
+            sc.SearchLogic.Options.UseStringFilter = (sc.CurrentProfile.StringFilter != "");
+            sc.SearchLogic.Options.StringFilter = sc.CurrentProfile.StringFilter;
 
-            searchLogic.Options.FixedMaxG = (sc.CurrentProfile.SearchMaxG.Value * 10000);
-            searchLogic.Options.FixedWorthAtLeast = (sc.CurrentProfile.WorthAtLeast.Value * 10000);
-            searchLogic.Options.FixedSearchPercentage = (sc.CurrentProfile.SearchPercentage.Value / 100);
+            sc.SearchLogic.Options.FixedMaxG = (sc.CurrentProfile.SearchMaxG.Value * 10000);
+            sc.SearchLogic.Options.FixedWorthAtLeast = (sc.CurrentProfile.WorthAtLeast.Value * 10000);
+            sc.SearchLogic.Options.FixedSearchPercentage = (sc.CurrentProfile.SearchPercentage.Value / 100);
 
             if (sc.CurrentProfile.ListOption != 0)
             {
-                searchLogic.Options.CombinedSearchCache = GetCacheOfSearchLists();
+                sc.SearchLogic.Options.CombinedSearchCache = GetCacheOfSearchLists();
             }
         }
 
@@ -700,7 +608,8 @@ namespace WOWAuctionApi_Net10
             {
                 case DisplayMode.Auctions:
                 default:
-                    AuctionsSearch();
+                    auctionsView1.AuctionsSearch();
+                    charts1.RenderCharts();
                     break;
 
                 case DisplayMode.ItemsLists:
@@ -712,7 +621,7 @@ namespace WOWAuctionApi_Net10
         private void ItemsSearch()
         {
             lvItemsSearchResults.Items.Clear();
-            ItemCache searchResults = searchLogic.DoItemSearch(ItemsAsCacheCopy());
+            ItemCache searchResults = sc.SearchLogic.DoItemSearch(ItemsAsCacheCopy());
             RenderItemResults(searchResults, lvItemsSearchResults);
         }
 
@@ -757,274 +666,6 @@ namespace WOWAuctionApi_Net10
                 lvi.SubItems.Add(item.ClassName);
                 lvi.Tag = item;
                 viewToRender.Items.Add(lvi);
-            }
-        }
-
-        private void AuctionsSearch()
-        {
-
-            sc.LivePoll = false;
-            if (!realmOptions1.CheckAllRealmsHaveData())
-            {
-                MsgHelper.Error.RealmsNotLoaded();
-                return;
-            }
-
-
-            int count = 0;
-
-            foreach (Realm realm in sc.Config.Realms)
-            {
-                if (realmOptions1.RealmChecked(realm.RealmId.Value))
-                {
-                    if (searchLogic.Options.NewDataOnly == true
-                        && realm.Status != 2) { continue; }
-
-                    var searchResults = searchLogic.DoAuctionSearch(realm);
-
-                    if (searchResults != null)
-                    {
-                        RenderSearchResults(searchResults, realm, count);
-                        sc.AllRealmsAuctionTotal += searchResults.Count;
-                        sc.Lists.RealmSearchCount.Add(new RealmCount
-                        {
-                            RealmId = realm.RealmId.Value,
-                            RealmName = realm.RealmName,
-                            Count = searchResults.Count,
-                            TotalValue = searchResults.Sum(r => r.RegionMarket)
-                        });
-                    }
-                    count++;
-                }
-            }
-            RenderPieCharts();
-
-        }
-
-        private void SetUpChart(Chart chart1, String title, SeriesChartType chartType = SeriesChartType.Pie)
-        {
-
-            Color mainText;
-            if (sc.UIOptions.ColorMode == SystemColorMode.Dark)
-            {
-                mainText = Color.White;
-            }
-            else
-            {
-                mainText = Color.Black;
-            }
-            chart1.Titles.Add(title);
-            chart1.Titles[0].ForeColor = mainText;
-            chart1.Titles[0].Font = new System.Drawing.Font("Segoe UI", 10f, System.Drawing.FontStyle.Regular);
-            chart1.Titles[0].Docking = Docking.Top;
-
-
-            chart1.Series.Clear();
-            chart1.Legends.Clear();
-
-            Series taSeries = new Series();
-            taSeries.Name = "Series 1";
-            taSeries.IsXValueIndexed = true;
-            taSeries.ChartType = chartType;
-            taSeries.IsValueShownAsLabel = true;
-            taSeries.LabelForeColor = mainText;
-            taSeries.Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Regular);
-
-
-            if (chartType == SeriesChartType.Doughnut)
-            {
-                chart1.Legends.Add("");
-                chart1.Legends[0].Alignment = StringAlignment.Near;
-                chart1.Legends[0].Docking = Docking.Right;
-                chart1.Legends[0].BackColor = Color.Transparent;
-                chart1.Legends[0].ForeColor = mainText;
-                chart1.Legends[0].Font = new System.Drawing.Font("Segoe UI", 9f, System.Drawing.FontStyle.Regular);
-            }
-            else if (chartType == SeriesChartType.Bar)
-            {
-                taSeries.Color = Color.IndianRed;
-            }
-            else
-            {
-                taSeries.Color = Color.CornflowerBlue;
-            }
-
-            chart1.Series.Add(taSeries);
-            chart1.BackColor = Color.Transparent;
-            chart1.ChartAreas[0].BackColor = Color.Transparent;
-            chart1.BorderSkin.BackColor = Color.Transparent;
-            chart1.ChartAreas[0].BorderColor = Color.Transparent;
-            chart1.ChartAreas[0].AxisX.LabelStyle.ForeColor = mainText;
-            chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = mainText;
-            chart1.Visible = false;
-        }
-
-        private void RenderPieCharts()
-        {
-            //Render Top X Total Value
-            RenderChart(sc.Lists.RealmSearchCount, 5, chartTotalValue);
-
-            //Render Top 10 Search Hit Realms
-            RenderChart(sc.Lists.RealmSearchCount, 10, chartTopSearches);
-
-            //Render Top 5 Total Auctions
-            RenderChart(sc.Lists.TotalAuctionsCount, 5, chartTotalAuctions);
-        }
-
-        private void RenderChart(List<RealmCount> originalList, int realmCount, Chart chartToRender)
-        {
-            chartToRender.Visible = true;
-            chartToRender.Series[0].Points.Clear();
-            List<RealmCount> sortedList;
-
-            if (chartToRender.Name == "chartTotalValue")
-            {
-                sortedList = originalList
-                    .OrderByDescending(p => p.TotalValue)
-                    .Take(realmCount)
-                    .ToList();
-                int count = 0;
-                foreach (var realmInfo in sortedList)
-                {
-                    count++;
-                    if (count > realmCount) { break; }
-                    chartToRender.Series[0].Points.AddXY(realmInfo.RealmName, realmInfo.TotalValue / 10000);
-                }
-            }
-            else
-            {
-                sortedList = originalList
-                    .OrderByDescending(p => p.Count)
-                    .Take(realmCount)
-                    .ToList();
-                int count = 0;
-                foreach (var realmInfo in sortedList)
-                {
-                    count++;
-                    if (count > realmCount) { break; }
-                    chartToRender.Series[0].Points.AddXY(realmInfo.RealmName, realmInfo.Count);
-                }
-            }
-        }
-
-        private void RenderSearchResults(
-            List<SearchResult> searchResults,
-            Realm realm,
-            int count)
-        {
-            lvAuctions.SuspendLayout();
-            string currentRealm = "";
-            string toolTip = "";
-
-            foreach (SearchResult result in searchResults)
-            {
-                if (currentRealm != result.RealmName)
-                {
-                    currentRealm = result.RealmName;
-                    AddBlankSearchItem(realm, count);
-                }
-                float actualPercentage = (((float)result.Buyout / (float)result.RegionMarket) * 100);
-
-                // if (result.ItemId == 244497)
-                // {
-                //     MessageBox.Show(String.Join(", ", result.OriginalAuction.item.bonus_lists.Select(n => n.ToString())));
-                // }
-
-                ListViewItem lvi = new ListViewItem();
-                lvi.UseItemStyleForSubItems = false;
-                lvi.Text = " ";
-                lvi.BackColor = UIHelper.StringToColor(realm.BackColor);
-                lvi.Tag = result;
-                toolTip = $"{result.ItemId.ToString()}, {StrHelper.FormatLongN0(result.Buyout)}"
-                    + $", ItemLevel = ({result.Level.ToString()}) {result.Modifiers} {result.BonusLists}";
-                lvi.ToolTipText = toolTip;
-                //this.txtDebug.Text += toolTip + "\r\n";
-
-                if (result.Suffix != String.Empty)
-                {
-                    lvi.SubItems.Add(result.ItemName + " " + result.Suffix);
-                }
-                else
-                {
-                    lvi.SubItems.Add(result.ItemName);
-                }
-
-                lvi.SubItems[1].ForeColor = UIHelper.GetColorForQuality(result.Quality);
-
-                lvi.SubItems.Add(result.Level.ToString());
-
-                //Color code sale rate
-                lvi.SubItems.Add(result.SaleRate.ToString());
-                lvi.SubItems[3].ForeColor = GetColorForSellRate(result.SaleRate);
-
-                if (actualPercentage > 999.99f)
-                {
-                    actualPercentage = 999.99f;
-                }
-                lvi.SubItems.Add(actualPercentage.ToString("0.##") + "%");
-
-                lvi.SubItems.Add(StrHelper.FormatLongN0(result.Buyout)); //Buyout $
-                lvi.SubItems.Add(StrHelper.FormatLongN0(result.RegionMarket)); //Region $
-
-                lvi.SubItems.Add(result.PetLevel.ToString()); //Pet Level
-                if (result.PetLevel > 0)
-                {
-                    lvi.SubItems[7].ForeColor = UIHelper.GetColorForQuality(result.Quality);
-                }
-
-                lvi.SubItems.Add(LXItem(result.ItemId));
-                lvAuctions.Items.Add(lvi);
-            }
-            lvAuctions.ResumeLayout();
-        }
-
-        private string LXItem(long itemid)
-        {
-            if (itemid > sc.Config.LatestXpacItemId)
-            {
-                return "Y";
-            }
-            else
-            {
-                return " ";
-            }
-        }
-        private void AddBlankSearchItem(Realm realm, int count)
-        {
-            if (count > 0)
-            {
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = " ";
-                lvAuctions.Items.Add(lvi);
-            }
-
-            ListViewItem lvi2 = new ListViewItem();
-            lvi2.BackColor = UIHelper.StringToColor(realm.BackColor);
-            lvi2.ForeColor = Color.White;
-            lvi2.SubItems.Add(realm.RealmName);
-            lvAuctions.Items.Add(lvi2);
-        }
-
-        private Color GetColorForSellRate(float sellRate)
-        {
-            switch (sc.UIOptions.ColorMode)
-            {
-                case SystemColorMode.Classic:
-                    if (sellRate < 0.001) { return Color.DimGray; }
-                    else if (sellRate < 0.002) { return Color.DarkRed; }
-                    else if (sellRate < 0.010) { return Color.DarkGoldenrod; }
-                    else if (sellRate < 0.100) { return Color.MediumBlue; }
-                    else { return Color.Green; }
-                        ;
-                case SystemColorMode.Dark:
-                default:
-                    if (sellRate < 0.001) { return Color.LightGray; }
-                    else if (sellRate < 0.002) { return Color.Red; }
-                    else if (sellRate < 0.010) { return Color.Orange; }
-                    else if (sellRate < 0.100) { return Color.LightBlue; }
-                    else { return Color.LimeGreen; }
-                        ;
-
             }
         }
 
@@ -1101,34 +742,6 @@ namespace WOWAuctionApi_Net10
                 SortPetCache(sc.Config.SortCacheOrderDefault.Value);
             }
             Thread.Sleep(2000);
-        }
-
-        private void lvAuctions_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.ToUpper(e.KeyChar) == (char)Keys.C)
-            {
-                CopyItemToClipboard();
-            }
-
-            if (sc.Config.WowInteraction)
-            {
-                if (char.ToUpper(e.KeyChar) == (char)Keys.Z)
-                {
-                    CopyItemToClipboard();
-                    sc.WowBuyScript.ProcessScript();
-                }
-            }
-        }
-
-        private void lvAuctions_DoubleClick(object sender, EventArgs e)
-        {
-            CopyItemToClipboard();
-        }
-
-
-        private void CopyItemToClipboard()
-        {
-            Clipboard.SetText(lvAuctions.SelectedItems[0].SubItems[1].Text);
         }
 
         private void tsbTest_Click(object sender, EventArgs e)
@@ -1333,6 +946,7 @@ namespace WOWAuctionApi_Net10
         private void DeleteSearchProfile(SearchProfile profile)
         {
             sc.SearchProfiles.Profiles.Remove(profile);
+            sc.SearchProfiles.Save();
         }
 
         private void tsbDeleteSearch_Click(object sender, EventArgs e)
@@ -1428,7 +1042,7 @@ namespace WOWAuctionApi_Net10
         {
             sc.LivePoll = true;
             SearchInit();
-            LoadAuctionData();
+            auctionsView1.LoadAuctionData();
         }
 
         private void tslModeAuctions_Click(object sender, EventArgs e)

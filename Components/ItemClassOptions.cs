@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class ItemClassOptions : BaseOptions
+    public partial class ItemClassOptions : OptionsBase
     {
         public ItemClassOptions()
         {

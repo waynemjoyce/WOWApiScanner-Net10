@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WOWAuctionApi_Net10
 {
-    public partial class ConfigNumberOptions : BaseOptions
+    public partial class ConfigNumberOptions : OptionsBase
     {
         public ConfigNumberOptions()
         {
