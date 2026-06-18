@@ -10,7 +10,7 @@ namespace WOWAuctionApi_Net10
         public ListCount PetCache = new ListCount();
         public ListCount RegionItems = new ListCount();
 
-        public RealmCount Realm = new RealmCount(); 
+        public RealmCount RealmCount = new RealmCount(); 
     }
 
 
@@ -24,8 +24,10 @@ namespace WOWAuctionApi_Net10
     public class RealmCount
     {
         public int Count = 0;
-        public int RealmId = 0;
-        public string RealmName = "";
+        //public int RealmId = 0;
+        //public string RealmName = "";
         public long TotalValue = 0;
+        //public Color RealmColor = Color.White;
+        public Realm Realm = new Realm();
     }
 }

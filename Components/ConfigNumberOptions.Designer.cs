@@ -40,12 +40,21 @@
             numLatestXpacItemId = new NumericUpDown();
             numAuctionsCap = new NumericUpDown();
             numItemsSearchCap = new NumericUpDown();
+            numChartTotalAuctions = new NumericUpDown();
+            numChartSearchHits = new NumericUpDown();
+            numChartMarketValue = new NumericUpDown();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)numOnlyFirst).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numPollInterval).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numThreshold).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numLatestXpacItemId).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numAuctionsCap).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numItemsSearchCap).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numChartTotalAuctions).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numChartSearchHits).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numChartMarketValue).BeginInit();
             SuspendLayout();
             // 
             // label15
@@ -155,10 +164,70 @@
             numItemsSearchCap.Size = new Size(130, 39);
             numItemsSearchCap.TabIndex = 188;
             // 
+            // numChartTotalAuctions
+            // 
+            numChartTotalAuctions.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            numChartTotalAuctions.Location = new Point(258, 423);
+            numChartTotalAuctions.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            numChartTotalAuctions.Name = "numChartTotalAuctions";
+            numChartTotalAuctions.Size = new Size(130, 39);
+            numChartTotalAuctions.TabIndex = 194;
+            // 
+            // numChartSearchHits
+            // 
+            numChartSearchHits.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            numChartSearchHits.Location = new Point(258, 378);
+            numChartSearchHits.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            numChartSearchHits.Name = "numChartSearchHits";
+            numChartSearchHits.Size = new Size(130, 39);
+            numChartSearchHits.TabIndex = 193;
+            // 
+            // numChartMarketValue
+            // 
+            numChartMarketValue.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            numChartMarketValue.Location = new Point(258, 333);
+            numChartMarketValue.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            numChartMarketValue.Name = "numChartMarketValue";
+            numChartMarketValue.Size = new Size(130, 39);
+            numChartMarketValue.TabIndex = 192;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(22, 425);
+            label1.Name = "label1";
+            label1.Size = new Size(233, 32);
+            label1.TabIndex = 191;
+            label1.Text = "Chart: Total Auctions";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(22, 380);
+            label2.Name = "label2";
+            label2.Size = new Size(202, 32);
+            label2.TabIndex = 190;
+            label2.Text = "Chart: Search Hits";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(22, 335);
+            label3.Name = "label3";
+            label3.Size = new Size(223, 32);
+            label3.TabIndex = 189;
+            label3.Text = "Chart: Market Value";
+            // 
             // ConfigNumberOptions
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(numChartTotalAuctions);
+            Controls.Add(numChartSearchHits);
+            Controls.Add(numChartMarketValue);
+            Controls.Add(label1);
+            Controls.Add(label2);
+            Controls.Add(label3);
             Controls.Add(numItemsSearchCap);
             Controls.Add(numAuctionsCap);
             Controls.Add(numLatestXpacItemId);
@@ -174,7 +243,7 @@
             Name = "ConfigNumberOptions";
             OptionsTitle = " Config Number Options";
             ShowToggleButton = false;
-            Size = new Size(410, 354);
+            Size = new Size(410, 473);
             Controls.SetChildIndex(label11, 0);
             Controls.SetChildIndex(label12, 0);
             Controls.SetChildIndex(label14, 0);
@@ -187,12 +256,21 @@
             Controls.SetChildIndex(numLatestXpacItemId, 0);
             Controls.SetChildIndex(numAuctionsCap, 0);
             Controls.SetChildIndex(numItemsSearchCap, 0);
+            Controls.SetChildIndex(label3, 0);
+            Controls.SetChildIndex(label2, 0);
+            Controls.SetChildIndex(label1, 0);
+            Controls.SetChildIndex(numChartMarketValue, 0);
+            Controls.SetChildIndex(numChartSearchHits, 0);
+            Controls.SetChildIndex(numChartTotalAuctions, 0);
             ((System.ComponentModel.ISupportInitialize)numOnlyFirst).EndInit();
             ((System.ComponentModel.ISupportInitialize)numPollInterval).EndInit();
             ((System.ComponentModel.ISupportInitialize)numThreshold).EndInit();
             ((System.ComponentModel.ISupportInitialize)numLatestXpacItemId).EndInit();
             ((System.ComponentModel.ISupportInitialize)numAuctionsCap).EndInit();
             ((System.ComponentModel.ISupportInitialize)numItemsSearchCap).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numChartTotalAuctions).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numChartSearchHits).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numChartMarketValue).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -217,5 +295,11 @@
         private NumericUpDown numLatestXpacItemId;
         private NumericUpDown numAuctionsCap;
         private NumericUpDown numItemsSearchCap;
+        private NumericUpDown numChartTotalAuctions;
+        private NumericUpDown numChartSearchHits;
+        private NumericUpDown numChartMarketValue;
+        private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }

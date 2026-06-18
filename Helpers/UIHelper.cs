@@ -7,6 +7,20 @@ namespace WOWAuctionApi_Net10
 {
     public static class UIHelper
     {
+
+        public static void ShowPreferences(Realm selectedRealm)
+        {
+            FormPreferences frmPref = new FormPreferences();
+            frmPref.SelectedRealm = selectedRealm;
+            if (frmPref.ShowDialog() == DialogResult.OK)
+            {
+                Application.DoEvents();
+                sc.Config.Save();
+                Application.DoEvents();
+                Application.Restart();
+            }
+        }
+
         public static void SetControlBitwiseValue(Control hostControl, int bitwiseValue)
         {
             var checkedBoxes = hostControl.Controls.OfType<ToggleSlider>();

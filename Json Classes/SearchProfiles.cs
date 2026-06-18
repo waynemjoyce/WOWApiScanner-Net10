@@ -52,6 +52,8 @@ namespace WOWAuctionApi_Net10.Json_Classes
 
         public int? SearchFraction { get; set; }
 
+        public int? ChartFilter { get; set; }
+
         public long? MinItemLevel { get; set; }
         public long? MaxItemLevel { get; set; }
 

@@ -11,6 +11,9 @@ namespace WOWAuctionApi_Net10
 {
     public partial class Charts : ComponentBase
     {
+        public List<Realm> ShownRealms = new List<Realm>();
+        public string ChartFilter = "";
+
         public Charts()
         {
             InitializeComponent();
@@ -18,9 +21,9 @@ namespace WOWAuctionApi_Net10
 
         public void SetUpCharts()
         {
-            SetUpChart(chartTotalAuctions, "Top 5 Realms - Total Items On The Auction House", SeriesChartType.Column);
-            SetUpChart(chartTopSearches, "Top 10 Realms - Search Hits For This Search", SeriesChartType.Doughnut);
-            SetUpChart(chartTotalValue, "Top 5 Realms - Total Region Market Value For This Search", SeriesChartType.Bar);
+            SetUpChart(chartTotalAuctions, $"Top {sc.Config.ChartTotalAuctions} Realms - Total Items On The Auction House", SeriesChartType.Column);
+            SetUpChart(chartTopSearches, $"Top {sc.Config.ChartSearchHits} Realms - Search Hits For This Search", SeriesChartType.Column);
+            SetUpChart(chartTotalValue, $"Top {sc.Config.ChartMarketValue} Realms - Total Region Market Value For This Search", SeriesChartType.Column);
         }
 
         private void SetUpChart(Chart chart1, String title, SeriesChartType chartType = SeriesChartType.Pie)
@@ -83,14 +86,16 @@ namespace WOWAuctionApi_Net10
 
         public void RenderCharts()
         {
+            ShownRealms.Clear();
+
             //Render Top X Total Value
-            RenderChart(sc.Lists.RealmSearchCount, 5, chartTotalValue);
+            RenderChart(sc.Lists.RealmSearchCount, (int)sc.Config.ChartMarketValue, chartTotalValue);
 
-            //Render Top 10 Search Hit Realms
-            RenderChart(sc.Lists.RealmSearchCount, 10, chartTopSearches);
+            //Render Top X Search Hit Realms
+            RenderChart(sc.Lists.RealmSearchCount, (int)sc.Config.ChartSearchHits, chartTopSearches);
 
-            //Render Top 5 Total Auctions
-            RenderChart(sc.Lists.TotalAuctionsCount, 5, chartTotalAuctions);
+            //Render Top X Total Auctions
+            RenderChart(sc.Lists.TotalAuctionsCount, (int)sc.Config.ChartTotalAuctions, chartTotalAuctions);
         }
 
         private void RenderChart(List<RealmCount> originalList, int realmCount, Chart chartToRender)
@@ -99,34 +104,25 @@ namespace WOWAuctionApi_Net10
             chartToRender.Series[0].Points.Clear();
             List<RealmCount> sortedList;
 
-            if (chartToRender.Name == "chartTotalValue")
+            sortedList = originalList
+                .OrderByDescending(p => chartToRender.Name == "chartTotalValue" ? p.TotalValue : p.Count)
+                .Take(realmCount)
+                .ToList();
+
+            
+            int count = 0;
+            foreach (var realmInfo in sortedList)
             {
-                sortedList = originalList
-                    .OrderByDescending(p => p.TotalValue)
-                    .Take(realmCount)
-                    .OrderBy(p => p.TotalValue)
-                    .ToList();
-                int count = 0;
-                foreach (var realmInfo in sortedList)
+
+                count++;
+                if (count > realmCount) { break; }
+                int newPoint = chartToRender.Series[0].Points.AddXY(realmInfo.Realm.RealmName,
+                    chartToRender.Name == "chartTotalValue" ? realmInfo.TotalValue / 10000 : realmInfo.Count);
+                chartToRender.Series[0].Points[newPoint].Color = UIHelper.StringToColor(realmInfo.Realm.BackColor);
+
+                if (ChartFilter == chartToRender.Name)
                 {
-                    count++;
-                    if (count > realmCount) { break; }
-                    chartToRender.Series[0].Points.AddXY(realmInfo.RealmName, realmInfo.TotalValue / 10000);
-                }
-            }
-            else
-            {
-                sortedList = originalList
-                    .OrderByDescending(p => p.Count)
-                    .Take(realmCount)
-                    .OrderBy(p => p.TotalValue)
-                    .ToList();
-                int count = 0;
-                foreach (var realmInfo in sortedList)
-                {
-                    count++;
-                    if (count > realmCount) { break; }
-                    chartToRender.Series[0].Points.AddXY(realmInfo.RealmName, realmInfo.Count);
+                    ShownRealms.Add(realmInfo.Realm); 
                 }
             }
         }

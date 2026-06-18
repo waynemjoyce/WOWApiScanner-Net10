@@ -608,8 +608,7 @@ namespace WOWAuctionApi_Net10
             {
                 case DisplayMode.Auctions:
                 default:
-                    auctionsView1.AuctionsSearch();
-                    charts1.RenderCharts();
+                    auctionsView1.AuctionsSearch(charts1);
                     break;
 
                 case DisplayMode.ItemsLists:
@@ -1259,15 +1258,9 @@ namespace WOWAuctionApi_Net10
 
         private void tsbPreferences_Click(object sender, EventArgs e)
         {
-            FormPreferences frmPref = new FormPreferences();
-            if (frmPref.ShowDialog() == DialogResult.OK)
-            {
-                Application.DoEvents();
-                sc.Config.Save();
-                Application.DoEvents();
-                Application.Restart();
-            }
+            UIHelper.ShowPreferences(null);
         }
+
 
         private void tsbWoWInteraction_Click(object sender, EventArgs e)
         {

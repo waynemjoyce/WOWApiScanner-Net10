@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WOWAuctionApi_Net10
 {
@@ -14,10 +15,10 @@ namespace WOWAuctionApi_Net10
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ImageList SmallImageList
-        {  
-            get { return lvRealms.SmallImageList; } 
+        {
+            get { return lvRealms.SmallImageList; }
             set { lvRealms.SmallImageList = value; }
-        }  
+        }
 
         public event EventHandler<RealmEventArgs>? SelectedChanged;
 
@@ -59,7 +60,7 @@ namespace WOWAuctionApi_Net10
                 }
                 if (listItem.Checked)
                 {
-                    int numAuctions = int.Parse(listItem.SubItems[3].Text.Replace(",", ""));
+                    int numAuctions = int.Parse(listItem.SubItems[4].Text.Replace(",", ""));
 
                     if (numAuctions == 0)
                     {
@@ -72,19 +73,18 @@ namespace WOWAuctionApi_Net10
 
         public void LoadRealms()
         {
+            lvRealms.FullRowSelect = true;
             switch (ViewMode)
             {
                 case DisplayMode.Auctions:
                 default:
                     lvRealms.Columns[2].Text = "Modified";
-                    lvRealms.FullRowSelect = false;
                     btnToggleRealms.Visible = true;
                     OptionsTitle = "      Realms";
                     break;
                 case DisplayMode.Config:
                     lvRealms.Columns[0].Width = 0;
                     lvRealms.Columns[2].Text = "Realm Id";
-                    lvRealms.FullRowSelect = true;
                     btnToggleRealms.Visible = false;
                     OptionsTitle = " Realms";
                     break;
@@ -97,15 +97,24 @@ namespace WOWAuctionApi_Net10
                 ListViewItem lvi = new ListViewItem();
                 lvi.Text = "";
                 lvi.UseItemStyleForSubItems = false;
+                if (r.Flagged.Value == true)
+                {
+                    lvi.SubItems.Add("F");
+                }
+                else
+                {
+                    lvi.SubItems.Add("");
+                }
+
                 lvi.SubItems.Add(r.RealmName);
-                lvi.SubItems[1].BackColor = UIHelper.StringToColor(r.BackColor);
-                lvi.SubItems[1].ForeColor = Color.White;
-                lvi.SubItems.Add((ViewMode == DisplayMode.Auctions) ? "Stale" : r.RealmId.ToString());
                 lvi.SubItems[2].BackColor = UIHelper.StringToColor(r.BackColor);
                 lvi.SubItems[2].ForeColor = Color.White;
-                lvi.SubItems.Add("0");
+                lvi.SubItems.Add((ViewMode == DisplayMode.Auctions) ? "Stale" : r.RealmId.ToString());
                 lvi.SubItems[3].BackColor = UIHelper.StringToColor(r.BackColor);
                 lvi.SubItems[3].ForeColor = Color.White;
+                lvi.SubItems.Add("0");
+                lvi.SubItems[4].BackColor = UIHelper.StringToColor(r.BackColor);
+                lvi.SubItems[4].ForeColor = Color.White;
 
                 //Realm status
                 //0 Blue = live data not loaded
@@ -181,14 +190,52 @@ namespace WOWAuctionApi_Net10
 
                         if (lastModified != String.Empty)
                         {
-                            lvi.SubItems[2].Text = DateTime.Parse(lastModified).ToString("hh:mm:ss");
-                            lvi.SubItems[3].Text = auctionCount.ToString("N0");
+                            lvi.SubItems[3].Text = DateTime.Parse(lastModified).ToString("hh:mm:ss");
+                            lvi.SubItems[4].Text = auctionCount.ToString("N0");
                         }
                     }
                 }
 
             }
             lvRealms.ResumeLayout();
+        }
+
+        private void miEditRealm_Click(object sender, EventArgs e)
+        {
+            UIHelper.ShowPreferences(GetSelectedRealm());
+        }
+
+        private Realm GetSelectedRealm()
+        {
+            ListViewItem lvi = lvRealms.SelectedItems[0] as ListViewItem;
+            if (lvi != null)
+            {
+                return lvi.Tag as Realm;
+            }
+            return null;
+        }
+
+        private void miFlagRealm_Click(object sender, EventArgs e)
+        {
+            if (lvRealms.SelectedItems.Count > 0)
+            {
+                ListViewItem lvi = lvRealms.SelectedItems[0] as ListViewItem;
+                if (lvi != null)
+                {
+                    Realm selectedRealm = lvi.Tag as Realm;
+                    if (selectedRealm.Flagged.Value == false)
+                    {
+                        lvi.SubItems[1].Text = "F";
+                        selectedRealm.Flagged = true;
+                    }
+                    else
+                    {
+                        lvi.SubItems[1].Text = "";
+                        selectedRealm.Flagged = false;
+                    }
+                    sc.Config.Save();
+                }
+            }
         }
     }
 

@@ -41,7 +41,7 @@
             // btnSave
             // 
             btnSave.DialogResult = DialogResult.OK;
-            btnSave.Location = new Point(1501, 1411);
+            btnSave.Location = new Point(1501, 1648);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(150, 46);
             btnSave.TabIndex = 0;
@@ -52,7 +52,7 @@
             // btnCancel
             // 
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(1345, 1411);
+            btnCancel.Location = new Point(1345, 1648);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(150, 46);
             btnCancel.TabIndex = 1;
@@ -66,7 +66,7 @@
             configCheckOptions1.Name = "configCheckOptions1";
             configCheckOptions1.OptionsTitle = "      Config Check Options";
             configCheckOptions1.ShowToggleButton = true;
-            configCheckOptions1.Size = new Size(515, 361);
+            configCheckOptions1.Size = new Size(515, 599);
             configCheckOptions1.TabIndex = 175;
             // 
             // configTextOptions1
@@ -86,7 +86,7 @@
             configNumberOptions1.Name = "configNumberOptions1";
             configNumberOptions1.OptionsTitle = " Config Number Options";
             configNumberOptions1.ShowToggleButton = false;
-            configNumberOptions1.Size = new Size(515, 361);
+            configNumberOptions1.Size = new Size(515, 599);
             configNumberOptions1.TabIndex = 177;
             // 
             // realmOptions1
@@ -96,14 +96,14 @@
             realmOptions1.Name = "realmOptions1";
             realmOptions1.OptionsTitle = "      Realms";
             realmOptions1.ShowToggleButton = false;
-            realmOptions1.Size = new Size(495, 1345);
+            realmOptions1.Size = new Size(495, 1582);
             realmOptions1.TabIndex = 178;
             realmOptions1.SelectedChanged += realmOptions1_SelectedChanged;
             // 
             // manageRealm1
             // 
             manageRealm1.BackColor = SystemColors.ControlLight;
-            manageRealm1.Location = new Point(582, 770);
+            manageRealm1.Location = new Point(582, 1007);
             manageRealm1.Name = "manageRealm1";
             manageRealm1.OptionsTitle = " Manage Realm";
             manageRealm1.ShowToggleButton = false;
@@ -114,7 +114,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1682, 1489);
+            ClientSize = new Size(1682, 1729);
             Controls.Add(manageRealm1);
             Controls.Add(realmOptions1);
             Controls.Add(configNumberOptions1);

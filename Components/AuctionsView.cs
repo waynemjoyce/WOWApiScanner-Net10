@@ -36,8 +36,16 @@ namespace WOWAuctionApi_Net10
             Clipboard.SetText(lvAuctions.SelectedItems[0].SubItems[1].Text);
         }
 
-        public void AuctionsSearch()
+        public class SearchResultCount
         {
+            public List<SearchResult> SearchResults = new List<SearchResult>();
+            public Realm Realm = new Realm();
+            public int Count = 0;
+        }
+
+        public void AuctionsSearch(Charts chartsComponent)
+        {
+            List<SearchResultCount> searchResultCounts = new List<SearchResultCount>();    
 
             sc.LivePoll = false;
             if (!realmOptions.CheckAllRealmsHaveData())
@@ -46,9 +54,28 @@ namespace WOWAuctionApi_Net10
                 return;
             }
 
-
+            lvAuctions.Visible = false;
             int count = 0;
 
+            switch (sc.CurrentProfile.ChartFilter)
+            {
+                case 0:
+                default:
+                    chartsComponent.ChartFilter = "";
+                    break;
+                case 1:
+                    chartsComponent.ChartFilter = "chartTotalValue";
+                    break;
+                case 2:
+                    chartsComponent.ChartFilter = "chartTopSearches";
+                    break;
+                case 3:
+                    chartsComponent.ChartFilter = "chartTotalAuctions";
+                    break;
+
+            }
+
+            //Pass 1
             foreach (Realm realm in sc.Config.Realms)
             {
                 if (realmOptions.RealmChecked(realm.RealmId.Value))
@@ -60,12 +87,24 @@ namespace WOWAuctionApi_Net10
 
                     if (searchResults != null)
                     {
-                        RenderSearchResults(searchResults, realm, count);
+                        if (chartsComponent.ChartFilter == "")
+                        {
+                            RenderSearchResults(searchResults, realm, count);
+                        }
+                        else
+                        {
+                            searchResultCounts.Add(new SearchResultCount
+                            {
+                                SearchResults = searchResults,
+                                Realm = realm,
+                                Count = count
+                            });
+                        }
+
                         sc.AllRealmsAuctionTotal += searchResults.Count;
                         sc.Lists.RealmSearchCount.Add(new RealmCount
                         {
-                            RealmId = realm.RealmId.Value,
-                            RealmName = realm.RealmName,
+                            Realm = realm,
                             Count = searchResults.Count,
                             TotalValue = searchResults.Sum(r => r.RegionMarket)
                         });
@@ -73,8 +112,21 @@ namespace WOWAuctionApi_Net10
                     count++;
                 }
             }
+            
+            chartsComponent.RenderCharts();
+            
+            if (chartsComponent.ChartFilter != "")
+            {
+                foreach (Realm r in chartsComponent.ShownRealms)
+                {
+                    SearchResultCount src = searchResultCounts.Single(s => s.Realm.RealmId == r.RealmId);
+                    RenderSearchResults(src.SearchResults, src.Realm, src.Count);   
+                }
+            }
 
+            lvAuctions.Visible = true;
         }
+
         private void RenderSearchResults(
             List<SearchResult> searchResults,
             Realm realm,
@@ -149,8 +201,7 @@ namespace WOWAuctionApi_Net10
         {
             sc.Lists.TotalAuctionsCount.Add(new RealmCount
             {
-                RealmId = realm.RealmId.Value,
-                RealmName = realm.RealmName,
+                Realm = realm,
                 Count = afc.auctions.Count
             });
             sc.Dictionaries.RealmAuctions[realmId] = afc;
@@ -181,8 +232,7 @@ namespace WOWAuctionApi_Net10
 
                             sc.Lists.RealmSearchCount.Add(new RealmCount
                             {
-                                RealmId = realm.RealmId.Value,
-                                RealmName = realm.RealmName,
+                                Realm = realm,
                                 Count = searchResults.Count,
                                 TotalValue = searchResults.Sum(r => r.RegionMarket)
                             });

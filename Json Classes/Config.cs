@@ -19,7 +19,10 @@ namespace WOWAuctionApi_Net10
         public int? LivePollInterval { get; set; }
         public int? AuctionsCap { get; set; }
         public int? ItemsSearchCap { get; set; }
-        public int? Threshold { get; set; } 
+        public int? Threshold { get; set; }
+        public int? ChartMarketValue { get; set; }
+        public int? ChartSearchHits { get; set; }
+        public int? ChartTotalAuctions { get; set; }
         public List<Realm>? Realms { get; set; }
 
         [JsonIgnore]
@@ -68,6 +71,8 @@ namespace WOWAuctionApi_Net10
         public int? RealmId { get; set; }
 
         public string? BackColor { get; set; }
+
+        public bool? Flagged { get; set; }
     }
 
     public class ColorConverter : JsonConverter<Color>

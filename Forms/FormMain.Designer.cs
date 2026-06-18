@@ -141,7 +141,7 @@
             toolStripMain.Location = new Point(0, 0);
             toolStripMain.Name = "toolStripMain";
             toolStripMain.RenderMode = ToolStripRenderMode.Professional;
-            toolStripMain.Size = new Size(3808, 58);
+            toolStripMain.Size = new Size(3814, 58);
             toolStripMain.TabIndex = 5;
             toolStripMain.Text = "toolStripMain";
             // 
@@ -540,6 +540,7 @@
             imgStatus.Images.SetKeyName(1, "0034=u=nav_plain_red.png");
             imgStatus.Images.SetKeyName(2, "0007=u=nav_plain_yellow.png");
             imgStatus.Images.SetKeyName(3, "0033=u=nav_plain_green.png");
+            imgStatus.Images.SetKeyName(4, "red_flag.png");
             // 
             // imgColorMode
             // 
@@ -935,7 +936,7 @@
             tssMain.Location = new Point(0, 1979);
             tssMain.Name = "tssMain";
             tssMain.RenderMode = ToolStripRenderMode.Professional;
-            tssMain.Size = new Size(3808, 50);
+            tssMain.Size = new Size(3814, 50);
             tssMain.TabIndex = 132;
             tssMain.Text = "statusStrip1";
             // 
@@ -2242,7 +2243,7 @@
             realmOptions1.Name = "realmOptions1";
             realmOptions1.OptionsTitle = "      Realms";
             realmOptions1.ShowToggleButton = false;
-            realmOptions1.Size = new Size(500, 1850);
+            realmOptions1.Size = new Size(510, 1850);
             realmOptions1.TabIndex = 157;
             realmOptions1.Visible = false;
             // 
@@ -2251,7 +2252,7 @@
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(3808, 2029);
+            ClientSize = new Size(3814, 2029);
             Controls.Add(realmOptions1);
             Controls.Add(itemListOptions1);
             Controls.Add(globalOptions1);
