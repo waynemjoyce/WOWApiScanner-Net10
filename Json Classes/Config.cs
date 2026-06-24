@@ -11,6 +11,8 @@ namespace WOWAuctionApi_Net10
         public string? TSMKey { get; set; }
         public string? TSMClientID { get; set; }
         public string? DefaultSearch { get; set; }
+
+        public string? GlobalKeyboardHookChar { get; set; } 
         public int? OnlyFirst { get; set; }
         public long? LatestXpacItemId { get; set; }
         public SortDirection? SortCacheOrderDefault { get; set; }

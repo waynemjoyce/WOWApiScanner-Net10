@@ -38,6 +38,8 @@
             txtTSMKey = new TextBox();
             txtBlizzClientSecret = new TextBox();
             txtBlizzClientID = new TextBox();
+            label6 = new Label();
+            txtGlobalKeyboardHookChar = new TextBox();
             SuspendLayout();
             // 
             // cboDefaultSearch
@@ -127,10 +129,29 @@
             txtBlizzClientID.Size = new Size(458, 39);
             txtBlizzClientID.TabIndex = 131;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(22, 292);
+            label6.Name = "label6";
+            label6.Size = new Size(117, 32);
+            label6.TabIndex = 142;
+            label6.Text = "GKH Char";
+            // 
+            // txtGlobalKeyboardHookChar
+            // 
+            txtGlobalKeyboardHookChar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtGlobalKeyboardHookChar.Location = new Point(210, 290);
+            txtGlobalKeyboardHookChar.Name = "txtGlobalKeyboardHookChar";
+            txtGlobalKeyboardHookChar.Size = new Size(67, 39);
+            txtGlobalKeyboardHookChar.TabIndex = 141;
+            // 
             // ConfigTextOptions
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label6);
+            Controls.Add(txtGlobalKeyboardHookChar);
             Controls.Add(cboDefaultSearch);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -144,7 +165,7 @@
             Name = "ConfigTextOptions";
             OptionsTitle = " Config Main Options";
             ShowToggleButton = false;
-            Size = new Size(688, 304);
+            Size = new Size(688, 346);
             Controls.SetChildIndex(txtBlizzClientID, 0);
             Controls.SetChildIndex(txtBlizzClientSecret, 0);
             Controls.SetChildIndex(txtTSMKey, 0);
@@ -155,6 +176,8 @@
             Controls.SetChildIndex(label4, 0);
             Controls.SetChildIndex(label5, 0);
             Controls.SetChildIndex(cboDefaultSearch, 0);
+            Controls.SetChildIndex(txtGlobalKeyboardHookChar, 0);
+            Controls.SetChildIndex(label6, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -171,5 +194,7 @@
         private TextBox txtTSMKey;
         private TextBox txtBlizzClientSecret;
         private TextBox txtBlizzClientID;
+        private Label label6;
+        private TextBox txtGlobalKeyboardHookChar;
     }
 }

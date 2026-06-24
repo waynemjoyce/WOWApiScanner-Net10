@@ -1,10 +1,18 @@
-﻿using System;
+﻿using System.Windows.Input;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms;
+using static System.Windows.Forms.Design.AxImporter;
+
 
 namespace WOWAuctionApi_Net10
 {
@@ -22,7 +30,7 @@ namespace WOWAuctionApi_Net10
             Thread.Sleep(2000);
             this.txtX.Text = Cursor.Position.X.ToString();
             this.txtY.Text = Cursor.Position.Y.ToString();
-
+            Clipboard.SetText(this.txtX.Text + " " + this.txtY.Text);
         }
 
         private void btnMoveMouse_Click(object sender, EventArgs e)
@@ -63,5 +71,12 @@ namespace WOWAuctionApi_Net10
             InteractionScript postAuctions = InteractionScript.LoadFromFile("", "postauctions");
             postAuctions.ProcessScript();
         }
+
+        private void FormMouseTest_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

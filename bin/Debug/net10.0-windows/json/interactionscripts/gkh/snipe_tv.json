@@ -1,0 +1,53 @@
+{
+  "ScriptName": "gkh_snipe_tv",
+  "Events": [
+    {
+      "EventName": "Click item",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": -3471,
+      "Y": 576,
+      "DelayBefore": 0,
+      "DelayBetween": 25,
+      "DelayAfter": 100,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Buy",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": -4065,
+      "Y": 1155,
+      "DelayBefore": 0,
+      "DelayBetween": 25,
+      "DelayAfter": 400,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Buy now",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": -4232,
+      "Y": 852,
+      "DelayBefore": 0,
+      "DelayBetween": 25,
+      "DelayAfter": 300,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Refresh",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": -3177,
+      "Y": 495,
+      "DelayBefore": 0,
+      "DelayBetween": 25,
+      "DelayAfter": 250,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    }
+  ]
+}

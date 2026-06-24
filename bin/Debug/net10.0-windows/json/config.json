@@ -4,6 +4,7 @@
   "TSMKey": "A7iR0Pu0leO4Fl_lBjqZc1rl0GMt8ms8",
   "TSMClientID": "c260f00d-1071-409a-992f-dda2e5498536",
   "DefaultSearch": "All Midnight Deals",
+  "GlobalKeyboardHookChar": "B",
   "OnlyFirst": 0,
   "LatestXpacItemId": 236900,
   "SortCacheOrderDefault": "Descending",
@@ -26,30 +27,30 @@
       "RealmName": "Alleria",
       "RealmId": 52,
       "BackColor": "#660000",
-      "Flagged": false
+      "Flagged": true
     },
     {
       "RealmName": "Area 52",
       "RealmId": 3676,
       "BackColor": "#674EA6",
-      "Flagged": false
+      "Flagged": true
     },
     {
       "RealmName": "Black Dragonflight",
       "RealmId": 96,
-      "BackColor": "#434343",
+      "BackColor": "#171717",
       "Flagged": false
     },
     {
       "RealmName": "Bleeding Hollow",
       "RealmId": 73,
       "BackColor": "#990000",
-      "Flagged": false
+      "Flagged": true
     },
     {
       "RealmName": "Boulderfist",
       "RealmId": 1185,
-      "BackColor": "#6AA84F",
+      "BackColor": "#92827E",
       "Flagged": false
     },
     {
@@ -62,18 +63,18 @@
       "RealmName": "Dalaran",
       "RealmId": 3683,
       "BackColor": "#FD7800",
-      "Flagged": false
+      "Flagged": true
     },
     {
       "RealmName": "Dawnbringer",
       "RealmId": 160,
       "BackColor": "#A64D79",
-      "Flagged": false
+      "Flagged": true
     },
     {
       "RealmName": "Darrowmere",
       "RealmId": 113,
-      "BackColor": "#434343",
+      "BackColor": "#C384EA",
       "Flagged": false
     },
     {
@@ -104,7 +105,7 @@
       "RealmName": "Ghostlands",
       "RealmId": 1175,
       "BackColor": "#434343",
-      "Flagged": false
+      "Flagged": true
     },
     {
       "RealmName": "Hakkar",
@@ -121,7 +122,7 @@
     {
       "RealmName": "Illidan",
       "RealmId": 57,
-      "BackColor": "#DBA40A",
+      "BackColor": "#836206",
       "Flagged": false
     },
     {
@@ -151,8 +152,8 @@
     {
       "RealmName": "Mal\u0027Ganis",
       "RealmId": 3684,
-      "BackColor": "#FD7800",
-      "Flagged": false
+      "BackColor": "#843D00",
+      "Flagged": true
     },
     {
       "RealmName": "Moon Guard",
@@ -164,7 +165,7 @@
       "RealmName": "Nazjatar",
       "RealmId": 77,
       "BackColor": "#853E22",
-      "Flagged": false
+      "Flagged": true
     },
     {
       "RealmName": "Nordrassil",
@@ -193,13 +194,13 @@
     {
       "RealmName": "Sargeras",
       "RealmId": 76,
-      "BackColor": "#6AA84F",
+      "BackColor": "#030A48",
       "Flagged": false
     },
     {
       "RealmName": "Silvermoon",
       "RealmId": 86,
-      "BackColor": "#FD7800",
+      "BackColor": "#C7C7C7",
       "Flagged": false
     },
     {
@@ -229,7 +230,7 @@
     {
       "RealmName": "Vashj",
       "RealmId": 127,
-      "BackColor": "#434343",
+      "BackColor": "#8F3EC0",
       "Flagged": false
     },
     {

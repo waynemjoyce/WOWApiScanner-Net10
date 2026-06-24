@@ -187,6 +187,7 @@
             txtSearchStringFilter.Name = "txtSearchStringFilter";
             txtSearchStringFilter.Size = new Size(577, 39);
             txtSearchStringFilter.TabIndex = 141;
+            txtSearchStringFilter.KeyDown += txtSearchStringFilter_KeyDown;
             // 
             // MoreOptions
             // 

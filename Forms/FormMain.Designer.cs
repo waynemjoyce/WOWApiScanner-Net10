@@ -72,6 +72,8 @@
             toolStripSeparator10 = new ToolStripSeparator();
             tsbNewSearch = new ToolStripButton();
             toolStripSeparator8 = new ToolStripSeparator();
+            tsbAllowGKH = new ToolStripButton();
+            tscGKHList = new ToolStripComboBox();
             toolStripSeparator9 = new ToolStripSeparator();
             imgStatus = new ImageList(components);
             imgColorMode = new ImageList(components);
@@ -137,7 +139,7 @@
             // 
             toolStripMain.BackColor = SystemColors.Control;
             toolStripMain.ImageScalingSize = new Size(48, 48);
-            toolStripMain.Items.AddRange(new ToolStripItem[] { tsbRefreshAuctionData, tsbUpdateAllData, toolStripSeparator7, tsbWriteRegionData, toolStripSeparator5, tsddItemCache, toolStripSeparator6, tsddPets, toolStripSeparator2, tsbThemeLight, tsbThemeDark, toolStripSeparator3, tslModeAuctions, tslModeLists, toolStripSeparator1, toolStripSeparator4, tslCurrentProfile, tsbSaveSearch, tsbSaveSearchAs, tsbRenameSearch, tsbDeleteSearch, tsbSearchDefault, tsbSearch, tsbRefreshAuctionData2, tsbPreferences, tsbTest, tsbRefreshWoWProcesses, tsbWoWInteraction, tsbActivate, tsbLivePoll, toolStripSeparator10, tsbNewSearch, toolStripSeparator8, toolStripSeparator9 });
+            toolStripMain.Items.AddRange(new ToolStripItem[] { tsbRefreshAuctionData, tsbUpdateAllData, toolStripSeparator7, tsbWriteRegionData, toolStripSeparator5, tsddItemCache, toolStripSeparator6, tsddPets, toolStripSeparator2, tsbThemeLight, tsbThemeDark, toolStripSeparator3, tslModeAuctions, tslModeLists, toolStripSeparator1, toolStripSeparator4, tslCurrentProfile, tsbSaveSearch, tsbSaveSearchAs, tsbRenameSearch, tsbDeleteSearch, tsbSearchDefault, tsbSearch, tsbRefreshAuctionData2, tsbPreferences, tsbTest, tsbRefreshWoWProcesses, tsbWoWInteraction, tsbActivate, tsbLivePoll, toolStripSeparator10, tsbNewSearch, toolStripSeparator8, tsbAllowGKH, tscGKHList, toolStripSeparator9 });
             toolStripMain.Location = new Point(0, 0);
             toolStripMain.Name = "toolStripMain";
             toolStripMain.RenderMode = ToolStripRenderMode.Professional;
@@ -525,6 +527,22 @@
             toolStripSeparator8.Name = "toolStripSeparator8";
             toolStripSeparator8.Size = new Size(30, 58);
             // 
+            // tsbAllowGKH
+            // 
+            tsbAllowGKH.CheckOnClick = true;
+            tsbAllowGKH.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbAllowGKH.Image = (Image)resources.GetObject("tsbAllowGKH.Image");
+            tsbAllowGKH.ImageTransparentColor = Color.Magenta;
+            tsbAllowGKH.Name = "tsbAllowGKH";
+            tsbAllowGKH.Size = new Size(52, 52);
+            tsbAllowGKH.ToolTipText = "Enable Global Keyboard Handler";
+            tsbAllowGKH.Click += tsbAllowGKH_Click;
+            // 
+            // tscGKHList
+            // 
+            tscGKHList.Name = "tscGKHList";
+            tscGKHList.Size = new Size(200, 58);
+            // 
             // toolStripSeparator9
             // 
             toolStripSeparator9.AutoSize = false;
@@ -892,7 +910,7 @@
             // 
             tslQuickSearches.AutoSize = true;
             tslQuickSearches.Font = new Font("Segoe UI", 9F);
-            tslQuickSearches.Location = new Point(1796, 7);
+            tslQuickSearches.Location = new Point(2060, 7);
             tslQuickSearches.Name = "tslQuickSearches";
             tslQuickSearches.Size = new Size(196, 32);
             tslQuickSearches.TabIndex = 5;
@@ -2198,6 +2216,7 @@
             moreOptions1.Size = new Size(750, 331);
             moreOptions1.TabIndex = 153;
             moreOptions1.Visible = false;
+            moreOptions1.FilterStringEnterPressed += moreOptions1_FilterStringEnterPressed;
             // 
             // globalOptions1
             // 
@@ -2387,5 +2406,7 @@
         private ToolStripButton tsbWoWInteraction;
         private AuctionsView auctionsView1;
         private Charts charts1;
+        private ToolStripButton tsbAllowGKH;
+        private ToolStripComboBox tscGKHList;
     }
 }

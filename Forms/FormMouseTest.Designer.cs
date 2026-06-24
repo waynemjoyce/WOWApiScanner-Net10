@@ -187,6 +187,7 @@
             Name = "FormMouseTest";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Mouse Events Test Form";
+            Load += FormMouseTest_Load;
             ResumeLayout(false);
             PerformLayout();
         }

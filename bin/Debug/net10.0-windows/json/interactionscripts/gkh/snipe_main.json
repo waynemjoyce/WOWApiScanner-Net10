@@ -1,0 +1,53 @@
+{
+  "ScriptName": "snipe_main",
+  "Events": [
+    {
+      "EventName": "Click item",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 1345,
+      "Y": 471,
+      "DelayBefore": 0,
+      "DelayBetween": 25,
+      "DelayAfter": 100,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Buy",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 839,
+      "Y": 974,
+      "DelayBefore": 0,
+      "DelayBetween": 25,
+      "DelayAfter": 400,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Buy now",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 756,
+      "Y": 705,
+      "DelayBefore": 0,
+      "DelayBetween": 25,
+      "DelayAfter": 300,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Refresh",
+      "EventType": "MouseMoveAndClick",
+      "MouseClickType": "Left",
+      "X": 1621,
+      "Y": 412,
+      "DelayBefore": 0,
+      "DelayBetween": 25,
+      "DelayAfter": 250,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    }
+  ]
+}

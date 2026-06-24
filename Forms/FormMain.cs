@@ -3,9 +3,11 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Net.Http.Headers;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms.DataVisualization.Charting;
 using WOWAuctionApi_Net10.Forms;
 using WOWAuctionApi_Net10.Json_Classes;
+using static System.Windows.Forms.Design.AxImporter;
 using static WOWAuctionApi_Net10.UserInterfaceOptions;
 
 namespace WOWAuctionApi_Net10
@@ -13,6 +15,7 @@ namespace WOWAuctionApi_Net10
     public partial class FormMain : Form
     {
         public TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+        public GlobalKeyboardHook gkh;
 
         AuctionEvent.AuctionRetrievedEventHandler auctionEventDelegate;
 
@@ -22,6 +25,41 @@ namespace WOWAuctionApi_Net10
             this.SuspendLayout();
             InitializeComponent();
             this.ResumeLayout(true);
+        }
+
+        private void PopulateGKHList()
+        {
+            List<string> fileNames = Directory.EnumerateFiles($"{sc.Paths.InteractionScripts}/gkh")
+                                  .Select(Path.GetFileNameWithoutExtension)
+                                  .ToList();
+            this.tscGKHList.Items.Clear();
+            foreach (string gkhFile in fileNames)
+            {
+                tscGKHList.Items.Add(gkhFile);
+            }
+            if (tscGKHList.Items.Count > 0)
+            {
+                tscGKHList.SelectedIndex = 0;
+            }
+        }
+
+        private void gkh_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void gkh_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (this.tsbAllowGKH.Checked)
+            {
+                //Power keys scripts must start PK - this is to avoid accidentally running a main looping
+                //script since this is NOT in its own thread and we can't terminate it with ALT+c
+                string fileName = $@"{sc.Paths.InteractionScripts}gkh\{tscGKHList.SelectedItem}.json";      
+                InteractionScript gkhAction = InteractionScript.LoadFromFile(fileName);
+                gkhAction.ProcessScript();
+            }
+
+            e.Handled = true;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -41,6 +79,7 @@ namespace WOWAuctionApi_Net10
             LoadRegionData();
             LoadItemCache();
             LoadPetCache();
+            PopulateGKHList();
 
             sc.Dictionaries.CrypticBonuses = CrypticBonuses.Load();
             sc.ItemData = ItemData.Load();
@@ -1268,6 +1307,41 @@ namespace WOWAuctionApi_Net10
             frmWow.ShowDialog();
 
 
+        }
+
+        private void moreOptions1_FilterStringEnterPressed(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private Keys KeysFromString(string keyString)
+        {
+            // The second parameter 'true' ignores case sensitivity
+            if (Enum.TryParse<Keys>(keyString, true, out Keys result))
+            {
+                // Successfully parsed
+                return result;   
+            }
+            else
+            {
+                // Handle invalid key string
+                return Keys.Space;
+            }
+        }
+
+        private void tsbAllowGKH_Click(object sender, EventArgs e)
+        {
+            if (tsbAllowGKH.Checked)
+            {
+                gkh = new GlobalKeyboardHook();
+                gkh.HookedKeys.Add(KeysFromString(sc.Config.GlobalKeyboardHookChar));
+                gkh.KeyDown += new System.Windows.Forms.KeyEventHandler(gkh_KeyDown);
+                gkh.KeyUp += new System.Windows.Forms.KeyEventHandler(gkh_KeyUp);
+            }
+            else
+            {
+                gkh.unhook();
+            }   
         }
 
         public enum BuyPriceSelectType

@@ -21,7 +21,7 @@
       "Quality": 127,
       "Bonuses": 0,
       "Lists": [
-        "James"
+        "Snipe List 1"
       ],
       "ListOption": 0
     },
@@ -74,8 +74,8 @@
     {
       "ProfileName": "Small Value",
       "SearchMaxG": 98,
-      "WorthAtLeast": 12000,
-      "SearchPercentage": 5,
+      "WorthAtLeast": 10000,
+      "SearchPercentage": 100,
       "MinSellRate": -1,
       "IconIndex": 17,
       "SearchFrequency": 0,
@@ -89,10 +89,10 @@
       "StringFilter": "",
       "MainOptions": 54,
       "Class": 8191,
-      "Quality": 28,
+      "Quality": 124,
       "Bonuses": 0,
       "Lists": [
-        "Midnight Plans"
+        "Snipe List 1"
       ],
       "ListOption": 0
     },
@@ -219,6 +219,31 @@
         "James"
       ],
       "ListOption": 0
+    },
+    {
+      "ProfileName": "Snipe List 1",
+      "SearchMaxG": 100,
+      "WorthAtLeast": 10000,
+      "SearchPercentage": 100,
+      "MinSellRate": -1,
+      "IconIndex": 825,
+      "SearchFrequency": 0,
+      "SearchFraction": 0,
+      "ChartFilter": 0,
+      "MinItemLevel": 0,
+      "MaxItemLevel": 9999,
+      "MinCharLevel": 0,
+      "MaxCharLevel": 80,
+      "Threshold": null,
+      "StringFilter": "",
+      "MainOptions": 54,
+      "Class": 8191,
+      "Quality": 127,
+      "Bonuses": 0,
+      "Lists": [
+        "Snipe List 1"
+      ],
+      "ListOption": 2
     }
   ]
 }

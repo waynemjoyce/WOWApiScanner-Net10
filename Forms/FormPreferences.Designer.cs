@@ -62,11 +62,11 @@
             // configCheckOptions1
             // 
             configCheckOptions1.BackColor = SystemColors.ControlLight;
-            configCheckOptions1.Location = new Point(582, 375);
+            configCheckOptions1.Location = new Point(582, 452);
             configCheckOptions1.Name = "configCheckOptions1";
             configCheckOptions1.OptionsTitle = "      Config Check Options";
             configCheckOptions1.ShowToggleButton = true;
-            configCheckOptions1.Size = new Size(515, 599);
+            configCheckOptions1.Size = new Size(515, 522);
             configCheckOptions1.TabIndex = 175;
             // 
             // configTextOptions1
@@ -76,17 +76,17 @@
             configTextOptions1.Name = "configTextOptions1";
             configTextOptions1.OptionsTitle = " Config Main Options";
             configTextOptions1.ShowToggleButton = false;
-            configTextOptions1.Size = new Size(1069, 307);
+            configTextOptions1.Size = new Size(1069, 384);
             configTextOptions1.TabIndex = 176;
             // 
             // configNumberOptions1
             // 
             configNumberOptions1.BackColor = SystemColors.ControlLight;
-            configNumberOptions1.Location = new Point(1136, 375);
+            configNumberOptions1.Location = new Point(1136, 458);
             configNumberOptions1.Name = "configNumberOptions1";
             configNumberOptions1.OptionsTitle = " Config Number Options";
             configNumberOptions1.ShowToggleButton = false;
-            configNumberOptions1.Size = new Size(515, 599);
+            configNumberOptions1.Size = new Size(515, 516);
             configNumberOptions1.TabIndex = 177;
             // 
             // realmOptions1

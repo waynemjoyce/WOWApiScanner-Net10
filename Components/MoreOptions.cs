@@ -10,6 +10,8 @@ namespace WOWAuctionApi_Net10
 {
     public partial class MoreOptions : OptionsBase
     {
+        public event EventHandler? FilterStringEnterPressed;
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ShowSuboptions
         {
@@ -45,13 +47,30 @@ namespace WOWAuctionApi_Net10
             if (this.rbChartTotalValue.Checked) { sc.CurrentProfile.ChartFilter = 1; }
             if (this.rbChartSearchHits.Checked) { sc.CurrentProfile.ChartFilter = 2; }
             if (this.rbChartTotalAuctions.Checked) { sc.CurrentProfile.ChartFilter = 3; }
-        }   
+        }
 
         private void MoreOptions_Load(object sender, EventArgs e)
         {
             rbChartTotalValue.Text = $"Top {sc.Config.ChartMarketValue} Realms Total Value";
             rbChartSearchHits.Text = $"Top {sc.Config.ChartSearchHits} Realms Search Hits";
             rbChartTotalAuctions.Text = $"Top {sc.Config.ChartTotalAuctions} Realms Total Auctions";
+        }
+
+        private void txtSearchStringFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Suppress the default beep sound and handling
+                e.SuppressKeyPress = true;
+
+                // Execute your logic here
+                OnFilterStringEnterPressed(EventArgs.Empty);
+            }
+        }
+
+        protected virtual void OnFilterStringEnterPressed(EventArgs e)
+        {
+            FilterStringEnterPressed?.Invoke(this, e);
         }
     }
 }

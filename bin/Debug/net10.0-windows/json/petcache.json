@@ -16463,6 +16463,42 @@
       "IsHordeOnly": false,
       "Description": "The grand horns of these beasts spark jealousy in other horned grazing animals.",
       "Source": null
+    },
+    {
+      "Id": 5007,
+      "Name": "Akiki",
+      "BattlePetType": "Beast",
+      "IsTradable": false,
+      "IsBattlePet": false,
+      "IsCapturable": false,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "This eagle was a favored companion of Kinduru\u0027s during his travels through Zul\u0027Aman.",
+      "Source": null
+    },
+    {
+      "Id": 4949,
+      "Name": "Shadowflame Remnant",
+      "BattlePetType": "Elemental",
+      "IsTradable": false,
+      "IsBattlePet": true,
+      "IsCapturable": false,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "A lingering remnant of Fryakk\u0027s attempt at corrupting Amirdrassil.",
+      "Source": null
+    },
+    {
+      "Id": 4459,
+      "Name": "Moss Skipper",
+      "BattlePetType": "Aquatic",
+      "IsTradable": false,
+      "IsBattlePet": true,
+      "IsCapturable": false,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "Finally caught a blind cave skipper. He flopped helplessly for twenty minutes and then let out a burp. Great companion he is!",
+      "Source": null
     }
   ]
 }

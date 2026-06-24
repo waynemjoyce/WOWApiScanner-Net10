@@ -23,6 +23,7 @@ namespace WOWAuctionApi_Net10
             sc.Config.TSMKey = txtTSMKey.Text;
             sc.Config.TSMClientID = txtTSMClientID.Text;
             sc.Config.DefaultSearch = cboDefaultSearch.Text;
+            sc.Config.GlobalKeyboardHookChar = txtGlobalKeyboardHookChar.Text;  
         }
 
         public void LoadFromConfig()
@@ -31,6 +32,7 @@ namespace WOWAuctionApi_Net10
             txtBlizzClientSecret.Text = sc.Config.BlizzClientSecret;
             txtTSMKey.Text = sc.Config.TSMKey;
             txtTSMClientID.Text = sc.Config.TSMClientID;
+            txtGlobalKeyboardHookChar.Text = sc.Config.GlobalKeyboardHookChar;  
 
             foreach (SearchProfile profile in sc.SearchProfiles.Profiles)
             {
