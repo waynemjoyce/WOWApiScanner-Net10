@@ -5,7 +5,7 @@ World Of Warcraft API Auction Scanner - completely re-written in .Net 10 /  C# 1
 
 ![Version 1.6.0 Lists View](Screenshots/1.6.0%20-%20Lists%20View.png?v=1)
 
-![Version 1.6.0 Preferences](Screenshots/1.6.0%20-Preferences.png?v=1)
+![Version 1.6.0 Preferences](Screenshots/1.6.0%20-%20Preferences.png?v=1)
 
 Brief overview of improvements in this new version:
 - Completely re-written in .Net 10 / C# 14
