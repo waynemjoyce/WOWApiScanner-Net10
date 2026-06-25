@@ -52,14 +52,18 @@ namespace WOWAuctionApi_Net10
         {
             if (this.tsbAllowGKH.Checked)
             {
-                //Power keys scripts must start PK - this is to avoid accidentally running a main looping
-                //script since this is NOT in its own thread and we can't terminate it with ALT+c
-                string fileName = $@"{sc.Paths.InteractionScripts}gkh\{tscGKHList.SelectedItem}.json";      
-                InteractionScript gkhAction = InteractionScript.LoadFromFile(fileName);
-                gkhAction.ProcessScript();
+                Process? activeApp = FocusDetector.GetFocusedApplication();
+                if (activeApp != null)
+                {
+                    if (activeApp.ProcessName == "Wow")
+                    {
+                        string fileName = $@"{sc.Paths.InteractionScripts}gkh\{tscGKHList.SelectedItem}.json";
+                        InteractionScript gkhAction = InteractionScript.LoadFromFile(fileName);
+                        gkhAction.ProcessScript();
+                        e.Handled = true;
+                    }
+                }
             }
-
-            e.Handled = true;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
