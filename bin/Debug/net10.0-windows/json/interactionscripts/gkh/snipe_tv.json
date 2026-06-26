@@ -4,6 +4,7 @@
     {
       "EventName": "Click item",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -3471,
       "Y": 576,
@@ -16,6 +17,7 @@
     {
       "EventName": "Buy",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -4065,
       "Y": 1155,
@@ -28,6 +30,7 @@
     {
       "EventName": "Buy now",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -4232,
       "Y": 852,
@@ -40,6 +43,7 @@
     {
       "EventName": "Refresh",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -3177,
       "Y": 495,

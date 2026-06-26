@@ -68,24 +68,19 @@ namespace WOWAuctionApi_Net10
 
         public static void Move(
             int x, 
-            int y,
-            int delayBefore = 100,
-            int delayAfter = 100)
+            int y)
         {
-            MoveAndClick(x, y, null, delayBefore, 0, delayAfter);
+            MoveAndClick(x, y, null, 0);
         }
 
         public static void MoveAndClick(
             int x, 
             int y,
             InteractionMouseClickType? clickType,
-            int delayBefore = 100,
             int delayBetween = 100,
-            int delayAfter = 100,
             int numClicks = 1
             )
         {
-            Thread.Sleep(delayBefore);
             SetCursorPos(x, y);
             for (int i = 0; i < numClicks; i++)
             {
@@ -102,8 +97,6 @@ namespace WOWAuctionApi_Net10
                     }
                 }
             }
-
-            Thread.Sleep(delayAfter);
         }
 
         public static void DoLeftClick()

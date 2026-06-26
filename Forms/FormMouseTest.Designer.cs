@@ -41,6 +41,8 @@
             textBox1 = new TextBox();
             button2 = new Button();
             btnPostAuctions = new Button();
+            txtInteractionScript = new TextBox();
+            btnRunScript = new Button();
             SuspendLayout();
             // 
             // txtX
@@ -164,11 +166,31 @@
             btnPostAuctions.UseVisualStyleBackColor = true;
             btnPostAuctions.Click += btnPostAuctions_Click;
             // 
+            // txtInteractionScript
+            // 
+            txtInteractionScript.Location = new Point(332, 583);
+            txtInteractionScript.Name = "txtInteractionScript";
+            txtInteractionScript.Size = new Size(339, 39);
+            txtInteractionScript.TabIndex = 13;
+            txtInteractionScript.Text = "test1";
+            // 
+            // btnRunScript
+            // 
+            btnRunScript.Location = new Point(678, 590);
+            btnRunScript.Name = "btnRunScript";
+            btnRunScript.Size = new Size(150, 46);
+            btnRunScript.TabIndex = 14;
+            btnRunScript.Text = "Run Script";
+            btnRunScript.UseVisualStyleBackColor = true;
+            btnRunScript.Click += btnRunScript_Click;
+            // 
             // FormMouseTest
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2158, 1085);
+            Controls.Add(btnRunScript);
+            Controls.Add(txtInteractionScript);
             Controls.Add(btnPostAuctions);
             Controls.Add(button2);
             Controls.Add(textBox1);
@@ -207,5 +229,7 @@
         private TextBox textBox1;
         private Button button2;
         private Button btnPostAuctions;
+        private TextBox txtInteractionScript;
+        private Button btnRunScript;
     }
 }

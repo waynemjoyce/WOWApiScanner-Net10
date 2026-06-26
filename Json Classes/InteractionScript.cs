@@ -41,31 +41,45 @@ namespace WOWAuctionApi_Net10
 
         public void ProcessScript()
         {
-            foreach(var ev in Events)
+            ProcessEvents(Events);
+        }
+
+        public void ProcessEvents(List<InteractionEvent> events)
+        {
+            foreach (var ev in events)
             {
-                switch (ev.EventType)
+                if (ev.Enabled.Value)
                 {
-                    case InteractionEventType.MouseMove:
-                    default:
-                        MouseHelper.Move(ev.X.Value, ev.Y.Value, ev.DelayBefore.Value, ev.DelayAfter.Value);
-                        break;
+                    Thread.Sleep(ev.DelayBefore.Value);
+                    switch (ev.EventType)
+                    {
+                        case InteractionEventType.MouseMove:
+                        default:
+                            MouseHelper.Move(ev.X.Value, ev.Y.Value);
+                            break;
 
-                    case InteractionEventType.MouseMoveAndClick:
-                        MouseHelper.MoveAndClick(ev.X.Value, ev.Y.Value, ev.MouseClickType, 
-                            ev.DelayBefore.Value, ev.DelayBetween.Value, ev.DelayAfter.Value, ev.Frequency.Value);
+                        case InteractionEventType.MouseMoveAndClick:
+                            MouseHelper.MoveAndClick(ev.X.Value, ev.Y.Value, ev.MouseClickType,
+                                ev.DelayBetween.Value, ev.Frequency.Value);
 
-                        break;
+                            break;
 
-                    case InteractionEventType.Activate:
-                        ProcHelper.ActivateApp(ProcessID, ev.DelayBefore.Value, ev.DelayAfter.Value);
-                        break;
+                        case InteractionEventType.Activate:
+                            ProcHelper.ActivateApp(ProcessID);
+                            break;
 
-                    case InteractionEventType.SendKeys:
+                        case InteractionEventType.SendKeys:
+                            SendKeys.Send(ev.KeysToSend);
+                            break;
 
-                        Thread.Sleep(ev.DelayBefore.Value);
-                        SendKeys.Send(ev.KeysToSend);
-                        Thread.Sleep(ev.DelayAfter.Value);
-                        break;
+                        case InteractionEventType.Group:
+                            for (int i = 0; i < ev.Frequency.Value; i++)
+                            {
+                                ProcessEvents(ev.ChildEvents);
+                            }
+                            break;
+                    }
+                    Thread.Sleep(ev.DelayAfter.Value);
                 }
             }
         }
@@ -74,10 +88,9 @@ namespace WOWAuctionApi_Net10
     public class InteractionEvent
     {
         public string? EventName { get; set; }
+        public bool? Enabled { get; set; }  
         public InteractionEventType? EventType { get; set; } 
-
         public InteractionMouseClickType? MouseClickType { get; set; }      
-
         public int? X { get; set; }
         public int? Y { get; set; }  
         public int? DelayBefore { get; set; }    
@@ -85,6 +98,8 @@ namespace WOWAuctionApi_Net10
         public int? DelayAfter { get; set; }
         public int? Frequency { get; set; }
         public string? KeysToSend { get; set; }
+
+        public List<InteractionEvent>? ChildEvents { get; set; }
     }
 
     public enum InteractionEventType
@@ -92,7 +107,8 @@ namespace WOWAuctionApi_Net10
         MouseMove,
         MouseMoveAndClick,
         SendKeys,
-        Activate
+        Activate,
+        Group
     }
 
     public enum InteractionMouseClickType

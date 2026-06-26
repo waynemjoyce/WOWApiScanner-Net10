@@ -11,15 +11,13 @@ namespace WOWAuctionApi_Net10
         [DllImport("user32.dll")]
         static extern bool SetForegroundWindow(IntPtr hWnd);
 
-        public static void ActivateApp(int ProcessId, int delayBefore = 100, int delayAfter = 100)
+        public static void ActivateApp(int ProcessId)
         {
-            Thread.Sleep(delayBefore);
             Process proc = Process.GetProcessById(ProcessId);
             if (proc != null)
             {
                 SetForegroundWindow(proc.MainWindowHandle);
             }
-            Thread.Sleep(delayAfter);
         }       
 
         public static Process[] GetWowProcesses()

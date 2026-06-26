@@ -77,6 +77,11 @@ namespace WOWAuctionApi_Net10
 
         }
 
-
+        private void btnRunScript_Click(object sender, EventArgs e)
+        {
+            InteractionScript script = InteractionScript.LoadFromFile("", txtInteractionScript.Text);
+            script.ProcessID = sc.CurrentWoWProcess;
+            script.ProcessScript();
+        }
     }
 }

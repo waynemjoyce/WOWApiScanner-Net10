@@ -4,6 +4,7 @@
     {
       "EventName": "Activate",
       "EventType": "Activate",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": 0,
       "Y": 0,
@@ -16,6 +17,7 @@
     {
       "EventName": "Click AH search box",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -4116,
       "Y": 400,
@@ -28,6 +30,7 @@
     {
       "EventName": "Select all",
       "EventType": "SendKeys",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": 100,
       "Y": 200,
@@ -40,6 +43,7 @@
     {
       "EventName": "Paste from clipboard",
       "EventType": "SendKeys",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": 100,
       "Y": 200,
@@ -52,6 +56,7 @@
     {
       "EventName": "Click search",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -3303,
       "Y": 395,
@@ -64,6 +69,7 @@
     {
       "EventName": "Click top item",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -4001,
       "Y": 525,
@@ -76,6 +82,7 @@
     {
       "EventName": "Select item",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -4123,
       "Y": 859,
@@ -88,6 +95,7 @@
     {
       "EventName": "Click buyout",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -3240,
       "Y": 1523,
@@ -100,6 +108,7 @@
     {
       "EventName": "Move to accept button",
       "EventType": "MouseMove",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -2708,
       "Y": 467,

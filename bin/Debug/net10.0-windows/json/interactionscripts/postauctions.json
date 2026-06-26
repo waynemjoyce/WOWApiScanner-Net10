@@ -4,6 +4,7 @@
     {
       "EventName": "Activate",
       "EventType": "Activate",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": 0,
       "Y": 0,
@@ -15,6 +16,7 @@
     {
       "EventName": "Click post",
       "EventType": "MouseMoveAndClick",
+      "Enabled": true,
       "MouseClickType": "Left",
       "X": -2952,
       "Y": 1827,

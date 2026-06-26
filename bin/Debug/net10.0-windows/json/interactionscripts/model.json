@@ -4,6 +4,7 @@
     {
       "EventType": "MouseMove",
       "MouseClickType": "Left",
+      "Enabled": true,
       "X": 100,
       "Y": 200,
       "DelayBefore": 500,
@@ -14,6 +15,7 @@
     {
       "EventType": "MouseMoveAndClick",
       "MouseClickType": "Left",
+      "Enabled": true,
       "X": 100,
       "Y": 200,
       "DelayBefore": 500,
@@ -24,6 +26,7 @@
     {
       "EventType": "Activate",
       "MouseClickType": "Left",
+      "Enabled": true,
       "X": 100,
       "Y": 200,
       "DelayBefore": 500,
@@ -34,6 +37,7 @@
     {
       "EventType": "SendKeys",
       "MouseClickType": "Left",
+      "Enabled": true,
       "X": 100,
       "Y": 200,
       "DelayBefore": 500,
