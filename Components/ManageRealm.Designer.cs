@@ -41,6 +41,10 @@
             btnSaveRealm = new Button();
             btnDeleteRealm = new Button();
             btnCancel = new Button();
+            lblFlagged = new Label();
+            tslFlagged = new ToggleSlider();
+            txtStock = new TextBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)numRealmId).BeginInit();
             SuspendLayout();
             // 
@@ -152,10 +156,60 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
+            // lblFlagged
+            // 
+            lblFlagged.AutoSize = true;
+            lblFlagged.Font = new Font("Segoe UI", 9F);
+            lblFlagged.ForeColor = Color.MediumPurple;
+            lblFlagged.Location = new Point(732, 68);
+            lblFlagged.Name = "lblFlagged";
+            lblFlagged.Size = new Size(99, 32);
+            lblFlagged.TabIndex = 164;
+            lblFlagged.Text = "Flagged";
+            // 
+            // tslFlagged
+            // 
+            tslFlagged.Checked = true;
+            tslFlagged.CheckState = CheckState.Checked;
+            tslFlagged.ForeColor = Color.LimeGreen;
+            tslFlagged.Location = new Point(670, 68);
+            tslFlagged.MinimumSize = new Size(46, 22);
+            tslFlagged.Name = "tslFlagged";
+            tslFlagged.OffBackColor = Color.Gray;
+            tslFlagged.OffToggleColor = Color.Gainsboro;
+            tslFlagged.OnBackColor = Color.MediumPurple;
+            tslFlagged.OnToggleColor = Color.MistyRose;
+            tslFlagged.OptionBit = 0;
+            tslFlagged.OptionValue = "";
+            tslFlagged.Size = new Size(60, 32);
+            tslFlagged.TabIndex = 163;
+            tslFlagged.Tag = "!EXCLUDE";
+            tslFlagged.UseVisualStyleBackColor = true;
+            // 
+            // txtStock
+            // 
+            txtStock.Location = new Point(551, 63);
+            txtStock.Name = "txtStock";
+            txtStock.Size = new Size(94, 39);
+            txtStock.TabIndex = 162;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(439, 65);
+            label4.Name = "label4";
+            label4.Size = new Size(71, 32);
+            label4.TabIndex = 161;
+            label4.Text = "Stock";
+            // 
             // ManageRealm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lblFlagged);
+            Controls.Add(tslFlagged);
+            Controls.Add(txtStock);
+            Controls.Add(label4);
             Controls.Add(btnSaveRealm);
             Controls.Add(btnDeleteRealm);
             Controls.Add(btnCancel);
@@ -182,6 +236,10 @@
             Controls.SetChildIndex(btnCancel, 0);
             Controls.SetChildIndex(btnDeleteRealm, 0);
             Controls.SetChildIndex(btnSaveRealm, 0);
+            Controls.SetChildIndex(label4, 0);
+            Controls.SetChildIndex(txtStock, 0);
+            Controls.SetChildIndex(tslFlagged, 0);
+            Controls.SetChildIndex(lblFlagged, 0);
             ((System.ComponentModel.ISupportInitialize)numRealmId).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -201,5 +259,9 @@
         private Button btnSaveRealm;
         private Button btnDeleteRealm;
         private Button btnCancel;
+        private Label lblFlagged;
+        private ToggleSlider tslFlagged;
+        private TextBox txtStock;
+        private Label label4;
     }
 }

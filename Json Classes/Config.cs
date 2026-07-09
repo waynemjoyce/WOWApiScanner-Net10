@@ -75,6 +75,8 @@ namespace WOWAuctionApi_Net10
         public string? BackColor { get; set; }
 
         public bool? Flagged { get; set; }
+
+        public int? Stock { get; set; } 
     }
 
     public class ColorConverter : JsonConverter<Color>

@@ -2202,7 +2202,7 @@
             bonusOptions1.Name = "bonusOptions1";
             bonusOptions1.OptionsTitle = "      Bonuses";
             bonusOptions1.ShowToggleButton = true;
-            bonusOptions1.Size = new Size(561, 331);
+            bonusOptions1.Size = new Size(534, 331);
             bonusOptions1.TabIndex = 152;
             bonusOptions1.Visible = false;
             // 
@@ -2258,11 +2258,11 @@
             // realmOptions1
             // 
             realmOptions1.BackColor = SystemColors.ControlLight;
-            realmOptions1.Location = new Point(3299, 128);
+            realmOptions1.Location = new Point(3276, 128);
             realmOptions1.Name = "realmOptions1";
             realmOptions1.OptionsTitle = "      Realms";
             realmOptions1.ShowToggleButton = false;
-            realmOptions1.Size = new Size(510, 1850);
+            realmOptions1.Size = new Size(560, 1850);
             realmOptions1.TabIndex = 157;
             realmOptions1.Visible = false;
             // 

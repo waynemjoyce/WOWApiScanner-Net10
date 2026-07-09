@@ -33,6 +33,7 @@
             lvRealms = new ListView();
             colRealms_S = new ColumnHeader();
             colRealms_Flag = new ColumnHeader();
+            colRealms_Stock = new ColumnHeader();
             colRealms_RealmName = new ColumnHeader();
             colRealms_LastModified = new ColumnHeader();
             colRealms_Auctions = new ColumnHeader();
@@ -48,18 +49,21 @@
             lvRealms.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lvRealms.BackColor = SystemColors.ControlLight;
             lvRealms.CheckBoxes = true;
-            lvRealms.Columns.AddRange(new ColumnHeader[] { colRealms_S, colRealms_Flag, colRealms_RealmName, colRealms_LastModified, colRealms_Auctions });
+            lvRealms.Columns.AddRange(new ColumnHeader[] { colRealms_S, colRealms_Flag, colRealms_Stock, colRealms_RealmName, colRealms_LastModified, colRealms_Auctions });
             lvRealms.ContextMenuStrip = mnRealms;
             lvRealms.Font = new Font("Segoe UI", 9F);
             lvRealms.FullRowSelect = true;
             lvRealms.Location = new Point(26, 61);
             lvRealms.MultiSelect = false;
             lvRealms.Name = "lvRealms";
-            lvRealms.Size = new Size(455, 1489);
+            lvRealms.Size = new Size(519, 1489);
             lvRealms.TabIndex = 131;
             lvRealms.UseCompatibleStateImageBehavior = false;
             lvRealms.View = View.Details;
-            lvRealms.SelectedIndexChanged += lvRealms_SelectedIndexChanged;
+            lvRealms.ItemCheck += lvRealms_ItemCheck;
+            lvRealms.DoubleClick += lvRealms_DoubleClick;
+            lvRealms.MouseDoubleClick += lvRealms_MouseDoubleClick;
+            lvRealms.MouseDown += lvRealms_MouseDown;
             // 
             // colRealms_S
             // 
@@ -69,7 +73,13 @@
             // colRealms_Flag
             // 
             colRealms_Flag.Text = "";
-            colRealms_Flag.Width = 40;
+            colRealms_Flag.Width = 30;
+            // 
+            // colRealms_Stock
+            // 
+            colRealms_Stock.Text = "Stock";
+            colRealms_Stock.TextAlign = HorizontalAlignment.Right;
+            colRealms_Stock.Width = 70;
             // 
             // colRealms_RealmName
             // 
@@ -92,20 +102,20 @@
             mnRealms.ImageScalingSize = new Size(32, 32);
             mnRealms.Items.AddRange(new ToolStripItem[] { miFlagRealm, miEditRealm });
             mnRealms.Name = "contextMenuStrip1";
-            mnRealms.Size = new Size(301, 124);
+            mnRealms.Size = new Size(205, 80);
             mnRealms.Text = "Realm options";
             // 
             // miFlagRealm
             // 
             miFlagRealm.Name = "miFlagRealm";
-            miFlagRealm.Size = new Size(300, 38);
+            miFlagRealm.Size = new Size(204, 38);
             miFlagRealm.Text = "Flag Realm";
             miFlagRealm.Click += miFlagRealm_Click;
             // 
             // miEditRealm
             // 
             miEditRealm.Name = "miEditRealm";
-            miEditRealm.Size = new Size(300, 38);
+            miEditRealm.Size = new Size(204, 38);
             miEditRealm.Text = "Edit Realm";
             miEditRealm.Click += miEditRealm_Click;
             // 
@@ -131,7 +141,7 @@
             Name = "RealmOptions";
             OptionsTitle = "      Realms";
             ShowToggleButton = false;
-            Size = new Size(507, 1582);
+            Size = new Size(571, 1582);
             Load += RealmOptions_Load;
             Controls.SetChildIndex(lvRealms, 0);
             Controls.SetChildIndex(btnToggleRealms, 0);
@@ -151,5 +161,6 @@
         private ContextMenuStrip mnRealms;
         private ToolStripMenuItem miFlagRealm;
         private ToolStripMenuItem miEditRealm;
+        private ColumnHeader colRealms_Stock;
     }
 }

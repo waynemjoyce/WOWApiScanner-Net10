@@ -17,8 +17,11 @@ namespace WOWAuctionApi_Net10
             set { realm = value; }
         }
 
+
+
         private Realm realm = new Realm();
 
+        /*
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color RealmColor
         {
@@ -39,10 +42,20 @@ namespace WOWAuctionApi_Net10
             get { return (int)numRealmId.Value; }
             set { numRealmId.Value = value; }
         }
+        */
 
         public ManageRealm()
         {
             InitializeComponent();
+        }
+
+        public void InitRealm(Realm realm)
+        {
+            this.realm = realm;
+            txtRealmName.Text = realm.RealmName;
+            numRealmId.Value = realm.RealmId.Value;
+            colorEditor1.Color = UIHelper.StringToColor(realm.BackColor);
+            txtStock.Text = realm.Stock.Value.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -68,9 +81,10 @@ namespace WOWAuctionApi_Net10
 
         private void btnSaveRealm_Click(object sender, EventArgs e)
         {
-            Realm.RealmName = txtRealmName.Text;
-            Realm.RealmId = (int)numRealmId.Value;
-            Realm.BackColor = UIHelper.ColorToString(colorEditor1.Color);
+            this.realm.RealmName = txtRealmName.Text;
+            this.realm.RealmId = (int)numRealmId.Value;
+            this.realm.BackColor = UIHelper.ColorToString(colorEditor1.Color);
+            this.realm.Stock = int.Parse(txtStock.Text);
         }
     }
 }

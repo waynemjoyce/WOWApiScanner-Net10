@@ -61,6 +61,9 @@
     <Compile Update="Forms\FormChoseIconDlg.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FormEditRealm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\FormPreferences.cs">
       <SubType>Form</SubType>
     </Compile>
