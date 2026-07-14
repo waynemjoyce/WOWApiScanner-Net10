@@ -31,7 +31,9 @@ namespace WOWAuctionApi_Net10.Forms
             numRealmId.Value = realm.RealmId.Value;
             colorEditor1.Color = UIHelper.StringToColor(realm.BackColor);
             txtStock.Text = realm.Stock.Value.ToString();
-            tslFlagged.Checked = realm.Flagged.Value;   
+            tslFlagged.Checked = realm.Flagged.Value;
+            tslActive.Checked = realm.Active.Value;
+            txtArea.Text = realm.Area;  
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -41,6 +43,8 @@ namespace WOWAuctionApi_Net10.Forms
             realm.RealmId = (int)numRealmId.Value;
             realm.Stock = int.Parse(txtStock.Text);
             realm.BackColor = UIHelper.ColorToString(colorEditor1.Color);
+            realm.Active = tslActive.Checked;
+            realm.Area = txtArea.Text;
         }
 
         private void colorWheel1_ColorChanged(object sender, EventArgs e)

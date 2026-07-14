@@ -411,6 +411,15 @@
           "ToggleColorDark": "PeachPuff",
           "BackColorLight": "DarkOrange",
           "ToggleColorLight": "PeachPuff"
+        },
+        {
+          "Id": 64,
+          "Name": "Display Inactive Realms",
+          "Label": "Display Inactive Realms",
+          "BackColorDark": "DarkOrange",
+          "ToggleColorDark": "PeachPuff",
+          "BackColorLight": "DarkOrange",
+          "ToggleColorLight": "PeachPuff"
         }
       ]
     }

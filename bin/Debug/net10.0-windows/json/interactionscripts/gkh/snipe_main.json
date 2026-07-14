@@ -10,7 +10,7 @@
       "Y": 471,
       "DelayBefore": 0,
       "DelayBetween": 25,
-      "DelayAfter": 100,
+      "DelayAfter": 250,
       "KeysToSend": "NA",
       "Frequency": 1
     },

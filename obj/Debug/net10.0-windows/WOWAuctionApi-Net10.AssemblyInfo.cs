@@ -13,11 +13,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("WOWAuctionApi-Net10")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.6.3")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.6.3+0f5c4cb5f72e3a7e1bb052d9046406b68e28babc")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.6.5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.6.5+68ea7ccbeca72215d7b9a2c9b60280cde816da64")]
 [assembly: System.Reflection.AssemblyProductAttribute("WOWAuctionApi-Net10")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WOWAuctionApi-Net10")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.6.3")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.6.5")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 

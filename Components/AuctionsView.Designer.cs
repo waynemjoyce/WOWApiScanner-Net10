@@ -49,7 +49,7 @@
             lvAuctions.Location = new Point(0, 0);
             lvAuctions.Name = "lvAuctions";
             lvAuctions.ShowItemToolTips = true;
-            lvAuctions.Size = new Size(1500, 1490);
+            lvAuctions.Size = new Size(1380, 1490);
             lvAuctions.TabIndex = 102;
             lvAuctions.UseCompatibleStateImageBehavior = false;
             lvAuctions.View = View.Details;
@@ -64,7 +64,7 @@
             // colItemName
             // 
             colItemName.Text = "Item Name";
-            colItemName.Width = 620;
+            colItemName.Width = 500;
             // 
             // colLevel
             // 
@@ -109,7 +109,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(lvAuctions);
             Name = "AuctionsView";
-            Size = new Size(1500, 1490);
+            Size = new Size(1380, 1490);
             ResumeLayout(false);
         }
 

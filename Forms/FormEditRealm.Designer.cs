@@ -42,6 +42,10 @@
             label1 = new Label();
             btnSave = new Button();
             btnCancel = new Button();
+            lblActive = new Label();
+            tslActive = new ToggleSlider();
+            txtArea = new TextBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)numRealmId).BeginInit();
             SuspendLayout();
             // 
@@ -50,7 +54,7 @@
             lblFlagged.AutoSize = true;
             lblFlagged.Font = new Font("Segoe UI", 9F);
             lblFlagged.ForeColor = Color.MediumPurple;
-            lblFlagged.Location = new Point(740, 26);
+            lblFlagged.Location = new Point(949, 25);
             lblFlagged.Name = "lblFlagged";
             lblFlagged.Size = new Size(99, 32);
             lblFlagged.TabIndex = 179;
@@ -61,7 +65,7 @@
             tslFlagged.Checked = true;
             tslFlagged.CheckState = CheckState.Checked;
             tslFlagged.ForeColor = Color.LimeGreen;
-            tslFlagged.Location = new Point(678, 26);
+            tslFlagged.Location = new Point(887, 25);
             tslFlagged.MinimumSize = new Size(46, 22);
             tslFlagged.Name = "tslFlagged";
             tslFlagged.OffBackColor = Color.Gray;
@@ -77,7 +81,7 @@
             // 
             // txtStock
             // 
-            txtStock.Location = new Point(559, 21);
+            txtStock.Location = new Point(527, 21);
             txtStock.Name = "txtStock";
             txtStock.Size = new Size(94, 39);
             txtStock.TabIndex = 177;
@@ -182,11 +186,61 @@
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
+            // lblActive
+            // 
+            lblActive.AutoSize = true;
+            lblActive.Font = new Font("Segoe UI", 9F);
+            lblActive.ForeColor = Color.ForestGreen;
+            lblActive.Location = new Point(949, 65);
+            lblActive.Name = "lblActive";
+            lblActive.Size = new Size(79, 32);
+            lblActive.TabIndex = 183;
+            lblActive.Text = "Active";
+            // 
+            // tslActive
+            // 
+            tslActive.Checked = true;
+            tslActive.CheckState = CheckState.Checked;
+            tslActive.ForeColor = Color.LimeGreen;
+            tslActive.Location = new Point(887, 65);
+            tslActive.MinimumSize = new Size(46, 22);
+            tslActive.Name = "tslActive";
+            tslActive.OffBackColor = Color.Gray;
+            tslActive.OffToggleColor = Color.Gainsboro;
+            tslActive.OnBackColor = Color.ForestGreen;
+            tslActive.OnToggleColor = Color.Honeydew;
+            tslActive.OptionBit = 0;
+            tslActive.OptionValue = "";
+            tslActive.Size = new Size(60, 32);
+            tslActive.TabIndex = 182;
+            tslActive.Tag = "!EXCLUDE";
+            tslActive.UseVisualStyleBackColor = true;
+            // 
+            // txtArea
+            // 
+            txtArea.Location = new Point(740, 20);
+            txtArea.Name = "txtArea";
+            txtArea.Size = new Size(94, 39);
+            txtArea.TabIndex = 185;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(660, 22);
+            label5.Name = "label5";
+            label5.Size = new Size(62, 32);
+            label5.TabIndex = 184;
+            label5.Text = "Area";
+            // 
             // FormEditRealm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 653);
+            Controls.Add(txtArea);
+            Controls.Add(label5);
+            Controls.Add(lblActive);
+            Controls.Add(tslActive);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(lblFlagged);
@@ -225,5 +279,9 @@
         private Label label1;
         private Button btnSave;
         private Button btnCancel;
+        private Label lblActive;
+        private ToggleSlider tslActive;
+        private TextBox txtArea;
+        private Label label5;
     }
 }

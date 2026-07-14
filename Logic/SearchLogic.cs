@@ -62,6 +62,11 @@ namespace WOWAuctionApi_Net10
             var searchResults = new List<SearchResult>();
             List<Auction> auctions = sc.Dictionaries.RealmAuctions[realm.RealmId.Value].auctions;
 
+            //Get blocked item cache
+            //Do not add items which are in the blocked list
+            ItemCache blockedListCache = sc.ItemLists.GetListByName("SYS.BLOCKED").ItemCache;
+            blockedListCache.FillItemIds();
+
             if (sc.CurrentProfile.ListOption != 0)
             {
                 auctions = auctions
@@ -120,6 +125,8 @@ namespace WOWAuctionApi_Net10
                         ||
                             (auction.buyout > 0 && Options.IncludeBuyout == true)
                         ))
+                     //Remove any items from the blocked list
+                     .Where(auction => !blockedListCache.ItemIds.Contains(auction.item.id))
                      //String filter
                      .Where(auction => Options.UseStringFilter == false
                          || (Options.UseStringFilter == true

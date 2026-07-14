@@ -289,6 +289,8 @@ namespace WOWAuctionApi_Net10
             sc.Config.RefreshAuctionsOnStart = checkOptions.Contains(tc.Id.Value);
             tc = configOptions.ToggleOptions.Single(tog => tog.Name == "WOW Interaction Enabled");
             sc.Config.WowInteraction = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Display Inactive Realms");
+            sc.Config.DisplayInactiveRealms = checkOptions.Contains(tc.Id.Value);
         }
         private void tsbRefreshAuctionData_Click(object sender, EventArgs e)
         {

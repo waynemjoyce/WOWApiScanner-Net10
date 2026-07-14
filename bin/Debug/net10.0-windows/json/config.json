@@ -3,7 +3,7 @@
   "BlizzClientSecret": "3OlsVa5pklqoI2VvHYc2kpfagY8itsAg",
   "TSMKey": "A7iR0Pu0leO4Fl_lBjqZc1rl0GMt8ms8",
   "TSMClientID": "c260f00d-1071-409a-992f-dda2e5498536",
-  "DefaultSearch": "All Midnight Deals",
+  "DefaultSearch": "Small Value",
   "GlobalKeyboardHookChar": "A",
   "OnlyFirst": 0,
   "LatestXpacItemId": 236900,
@@ -13,7 +13,7 @@
   "AuctionsCap": 50,
   "ItemsSearchCap": 500,
   "Threshold": 20,
-  "ChartMarketValue": 7,
+  "ChartMarketValue": 6,
   "ChartSearchHits": 7,
   "ChartTotalAuctions": 7,
   "Realms": [
@@ -22,231 +22,720 @@
       "RealmId": 1426,
       "BackColor": "#AC5258",
       "Flagged": false,
-      "Stock": 34
+      "Stock": 78,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Alexstrasza",
+      "RealmId": 1070,
+      "BackColor": "#427084",
+      "Flagged": true,
+      "Stock": 2,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Alleria",
       "RealmId": 52,
       "BackColor": "#800000",
-      "Flagged": true,
-      "Stock": 106
+      "Flagged": false,
+      "Stock": 70,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Area 52",
       "RealmId": 3676,
       "BackColor": "#674EA6",
-      "Flagged": true,
-      "Stock": 103
+      "Flagged": false,
+      "Stock": 74,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Arthas",
+      "RealmId": 69,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Arygos",
+      "RealmId": 99,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Azralon",
+      "RealmId": 3209,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "BR"
+    },
+    {
+      "RealmName": "Barthilas",
+      "RealmId": 3723,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "OC"
     },
     {
       "RealmName": "Black Dragonflight",
       "RealmId": 96,
       "BackColor": "#171717",
       "Flagged": false,
-      "Stock": 35
+      "Stock": 73,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Bladefist",
+      "RealmId": 1147,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
     },
     {
       "RealmName": "Bleeding Hollow",
       "RealmId": 73,
       "BackColor": "#990000",
-      "Flagged": true,
-      "Stock": 120
+      "Flagged": false,
+      "Stock": 70,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Boulderfist",
       "RealmId": 1185,
       "BackColor": "#92827E",
       "Flagged": false,
-      "Stock": 29
+      "Stock": 68,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Caelestrasz",
+      "RealmId": 3721,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "OC"
     },
     {
       "RealmName": "Cenarion Circle",
       "RealmId": 125,
       "BackColor": "#3C78D8",
       "Flagged": false,
-      "Stock": 38
+      "Stock": 72,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Coilfang",
+      "RealmId": 157,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
     },
     {
       "RealmName": "Dalaran",
       "RealmId": 3683,
       "BackColor": "#AD5000",
-      "Flagged": true,
-      "Stock": 86
+      "Flagged": false,
+      "Stock": 72,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Darkspear",
+      "RealmId": 120,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Darrowmere",
+      "RealmId": 113,
+      "BackColor": "#434343",
+      "Flagged": false,
+      "Stock": 82,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Dawnbringer",
       "RealmId": 160,
       "BackColor": "#A64D79",
+      "Flagged": false,
+      "Stock": 70,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Doomhammer",
+      "RealmId": 1190,
+      "BackColor": "#D97E25",
       "Flagged": true,
-      "Stock": 72
+      "Stock": 9,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Draenor",
+      "RealmId": 115,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Duskwood",
+      "RealmId": 64,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Earthen Ring",
+      "RealmId": 100,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Eitrigg",
+      "RealmId": 47,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
     },
     {
       "RealmName": "Elune",
       "RealmId": 67,
       "BackColor": "#DBA40A",
       "Flagged": false,
-      "Stock": 47
+      "Stock": 71,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Emerald Dream",
+      "RealmId": 162,
+      "BackColor": "#6AA84F",
+      "Flagged": false,
+      "Stock": 79,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Executus",
+      "RealmId": 155,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Feathermoon",
+      "RealmId": 118,
+      "BackColor": "#C5A139",
+      "Flagged": true,
+      "Stock": 9,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Fenris",
+      "RealmId": 114,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
     },
     {
       "RealmName": "Fizzcrank",
       "RealmId": 106,
       "BackColor": "#FD7800",
-      "Flagged": true,
-      "Stock": 38
+      "Flagged": false,
+      "Stock": 71,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Galakrond",
+      "RealmId": 54,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Gallywix",
+      "RealmId": 3234,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "BR"
     },
     {
       "RealmName": "Garithos",
       "RealmId": 1138,
       "BackColor": "#674EA6",
       "Flagged": false,
-      "Stock": 31
+      "Stock": 71,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Ghostlands",
       "RealmId": 1175,
       "BackColor": "#434343",
+      "Flagged": false,
+      "Stock": 72,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Goldrinn",
+      "RealmId": 3207,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "BR"
+    },
+    {
+      "RealmName": "Greymane",
+      "RealmId": 158,
+      "BackColor": "#1F1F1F",
       "Flagged": true,
-      "Stock": 78
+      "Stock": 3,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Gundrak",
+      "RealmId": 3726,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "OC"
     },
     {
       "RealmName": "Hakkar",
       "RealmId": 1136,
       "BackColor": "#446B32",
       "Flagged": false,
-      "Stock": 33
+      "Stock": 78,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Hyjal",
       "RealmId": 3661,
       "BackColor": "#660000",
       "Flagged": false,
-      "Stock": 34
+      "Stock": 80,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Illidan",
       "RealmId": 57,
       "BackColor": "#A59559",
       "Flagged": false,
-      "Stock": 22
+      "Stock": 84,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Jaedenar",
       "RealmId": 1129,
       "BackColor": "#0D2343",
       "Flagged": false,
-      "Stock": 45
+      "Stock": 70,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Kel\u0027Thuzad",
+      "RealmId": 3693,
+      "BackColor": "#990000",
+      "Flagged": false,
+      "Stock": 72,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Khaz\u0027goroth",
+      "RealmId": 3726,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "OC"
+    },
+    {
+      "RealmName": "Kil\u0027Jaeden",
+      "RealmId": 9,
+      "BackColor": "#674EA6",
+      "Flagged": false,
+      "Stock": 72,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Lightbringer",
+      "RealmId": 3694,
+      "BackColor": "#434343",
+      "Flagged": false,
+      "Stock": 70,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Mal\u0027Ganis",
       "RealmId": 3684,
       "BackColor": "#472000",
-      "Flagged": true,
-      "Stock": 48
+      "Flagged": false,
+      "Stock": 70,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Moon Guard",
       "RealmId": 3675,
       "BackColor": "#6AA84F",
       "Flagged": false,
-      "Stock": 22
+      "Stock": 59,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Nazjatar",
       "RealmId": 77,
       "BackColor": "#853E22",
+      "Flagged": false,
+      "Stock": 77,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Nemesis",
+      "RealmId": 3208,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "BR"
+    },
+    {
+      "RealmName": "Nesingwary",
+      "RealmId": 1184,
+      "BackColor": "#572513",
       "Flagged": true,
-      "Stock": 84
+      "Stock": 18,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Nordrassil",
       "RealmId": 121,
       "BackColor": "#A64D79",
       "Flagged": false,
-      "Stock": 53
+      "Stock": 69,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Onyxia",
+      "RealmId": 104,
+      "BackColor": "#990000",
+      "Flagged": false,
+      "Stock": 80,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Perenolde",
       "RealmId": 1168,
       "BackColor": "#674EA6",
       "Flagged": false,
-      "Stock": 32
+      "Stock": 78,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Proudmoore",
       "RealmId": 5,
       "BackColor": "#660000",
       "Flagged": false,
-      "Stock": 8
+      "Stock": 75,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Quel\u0027Thalas",
+      "RealmId": 1428,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "LA"
+    },
+    {
+      "RealmName": "Ragnaros",
+      "RealmId": 1427,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "LA"
+    },
+    {
+      "RealmName": "Ravencrest",
+      "RealmId": 1072,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "LA"
+    },
+    {
+      "RealmName": "Rexxar",
+      "RealmId": 1151,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Runetotem",
+      "RealmId": 151,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
     },
     {
       "RealmName": "Sargeras",
       "RealmId": 76,
       "BackColor": "#030A48",
       "Flagged": false,
-      "Stock": 9
+      "Stock": 85,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Sentinels",
+      "RealmId": 1071,
+      "BackColor": "#290000",
+      "Flagged": true,
+      "Stock": 14,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Shadowmoon",
+      "RealmId": 154,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Shandris",
+      "RealmId": 117,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
     },
     {
       "RealmName": "Silvermoon",
       "RealmId": 86,
       "BackColor": "#888888",
       "Flagged": false,
-      "Stock": 26
+      "Stock": 69,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Stormrage",
       "RealmId": 60,
       "BackColor": "#2468DA",
+      "Flagged": true,
+      "Stock": 72,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Stormreaver",
+      "RealmId": 58,
+      "BackColor": "#000000",
       "Flagged": false,
-      "Stock": 4
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
+    },
+    {
+      "RealmName": "The Scryers",
+      "RealmId": 75,
+      "BackColor": "#00007E",
+      "Flagged": true,
+      "Stock": 14,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Thrall",
       "RealmId": 3678,
       "BackColor": "#674EA6",
       "Flagged": false,
-      "Stock": 23
+      "Stock": 80,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Tichondrius",
       "RealmId": 11,
       "BackColor": "#FD7800",
       "Flagged": false,
-      "Stock": 44
+      "Stock": 80,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Turalyon",
+      "RealmId": 3685,
+      "BackColor": "#C43A80",
+      "Flagged": true,
+      "Stock": 11,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Twisting Nether",
+      "RealmId": 163,
+      "BackColor": "#000026",
+      "Flagged": true,
+      "Stock": 8,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Uldum",
       "RealmId": 84,
       "BackColor": "#990000",
       "Flagged": false,
-      "Stock": 25
+      "Stock": 81,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Vashj",
       "RealmId": 127,
       "BackColor": "#8F3EC0",
       "Flagged": false,
-      "Stock": 51
+      "Stock": 93,
+      "Active": true,
+      "Area": "US"
     },
     {
       "RealmName": "Warsong",
       "RealmId": 71,
       "BackColor": "#A2BD74",
       "Flagged": false,
-      "Stock": 23
+      "Stock": 75,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Wildhammer",
+      "RealmId": 53,
+      "BackColor": "#674EA6",
+      "Flagged": false,
+      "Stock": 87,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Winterhoof",
+      "RealmId": 4,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
     },
     {
       "RealmName": "Wyrmrest Accord",
       "RealmId": 1171,
       "BackColor": "#C43F1D",
       "Flagged": false,
-      "Stock": 35
+      "Stock": 74,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Ysera",
+      "RealmId": 63,
+      "BackColor": "#27766C",
+      "Flagged": true,
+      "Stock": 77,
+      "Active": true,
+      "Area": "US"
+    },
+    {
+      "RealmName": "Ysondre",
+      "RealmId": 78,
+      "BackColor": "#000000",
+      "Flagged": false,
+      "Stock": 0,
+      "Active": false,
+      "Area": "US"
     },
     {
       "RealmName": "Zul\u0027jin",
       "RealmId": 61,
       "BackColor": "#927320",
       "Flagged": false,
-      "Stock": 31
+      "Stock": 79,
+      "Active": true,
+      "Area": "US"
     }
   ]
 }

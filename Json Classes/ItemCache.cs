@@ -11,7 +11,7 @@ namespace WOWAuctionApi_Net10
         [JsonIgnore]
         public List<long> ItemIds = new List<long>();
 
-        public ItemCache()
+        public ItemCache()  
         {
             Items = new List<CacheItem>();
         }

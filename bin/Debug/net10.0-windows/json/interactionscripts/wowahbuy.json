@@ -8,9 +8,9 @@
       "MouseClickType": "Left",
       "X": 0,
       "Y": 0,
-      "DelayBefore": 300,
+      "DelayBefore": 125,
       "DelayBetween": 0,
-      "DelayAfter": 300,
+      "DelayAfter": 125,
       "KeysToSend": "NA",
       "Frequency": 1
     },
@@ -22,8 +22,8 @@
       "X": -4116,
       "Y": 400,
       "DelayBefore": 0,
-      "DelayBetween": 200,
-      "DelayAfter": 200,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
       "KeysToSend": "NA",
       "Frequency": 1
     },
@@ -36,7 +36,7 @@
       "Y": 200,
       "DelayBefore": 0,
       "DelayBetween": 0,
-      "DelayAfter": 200,
+      "DelayAfter": 125,
       "KeysToSend": "^a",
       "Frequency": 1
     },
@@ -49,7 +49,7 @@
       "Y": 200,
       "DelayBefore": 0,
       "DelayBetween": 0,
-      "DelayAfter": 200,
+      "DelayAfter": 125,
       "KeysToSend": "^v",
       "Frequency": 1
     },
@@ -61,8 +61,8 @@
       "X": -3303,
       "Y": 395,
       "DelayBefore": 0,
-      "DelayBetween": 200,
-      "DelayAfter": 200,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
       "KeysToSend": "NA",
       "Frequency": 1
     },
@@ -74,8 +74,8 @@
       "X": -4001,
       "Y": 525,
       "DelayBefore": 0,
-      "DelayBetween": 200,
-      "DelayAfter": 200,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
       "KeysToSend": "NA",
       "Frequency": 1
     },
@@ -87,8 +87,8 @@
       "X": -4123,
       "Y": 859,
       "DelayBefore": 0,
-      "DelayBetween": 200,
-      "DelayAfter": 200,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
       "KeysToSend": "NA",
       "Frequency": 1
     },
@@ -100,8 +100,8 @@
       "X": -3240,
       "Y": 1523,
       "DelayBefore": 0,
-      "DelayBetween": 200,
-      "DelayAfter": 200,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
       "KeysToSend": "NA",
       "Frequency": 1
     },
@@ -114,7 +114,7 @@
       "Y": 467,
       "DelayBefore": 0,
       "DelayBetween": 0,
-      "DelayAfter": 200,
+      "DelayAfter": 125,
       "KeysToSend": "Test",
       "Frequency": 1
     }

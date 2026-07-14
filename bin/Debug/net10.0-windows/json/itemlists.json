@@ -1576,20 +1576,6 @@
             "BuyPrice": 5000
           },
           {
-            "Id": 244029,
-            "Name": "Enchant Weapon - Acuity of the Ren\u0027dorei",
-            "ClassName": "Item Enhancement",
-            "ClassId": 8,
-            "SubClassName": "Weapon",
-            "SubClassId": 11,
-            "QualityType": "RARE",
-            "InventoryType": "NON_EQUIP",
-            "BindingType": null,
-            "Level": 595,
-            "RequiredLevel": 70,
-            "BuyPrice": 500
-          },
-          {
             "Id": 206490,
             "Name": "Edict of the Redeemed Crusader",
             "ClassName": "Weapon",
@@ -1656,6 +1642,20 @@
             "InventoryType": "NON_EQUIP",
             "BindingType": null,
             "Level": 580,
+            "RequiredLevel": 70,
+            "BuyPrice": 500
+          },
+          {
+            "Id": 244029,
+            "Name": "Enchant Weapon - Acuity of the Ren\u0027dorei",
+            "ClassName": "Item Enhancement",
+            "ClassId": 8,
+            "SubClassName": "Weapon",
+            "SubClassId": 11,
+            "QualityType": "RARE",
+            "InventoryType": "NON_EQUIP",
+            "BindingType": null,
+            "Level": 595,
             "RequiredLevel": 70,
             "BuyPrice": 500
           },
@@ -5983,6 +5983,20 @@
       "ItemCache": {
         "Items": [
           {
+            "Id": 45998,
+            "Name": "Battered Jungle Hat",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Cosmetic",
+            "SubClassId": 5,
+            "QualityType": "COMMON",
+            "InventoryType": "HEAD",
+            "BindingType": null,
+            "Level": 5,
+            "RequiredLevel": 0,
+            "BuyPrice": 5000
+          },
+          {
             "Id": 6835,
             "Name": "Black Tuxedo Pants",
             "ClassName": "Armor",
@@ -6246,7 +6260,7 @@
             "BindingType": null,
             "Level": 36,
             "RequiredLevel": 32,
-            "BuyPrice": 0
+            "BuyPrice": 500
           },
           {
             "Id": 55622,
@@ -6765,20 +6779,169 @@
             "Level": 22,
             "RequiredLevel": 14,
             "BuyPrice": 1000
+          }
+        ]
+      },
+      "SubLists": []
+    },
+    {
+      "Name": "SYS.BLOCKED",
+      "IconIndex": 212,
+      "ItemCache": {
+        "Items": [
+          {
+            "Id": 33931,
+            "Name": "Amani Charm of Mighty Mojo",
+            "ClassName": "Consumable",
+            "ClassId": 0,
+            "SubClassName": "Other",
+            "SubClassId": 8,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "NON_EQUIP",
+            "BindingType": null,
+            "Level": 27,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
           },
           {
-            "Id": 45998,
-            "Name": "Battered Jungle Hat",
+            "Id": 33930,
+            "Name": "Amani Charm of the Bloodletter",
+            "ClassName": "Consumable",
+            "ClassId": 0,
+            "SubClassName": "Other",
+            "SubClassId": 8,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "NON_EQUIP",
+            "BindingType": null,
+            "Level": 27,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 33933,
+            "Name": "Amani Charm of the Raging Defender",
+            "ClassName": "Consumable",
+            "ClassId": 0,
+            "SubClassName": "Other",
+            "SubClassId": 8,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "NON_EQUIP",
+            "BindingType": null,
+            "Level": 27,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 33932,
+            "Name": "Amani Charm of the Witch Doctor",
+            "ClassName": "Consumable",
+            "ClassId": 0,
+            "SubClassName": "Other",
+            "SubClassId": 8,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "NON_EQUIP",
+            "BindingType": null,
+            "Level": 27,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 2576,
+            "Name": "White Linen Shirt",
             "ClassName": "Armor",
             "ClassId": 4,
-            "SubClassName": "Cosmetic",
-            "SubClassId": 5,
-            "QualityType": "COMMON",
+            "SubClassName": "Miscellaneous",
+            "SubClassId": 0,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "BODY",
+            "BindingType": null,
+            "Level": 1,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 2575,
+            "Name": "Red Linen Shirt",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Miscellaneous",
+            "SubClassId": 0,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "BODY",
+            "BindingType": null,
+            "Level": 1,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 4308,
+            "Name": "Green Linen Bracers",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Cloth",
+            "SubClassId": 1,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "WRIST",
+            "BindingType": null,
+            "Level": 6,
+            "RequiredLevel": 3,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 4310,
+            "Name": "Heavy Woolen Gloves",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Cloth",
+            "SubClassId": 1,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "HAND",
+            "BindingType": null,
+            "Level": 10,
+            "RequiredLevel": 6,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 4052,
+            "Name": "Insignia Cap",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Leather",
+            "SubClassId": 2,
+            "QualityType": "UNCOMMON",
             "InventoryType": "HEAD",
             "BindingType": null,
-            "Level": 5,
+            "Level": 20,
+            "RequiredLevel": 13,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 6096,
+            "Name": "Apprentice\u0027s Shirt",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Miscellaneous",
+            "SubClassId": 0,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "BODY",
+            "BindingType": null,
+            "Level": 1,
             "RequiredLevel": 0,
-            "BuyPrice": 5000
+            "BuyPrice": 0
+          },
+          {
+            "Id": 2577,
+            "Name": "Blue Linen Shirt",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Miscellaneous",
+            "SubClassId": 0,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "BODY",
+            "BindingType": null,
+            "Level": 1,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
           }
         ]
       },

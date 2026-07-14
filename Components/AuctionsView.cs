@@ -13,6 +13,7 @@ namespace WOWAuctionApi_Net10
     public partial class AuctionsView : ComponentBase
     {
         private AuctionEvent.AuctionRetrievedEventHandler auctionEventDelegate;
+        private ContextMenuStrip mnuAuctions;
 
         private RealmOptions realmOptions { get; set; }
         private GlobalOptions globalOptions { get; set; }
@@ -20,9 +21,39 @@ namespace WOWAuctionApi_Net10
         public AuctionsView()
         {
             InitializeComponent();
+            InitializeMenu();
+        }
+
+        private void InitializeMenu()
+        {
+            mnuAuctions = new ContextMenuStrip();
+            ToolStripMenuItem blockedListItem = new ToolStripMenuItem("Add to blocked list");
+            blockedListItem.Click += new EventHandler(BlockedListItem_Click);
+            mnuAuctions.Items.Add(blockedListItem);
+            lvAuctions.ContextMenuStrip = mnuAuctions;  
         }
 
 
+        private void BlockedListItem_Click(object sender, EventArgs e)
+        {
+            SearchResult result = (SearchResult)lvAuctions.SelectedItems[0].Tag;    
+            CacheItem c = sc.Caches.ItemCache.Items.Single<CacheItem>(i => i.Id == result.ItemId);
+
+            ItemCache blockedListCache = sc.ItemLists.GetListByName("SYS.BLOCKED").ItemCache;
+            blockedListCache.Items.Add(c);
+            sc.ItemLists.Save();
+
+            for (int i = lvAuctions.Items.Count - 1; i >= 0; i--)
+            {
+                SearchResult loopResult = lvAuctions.Items[i].Tag as SearchResult;
+                
+                if (loopResult!= null && loopResult.ItemId == result.ItemId)
+                {
+                    lvAuctions.Items.RemoveAt(i);
+                    break;
+                }   
+            }
+        }
 
         public void InitAuctionsView(RealmOptions rOptions, GlobalOptions gOptions)
         {

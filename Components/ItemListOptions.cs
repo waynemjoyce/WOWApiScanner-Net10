@@ -73,7 +73,7 @@ namespace WOWAuctionApi_Net10
             if (e.Index < 0 || e.Index >= lbItems.Items.Count) return;
 
             ListBoxItem item = (ListBoxItem)lbItems.Items[e.Index];
-
+            
             // Draw the background
             e.DrawBackground();
 
@@ -83,10 +83,12 @@ namespace WOWAuctionApi_Net10
 
             // Draw the text
             // Adjust the X coordinate to position text next to the image
-            e.Graphics.DrawString(item.ListName, e.Font, new SolidBrush(Color.White), e.Bounds.X + 54, e.Bounds.Y + 5);
+            e.Graphics.DrawString(item.ListName, e.Font, new SolidBrush(Color.Gray), e.Bounds.X + 54, e.Bounds.Y + 5);
 
             // Draw the focus rectangle if the item is selected
             e.DrawFocusRectangle();
+
+
         }
 
         private void lbItems_SelectedIndexChanged(object sender, EventArgs e)

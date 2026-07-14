@@ -39,6 +39,8 @@ namespace WOWAuctionApi_Net10
         public bool RefreshAuctionsOnStart = false;
         [JsonIgnore]
         public bool WowInteraction = false;
+        [JsonIgnore]
+        public bool DisplayInactiveRealms = false;
 
         public static Config LoadFromFile(string fileName)
         {
@@ -52,6 +54,7 @@ namespace WOWAuctionApi_Net10
 
         public void Save()
         {
+            Realms = Realms.OrderBy(r => r.RealmName).ToList(); 
             SaveToFile(sc.Paths.Config);
         }
     }
@@ -76,7 +79,11 @@ namespace WOWAuctionApi_Net10
 
         public bool? Flagged { get; set; }
 
-        public int? Stock { get; set; } 
+        public int? Stock { get; set; }
+
+        public bool? Active { get; set; }
+
+        public string? Area { get; set; }
     }
 
     public class ColorConverter : JsonConverter<Color>
