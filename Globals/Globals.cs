@@ -20,6 +20,7 @@ namespace WOWAuctionApi_Net10
         public static UserInterfaceOptions UIOptions = new UserInterfaceOptions();
         public static DataCount DataCount = new DataCount();
         public static InteractionScript WowBuyScript = new InteractionScript();
+        public static InteractionScript WowBuyScript_Slow = new InteractionScript();
         public static Config Config = new Config();
         public static SearchLogic SearchLogic = new SearchLogic();
 

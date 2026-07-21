@@ -352,6 +352,11 @@ namespace WOWAuctionApi_Net10
                     CopyClipText();
                     sc.WowBuyScript.ProcessScript();
                 }
+                else if (char.ToUpper(e.KeyChar) == (char)Keys.X)
+                {
+                    CopyClipText();
+                    sc.WowBuyScript_Slow.ProcessScript();
+                }
             }
         }
 

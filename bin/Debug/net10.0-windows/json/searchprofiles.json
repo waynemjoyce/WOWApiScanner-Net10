@@ -73,9 +73,9 @@
     },
     {
       "ProfileName": "Small Value",
-      "SearchMaxG": 98,
+      "SearchMaxG": 100,
       "WorthAtLeast": 5000,
-      "SearchPercentage": 100,
+      "SearchPercentage": 1,
       "MinSellRate": 0.001,
       "IconIndex": 17,
       "SearchFrequency": 0,

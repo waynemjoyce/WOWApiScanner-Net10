@@ -10,6 +10,7 @@ namespace WOWAuctionApi_Net10
         [STAThread]
         static void Main()
         {
+            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
             Application.SetColorMode(AppSettingsHelper.GetColorMode());
             ApplicationConfiguration.Initialize();
             Application.Run(new FormMain());

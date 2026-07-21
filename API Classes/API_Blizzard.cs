@@ -26,6 +26,46 @@ namespace WOWAuctionApi_Net10
 
         }
 
+        public static int GetConnectedRealmFromName(string token, string realmName)
+        {
+            var client = new RestClient("https://us.api.blizzard.com");
+            var request = new RestRequest($"/data/wow/search/connected-realm", Method.Get);
+
+            /*
+             * Endpoint: /data/wow/search/connected-realmParameters: namespace=dynamic-[region], realms.name.en_US=[realm_name]
+             * */
+
+            request.AddHeader("Authorization", $"Bearer {token}");
+
+            request.AddParameter("namespace", $"dynamic-us, realms.name.en_US=[{realmName}]");
+            request.AddParameter("locale", "en_US");
+            request.AddParameter("region", "us");
+            RestResponse response = client.Execute(request);
+
+            long len = response.Content.Length;
+            return 1;
+        }
+
+        public static void TestGetRealms(string token)
+        {
+            var client = new RestClient("https://us.api.blizzard.com");
+            var request = new RestRequest($"/data/wow/connected-realm/index", Method.Get);
+
+            /*
+             * Endpoint: /data/wow/search/connected-realmParameters: namespace=dynamic-[region], realms.name.en_US=[realm_name]
+             * */
+
+            request.AddHeader("Authorization", $"Bearer {token}");
+
+            request.AddParameter("namespace", "dynamic-us");
+            request.AddParameter("locale", "en_US");
+            request.AddParameter("region", "us");
+            RestResponse response = client.Execute(request);  
+            
+            long len = response.Content.Length;
+
+        }
+
         public static AuctionFileContents GetAuctionsFromAPI(string token, Realm r, out HttpStatusCode statusCode, out string lastModified)
         {
             var client = new RestClient("https://us.api.blizzard.com");

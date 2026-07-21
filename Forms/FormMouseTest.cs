@@ -51,13 +51,21 @@ namespace WOWAuctionApi_Net10
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            /*
             BlizzItem bi = API_Blizzard.GetBlizzItemFromItemId(sc.BlizzAccessToken, long.Parse(this.textBox1.Text));
 
             if (bi != null)
             {
                 //break point here
             }
+            */
+
+            //MessageBox.Show(sc.Config.Realms.Count.ToString());
+
+
+
+            //int realmId = API_Blizzard.GetConnectedRealmFromName(sc.BlizzAccessToken, "Aerie Peak");
+
         }
 
         private void button2_Click(object sender, EventArgs e)

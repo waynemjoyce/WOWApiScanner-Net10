@@ -58,7 +58,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             chartTotalValue.Series.Add(series1);
-            chartTotalValue.Size = new Size(1100, 480);
+            chartTotalValue.Size = new Size(919, 480);
             chartTotalValue.TabIndex = 137;
             chartTotalValue.Text = "chart1";
             chartTotalValue.Visible = false;
@@ -77,7 +77,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             chartTopSearches.Series.Add(series2);
-            chartTopSearches.Size = new Size(1100, 480);
+            chartTopSearches.Size = new Size(919, 480);
             chartTopSearches.TabIndex = 136;
             chartTopSearches.Text = "chart2";
             chartTopSearches.Visible = false;
@@ -95,7 +95,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             chartTotalAuctions.Series.Add(series3);
-            chartTotalAuctions.Size = new Size(1100, 480);
+            chartTotalAuctions.Size = new Size(919, 480);
             chartTotalAuctions.TabIndex = 135;
             chartTotalAuctions.Tag = "";
             chartTotalAuctions.Text = "chart1";
@@ -109,7 +109,7 @@
             Controls.Add(chartTopSearches);
             Controls.Add(chartTotalAuctions);
             Name = "Charts";
-            Size = new Size(1100, 1490);
+            Size = new Size(912, 1490);
             ((System.ComponentModel.ISupportInitialize)chartTotalValue).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartTopSearches).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartTotalAuctions).EndInit();

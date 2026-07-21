@@ -68,15 +68,15 @@
             tslSearchOnSelect.Tag = "!EXCLUDE";
             tslSearchOnSelect.UseVisualStyleBackColor = true;
             // 
-            // pnlSearch_GlobalOptions_SubOptions
+            // pnlSubOptions
             // 
             pnlSubOptions.Controls.Add(lblNewDataOnly);
             pnlSubOptions.Controls.Add(txtThreshold);
             pnlSubOptions.Controls.Add(tslNewDataOnly);
             pnlSubOptions.Controls.Add(lblSearchThreshold);
             pnlSubOptions.Location = new Point(16, 95);
-            pnlSubOptions.Name = "pnlSearch_GlobalOptions_SubOptions";
-            pnlSubOptions.Size = new Size(332, 128);
+            pnlSubOptions.Name = "pnlSubOptions";
+            pnlSubOptions.Size = new Size(239, 128);
             pnlSubOptions.TabIndex = 147;
             pnlSubOptions.Visible = false;
             // 
@@ -91,11 +91,11 @@
             lblNewDataOnly.TabIndex = 145;
             lblNewDataOnly.Text = "New Data Only";
             // 
-            // txtSearchThreshold
+            // txtThreshold
             // 
-            txtThreshold.Location = new Point(152, 55);
-            txtThreshold.Name = "txtSearchThreshold";
-            txtThreshold.Size = new Size(128, 39);
+            txtThreshold.Location = new Point(142, 55);
+            txtThreshold.Name = "txtThreshold";
+            txtThreshold.Size = new Size(61, 39);
             txtThreshold.TabIndex = 142;
             txtThreshold.Text = "20";
             // 
@@ -137,7 +137,7 @@
             Name = "GlobalOptions";
             OptionsTitle = " Global Options";
             ShowToggleButton = false;
-            Size = new Size(379, 331);
+            Size = new Size(281, 331);
             Controls.SetChildIndex(pnlSubOptions, 0);
             Controls.SetChildIndex(tslSearchOnSelect, 0);
             Controls.SetChildIndex(lblSearchOnSelect, 0);

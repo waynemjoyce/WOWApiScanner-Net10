@@ -2,19 +2,6 @@
   "ScriptName": "wowahbuy",
   "Events": [
     {
-      "EventName": "Activate",
-      "EventType": "Activate",
-      "Enabled": true,
-      "MouseClickType": "Left",
-      "X": 0,
-      "Y": 0,
-      "DelayBefore": 125,
-      "DelayBetween": 0,
-      "DelayAfter": 125,
-      "KeysToSend": "NA",
-      "Frequency": 1
-    },
-    {
       "EventName": "Click AH search box",
       "EventType": "MouseMoveAndClick",
       "Enabled": true,

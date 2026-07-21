@@ -2150,7 +2150,7 @@
             // 
             charts1.Location = new Point(1400, 4);
             charts1.Name = "charts1";
-            charts1.Size = new Size(1068, 1490);
+            charts1.Size = new Size(933, 1490);
             charts1.TabIndex = 136;
             charts1.Visible = false;
             // 
@@ -2198,11 +2198,11 @@
             // bonusOptions1
             // 
             bonusOptions1.BackColor = SystemColors.ControlLight;
-            bonusOptions1.Location = new Point(2711, 128);
+            bonusOptions1.Location = new Point(2617, 128);
             bonusOptions1.Name = "bonusOptions1";
             bonusOptions1.OptionsTitle = "      Bonuses";
             bonusOptions1.ShowToggleButton = true;
-            bonusOptions1.Size = new Size(367, 331);
+            bonusOptions1.Size = new Size(326, 331);
             bonusOptions1.TabIndex = 152;
             bonusOptions1.Visible = false;
             // 
@@ -2227,7 +2227,7 @@
             globalOptions1.OptionsTitle = " Global Options";
             globalOptions1.SearchOnSelect = true;
             globalOptions1.ShowToggleButton = false;
-            globalOptions1.Size = new Size(379, 331);
+            globalOptions1.Size = new Size(281, 331);
             globalOptions1.TabIndex = 154;
             globalOptions1.Threshold = 20;
             globalOptions1.Visible = false;
@@ -2258,22 +2258,21 @@
             // realmOptions1
             // 
             realmOptions1.BackColor = SystemColors.ControlLight;
-            realmOptions1.Location = new Point(3101, 128);
+            realmOptions1.Location = new Point(2981, 128);
             realmOptions1.Name = "realmOptions1";
             realmOptions1.OptionsTitle = "      Realms";
             realmOptions1.ShowToggleButton = false;
-            realmOptions1.Size = new Size(735, 1850);
+            realmOptions1.Size = new Size(821, 1842);
             realmOptions1.TabIndex = 157;
             realmOptions1.Visible = false;
             // 
             // FormMain
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(192F, 192F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.Control;
             ClientSize = new Size(3814, 2029);
             Controls.Add(realmOptions1);
-            Controls.Add(itemListOptions1);
             Controls.Add(globalOptions1);
             Controls.Add(moreOptions1);
             Controls.Add(bonusOptions1);
@@ -2286,6 +2285,7 @@
             Controls.Add(pnlAuctionData);
             Controls.Add(pnlLists_Items);
             Controls.Add(pbsExport1);
+            Controls.Add(itemListOptions1);
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");

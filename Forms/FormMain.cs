@@ -73,6 +73,7 @@ namespace WOWAuctionApi_Net10
             tllNewVersion.Text = $".Net Version {Environment.Version}   "
                 + $"Application Version {Assembly.GetExecutingAssembly().GetName().Version}";
 
+            AutoScaleDimensions = new SizeF(192F, 192F);
             SetupOptionsPanels();
             sc.UIOptions = UserInterfaceOptions.LoadFromFile();
             LoadConfig();
@@ -109,8 +110,9 @@ namespace WOWAuctionApi_Net10
             if (sc.Config.WowInteraction)
             {
                 sc.WowBuyScript = InteractionScript.LoadFromFile("", "wowahbuy");
+                sc.WowBuyScript_Slow = InteractionScript.LoadFromFile("", "wowahbuy_slow");
                 tsbTest.Visible = true;
-                tsbRefreshWoWProcesses.Visible = true;
+                tsbRefreshWoWProcesses.Visible = true;  
                 tsbActivate.Visible = true;
                 tsbWoWInteraction.Visible = true;
                 RefreshWowButtons();
