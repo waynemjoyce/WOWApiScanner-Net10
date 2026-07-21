@@ -2268,8 +2268,8 @@
             // 
             // FormMain
             // 
-            AutoScaleDimensions = new SizeF(192F, 192F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(3814, 2029);
             Controls.Add(realmOptions1);

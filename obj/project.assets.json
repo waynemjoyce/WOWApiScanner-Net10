@@ -597,7 +597,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.6.6",
+    "version": "1.6.7",
     "restore": {
       "projectUniqueName": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
       "projectName": "WOWAuctionApi-Net10",

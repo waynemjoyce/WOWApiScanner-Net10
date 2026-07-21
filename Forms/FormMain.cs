@@ -73,7 +73,6 @@ namespace WOWAuctionApi_Net10
             tllNewVersion.Text = $".Net Version {Environment.Version}   "
                 + $"Application Version {Assembly.GetExecutingAssembly().GetName().Version}";
 
-            AutoScaleDimensions = new SizeF(192F, 192F);
             SetupOptionsPanels();
             sc.UIOptions = UserInterfaceOptions.LoadFromFile();
             LoadConfig();
