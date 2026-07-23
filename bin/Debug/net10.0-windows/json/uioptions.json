@@ -422,6 +422,31 @@
           "ToggleColorLight": "PeachPuff"
         }
       ]
+    },
+    {
+      "SetName": "RealmFlags",
+      "UseDefaultAttributes": false,
+      "Attributes": {
+        "TogsPerColumn": 7,
+        "Width": 60,
+        "Height": 32,
+        "XStart": 30,
+        "YStart": 63,
+        "YRowOffset": 45,
+        "XColumnOffset": 360,
+        "XLabelGap": 61
+      },
+      "ToggleOptions": [
+        {
+          "Id": 1,
+          "Name": "C",
+          "Label": "Ceremonius Gear",
+          "BackColorDark": "MediumPurple",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "MediumPurple",
+          "ToggleColorLight": "Thistle"
+        }
+      ]
     }
   ]
 }

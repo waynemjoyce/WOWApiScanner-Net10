@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblFlagged = new Label();
-            tslFlagged = new ToggleSlider();
             txtStock = new TextBox();
             label4 = new Label();
             colorEditor1 = new Cyotek.Windows.Forms.ColorEditor();
@@ -46,38 +44,9 @@
             tslActive = new ToggleSlider();
             txtArea = new TextBox();
             label5 = new Label();
+            realmFlags1 = new RealmFlags();
             ((System.ComponentModel.ISupportInitialize)numRealmId).BeginInit();
             SuspendLayout();
-            // 
-            // lblFlagged
-            // 
-            lblFlagged.AutoSize = true;
-            lblFlagged.Font = new Font("Segoe UI", 9F);
-            lblFlagged.ForeColor = Color.MediumPurple;
-            lblFlagged.Location = new Point(949, 25);
-            lblFlagged.Name = "lblFlagged";
-            lblFlagged.Size = new Size(99, 32);
-            lblFlagged.TabIndex = 179;
-            lblFlagged.Text = "Flagged";
-            // 
-            // tslFlagged
-            // 
-            tslFlagged.Checked = true;
-            tslFlagged.CheckState = CheckState.Checked;
-            tslFlagged.ForeColor = Color.LimeGreen;
-            tslFlagged.Location = new Point(887, 25);
-            tslFlagged.MinimumSize = new Size(46, 22);
-            tslFlagged.Name = "tslFlagged";
-            tslFlagged.OffBackColor = Color.Gray;
-            tslFlagged.OffToggleColor = Color.Gainsboro;
-            tslFlagged.OnBackColor = Color.MediumPurple;
-            tslFlagged.OnToggleColor = Color.MistyRose;
-            tslFlagged.OptionBit = 0;
-            tslFlagged.OptionValue = "";
-            tslFlagged.Size = new Size(60, 32);
-            tslFlagged.TabIndex = 178;
-            tslFlagged.Tag = "!EXCLUDE";
-            tslFlagged.UseVisualStyleBackColor = true;
             // 
             // txtStock
             // 
@@ -191,7 +160,7 @@
             lblActive.AutoSize = true;
             lblActive.Font = new Font("Segoe UI", 9F);
             lblActive.ForeColor = Color.ForestGreen;
-            lblActive.Location = new Point(949, 65);
+            lblActive.Location = new Point(949, 26);
             lblActive.Name = "lblActive";
             lblActive.Size = new Size(79, 32);
             lblActive.TabIndex = 183;
@@ -202,7 +171,7 @@
             tslActive.Checked = true;
             tslActive.CheckState = CheckState.Checked;
             tslActive.ForeColor = Color.LimeGreen;
-            tslActive.Location = new Point(887, 65);
+            tslActive.Location = new Point(887, 26);
             tslActive.MinimumSize = new Size(46, 22);
             tslActive.Name = "tslActive";
             tslActive.OffBackColor = Color.Gray;
@@ -232,19 +201,28 @@
             label5.TabIndex = 184;
             label5.Text = "Area";
             // 
+            // realmFlags1
+            // 
+            realmFlags1.BackColor = SystemColors.ControlLight;
+            realmFlags1.Location = new Point(1083, 22);
+            realmFlags1.Name = "realmFlags1";
+            realmFlags1.OptionsTitle = "      Realm Flags";
+            realmFlags1.ShowToggleButton = true;
+            realmFlags1.Size = new Size(400, 600);
+            realmFlags1.TabIndex = 186;
+            // 
             // FormEditRealm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1067, 653);
+            ClientSize = new Size(1516, 653);
+            Controls.Add(realmFlags1);
             Controls.Add(txtArea);
             Controls.Add(label5);
             Controls.Add(lblActive);
             Controls.Add(tslActive);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
-            Controls.Add(lblFlagged);
-            Controls.Add(tslFlagged);
             Controls.Add(txtStock);
             Controls.Add(label4);
             Controls.Add(colorEditor1);
@@ -258,15 +236,13 @@
             Name = "FormEditRealm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Edit Realm";
+            Load += FormEditRealm_Load;
             ((System.ComponentModel.ISupportInitialize)numRealmId).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label lblFlagged;
-        private ToggleSlider tslFlagged;
         private TextBox txtStock;
         private Label label4;
         private Cyotek.Windows.Forms.ColorEditor colorEditor1;
@@ -283,5 +259,6 @@
         private ToggleSlider tslActive;
         private TextBox txtArea;
         private Label label5;
+        private RealmFlags realmFlags1;
     }
 }

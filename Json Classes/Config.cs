@@ -79,6 +79,8 @@ namespace WOWAuctionApi_Net10
 
         public bool? Flagged { get; set; }
 
+        public int? RealmFlags { get; set; }
+
         public int? Stock { get; set; }
 
         public bool? Active { get; set; }

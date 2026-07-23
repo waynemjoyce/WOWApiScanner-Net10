@@ -93,6 +93,19 @@
       "Frequency": 1
     },
     {
+      "EventName": "Pause over item button",
+      "EventType": "MouseMove",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": -4009,
+      "Y": 655,
+      "DelayBefore": 0,
+      "DelayBetween": 0,
+      "DelayAfter": 500,
+      "KeysToSend": "Test",
+      "Frequency": 1
+    },
+    {
       "EventName": "Move to accept button",
       "EventType": "MouseMove",
       "Enabled": true,

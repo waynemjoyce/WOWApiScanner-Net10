@@ -3,7 +3,7 @@
     {
       "ProfileName": "[Default]",
       "SearchMaxG": 100,
-      "WorthAtLeast": 10000,
+      "WorthAtLeast": 1,
       "SearchPercentage": 100,
       "MinSellRate": -1,
       "IconIndex": 950,
@@ -13,15 +13,15 @@
       "MinItemLevel": 0,
       "MaxItemLevel": 9999,
       "MinCharLevel": 0,
-      "MaxCharLevel": 80,
+      "MaxCharLevel": 100,
       "Threshold": null,
-      "StringFilter": "highborne statue",
+      "StringFilter": "",
       "MainOptions": 54,
-      "Class": 512,
+      "Class": 8191,
       "Quality": 127,
       "Bonuses": 0,
       "Lists": [
-        "Snipe List 1"
+        "SYS.BLOCKED"
       ],
       "ListOption": 0
     },
@@ -80,7 +80,7 @@
       "IconIndex": 17,
       "SearchFrequency": 0,
       "SearchFraction": 1,
-      "ChartFilter": 2,
+      "ChartFilter": 0,
       "MinItemLevel": 0,
       "MaxItemLevel": 9999,
       "MinCharLevel": 0,
@@ -92,7 +92,7 @@
       "Quality": 124,
       "Bonuses": 0,
       "Lists": [
-        "Snipe List 1"
+        "SYS.BLOCKED"
       ],
       "ListOption": 0
     },

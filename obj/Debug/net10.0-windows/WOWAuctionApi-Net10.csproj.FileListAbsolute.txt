@@ -56,3 +56,4 @@ C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi-Net10.pdb
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi-Net10.genruntimeconfig.cache
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\ref\WOWAuctionApi-Net10.dll
 C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi_Net10.Forms.FormEditRealm.resources
+C:\Dev\Git\WOWAuctionApi-Net10\obj\Debug\net10.0-windows\WOWAuctionApi_Net10.RealmFlags.resources
