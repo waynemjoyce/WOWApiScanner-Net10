@@ -1,4 +1,5 @@
 ﻿
+using System.Collections;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -41,6 +42,8 @@ namespace WOWAuctionApi_Net10
         public bool WowInteraction = false;
         [JsonIgnore]
         public bool DisplayInactiveRealms = false;
+        [JsonIgnore]
+        public bool FlagFirstWithStockUpdate = false;
 
         public static Config LoadFromFile(string fileName)
         {

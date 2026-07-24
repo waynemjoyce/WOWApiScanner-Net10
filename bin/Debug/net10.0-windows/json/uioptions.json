@@ -327,7 +327,7 @@
         {
           "Id": 2,
           "Name": "42",
-          "Label": "Speed (42)",
+          "Label": "Speed",
           "BackColorDark": "Orange",
           "ToggleColorDark": "NavajoWhite",
           "BackColorLight": "Chocolate",
@@ -336,7 +336,7 @@
         {
           "Id": 4,
           "Name": "43",
-          "Label": "Indestructible (43)",
+          "Label": "Indestructible",
           "BackColorDark": "CornflowerBlue",
           "ToggleColorDark": "LightBlue",
           "BackColorLight": "MidnightBlue",
@@ -348,7 +348,7 @@
       "SetName": "Config",
       "UseDefaultAttributes": false,
       "Attributes": {
-        "TogsPerColumn": 7,
+        "TogsPerColumn": 10,
         "Width": 60,
         "Height": 32,
         "XStart": 30,
@@ -416,10 +416,19 @@
           "Id": 64,
           "Name": "Display Inactive Realms",
           "Label": "Display Inactive Realms",
-          "BackColorDark": "DarkOrange",
-          "ToggleColorDark": "PeachPuff",
-          "BackColorLight": "DarkOrange",
-          "ToggleColorLight": "PeachPuff"
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
+        },
+        {
+          "Id": 128,
+          "Name": "Flag First With Stock Update",
+          "Label": "Flag First With Stock Update",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
         }
       ]
     },
@@ -437,10 +446,10 @@
         "XLabelGap": 61
       },
       "ToggleOptions": [
-                {
+        {
           "Id": 1,
-          "Name": "P",
-          "Label": "Purchases made",
+          "Name": "B",
+          "Label": "Bought items last hour",
           "BackColorDark": "ForestGreen",
           "ToggleColorDark": "PaleGreen",
           "BackColorLight": "ForestGreen",
@@ -457,21 +466,30 @@
         },
         {
           "Id": 4,
-          "Name": "T",
-          "Label": "Test",
-          "BackColorDark": "DarkOrange",
-          "ToggleColorDark": "PeachPuff",
-          "BackColorLight": "DarkOrange",
-          "ToggleColorLight": "PeachPuff"
+          "Name": "X",
+          "Label": "Too much stock which won't sell",
+          "BackColorDark": "Firebrick",
+          "ToggleColorDark": "MistyRose",
+          "BackColorLight": "Firebrick",
+          "ToggleColorLight": "MistyRose"
         },
         {
           "Id": 8,
-          "Name": "R",
-          "Label": "Refresh Auctions On Start",
-          "BackColorDark": "MediumVioletRed",
-          "ToggleColorDark": "MistyRose",
-          "BackColorLight": "MediumVioletRed",
-          "ToggleColorLight": "MistyRose"
+          "Name": "N",
+          "Label": "Need stock",
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
+        },
+        {
+          "Id": 16,
+          "Name": "P",
+          "Label": "Purged",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
         }
       ]
     }

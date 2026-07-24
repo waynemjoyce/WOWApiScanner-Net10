@@ -462,10 +462,15 @@ namespace WOWAuctionApi_Net10
                     {
                         currentRealm.Stock = int.Parse(miStockText.Text);
                         SetSelectedRealm(currentRealm);
-                        sc.Config.Save();
-                        mnRealms.Close();
 
+                        if (sc.Config.FlagFirstWithStockUpdate)
+                        {
+                            currentRealm.RealmFlags = AddBitIfNotExists(currentRealm.RealmFlags.Value, 1);
+                            UpdateAllFlags();
+                        }
                     }
+                    sc.Config.Save();
+                    mnRealms.Close();
                 }
             }
         }
@@ -506,26 +511,35 @@ namespace WOWAuctionApi_Net10
                     Realm selectedRealm = lvi.Tag as Realm;
                     if (selectedRealm != null)
                     {
-                        if (
-                            UIHelper.BitwiseHasValue(selectedRealm.RealmFlags.Value, flagOption.Id.Value)
-                            && !flag)
-                        {
-                            selectedRealm.RealmFlags = selectedRealm.RealmFlags.Value - flagOption.Id.Value;
-                        }
-
-                        if (
-                            !UIHelper.BitwiseHasValue(selectedRealm.RealmFlags.Value, flagOption.Id.Value)
-                            && flag)
-                        {
-                            selectedRealm.RealmFlags = selectedRealm.RealmFlags.Value + flagOption.Id.Value;
-                        }
+                        if (flag) { selectedRealm.RealmFlags = AddBitIfNotExists(selectedRealm.RealmFlags.Value, flagOption.Id.Value); }
+                        if (!flag) { selectedRealm.RealmFlags = DeleteBitIfExists(selectedRealm.RealmFlags.Value, flagOption.Id.Value); }
                     }
+
                 }
             }
 
             sc.Config.Save();
             UpdateAllFlags();
         }   
+
+        public int AddBitIfNotExists(int currentValue, int bitToAdd)
+        {
+            if (!UIHelper.BitwiseHasValue(currentValue, bitToAdd))
+            {
+                return currentValue += bitToAdd;
+            }
+            return currentValue;
+        }
+
+        public int DeleteBitIfExists(int currentValue, int bitToDelete)
+        {
+            if (UIHelper.BitwiseHasValue(currentValue, bitToDelete))
+            {
+                return currentValue - bitToDelete;
+            }
+            return currentValue;
+        }   
+
 
         public void UpdateAllFlags()
         {

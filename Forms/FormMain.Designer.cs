@@ -2150,7 +2150,7 @@
             // 
             charts1.Location = new Point(1400, 4);
             charts1.Name = "charts1";
-            charts1.Size = new Size(933, 1490);
+            charts1.Size = new Size(892, 1490);
             charts1.TabIndex = 136;
             charts1.Visible = false;
             // 
@@ -2202,7 +2202,7 @@
             bonusOptions1.Name = "bonusOptions1";
             bonusOptions1.OptionsTitle = "      Bonuses";
             bonusOptions1.ShowToggleButton = true;
-            bonusOptions1.Size = new Size(326, 331);
+            bonusOptions1.Size = new Size(250, 331);
             bonusOptions1.TabIndex = 152;
             bonusOptions1.Visible = false;
             // 
@@ -2258,11 +2258,11 @@
             // realmOptions1
             // 
             realmOptions1.BackColor = SystemColors.ControlLight;
-            realmOptions1.Location = new Point(2981, 128);
+            realmOptions1.Location = new Point(2890, 128);
             realmOptions1.Name = "realmOptions1";
             realmOptions1.OptionsTitle = "      Realms";
             realmOptions1.ShowToggleButton = false;
-            realmOptions1.Size = new Size(821, 1842);
+            realmOptions1.Size = new Size(912, 1842);
             realmOptions1.TabIndex = 157;
             realmOptions1.Visible = false;
             // 

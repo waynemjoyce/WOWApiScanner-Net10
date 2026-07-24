@@ -137,7 +137,7 @@
             // btnSave
             // 
             btnSave.DialogResult = DialogResult.OK;
-            btnSave.Location = new Point(898, 576);
+            btnSave.Location = new Point(1753, 583);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(150, 46);
             btnSave.TabIndex = 180;
@@ -148,7 +148,7 @@
             // btnCancel
             // 
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(740, 576);
+            btnCancel.Location = new Point(1595, 583);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(150, 46);
             btnCancel.TabIndex = 181;
@@ -208,14 +208,14 @@
             realmFlags1.Name = "realmFlags1";
             realmFlags1.OptionsTitle = "      Realm Flags";
             realmFlags1.ShowToggleButton = true;
-            realmFlags1.Size = new Size(400, 600);
+            realmFlags1.Size = new Size(820, 522);
             realmFlags1.TabIndex = 186;
             // 
             // FormEditRealm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1516, 653);
+            ClientSize = new Size(1935, 653);
             Controls.Add(realmFlags1);
             Controls.Add(txtArea);
             Controls.Add(label5);
