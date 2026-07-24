@@ -101,7 +101,7 @@
       "Y": 655,
       "DelayBefore": 0,
       "DelayBetween": 0,
-      "DelayAfter": 500,
+      "DelayAfter": 800,
       "KeysToSend": "Test",
       "Frequency": 1
     },

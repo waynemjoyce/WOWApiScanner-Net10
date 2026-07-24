@@ -30,13 +30,13 @@ namespace WOWAuctionApi_Net10
             ToolStripMenuItem blockedListItem = new ToolStripMenuItem("Add to blocked list");
             blockedListItem.Click += new EventHandler(BlockedListItem_Click);
             mnuAuctions.Items.Add(blockedListItem);
-            lvAuctions.ContextMenuStrip = mnuAuctions;  
+            lvAuctions.ContextMenuStrip = mnuAuctions;
         }
 
 
         private void BlockedListItem_Click(object sender, EventArgs e)
         {
-            SearchResult result = (SearchResult)lvAuctions.SelectedItems[0].Tag;    
+            SearchResult result = (SearchResult)lvAuctions.SelectedItems[0].Tag;
             CacheItem c = sc.Caches.ItemCache.Items.Single<CacheItem>(i => i.Id == result.ItemId);
 
             ItemCache blockedListCache = sc.ItemLists.GetListByName("SYS.BLOCKED").ItemCache;
@@ -46,12 +46,12 @@ namespace WOWAuctionApi_Net10
             for (int i = lvAuctions.Items.Count - 1; i >= 0; i--)
             {
                 SearchResult loopResult = lvAuctions.Items[i].Tag as SearchResult;
-                
-                if (loopResult!= null && loopResult.ItemId == result.ItemId)
+
+                if (loopResult != null && loopResult.ItemId == result.ItemId)
                 {
                     lvAuctions.Items.RemoveAt(i);
                     break;
-                }   
+                }
             }
         }
 
@@ -76,7 +76,7 @@ namespace WOWAuctionApi_Net10
 
         public void AuctionsSearch(Charts chartsComponent)
         {
-            List<SearchResultCount> searchResultCounts = new List<SearchResultCount>();    
+            List<SearchResultCount> searchResultCounts = new List<SearchResultCount>();
 
             sc.LivePoll = false;
             if (!realmOptions.CheckAllRealmsHaveData())
@@ -143,15 +143,15 @@ namespace WOWAuctionApi_Net10
                     count++;
                 }
             }
-            
+
             chartsComponent.RenderCharts();
-            
+
             if (chartsComponent.ChartFilter != "")
             {
                 foreach (Realm r in chartsComponent.ShownRealms)
                 {
                     SearchResultCount src = searchResultCounts.Single(s => s.Realm.RealmId == r.RealmId);
-                    RenderSearchResults(src.SearchResults, src.Realm, src.Count);   
+                    RenderSearchResults(src.SearchResults, src.Realm, src.Count);
                 }
             }
 
@@ -340,29 +340,55 @@ namespace WOWAuctionApi_Net10
 
         private void lvAuctions_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.ToUpper(e.KeyChar) == (char)Keys.C)
+            /*
+                if (char.ToUpper(e.KeyChar) == (char)Keys.C)
+                {
+                    CopyClipText();
+                }
+
+                if (sc.Config.WowInteraction)
+                {
+                    if (char.ToUpper(e.KeyChar) == (char)Keys.Z)
+                    {
+                        CopyClipText();
+                        sc.WowBuyScript.ProcessScript();
+                    }
+                    else if (char.ToUpper(e.KeyChar) == (char)Keys.X)
+                    {
+                        CopyClipText();
+                        sc.WowBuyScript_Slow.ProcessScript();
+                    }
+                }
+    */
+        }
+
+        private void lvAuctions_DoubleClick(object sender, EventArgs e)
+        {
+            CopyClipText();
+        }
+
+        private void lvAuctions_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C)
             {
                 CopyClipText();
             }
 
             if (sc.Config.WowInteraction)
             {
-                if (char.ToUpper(e.KeyChar) == (char)Keys.Z)
+                if (e.KeyCode == Keys.Z)
                 {
                     CopyClipText();
                     sc.WowBuyScript.ProcessScript();
                 }
-                else if (char.ToUpper(e.KeyChar) == (char)Keys.X)
+                else if (e.KeyCode == Keys.X)
                 {
                     CopyClipText();
                     sc.WowBuyScript_Slow.ProcessScript();
                 }
             }
-        }
 
-        private void lvAuctions_DoubleClick(object sender, EventArgs e)
-        {
-            CopyClipText();
+            e.SuppressKeyPress = true; // Prevents the Windows ding sound
         }
     }
 

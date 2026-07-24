@@ -31,6 +31,12 @@ namespace WOWAuctionApi_Net10
                 checkBox.Checked = ((bitwiseValue & checkBox.OptionBit) != 0);
             }
         }
+
+        public static bool BitwiseHasValue(int bitwise, int value)
+        {
+            return ((bitwise & value) != 0);
+        }   
+
         public static List<int> GetIntsFromBitwise(int bitwise)
         {
             var activeBits = new List<int>();

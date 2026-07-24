@@ -33,9 +33,17 @@
             lvRealms = new ListView();
             mnRealms = new ContextMenuStrip(components);
             miEditRealm = new ToolStripMenuItem();
+            miClearRealmFlags = new ToolStripMenuItem();
+            miStockText = new ToolStripTextBox();
+            toolStripSeparator1 = new ToolStripSeparator();
+            toolStripSeparator2 = new ToolStripSeparator();
+            miUnflagAllSpecific = new ToolStripMenuItem();
+            toolStripSeparator3 = new ToolStripSeparator();
+            toolStripSeparator4 = new ToolStripSeparator();
             miUnflagAllRealms = new ToolStripMenuItem();
             btnToggleRealms = new Button();
             contextMenuStrip1 = new ContextMenuStrip(components);
+            miFlagAllSpecific = new ToolStripMenuItem();
             mnRealms.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,23 +70,65 @@
             // mnRealms
             // 
             mnRealms.ImageScalingSize = new Size(32, 32);
-            mnRealms.Items.AddRange(new ToolStripItem[] { miEditRealm, miUnflagAllRealms });
+            mnRealms.Items.AddRange(new ToolStripItem[] { miEditRealm, miClearRealmFlags, miStockText, toolStripSeparator1, toolStripSeparator2, miFlagAllSpecific, miUnflagAllSpecific, toolStripSeparator3, toolStripSeparator4, miUnflagAllRealms });
             mnRealms.Name = "contextMenuStrip1";
-            mnRealms.Size = new Size(275, 80);
+            mnRealms.Size = new Size(316, 305);
             mnRealms.Text = "Realm options";
+            mnRealms.Opened += mnRealms_Opened;
             // 
             // miEditRealm
             // 
             miEditRealm.Name = "miEditRealm";
-            miEditRealm.Size = new Size(274, 38);
+            miEditRealm.Size = new Size(315, 38);
             miEditRealm.Text = "Edit Realm";
             miEditRealm.Click += miEditRealm_Click;
+            // 
+            // miClearRealmFlags
+            // 
+            miClearRealmFlags.Name = "miClearRealmFlags";
+            miClearRealmFlags.Size = new Size(315, 38);
+            miClearRealmFlags.Text = "Clear Realm Flags";
+            miClearRealmFlags.Click += miClearRealmFlags_Click;
+            // 
+            // miStockText
+            // 
+            miStockText.Name = "miStockText";
+            miStockText.Size = new Size(100, 39);
+            miStockText.Enter += miStockText_Enter;
+            miStockText.KeyDown += miStockText_KeyDown;
+            miStockText.Click += miStockText_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(312, 6);
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(312, 6);
+            // 
+            // miUnflagAllSpecific
+            // 
+            miUnflagAllSpecific.Name = "miUnflagAllSpecific";
+            miUnflagAllSpecific.Size = new Size(315, 38);
+            miUnflagAllSpecific.Text = "Unflag All ...";
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(312, 6);
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new Size(312, 6);
             // 
             // miUnflagAllRealms
             // 
             miUnflagAllRealms.Name = "miUnflagAllRealms";
-            miUnflagAllRealms.Size = new Size(274, 38);
-            miUnflagAllRealms.Text = "Unflag All Realms";
+            miUnflagAllRealms.Size = new Size(315, 38);
+            miUnflagAllRealms.Text = "UNFLAG ALL REALMS";
             miUnflagAllRealms.Click += miUnflagAllRealms_Click;
             // 
             // btnToggleRealms
@@ -100,6 +150,12 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
+            // miFlagAllSpecific
+            // 
+            miFlagAllSpecific.Name = "miFlagAllSpecific";
+            miFlagAllSpecific.Size = new Size(315, 38);
+            miFlagAllSpecific.Text = "Flag All ...";
+            // 
             // RealmOptions
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -114,6 +170,7 @@
             Controls.SetChildIndex(lvRealms, 0);
             Controls.SetChildIndex(btnToggleRealms, 0);
             mnRealms.ResumeLayout(false);
+            mnRealms.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -125,5 +182,13 @@
         private ToolStripMenuItem miEditRealm;
         private ToolStripMenuItem miUnflagAllRealms;
         private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem miClearRealmFlags;
+        private ToolStripTextBox miStockText;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem miUnflagAllSpecific;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripMenuItem miFlagAllSpecific;
     }
 }

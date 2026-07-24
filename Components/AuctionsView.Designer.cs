@@ -54,6 +54,7 @@
             lvAuctions.UseCompatibleStateImageBehavior = false;
             lvAuctions.View = View.Details;
             lvAuctions.DoubleClick += lvAuctions_DoubleClick;
+            lvAuctions.KeyDown += lvAuctions_KeyDown;
             lvAuctions.KeyPress += lvAuctions_KeyPress;
             // 
             // colSide

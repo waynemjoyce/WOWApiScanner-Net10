@@ -7096,6 +7096,20 @@
             "Level": 5,
             "RequiredLevel": 3,
             "BuyPrice": 0
+          },
+          {
+            "Id": 2962,
+            "Name": "Burnt Leather Breeches",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Leather",
+            "SubClassId": 2,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "LEGS",
+            "BindingType": null,
+            "Level": 5,
+            "RequiredLevel": 3,
+            "BuyPrice": 0
           }
         ]
       },

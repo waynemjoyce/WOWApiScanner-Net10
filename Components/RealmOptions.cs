@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection;
 using System.Runtime.InteropServices.Swift;
 using System.Text;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace WOWAuctionApi_Net10
 
         private OptionSet flagOptions;
         private bool isDoubleClickCheck = false;
+        int cachedStock = 0;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ImageList SmallImageList
@@ -49,18 +51,18 @@ namespace WOWAuctionApi_Net10
         public bool RealmChecked(int realmId)
         {
 
-                try
-                {
-                    return (lvRealms.Items
-                        .Cast<ListViewItem>() // Cast the ListViewItemCollection to IEnumerable<ListViewItem>
-                        .FirstOrDefault(item =>
-                            item.Tag is Realm tagInfo &&
-                            tagInfo.RealmId == realmId)).Checked;
-                }
-                catch
-                {
-                    return false;
-                }
+            try
+            {
+                return (lvRealms.Items
+                    .Cast<ListViewItem>() // Cast the ListViewItemCollection to IEnumerable<ListViewItem>
+                    .FirstOrDefault(item =>
+                        item.Tag is Realm tagInfo &&
+                        tagInfo.RealmId == realmId)).Checked;
+            }
+            catch
+            {
+                return false;
+            }
 
             return true;
         }
@@ -75,7 +77,7 @@ namespace WOWAuctionApi_Net10
                 }
                 if (listItem.Checked)
                 {
-                    int numAuctions = int.Parse(listItem.SubItems[4 + 
+                    int numAuctions = int.Parse(listItem.SubItems[4 +
                         flagOptions.ToggleOptions.Count].Text.Replace(",", ""));
 
                     if (numAuctions == 0)
@@ -142,6 +144,26 @@ namespace WOWAuctionApi_Net10
             lvRealms.EndUpdate();
             Application.DoEvents();
             UpdateStockCount();
+
+            foreach (ToggleOption flagOption in flagOptions.ToggleOptions)
+            {
+                ToolStripMenuItem tsiFlag = new ToolStripMenuItem();
+                tsiFlag.Name = $"miFlagRealmSpecific_{flagOption.Name}";
+                tsiFlag.Text = $"{flagOption.Name}: {flagOption.Label}";
+                tsiFlag.Tag = flagOption;
+                tsiFlag.Click += miFlagRealmSpecific_Click;
+                miFlagAllSpecific.DropDownItems.AddRange(new ToolStripItem[] { tsiFlag });
+
+                ToolStripMenuItem tsiUnflag = new ToolStripMenuItem();
+                tsiUnflag.Name = $"miFlagRealmSpecific_{flagOption.Name}";
+                tsiUnflag.Text = $"{flagOption.Name}: {flagOption.Label}";
+                tsiUnflag.Tag = flagOption;
+                tsiUnflag.Click += miUnflagRealmSpecific_Click;
+                miUnflagAllSpecific.DropDownItems.AddRange(new ToolStripItem[] { tsiUnflag });
+
+
+            }
+
         }
 
         private ListViewItem GetLVIForRealm(Realm r, string modified = "", int status = 0, string auctionCount = "0")
@@ -157,7 +179,7 @@ namespace WOWAuctionApi_Net10
             lvi.SubItems[1].BackColor = UIHelper.StringToColor(r.BackColor);
             lvi.SubItems[1].ForeColor = Color.White;
 
-            foreach (ToggleOption flagOption in flagOptions.ToggleOptions) 
+            foreach (ToggleOption flagOption in flagOptions.ToggleOptions)
             {
                 bool isFlagged = (r.RealmFlags.HasValue && (r.RealmFlags.Value & flagOption.Id.Value) != 0);
                 if (isFlagged)
@@ -173,7 +195,7 @@ namespace WOWAuctionApi_Net10
                         lvi.SubItems[2 + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
                             = Color.FromName(flagOption.BackColorLight);
                     }
-                    
+
                 }
                 else
                 {
@@ -281,9 +303,9 @@ namespace WOWAuctionApi_Net10
                 var lvi = lvRealms.Items[i];
                 if (lvi.Tag != null && ((Realm)lvi.Tag).RealmId == realm.RealmId)
                 {
-                    string modified = lvi.SubItems[4].Text;
+                    string modified = lvi.SubItems[3 + flagOptions.ToggleOptions.Count].Text;
                     int status = realm.Status;
-                    string auctionCount = lvi.SubItems[5].Text; 
+                    string auctionCount = lvi.SubItems[4 + flagOptions.ToggleOptions.Count].Text;
                     var newLvi = GetLVIForRealm(realm, modified, status, auctionCount);
                     newLvi.Tag = realm;
                     lvRealms.Items[i] = newLvi; // replace the item in the collection
@@ -313,31 +335,6 @@ namespace WOWAuctionApi_Net10
                 return lvi.Tag as Realm;
             }
             return null;
-        }
-
-        private void miFlagRealm_Click(object sender, EventArgs e)
-        {
-        /*
-            if (lvRealms.SelectedItems.Count > 0)
-            {
-                ListViewItem lvi = lvRealms.SelectedItems[0] as ListViewItem;
-                if (lvi != null)
-                {
-                    Realm selectedRealm = lvi.Tag as Realm;
-                    if (selectedRealm.Flagged.Value == false)
-                    {
-                        lvi.SubItems[1].Text = "F";
-                        selectedRealm.Flagged = true;
-                    }
-                    else
-                    {
-                        lvi.SubItems[1].Text = "";
-                        selectedRealm.Flagged = false;
-                    }
-                    sc.Config.Save();
-                }
-            }
-            */
         }
 
         private void lvRealms_DoubleClick(object sender, EventArgs e)
@@ -399,15 +396,21 @@ namespace WOWAuctionApi_Net10
 
         private void UnflagAllRealms()
         {
-            foreach (ListViewItem lvi in lvRealms.Items)
+            if (MessageBox.Show(
+                "This will unflag all flags on all realms.\r\nAre you sure you wish to continue?",
+                    "Unflag All Realms", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                Realm selectedRealm = lvi.Tag as Realm;
-                if (selectedRealm != null)
+                foreach (ListViewItem lvi in lvRealms.Items)
                 {
-                    selectedRealm.RealmFlags = 0;
+                    Realm selectedRealm = lvi.Tag as Realm;
+                    if (selectedRealm != null)
+                    {
+                        selectedRealm.RealmFlags = 0;
+                    }
                 }
+                UpdateAllFlags();
+                sc.Config.Save();
             }
-            sc.Config.Save();
         }
 
         private void FlagAllRealms(bool flag)
@@ -427,7 +430,135 @@ namespace WOWAuctionApi_Net10
                 }
             }
             sc.Config.Save();
+        }
+
+        private void mnRealms_Opened(object sender, EventArgs e)
+        {
+            Realm currentRealm = GetSelectedRealm();
+            if (currentRealm != null)
+            {
+                int cachedStock = currentRealm.Stock.Value;
+                miStockText.Text = currentRealm.Stock.ToString();
+            }
+        }
+
+        private void miStockText_Enter(object sender, EventArgs e)
+        {
+            miStockText.SelectAll();
+        }
+
+        private void miStockText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Suppress the ding sound when Enter is pressed in a textbox
+                e.SuppressKeyPress = true;
+
+                // Execute your desired logic here
+                Realm currentRealm = GetSelectedRealm();
+                if (currentRealm != null)
+                {
+                    if (int.Parse(miStockText.Text) != cachedStock)
+                    {
+                        currentRealm.Stock = int.Parse(miStockText.Text);
+                        SetSelectedRealm(currentRealm);
+                        sc.Config.Save();
+                        mnRealms.Close();
+
+                    }
+                }
+            }
+        }
+
+        private void miStockText_Click(object sender, EventArgs e)
+        {
+            miStockText.SelectAll();
+        }
+
+        private void miClearRealmFlags_Click(object sender, EventArgs e)
+        {
+            Realm currentRealm = GetSelectedRealm();
+            if (currentRealm != null)
+            {
+                currentRealm.RealmFlags = 0;
+                SetSelectedRealm(currentRealm);
+                sc.Config.Save();
+                mnRealms.Close();
+            }
+        }
+
+        private void miFlagRealmSpecific_Click(object sender, EventArgs e)
+        {
+            FlagAllSpecific(true, (sender as ToolStripMenuItem).Tag as ToggleOption);
+        }
+
+        private void miUnflagRealmSpecific_Click(object sender, EventArgs e)
+        {
+            FlagAllSpecific(false, (sender as ToolStripMenuItem).Tag as ToggleOption);
+        }
+
+        public void FlagAllSpecific(bool flag, ToggleOption flagOption)
+        {
+            if (flagOption != null)
+            {
+                foreach (ListViewItem lvi in lvRealms.Items)
+                {
+                    Realm selectedRealm = lvi.Tag as Realm;
+                    if (selectedRealm != null)
+                    {
+                        if (
+                            UIHelper.BitwiseHasValue(selectedRealm.RealmFlags.Value, flagOption.Id.Value)
+                            && !flag)
+                        {
+                            selectedRealm.RealmFlags = selectedRealm.RealmFlags.Value - flagOption.Id.Value;
+                        }
+
+                        if (
+                            !UIHelper.BitwiseHasValue(selectedRealm.RealmFlags.Value, flagOption.Id.Value)
+                            && flag)
+                        {
+                            selectedRealm.RealmFlags = selectedRealm.RealmFlags.Value + flagOption.Id.Value;
+                        }
+                    }
+                }
+            }
+
+            sc.Config.Save();
+            UpdateAllFlags();
         }   
+
+        public void UpdateAllFlags()
+        {
+            foreach (ListViewItem lvi in lvRealms.Items)
+            {
+                Realm r = lvi.Tag as Realm; 
+                foreach (ToggleOption flagOption in flagOptions.ToggleOptions)
+                {
+               
+                    bool isFlagged = (r.RealmFlags.HasValue && (r.RealmFlags.Value & flagOption.Id.Value) != 0);
+                    if (isFlagged)
+                    {
+                        lvi.SubItems[2 + flagOptions.ToggleOptions.IndexOf(flagOption)].Text = flagOption.Name;
+                        if (sc.UIOptions.ColorMode == SystemColorMode.Dark)
+                        {
+                            lvi.SubItems[2 + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
+                                = Color.FromName(flagOption.BackColorDark);
+                        }
+                        else
+                        {
+                            lvi.SubItems[2 + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
+                                = Color.FromName(flagOption.BackColorLight);
+                        }
+                    }
+                    else
+                    {
+                        lvi.SubItems[2 + flagOptions.ToggleOptions.IndexOf(flagOption)].Text = "";
+                        lvi.SubItems[2 + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor 
+                            = SystemColors.ControlLight;
+                    }
+                }
+            }
+        }
     }
 
     public class RealmEventArgs : EventArgs

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WOWAuctionApi-Net10")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.7.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.7.0+6412e1f4d0907f9ee0f24adf000551eed10fda75")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.7.0+4b37b61e124857f09ed1ee305e97a1528b73de54")]
 [assembly: System.Reflection.AssemblyProductAttribute("WOWAuctionApi-Net10")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WOWAuctionApi-Net10")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.7.0")]

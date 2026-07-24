@@ -437,14 +437,41 @@
         "XLabelGap": 61
       },
       "ToggleOptions": [
-        {
+                {
           "Id": 1,
+          "Name": "P",
+          "Label": "Purchases made",
+          "BackColorDark": "ForestGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "ForestGreen",
+          "ToggleColorLight": "PaleGreen"
+        },
+        {
+          "Id": 2,
           "Name": "C",
           "Label": "Ceremonius Gear",
           "BackColorDark": "MediumPurple",
           "ToggleColorDark": "Thistle",
           "BackColorLight": "MediumPurple",
           "ToggleColorLight": "Thistle"
+        },
+        {
+          "Id": 4,
+          "Name": "T",
+          "Label": "Test",
+          "BackColorDark": "DarkOrange",
+          "ToggleColorDark": "PeachPuff",
+          "BackColorLight": "DarkOrange",
+          "ToggleColorLight": "PeachPuff"
+        },
+        {
+          "Id": 8,
+          "Name": "R",
+          "Label": "Refresh Auctions On Start",
+          "BackColorDark": "MediumVioletRed",
+          "ToggleColorDark": "MistyRose",
+          "BackColorLight": "MediumVioletRed",
+          "ToggleColorLight": "MistyRose"
         }
       ]
     }
