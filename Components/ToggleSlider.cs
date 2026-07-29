@@ -178,6 +178,8 @@ namespace WOWAuctionApi_Net10
             int toggleSize = this.Height - 5;
             pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             pevent.Graphics.Clear(this.Parent.BackColor);
+            pevent.Graphics.FillRectangle(new SolidBrush(this.BackColor),
+                    new Rectangle(-1, -1, this.Width +1, this.Height +1));
 
             if (this.Checked) //ON
             {

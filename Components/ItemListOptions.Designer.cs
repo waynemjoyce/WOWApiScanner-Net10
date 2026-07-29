@@ -169,6 +169,7 @@
             Controls.Add(pnlOptions);
             Name = "ItemListOptions";
             OptionsTitle = " My Item Lists";
+            ShowEnabled = false;
             ShowToggleButton = false;
             Size = new Size(551, 1490);
             Controls.SetChildIndex(pnlOptions, 0);

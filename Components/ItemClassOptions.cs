@@ -18,11 +18,13 @@ namespace WOWAuctionApi_Net10
         public void ProfileToUI()
         {
             UIHelper.SetControlBitwiseValue(this, sc.CurrentProfile.Class.Value);
+            this.Enabled = sc.CurrentProfile.ClassFilter.Value;
         }
 
         public void UIToProfile()
         {
             sc.CurrentProfile.Class = UIHelper.GetControlBitwiseValue(this);
+            sc.CurrentProfile.ClassFilter = this.Enabled;
         }
     }
 }

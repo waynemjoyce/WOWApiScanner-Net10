@@ -32,6 +32,7 @@
             colSide = new ColumnHeader();
             colItemName = new ColumnHeader();
             colLevel = new ColumnHeader();
+            colCharLevel = new ColumnHeader();
             colSaleRate = new ColumnHeader();
             colPerc = new ColumnHeader();
             colBuyout = new ColumnHeader();
@@ -42,14 +43,15 @@
             // 
             // lvAuctions
             // 
+            lvAuctions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lvAuctions.BackColor = SystemColors.Control;
-            lvAuctions.Columns.AddRange(new ColumnHeader[] { colSide, colItemName, colLevel, colSaleRate, colPerc, colBuyout, colRegion, colPetLv, colLatestXpac });
+            lvAuctions.Columns.AddRange(new ColumnHeader[] { colSide, colItemName, colLevel, colCharLevel, colSaleRate, colPerc, colBuyout, colRegion, colPetLv, colLatestXpac });
             lvAuctions.Font = new Font("Segoe UI", 9F);
             lvAuctions.FullRowSelect = true;
             lvAuctions.Location = new Point(0, 0);
             lvAuctions.Name = "lvAuctions";
             lvAuctions.ShowItemToolTips = true;
-            lvAuctions.Size = new Size(1380, 1490);
+            lvAuctions.Size = new Size(1380, 1487);
             lvAuctions.TabIndex = 102;
             lvAuctions.UseCompatibleStateImageBehavior = false;
             lvAuctions.View = View.Details;
@@ -65,12 +67,17 @@
             // colItemName
             // 
             colItemName.Text = "Item Name";
-            colItemName.Width = 500;
+            colItemName.Width = 420;
             // 
             // colLevel
             // 
             colLevel.Text = "Level";
             colLevel.Width = 80;
+            // 
+            // colCharLevel
+            // 
+            colCharLevel.Text = "Ch Lv";
+            colCharLevel.Width = 80;
             // 
             // colSaleRate
             // 
@@ -126,5 +133,6 @@
         private ColumnHeader colRegion;
         private ColumnHeader colPetLv;
         private ColumnHeader colLatestXpac;
+        private ColumnHeader colCharLevel;
     }
 }

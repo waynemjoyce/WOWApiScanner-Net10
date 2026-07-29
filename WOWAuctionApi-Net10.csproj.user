@@ -46,9 +46,6 @@
     <Compile Update="Components\PBSExport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Components\QualityOptions.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Components\RealmOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>

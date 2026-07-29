@@ -24,6 +24,7 @@ namespace WOWAuctionApi_Net10
             sc.Config.TSMClientID = txtTSMClientID.Text;
             sc.Config.DefaultSearch = cboDefaultSearch.Text;
             sc.Config.GlobalKeyboardHookChar = txtGlobalKeyboardHookChar.Text;  
+            sc.Config.RealmSplitPoint = txtRealmSplitPoint.Text;    
         }
 
         public void LoadFromConfig()
@@ -33,6 +34,7 @@ namespace WOWAuctionApi_Net10
             txtTSMKey.Text = sc.Config.TSMKey;
             txtTSMClientID.Text = sc.Config.TSMClientID;
             txtGlobalKeyboardHookChar.Text = sc.Config.GlobalKeyboardHookChar;  
+            txtRealmSplitPoint.Text = sc.Config.RealmSplitPoint;    
 
             foreach (SearchProfile profile in sc.SearchProfiles.Profiles)
             {

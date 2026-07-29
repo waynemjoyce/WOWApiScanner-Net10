@@ -139,11 +139,11 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(685, 34);
+            textBox1.Location = new Point(482, 55);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(427, 141);
+            textBox1.Size = new Size(888, 505);
             textBox1.TabIndex = 10;
             // 
             // button2
@@ -158,7 +158,7 @@
             // 
             // btnPostAuctions
             // 
-            btnPostAuctions.Location = new Point(1104, 387);
+            btnPostAuctions.Location = new Point(1495, 12);
             btnPostAuctions.Name = "btnPostAuctions";
             btnPostAuctions.Size = new Size(374, 46);
             btnPostAuctions.TabIndex = 12;

@@ -74,7 +74,7 @@ namespace WOWAuctionApi_Net10
             public int Count = 0;
         }
 
-        public void AuctionsSearch(Charts chartsComponent)
+        public void AuctionsSearch(Charts chartsComponent, List<Realm> searchRealms)
         {
             List<SearchResultCount> searchResultCounts = new List<SearchResultCount>();
 
@@ -85,7 +85,6 @@ namespace WOWAuctionApi_Net10
                 return;
             }
 
-            lvAuctions.Visible = false;
             int count = 0;
 
             switch (sc.CurrentProfile.ChartFilter)
@@ -106,8 +105,52 @@ namespace WOWAuctionApi_Net10
 
             }
 
+
+            foreach (ListViewItem lvi in realmOptions.CheckedItems)
+            {
+                if (lvi.Tag != null)
+                {
+                    Realm realm = lvi.Tag as Realm;
+                    if (realm != null)
+                    {
+                        if (sc.SearchLogic.Options.NewDataOnly == true
+                            && realm.Status != 2) { continue; }
+
+                        var searchResults = sc.SearchLogic.DoAuctionSearch(realm);
+
+                        if (searchResults != null)
+                        {
+                            if (chartsComponent.ChartFilter == "")
+                            {
+                                RenderSearchResults(searchResults, realm, count);
+                            }
+                            else
+                            {
+                                searchResultCounts.Add(new SearchResultCount
+                                {
+                                    SearchResults = searchResults,
+                                    Realm = realm,
+                                    Count = count
+                                });
+                            }
+
+                            sc.AllRealmsAuctionTotal += searchResults.Count;
+                            sc.Lists.RealmSearchCount.Add(new RealmCount
+                            {
+                                Realm = realm,
+                                Count = searchResults.Count,
+                                TotalValue = searchResults.Sum(r => r.RegionMarket)
+                            });
+                        }
+                        count++;
+                    }
+                }
+            }
+
+            /*
             //Pass 1
-            foreach (Realm realm in sc.Config.Realms)
+            //foreach (Realm realm in sc.Config.Realms)
+            foreach (Realm realm in searchRealms)
             {
                 if (realmOptions.RealmChecked(realm.RealmId.Value))
                 {
@@ -143,19 +186,21 @@ namespace WOWAuctionApi_Net10
                     count++;
                 }
             }
+            */
 
             chartsComponent.RenderCharts();
 
             if (chartsComponent.ChartFilter != "")
             {
                 foreach (Realm r in chartsComponent.ShownRealms)
-                {
-                    SearchResultCount src = searchResultCounts.Single(s => s.Realm.RealmId == r.RealmId);
-                    RenderSearchResults(src.SearchResults, src.Realm, src.Count);
+                {   
+                    if (searchRealms.Contains(r))
+                    {
+                        SearchResultCount src = searchResultCounts.Single(s => s.Realm.RealmId == r.RealmId);
+                        RenderSearchResults(src.SearchResults, src.Realm, src.Count);
+                    }
                 }
             }
-
-            lvAuctions.Visible = true;
         }
 
         private void RenderSearchResults(
@@ -197,10 +242,11 @@ namespace WOWAuctionApi_Net10
                 lvi.SubItems[1].ForeColor = UIHelper.GetColorForQuality(result.Quality);
 
                 lvi.SubItems.Add(result.Level.ToString());
+                lvi.SubItems.Add(result.CharLevel.ToString()); //Char level needs to go here
 
                 //Color code sale rate
                 lvi.SubItems.Add(result.SaleRate.ToString());
-                lvi.SubItems[3].ForeColor = UIHelper.GetColorForSellRate(result.SaleRate);
+                lvi.SubItems[4].ForeColor = UIHelper.GetColorForSellRate(result.SaleRate);
 
                 if (actualPercentage > 999.99f)
                 {
@@ -214,10 +260,12 @@ namespace WOWAuctionApi_Net10
                 lvi.SubItems.Add(result.PetLevel.ToString()); //Pet Level
                 if (result.PetLevel > 0)
                 {
-                    lvi.SubItems[7].ForeColor = UIHelper.GetColorForQuality(result.Quality);
+                    lvi.SubItems[8].ForeColor = UIHelper.GetColorForQuality(result.Quality);
                 }
 
-                lvi.SubItems.Add((sc.ItemData.MidnightItemIds.Contains(result.ItemId)) ? "Y" : "");
+                //lvi.SubItems.Add((sc.ItemData.MidnightItemIds.Contains(result.ItemId)) ? "Y" : "");
+
+                lvi.SubItems.Add((result.ItemId >= sc.Config.LatestXpacItemId) ? "Y" : "");
                 lvAuctions.Items.Add(lvi);
             }
             lvAuctions.ResumeLayout();

@@ -65,8 +65,17 @@ namespace WOWAuctionApi_Net10.Json_Classes
 
         public int? MainOptions { get; set; }
         public int? Class { get; set; }
+        public int? SubClass { get; set; }
+        public int? InventoryType { get; set; }
         public int? Quality { get; set; }
         public int? Bonuses { get; set; }
+        public bool? MainFilter { get; set; }
+        public bool? ClassFilter { get; set; }
+        public bool? SubClassFilter { get; set; }
+        public bool? InventoryTypeFilter { get; set; }
+        public bool? QualityFilter { get; set; }
+        public bool? BonusesFilter { get; set; }
+
 
         public List<string>? Lists { get; set; }   
         public int? ListOption { get; set; }

@@ -27,7 +27,10 @@ namespace WOWAuctionApi_Net10
 
             foreach (ToggleSlider checkBox in checkedBoxes)
             {
-                if ((checkBox.Tag != null) && (checkBox.Tag.ToString() == "!EXCLUDE")) { continue; }
+                if (checkBox.Tag != null && checkBox.Tag.ToString() == "!EXCLUDE")
+                {
+                    continue;
+                }
                 checkBox.Checked = ((bitwiseValue & checkBox.OptionBit) != 0);
             }
         }
@@ -226,14 +229,18 @@ namespace WOWAuctionApi_Net10
             var clickedButton = sender as System.Windows.Forms.Button;
             if (clickedButton != null)
             {
-                if ((clickedButton.Tag != null) && (clickedButton.Tag.ToString() == "!EXCLUDE")) { return; }
+                //if ((clickedButton.Tag != null) && (clickedButton.Tag.ToString() == "!EXCLUDE")) { return; }
                 var hostControl = clickedButton.Parent as Control;
                 if (hostControl != null)
                 {
                     var checkedBoxes = hostControl.Controls.OfType<ToggleSlider>();
-                    bool toggleValue = !(checkedBoxes.First().Checked);
+                    bool toggleValue = !(checkedBoxes.Where(c => c.Name!="tslEnabled").First().Checked);
                     foreach (CheckBox checkBox in checkedBoxes)
                     {
+                        if (checkBox.Tag != null && checkBox.Tag.ToString() == "!EXCLUDE")
+                        {
+                            continue;
+                        }
                         checkBox.Checked = toggleValue;
                     }
                 }
@@ -248,9 +255,13 @@ namespace WOWAuctionApi_Net10
 
             foreach (ToggleSlider checkBox in checkedBoxes)
             {
+                if (checkBox.Tag != null && checkBox.Tag.ToString() == "!EXCLUDE")
+                {
+                    continue;
+                }
                 returnValue.Add(checkBox.OptionValue);
-            }
 
+            }
             return returnValue;
         }
 

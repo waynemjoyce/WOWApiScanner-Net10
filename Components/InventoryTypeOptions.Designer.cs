@@ -1,6 +1,6 @@
 ﻿namespace WOWAuctionApi_Net10
 {
-    partial class BonusOptions
+    partial class InventoryTypeOptions
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,11 +30,13 @@
         {
             SuspendLayout();
             // 
-            // BonusOptions
+            // ItemClassOptions
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            Name = "BonusOptions";
+            BackColor = SystemColors.ControlLight;
+            Name = "ItemClassOptions";
+            Size = new Size(576, 331);
             ResumeLayout(false);
         }
 

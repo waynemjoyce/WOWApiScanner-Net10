@@ -51,6 +51,20 @@ namespace WOWAuctionApi_Net10
 
         private void button1_Click(object sender, EventArgs e)
         {
+            textBox1.Clear();
+
+            //List all unique values for X
+            List<string> uniqueInventoryTypes = sc.Caches.ItemCache.Items
+                .Select(p => p.SubClassName)
+                .Distinct()
+                .ToList();
+
+            foreach (string type in uniqueInventoryTypes)
+            {
+                textBox1.Text += type + "\r\n";
+
+            }
+
             /*
             BlizzItem bi = API_Blizzard.GetBlizzItemFromItemId(sc.BlizzAccessToken, long.Parse(this.textBox1.Text));
 

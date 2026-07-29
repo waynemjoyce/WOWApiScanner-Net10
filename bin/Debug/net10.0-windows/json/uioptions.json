@@ -222,6 +222,299 @@
         }
       ]
     },
+        {
+      "SetName": "SubClass",
+      "UseDefaultAttributes": false,
+      "Attributes": {
+        "TogsPerColumn": 8,
+        "Width": 60,
+        "Height": 32,
+        "XStart": 30,
+        "YStart": 63,
+        "YRowOffset": 34,
+        "XColumnOffset": 190,
+        "XLabelGap": 61
+      },
+      "ToggleOptions": [
+        {
+          "Id": 1,
+          "Name": "Cloth",
+          "Label": "Cloth",
+          "BackColorDark": "Gray",
+          "ToggleColorDark": "Gainsboro",
+          "BackColorLight": "DimGray",
+          "ToggleColorLight": "LightGray"
+        },
+        {
+          "Id": 2,
+          "Name": "Leather",
+          "Label": "Leather",
+          "BackColorDark": "Silver",
+          "ToggleColorDark": "White",
+          "BackColorLight": "Gray",
+          "ToggleColorLight": "Gainsboro"
+        },
+        {
+          "Id": 4,
+          "Name": "Mail",
+          "Label": "Mail",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 8,
+          "Name": "Plate",
+          "Label": "Plate",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
+        },
+        {
+          "Id": 16,
+          "Name": "Staff",
+          "Label": "Staff",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
+        },
+        {
+          "Id": 32,
+          "Name": "Bow",
+          "Label": "Bow",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
+        },
+        {
+          "Id": 64,
+          "Name": "Gun",
+          "Label": "Gun",
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
+        },
+        {
+          "Id": 128,
+          "Name": "Dagger",
+          "Label": "Dagger",
+          "BackColorDark": "Gray",
+          "ToggleColorDark": "Gainsboro",
+          "BackColorLight": "DimGray",
+          "ToggleColorLight": "LightGray"
+        },        
+        {
+          "Id": 256,
+          "Name": "Crossbow",
+          "Label": "Crossbow",
+          "BackColorDark": "Gray",
+          "ToggleColorDark": "Gainsboro",
+          "BackColorLight": "DimGray",
+          "ToggleColorLight": "LightGray"
+        },
+        {
+          "Id": 512,
+          "Name": "Wand",
+          "Label": "Wand",
+          "BackColorDark": "Silver",
+          "ToggleColorDark": "White",
+          "BackColorLight": "Gray",
+          "ToggleColorLight": "Gainsboro"
+        },
+        {
+          "Id": 1024,
+          "Name": "Polearm",
+          "Label": "Polearm",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 2048,
+          "Name": "Sword",
+          "Label": "Sword",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
+        },
+        {
+          "Id": 4096,
+          "Name": "Mace",
+          "Label": "Mace",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
+        },
+        {
+          "Id": 8192,
+          "Name": "Axe",
+          "Label": "Axe",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
+        },
+        {
+          "Id": 16384,
+          "Name": "Fist Weapon",
+          "Label": "Fist Weapon",
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
+        },
+        {
+          "Id": 32768,
+          "Name": "Warglaives",
+          "Label": "Warglaives",
+          "BackColorDark": "Gray",
+          "ToggleColorDark": "Gainsboro",
+          "BackColorLight": "DimGray",
+          "ToggleColorLight": "LightGray"
+        }
+      ]
+    },
+    {
+      "SetName": "InventoryType",
+      "UseDefaultAttributes": false,
+      "Attributes": {
+        "TogsPerColumn": 7,
+        "Width": 60,
+        "Height": 32,
+        "XStart": 30,
+        "YStart": 63,
+        "YRowOffset": 34,
+        "XColumnOffset": 213,
+        "XLabelGap": 61
+      },
+      "ToggleOptions": [
+        {
+          "Id": 1,
+          "Name": "HEAD",
+          "Label": "Head",
+          "BackColorDark": "Gray",
+          "ToggleColorDark": "Gainsboro",
+          "BackColorLight": "DimGray",
+          "ToggleColorLight": "LightGray"
+        },
+        {
+          "Id": 2,
+          "Name": "NECK",
+          "Label": "Neck",
+          "BackColorDark": "Silver",
+          "ToggleColorDark": "White",
+          "BackColorLight": "Gray",
+          "ToggleColorLight": "Gainsboro"
+        },
+        {
+          "Id": 4,
+          "Name": "SHOULDER",
+          "Label": "Shoulder",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 8,
+          "Name": "CLOAK",
+          "Label": "Cloak",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
+        },
+        {
+          "Id": 16,
+          "Name": "CHEST",
+          "Label": "Chest",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
+        },
+        {
+          "Id": 32,
+          "Name": "WRIST",
+          "Label": "Wrist",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
+        },
+        {
+          "Id": 64,
+          "Name": "HAND",
+          "Label": "Hand",
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
+        },
+        {
+          "Id": 128,
+          "Name": "WAIST",
+          "Label": "Waist",
+          "BackColorDark": "Gray",
+          "ToggleColorDark": "Gainsboro",
+          "BackColorLight": "DimGray",
+          "ToggleColorLight": "LightGray"
+        },
+        {
+          "Id": 256,
+          "Name": "LEGS",
+          "Label": "Legs",
+          "BackColorDark": "Silver",
+          "ToggleColorDark": "White",
+          "BackColorLight": "Gray",
+          "ToggleColorLight": "Gainsboro"
+        },
+        {
+          "Id": 512,
+          "Name": "FEET",
+          "Label": "Feet",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 1024,
+          "Name": "FINGER",
+          "Label": "Finger",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "LightBlue",
+          "BackColorLight": "MidnightBlue",
+          "ToggleColorLight": "LightSkyBlue"
+        },
+        {
+          "Id": 2048,
+          "Name": "TRINKET",
+          "Label": "Trinket",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
+        },
+        {
+          "Id": 4096,
+          "Name": "SHIELD",
+          "Label": "Shield",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
+        }
+      ]
+    },
     {
       "SetName": "Quality",
       "UseDefaultAttributes": true,
@@ -429,6 +722,15 @@
           "ToggleColorDark": "NavajoWhite",
           "BackColorLight": "Chocolate",
           "ToggleColorLight": "Tan"
+        },
+        {
+          "Id": 256,
+          "Name": "Dual Auction Lists",
+          "Label": "Dual Auction Lists",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
         }
       ]
     },
@@ -475,8 +777,8 @@
         },
         {
           "Id": 8,
-          "Name": "N",
-          "Label": "Need stock",
+          "Name": "M",
+          "Label": "Maraudon transmog received",
           "BackColorDark": "Sienna",
           "ToggleColorDark": "Wheat",
           "BackColorLight": "Sienna",
@@ -484,12 +786,21 @@
         },
         {
           "Id": 16,
-          "Name": "P",
-          "Label": "Purged",
-          "BackColorDark": "CornflowerBlue",
-          "ToggleColorDark": "LightBlue",
-          "BackColorLight": "MidnightBlue",
-          "ToggleColorLight": "LightSkyBlue"
+          "Name": "L",
+          "Label": "Ceremonial Leather Loincloth",
+          "BackColorDark": "MediumVioletRed",
+          "ToggleColorDark": "MistyRose",
+          "BackColorLight": "MediumVioletRed",
+          "ToggleColorLight": "MistyRose"
+        },
+        {
+          "Id": 32,
+          "Name": "I",
+          "Label": "Iron docks transmog received",
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
         }
       ]
     }

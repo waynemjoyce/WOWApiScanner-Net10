@@ -30,12 +30,13 @@
         {
             SuspendLayout();
             // 
-            // QualityOptions
+            // ItemClassOptions
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            Name = "QualityOptions";
-            Size = new Size(479, 598);
+            BackColor = SystemColors.ControlLight;
+            Name = "ItemClassOptions";
+            Size = new Size(576, 331);
             ResumeLayout(false);
         }
 

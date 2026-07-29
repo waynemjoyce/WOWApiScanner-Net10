@@ -8,7 +8,6 @@ using System.Runtime.InteropServices.Swift;
 using System.Text;
 using System.Windows.Forms;
 using WOWAuctionApi_Net10.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WOWAuctionApi_Net10
 {
@@ -25,6 +24,12 @@ namespace WOWAuctionApi_Net10
         {
             get { return lvRealms.SmallImageList; }
             set { lvRealms.SmallImageList = value; }
+        }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public ListView.CheckedListViewItemCollection CheckedItems
+        {
+            get { return lvRealms.CheckedItems; }
         }
 
         public event EventHandler<RealmEventArgs>? SelectedChanged;
@@ -53,11 +58,28 @@ namespace WOWAuctionApi_Net10
 
             try
             {
+            /*
                 return (lvRealms.Items
                     .Cast<ListViewItem>() // Cast the ListViewItemCollection to IEnumerable<ListViewItem>
                     .FirstOrDefault(item =>
                         item.Tag is Realm tagInfo &&
                         tagInfo.RealmId == realmId)).Checked;
+                        */
+
+                foreach (ListViewItem lvi in lvRealms.Items)
+                {
+                    if (lvi.Tag != null)
+                    {
+                        Realm r = lvi.Tag as Realm;
+                        if (r != null)
+                        {
+                            if (r.RealmId == realmId)
+                            {
+                                return lvi.Checked;
+                            }
+                        }
+                    }
+                }
             }
             catch
             {
@@ -470,6 +492,7 @@ namespace WOWAuctionApi_Net10
                         }
                     }
                     sc.Config.Save();
+                    UpdateStockCount();
                     mnRealms.Close();
                 }
             }

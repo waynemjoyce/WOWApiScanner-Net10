@@ -37,13 +37,13 @@
             miStockText = new ToolStripTextBox();
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripSeparator2 = new ToolStripSeparator();
+            miFlagAllSpecific = new ToolStripMenuItem();
             miUnflagAllSpecific = new ToolStripMenuItem();
             toolStripSeparator3 = new ToolStripSeparator();
             toolStripSeparator4 = new ToolStripSeparator();
             miUnflagAllRealms = new ToolStripMenuItem();
             btnToggleRealms = new Button();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            miFlagAllSpecific = new ToolStripMenuItem();
             mnRealms.SuspendLayout();
             SuspendLayout();
             // 
@@ -72,7 +72,7 @@
             mnRealms.ImageScalingSize = new Size(32, 32);
             mnRealms.Items.AddRange(new ToolStripItem[] { miEditRealm, miClearRealmFlags, miStockText, toolStripSeparator1, toolStripSeparator2, miFlagAllSpecific, miUnflagAllSpecific, toolStripSeparator3, toolStripSeparator4, miUnflagAllRealms });
             mnRealms.Name = "contextMenuStrip1";
-            mnRealms.Size = new Size(316, 305);
+            mnRealms.Size = new Size(316, 261);
             mnRealms.Text = "Realm options";
             mnRealms.Opened += mnRealms_Opened;
             // 
@@ -107,6 +107,12 @@
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(312, 6);
+            // 
+            // miFlagAllSpecific
+            // 
+            miFlagAllSpecific.Name = "miFlagAllSpecific";
+            miFlagAllSpecific.Size = new Size(315, 38);
+            miFlagAllSpecific.Text = "Flag All ...";
             // 
             // miUnflagAllSpecific
             // 
@@ -150,12 +156,6 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
-            // miFlagAllSpecific
-            // 
-            miFlagAllSpecific.Name = "miFlagAllSpecific";
-            miFlagAllSpecific.Size = new Size(315, 38);
-            miFlagAllSpecific.Text = "Flag All ...";
-            // 
             // RealmOptions
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -164,6 +164,7 @@
             Controls.Add(lvRealms);
             Name = "RealmOptions";
             OptionsTitle = "      Realms";
+            ShowEnabled = false;
             ShowToggleButton = false;
             Size = new Size(788, 1582);
             Load += RealmOptions_Load;

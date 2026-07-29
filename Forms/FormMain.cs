@@ -103,6 +103,7 @@ namespace WOWAuctionApi_Net10
             SetDisplayMode(DisplayMode.Auctions);
 
             auctionsView1.InitAuctionsView(realmOptions1, globalOptions1);
+            auctionsView2.InitAuctionsView(realmOptions1, globalOptions1);
 
             charts1.SetUpCharts();
 
@@ -122,9 +123,32 @@ namespace WOWAuctionApi_Net10
                 UpdateAllData();
             }
 
+
+            SetAuctionFromViewConfig();
             if (sc.Config.RefreshAuctionsOnStart)
             {
                 auctionsView1.LoadAuctionData();
+            }
+
+            mainOptions1.BringBlockToFront();
+        }
+
+        private void SetAuctionFromViewConfig()
+        {
+            if (sc.Config.DualAuctionLists)
+            {
+                auctionsView2.Visible = true;
+
+                auctionsView2.Left = auctionsView1.Left;
+                auctionsView2.Top = (auctionsView1.Height / 2) + 8;
+                auctionsView2.Height = (auctionsView1.Height / 2) - 8;
+                auctionsView2.Width = auctionsView1.Width;
+
+                auctionsView1.Height = auctionsView2.Height - 8;
+            }
+            else
+            {
+                auctionsView2.Visible = false;
             }
         }
 
@@ -137,6 +161,8 @@ namespace WOWAuctionApi_Net10
         {
             mainOptions1.Visible = true;
             itemClassOptions1.Visible = true;
+            subClassOptions1.Visible = true;
+            inventoryTypeOptions1.Visible = true;
             qualityOptions1.Visible = true;
             bonusOptions1.Visible = true;
             moreOptions1.Visible = true;
@@ -179,6 +205,8 @@ namespace WOWAuctionApi_Net10
             UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "Class"), itemClassOptions1);
             UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "Quality"), qualityOptions1);
             UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "Bonuses"), bonusOptions1);
+            UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "InventoryType"), inventoryTypeOptions1);
+            UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "SubClass"), subClassOptions1);
 
             Application.DoEvents();
         }
@@ -294,6 +322,8 @@ namespace WOWAuctionApi_Net10
             sc.Config.DisplayInactiveRealms = checkOptions.Contains(tc.Id.Value);
             tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Flag First With Stock Update");
             sc.Config.FlagFirstWithStockUpdate = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Dual Auction Lists");
+            sc.Config.DualAuctionLists = checkOptions.Contains(tc.Id.Value);
         }
         private void tsbRefreshAuctionData_Click(object sender, EventArgs e)
         {
@@ -400,6 +430,8 @@ namespace WOWAuctionApi_Net10
             bonusOptions1.ProfileToUI();
             moreOptions1.ProfileToUI();
             itemListOptions1.ProfileToUI();
+            inventoryTypeOptions1.ProfileToUI();
+            subClassOptions1.ProfileToUI();
 
             tslCurrentProfile.Text = sc.CurrentProfile.ProfileName;
             tslCurrentProfile.Image = imgProfile48.Images[sc.CurrentProfile.IconIndex.Value];
@@ -428,6 +460,8 @@ namespace WOWAuctionApi_Net10
             bonusOptions1.UIToProfile();
             moreOptions1.UIToProfile();
             itemListOptions1.UIToProfile();
+            inventoryTypeOptions1.UIToProfile();
+            subClassOptions1.UIToProfile();
         }
 
 
@@ -602,7 +636,9 @@ namespace WOWAuctionApi_Net10
             sc.SearchLogic.Options.Main = UIHelper.GetControlCheckedList(mainOptions1);
             sc.SearchLogic.Options.Class = UIHelper.GetControlCheckedList(itemClassOptions1);
             sc.SearchLogic.Options.Quality = UIHelper.GetControlCheckedList(qualityOptions1);
-            sc.SearchLogic.Options.Bonuses = UIHelper.GetControlCheckedList(bonusOptions1);
+            sc.SearchLogic.Options.Bonuses = UIHelper.GetControlCheckedList(bonusOptions1).ConvertAll(long.Parse);
+            sc.SearchLogic.Options.InventoryType = UIHelper.GetControlCheckedList(inventoryTypeOptions1);
+            sc.SearchLogic.Options.SubClass = UIHelper.GetControlCheckedList(subClassOptions1);
 
             sc.SearchLogic.Options.NewDataOnly = globalOptions1.NewDataOnly;
             sc.SearchLogic.Options.LatestXpac = sc.SearchLogic.Options.Main.Contains("Latest Xpac");
@@ -656,7 +692,34 @@ namespace WOWAuctionApi_Net10
             {
                 case DisplayMode.Auctions:
                 default:
-                    auctionsView1.AuctionsSearch(charts1);
+                    if (sc.Config.DualAuctionLists)
+                    {
+                        List<Realm> realms1 = new List<Realm>();
+                        List<Realm> realms2 = new List<Realm>();
+
+                        List<Realm> activeList = realms1;
+
+                        foreach (Realm r in sc.Config.Realms)
+                        {
+                            if (r.RealmName == sc.Config.RealmSplitPoint)
+                            {
+                                activeList = realms2;
+                            }
+                            activeList.Add(r);
+                        }
+                        auctionsView1.Visible = false;
+                        auctionsView2.Visible = false;
+                        auctionsView1.AuctionsSearch(charts1, realms1);
+                        auctionsView2.AuctionsSearch(charts1, realms2);
+                        auctionsView1.Visible = true;
+                        auctionsView2.Visible = true;
+                    }
+                    else
+                    {
+                        auctionsView1.Visible = false;
+                        auctionsView1.AuctionsSearch(charts1, sc.Config.Realms);
+                        auctionsView1.Visible = true;
+                    }
                     break;
 
                 case DisplayMode.ItemsLists:

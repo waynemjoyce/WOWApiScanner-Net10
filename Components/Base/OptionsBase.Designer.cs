@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsBase));
             lblTitle = new Label();
             btnToggle = new Button();
+            tslEnabled = new ToggleSlider();
+            labelBlock = new Label();
             SuspendLayout();
             // 
             // lblTitle
@@ -39,7 +41,7 @@
             lblTitle.Dock = DockStyle.Top;
             lblTitle.Location = new Point(0, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(1081, 41);
+            lblTitle.Size = new Size(576, 41);
             lblTitle.TabIndex = 129;
             lblTitle.Text = "      [Set OptionsTitle]";
             lblTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -57,15 +59,48 @@
             btnToggle.UseVisualStyleBackColor = false;
             btnToggle.Click += btnToggle_Click;
             // 
-            // BaseOptions
+            // tslEnabled
+            // 
+            tslEnabled.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            tslEnabled.BackColor = SystemColors.ControlDark;
+            tslEnabled.Checked = true;
+            tslEnabled.CheckState = CheckState.Checked;
+            tslEnabled.ForeColor = Color.LimeGreen;
+            tslEnabled.Location = new Point(514, 5);
+            tslEnabled.MinimumSize = new Size(46, 22);
+            tslEnabled.Name = "tslEnabled";
+            tslEnabled.OffBackColor = Color.Gray;
+            tslEnabled.OffToggleColor = Color.Gainsboro;
+            tslEnabled.OnBackColor = Color.LimeGreen;
+            tslEnabled.OnToggleColor = Color.PaleGreen;
+            tslEnabled.OptionBit = 0;
+            tslEnabled.OptionValue = "";
+            tslEnabled.Size = new Size(60, 32);
+            tslEnabled.TabIndex = 147;
+            tslEnabled.Tag = "!EXCLUDE";
+            tslEnabled.UseVisualStyleBackColor = false;
+            tslEnabled.CheckedChanged += tslEnabled_CheckedChanged;
+            // 
+            // labelBlock
+            // 
+            labelBlock.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelBlock.Location = new Point(3, 42);
+            labelBlock.Name = "labelBlock";
+            labelBlock.Size = new Size(573, 331);
+            labelBlock.TabIndex = 148;
+            labelBlock.Visible = false;
+            // 
+            // OptionsBase
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
+            Controls.Add(labelBlock);
+            Controls.Add(tslEnabled);
             Controls.Add(btnToggle);
             Controls.Add(lblTitle);
-            Name = "BaseOptions";
-            Size = new Size(1081, 570);
+            Name = "OptionsBase";
+            Size = new Size(576, 373);
             ResumeLayout(false);
         }
 
@@ -73,5 +108,7 @@
 
         private Label lblTitle;
         private Button btnToggle;
+        private ToggleSlider tslEnabled;
+        private Label labelBlock;
     }
 }

@@ -136,6 +136,7 @@
             Controls.Add(pnlSubOptions);
             Name = "GlobalOptions";
             OptionsTitle = " Global Options";
+            ShowEnabled = false;
             ShowToggleButton = false;
             Size = new Size(281, 331);
             Controls.SetChildIndex(pnlSubOptions, 0);

@@ -117,17 +117,20 @@
             label9 = new Label();
             imgProfile48 = new ImageList(components);
             pnlAuctionData = new Panel();
+            auctionsView2 = new AuctionsView();
             charts1 = new Charts();
             auctionsView1 = new AuctionsView();
             mainOptions1 = new MainOptions();
             itemClassOptions1 = new ItemClassOptions();
-            qualityOptions1 = new QualityOptions();
             bonusOptions1 = new BonusOptions();
             moreOptions1 = new MoreOptions();
             globalOptions1 = new GlobalOptions();
             itemListOptions1 = new ItemListOptions(components);
             pbsExport1 = new PBSExport();
             realmOptions1 = new RealmOptions();
+            inventoryTypeOptions1 = new InventoryTypeOptions();
+            subClassOptions1 = new SubClassOptions();
+            qualityOptions1 = new QualityOptions();
             toolStripMain.SuspendLayout();
             panelRibbon.SuspendLayout();
             tssMain.SuspendLayout();
@@ -996,9 +999,9 @@
             pnlLists_Items.Controls.Add(lblItemsSearchLabel);
             pnlLists_Items.Controls.Add(lvItemsSearchResults);
             pnlLists_Items.Controls.Add(label9);
-            pnlLists_Items.Location = new Point(610, 484);
+            pnlLists_Items.Location = new Point(610, 532);
             pnlLists_Items.Name = "pnlLists_Items";
-            pnlLists_Items.Size = new Size(3192, 1490);
+            pnlLists_Items.Size = new Size(3192, 1442);
             pnlLists_Items.TabIndex = 140;
             pnlLists_Items.Visible = false;
             // 
@@ -2138,82 +2141,84 @@
             // 
             // pnlAuctionData
             // 
+            pnlAuctionData.Controls.Add(auctionsView2);
             pnlAuctionData.Controls.Add(charts1);
             pnlAuctionData.Controls.Add(auctionsView1);
-            pnlAuctionData.Location = new Point(610, 484);
+            pnlAuctionData.Location = new Point(610, 529);
             pnlAuctionData.Name = "pnlAuctionData";
-            pnlAuctionData.Size = new Size(2750, 1490);
+            pnlAuctionData.Size = new Size(2750, 1445);
             pnlAuctionData.TabIndex = 143;
             pnlAuctionData.Visible = false;
             // 
+            // auctionsView2
+            // 
+            auctionsView2.Location = new Point(536, 354);
+            auctionsView2.Name = "auctionsView2";
+            auctionsView2.Size = new Size(631, 622);
+            auctionsView2.TabIndex = 137;
+            auctionsView2.Visible = false;
+            // 
             // charts1
             // 
-            charts1.Location = new Point(1400, 4);
+            charts1.Location = new Point(1386, 0);
             charts1.Name = "charts1";
-            charts1.Size = new Size(892, 1490);
+            charts1.Size = new Size(850, 1494);
             charts1.TabIndex = 136;
             charts1.Visible = false;
             // 
             // auctionsView1
             // 
-            auctionsView1.Location = new Point(0, 0);
+            auctionsView1.Location = new Point(0, 2);
             auctionsView1.Name = "auctionsView1";
-            auctionsView1.Size = new Size(1380, 1490);
+            auctionsView1.Size = new Size(1380, 1417);
             auctionsView1.TabIndex = 135;
             auctionsView1.Visible = false;
             // 
             // mainOptions1
             // 
             mainOptions1.BackColor = SystemColors.ControlLight;
-            mainOptions1.Location = new Point(29, 128);
+            mainOptions1.Location = new Point(1111, 128);
             mainOptions1.Name = "mainOptions1";
             mainOptions1.OptionsTitle = "      Main Options";
+            mainOptions1.ShowEnabled = true;
             mainOptions1.ShowToggleButton = true;
-            mainOptions1.Size = new Size(551, 331);
+            mainOptions1.Size = new Size(551, 373);
             mainOptions1.TabIndex = 149;
             mainOptions1.Visible = false;
             // 
             // itemClassOptions1
             // 
             itemClassOptions1.BackColor = SystemColors.ControlLight;
-            itemClassOptions1.Location = new Point(611, 128);
+            itemClassOptions1.Location = new Point(1695, 128);
             itemClassOptions1.Name = "itemClassOptions1";
             itemClassOptions1.OptionsTitle = "      Item Class";
+            itemClassOptions1.ShowEnabled = true;
             itemClassOptions1.ShowToggleButton = true;
-            itemClassOptions1.Size = new Size(576, 331);
+            itemClassOptions1.Size = new Size(576, 373);
             itemClassOptions1.TabIndex = 150;
             itemClassOptions1.Visible = false;
-            // 
-            // qualityOptions1
-            // 
-            qualityOptions1.BackColor = SystemColors.ControlLight;
-            qualityOptions1.Location = new Point(1217, 128);
-            qualityOptions1.Name = "qualityOptions1";
-            qualityOptions1.OptionsTitle = "      Quality";
-            qualityOptions1.ShowToggleButton = true;
-            qualityOptions1.Size = new Size(280, 331);
-            qualityOptions1.TabIndex = 151;
-            qualityOptions1.Visible = false;
             // 
             // bonusOptions1
             // 
             bonusOptions1.BackColor = SystemColors.ControlLight;
-            bonusOptions1.Location = new Point(2617, 128);
+            bonusOptions1.Location = new Point(3536, 128);
             bonusOptions1.Name = "bonusOptions1";
             bonusOptions1.OptionsTitle = "      Bonuses";
+            bonusOptions1.ShowEnabled = true;
             bonusOptions1.ShowToggleButton = true;
-            bonusOptions1.Size = new Size(250, 331);
+            bonusOptions1.Size = new Size(265, 373);
             bonusOptions1.TabIndex = 152;
             bonusOptions1.Visible = false;
             // 
             // moreOptions1
             // 
             moreOptions1.BackColor = SystemColors.ControlLight;
-            moreOptions1.Location = new Point(1523, 128);
+            moreOptions1.Location = new Point(29, 128);
             moreOptions1.Name = "moreOptions1";
-            moreOptions1.OptionsTitle = " More Options";
+            moreOptions1.OptionsTitle = " Static Options";
+            moreOptions1.ShowEnabled = false;
             moreOptions1.ShowToggleButton = false;
-            moreOptions1.Size = new Size(750, 331);
+            moreOptions1.Size = new Size(750, 373);
             moreOptions1.TabIndex = 153;
             moreOptions1.Visible = false;
             moreOptions1.FilterStringEnterPressed += moreOptions1_FilterStringEnterPressed;
@@ -2221,13 +2226,14 @@
             // globalOptions1
             // 
             globalOptions1.BackColor = SystemColors.ControlLight;
-            globalOptions1.Location = new Point(2304, 128);
+            globalOptions1.Location = new Point(805, 128);
             globalOptions1.Name = "globalOptions1";
             globalOptions1.NewDataOnly = true;
             globalOptions1.OptionsTitle = " Global Options";
             globalOptions1.SearchOnSelect = true;
+            globalOptions1.ShowEnabled = false;
             globalOptions1.ShowToggleButton = false;
-            globalOptions1.Size = new Size(281, 331);
+            globalOptions1.Size = new Size(281, 373);
             globalOptions1.TabIndex = 154;
             globalOptions1.Threshold = 20;
             globalOptions1.Visible = false;
@@ -2235,11 +2241,12 @@
             // itemListOptions1
             // 
             itemListOptions1.BackColor = SystemColors.ControlLight;
-            itemListOptions1.Location = new Point(29, 484);
+            itemListOptions1.Location = new Point(29, 529);
             itemListOptions1.Name = "itemListOptions1";
             itemListOptions1.OptionsTitle = " My Item Lists";
+            itemListOptions1.ShowEnabled = false;
             itemListOptions1.ShowToggleButton = false;
-            itemListOptions1.Size = new Size(551, 1490);
+            itemListOptions1.Size = new Size(551, 1445);
             itemListOptions1.TabIndex = 155;
             itemListOptions1.Visible = false;
             itemListOptions1.SelectedChanged += itemListOptions1_SelectedChanged;
@@ -2250,6 +2257,7 @@
             pbsExport1.Location = new Point(2711, 128);
             pbsExport1.Name = "pbsExport1";
             pbsExport1.OptionsTitle = "      PBS Export";
+            pbsExport1.ShowEnabled = true;
             pbsExport1.ShowToggleButton = false;
             pbsExport1.Size = new Size(1090, 331);
             pbsExport1.TabIndex = 156;
@@ -2258,13 +2266,50 @@
             // realmOptions1
             // 
             realmOptions1.BackColor = SystemColors.ControlLight;
-            realmOptions1.Location = new Point(2890, 128);
+            realmOptions1.Location = new Point(2856, 529);
             realmOptions1.Name = "realmOptions1";
             realmOptions1.OptionsTitle = "      Realms";
+            realmOptions1.ShowEnabled = false;
             realmOptions1.ShowToggleButton = false;
-            realmOptions1.Size = new Size(912, 1842);
+            realmOptions1.Size = new Size(946, 1441);
             realmOptions1.TabIndex = 157;
             realmOptions1.Visible = false;
+            // 
+            // inventoryTypeOptions1
+            // 
+            inventoryTypeOptions1.BackColor = SystemColors.ControlLight;
+            inventoryTypeOptions1.Location = new Point(2772, 128);
+            inventoryTypeOptions1.Name = "inventoryTypeOptions1";
+            inventoryTypeOptions1.OptionsTitle = "      Inventory Type";
+            inventoryTypeOptions1.ShowEnabled = true;
+            inventoryTypeOptions1.ShowToggleButton = true;
+            inventoryTypeOptions1.Size = new Size(430, 373);
+            inventoryTypeOptions1.TabIndex = 158;
+            inventoryTypeOptions1.Visible = false;
+            // 
+            // subClassOptions1
+            // 
+            subClassOptions1.BackColor = SystemColors.ControlLight;
+            subClassOptions1.Location = new Point(2301, 128);
+            subClassOptions1.Name = "subClassOptions1";
+            subClassOptions1.OptionsTitle = "      Sub Class";
+            subClassOptions1.ShowEnabled = true;
+            subClassOptions1.ShowToggleButton = true;
+            subClassOptions1.Size = new Size(445, 373);
+            subClassOptions1.TabIndex = 159;
+            subClassOptions1.Visible = false;
+            // 
+            // qualityOptions1
+            // 
+            qualityOptions1.BackColor = SystemColors.ControlLight;
+            qualityOptions1.Location = new Point(3226, 128);
+            qualityOptions1.Name = "qualityOptions1";
+            qualityOptions1.OptionsTitle = "      Quality";
+            qualityOptions1.ShowEnabled = true;
+            qualityOptions1.ShowToggleButton = true;
+            qualityOptions1.Size = new Size(289, 373);
+            qualityOptions1.TabIndex = 160;
+            qualityOptions1.Visible = false;
             // 
             // FormMain
             // 
@@ -2272,11 +2317,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(3814, 2029);
+            Controls.Add(qualityOptions1);
+            Controls.Add(subClassOptions1);
+            Controls.Add(inventoryTypeOptions1);
             Controls.Add(realmOptions1);
             Controls.Add(globalOptions1);
             Controls.Add(moreOptions1);
             Controls.Add(bonusOptions1);
-            Controls.Add(qualityOptions1);
             Controls.Add(itemClassOptions1);
             Controls.Add(mainOptions1);
             Controls.Add(tssMain);
@@ -2408,5 +2455,8 @@
         private Charts charts1;
         private ToolStripButton tsbAllowGKH;
         private ToolStripComboBox tscGKHList;
+        private AuctionsView auctionsView2;
+        private InventoryTypeOptions inventoryTypeOptions1;
+        private SubClassOptions subClassOptions1;
     }
 }

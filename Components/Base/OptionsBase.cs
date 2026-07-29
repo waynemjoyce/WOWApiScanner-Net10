@@ -12,18 +12,34 @@ namespace WOWAuctionApi_Net10
     {
         [Category("WOWAPI Options")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public string OptionsTitle 
-        { 
-            get { return lblTitle.Text; } 
-            set { lblTitle.Text = value; }  
+        public string OptionsTitle
+        {
+            get { return lblTitle.Text; }
+            set { lblTitle.Text = value; }
         }
 
         [Category("WOWAPI Options")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowToggleButton
-        { 
-            get { return btnToggle.Visible; }  
-            set { btnToggle.Visible = value; } 
+        {
+            get { return btnToggle.Visible; }
+            set { btnToggle.Visible = value; }
+        }
+
+        [Category("WOWAPI Options")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool ShowEnabled
+        {
+            get { return tslEnabled.Visible; }
+            set { tslEnabled.Visible = value; }
+        }
+
+        [Category("WOWAPI Options")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool Enabled
+        {
+            get { return tslEnabled.Checked; }
+            set { tslEnabled.Checked = value; }
         }
 
         public OptionsBase()
@@ -34,6 +50,16 @@ namespace WOWAuctionApi_Net10
         private void btnToggle_Click(object sender, EventArgs e)
         {
             UIHelper.ToggleOnOffClick(sender, e);
+        }
+
+        private void tslEnabled_CheckedChanged(object sender, EventArgs e)
+        {
+            labelBlock.Visible = !tslEnabled.Checked;
+        }
+
+        public void BringBlockToFront()
+        {
+            labelBlock.BringToFront();
         }
     }
 }

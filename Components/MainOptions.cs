@@ -36,6 +36,7 @@ namespace WOWAuctionApi_Net10
             this.txtSearchWorth.Text = sc.CurrentProfile.WorthAtLeast.Value.ToString();
             this.rbSearch_Percentage.Checked = (sc.CurrentProfile.SearchFraction.Value == 0);
             this.rbSearch_MaxG.Checked = (sc.CurrentProfile.SearchFraction.Value == 1);
+            this.Enabled = sc.CurrentProfile.MainFilter.Value;
         }
 
         public void UIToProfile()
@@ -50,6 +51,7 @@ namespace WOWAuctionApi_Net10
             sc.CurrentProfile.MinSellRate = float.Parse(this.txtSearchMinSellRate.Text);
             sc.CurrentProfile.SearchPercentage = float.Parse(this.txtSearchPercentage.Text);
             sc.CurrentProfile.SearchFraction = (rbSearch_Percentage.Checked) ? 0 : 1;
+            sc.CurrentProfile.MainFilter = this.Enabled;
         }
 
     }

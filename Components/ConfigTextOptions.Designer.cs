@@ -40,6 +40,8 @@
             txtBlizzClientID = new TextBox();
             label6 = new Label();
             txtGlobalKeyboardHookChar = new TextBox();
+            label7 = new Label();
+            txtRealmSplitPoint = new TextBox();
             SuspendLayout();
             // 
             // cboDefaultSearch
@@ -146,10 +148,29 @@
             txtGlobalKeyboardHookChar.Size = new Size(67, 39);
             txtGlobalKeyboardHookChar.TabIndex = 141;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(315, 292);
+            label7.Name = "label7";
+            label7.Size = new Size(133, 32);
+            label7.TabIndex = 144;
+            label7.Text = "Realm Split";
+            // 
+            // txtRealmSplitPoint
+            // 
+            txtRealmSplitPoint.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtRealmSplitPoint.Location = new Point(457, 290);
+            txtRealmSplitPoint.Name = "txtRealmSplitPoint";
+            txtRealmSplitPoint.Size = new Size(211, 39);
+            txtRealmSplitPoint.TabIndex = 143;
+            // 
             // ConfigTextOptions
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label7);
+            Controls.Add(txtRealmSplitPoint);
             Controls.Add(label6);
             Controls.Add(txtGlobalKeyboardHookChar);
             Controls.Add(cboDefaultSearch);
@@ -165,7 +186,7 @@
             Name = "ConfigTextOptions";
             OptionsTitle = " Config Main Options";
             ShowToggleButton = false;
-            Size = new Size(688, 346);
+            Size = new Size(688, 339);
             Controls.SetChildIndex(txtBlizzClientID, 0);
             Controls.SetChildIndex(txtBlizzClientSecret, 0);
             Controls.SetChildIndex(txtTSMKey, 0);
@@ -178,6 +199,8 @@
             Controls.SetChildIndex(cboDefaultSearch, 0);
             Controls.SetChildIndex(txtGlobalKeyboardHookChar, 0);
             Controls.SetChildIndex(label6, 0);
+            Controls.SetChildIndex(txtRealmSplitPoint, 0);
+            Controls.SetChildIndex(label7, 0);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -196,5 +219,7 @@
         private TextBox txtBlizzClientID;
         private Label label6;
         private TextBox txtGlobalKeyboardHookChar;
+        private Label label7;
+        private TextBox txtRealmSplitPoint;
     }
 }

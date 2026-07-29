@@ -198,6 +198,7 @@
             Controls.Add(txtSearchStringFilter);
             Name = "MoreOptions";
             OptionsTitle = " More Options";
+            ShowEnabled = false;
             ShowToggleButton = false;
             Size = new Size(750, 331);
             Load += MoreOptions_Load;

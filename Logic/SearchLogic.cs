@@ -67,6 +67,8 @@ namespace WOWAuctionApi_Net10
             ItemCache blockedListCache = sc.ItemLists.GetListByName("SYS.BLOCKED").ItemCache;
             blockedListCache.FillItemIds();
 
+            
+            
             if (sc.CurrentProfile.ListOption != 0)
             {
                 auctions = auctions
@@ -86,53 +88,104 @@ namespace WOWAuctionApi_Net10
             }
             else
             {
-                auctions = auctions
-                     //Include pets / items and check for nulls
-                     .Where(auction => (Options.IncludePets && auction.item.isPet) ||
-                         (Options.IncludeItems && !auction.item.isPet))
+                if (sc.CurrentProfile.MainFilter.Value)
+                {
+                    auctions = auctions
 
-                     //Sell rate
-                     .Where(auction => auction.item.regionItem.saleRate > sc.CurrentProfile.MinSellRate)
-                     //Quality
-                     .Where(auction => Options.Quality.Contains(auction.item.quality))
-                     //Class - include if it's a pet OR it's an item and item class matches
-                     .Where(auction => auction.item.isPet || (!auction.item.isPet)
-                         && Options.Class.Contains(auction.item.cacheItem.ClassName))
-                     //Item level
-                     .Where(auction => (auction.item.itemLevel >= sc.CurrentProfile.MinItemLevel)
-                         && (auction.item.itemLevel <= sc.CurrentProfile.MaxItemLevel))
-                     //Minimum sell rate
-                     .Where(auction => sc.CurrentProfile.MinSellRate == -1 ||
-                         (auction.item.regionItem.saleRate >= sc.CurrentProfile.MinSellRate))
-                     //Worth at least
-                     .Where(auction => Options.FixedWorthAtLeast == -1 || (Options.FixedWorthAtLeast > -1
-                         && (auction.item.regionItem.marketValue >= Options.FixedWorthAtLeast)))
-                     //Latest xpac
-                     .Where(auction => Options.LatestXpac == false
-                         || (Options.LatestXpac == true && auction.item.id >= sc.Config.LatestXpacItemId))
-                     //Percentage or Max G
-                     .Where(auction =>
-                         (sc.CurrentProfile.SearchFraction == 0
-                         && ((auction.buyout < (auction.item.regionItem.marketValue * Options.FixedSearchPercentage)))
-                         ||
-                         (sc.CurrentProfile.SearchFraction == 1
-                         && (auction.buyout < Options.FixedMaxG)))
-                         )
-                     //Bid only or buyout only
-                     .Where(
-                        (auction => 
+                    //Latest xpac
+                    .Where(auction => Options.LatestXpac == false
+                        || (Options.LatestXpac == true && auction.item.id >= sc.Config.LatestXpacItemId))
+
+                    //Include pets and items as desired
+                    .Where(auction => (Options.IncludePets && auction.item.isPet) ||
+                        (Options.IncludeItems && !auction.item.isPet))
+
+                    //Bid only or buyout only
+                    .Where(
+                        (auction =>
                             (auction.buyout == 0 && Options.IncludeBid == true)
                         ||
                             (auction.buyout > 0 && Options.IncludeBuyout == true)
                         ))
-                     //Remove any items from the blocked list
-                     .Where(auction => !blockedListCache.ItemIds.Contains(auction.item.id))
-                     //String filter
-                     .Where(auction => Options.UseStringFilter == false
-                         || (Options.UseStringFilter == true
-                         && auction.auctionitemName.Contains(Options.StringFilter, StringComparison.OrdinalIgnoreCase)))
-                     .Take(sc.Config.AuctionsCap.Value)
-                     .ToList();
+
+                    //Item level
+                    .Where(auction => (auction.item.itemLevel >= sc.CurrentProfile.MinItemLevel)
+                        && (auction.item.itemLevel <= sc.CurrentProfile.MaxItemLevel))
+
+                    //Char level
+                    .Where(auction =>
+                       (auction.item.cacheItem != null) &&
+                         ((auction.item.cacheItem.RequiredLevel >= sc.CurrentProfile.MinCharLevel)
+                         && (auction.item.cacheItem.RequiredLevel <= sc.CurrentProfile.MaxCharLevel)))
+
+                    //Worth at least
+                    .Where(auction => Options.FixedWorthAtLeast == -1 || (Options.FixedWorthAtLeast > -1
+                        && (auction.item.regionItem.marketValue >= Options.FixedWorthAtLeast)))
+
+                    //Minimum sell rate
+                    .Where(auction => sc.CurrentProfile.MinSellRate == -1 ||
+                        (auction.item.regionItem.saleRate >= sc.CurrentProfile.MinSellRate))
+
+                    //Sell rate
+                    .Where(auction => auction.item.regionItem.saleRate > sc.CurrentProfile.MinSellRate)
+
+                    //Percentage or Max G
+                    .Where(auction =>
+                        (sc.CurrentProfile.SearchFraction == 0
+                        && ((auction.buyout < (auction.item.regionItem.marketValue * Options.FixedSearchPercentage)))
+                        ||
+                        (sc.CurrentProfile.SearchFraction == 1
+                        && (auction.buyout < Options.FixedMaxG)))
+                        )
+
+                    .ToList();
+                }
+
+
+                auctions = auctions
+
+                    //Class - include if it's a pet OR it's an item and item class matches
+                    .Where(auction => 
+                        auction.item.isPet ||
+                        !sc.CurrentProfile.ClassFilter.Value ||
+                        Options.Class.Contains(auction.item.cacheItem.ClassName))
+
+                    //Sub Class - include if it's a pet OR it's an item and sub class matches
+                    .Where(auction =>
+                        auction.item.isPet ||
+                        !sc.CurrentProfile.SubClassFilter.Value ||
+                        Options.SubClass.Contains(auction.item.cacheItem.SubClassName))
+
+                    //Inventory Type - include if it's a pet OR it's an item and inventory type matches
+                    .Where(auction =>
+                        auction.item.isPet ||
+                        !sc.CurrentProfile.InventoryTypeFilter.Value ||
+                        Options.InventoryType.Contains(auction.item.cacheItem.InventoryType))
+
+                    //Quality
+                    .Where(auction =>
+                        auction.item.isPet ||
+                        !sc.CurrentProfile.QualityFilter.Value ||
+                        Options.Quality.Contains(auction.item.quality))
+
+                    //Bonuses
+                    .Where(auction =>
+                        auction.item.isPet ||
+                        !sc.CurrentProfile.BonusesFilter.Value ||
+                        Options.Bonuses.All(b => auction.item.bonus_lists?.Contains(b) == true))
+
+                    //String filter
+                    .Where(auction => Options.UseStringFilter == false
+                        || (Options.UseStringFilter == true
+                        && auction.auctionitemName.Contains(Options.StringFilter, StringComparison.OrdinalIgnoreCase)))
+
+                    //Remove any items from the blocked list
+                    .Where(auction => !blockedListCache.ItemIds.Contains(auction.item.id))
+                         //String filter
+                       //bool allExist = subset.All(superset.Contains);
+
+                         .Take(sc.Config.AuctionsCap.Value)
+                         .ToList();
             }
 
  
@@ -206,6 +259,7 @@ namespace WOWAuctionApi_Net10
             }
         }
 
+        /*
         private void ModifyItemLevelOld(Auction auction, ItemProps itemProps)
         {
             if (auction.item.bonus_lists != null)
@@ -278,7 +332,7 @@ namespace WOWAuctionApi_Net10
 
             }
         }
-
+        */
 
         public static string GetQualityTypeFromNumber(long number)
         {
@@ -324,7 +378,12 @@ namespace WOWAuctionApi_Net10
             result.Quality = auction.item.quality;
             result.SaleRate = auction.item.regionItem.saleRate.Value;
             result.Level = auction.item.itemLevel;
-            //result.Suffix = itemProps.Suffix;
+
+            if (auction.item.cacheItem != null)
+            {
+                result.CharLevel = auction.item.cacheItem.RequiredLevel;
+            }
+
             result.OriginalAuction = auction;
             if (auction.item.modifiers != null)
             {
@@ -395,7 +454,9 @@ namespace WOWAuctionApi_Net10
         public List<string> Main;
         public List<string> Class;
         public List<string> Quality;
-        public List<string> Bonuses;
+        public List<long> Bonuses;
+        public List<string> InventoryType;
+        public List<string> SubClass;
 
         public ItemCache CombinedSearchCache = new ItemCache();
     }
@@ -447,6 +508,7 @@ namespace WOWAuctionApi_Net10
         public string Modifiers = String.Empty;
         public string BonusLists = String.Empty;
         public long Level = 0;
+        public long CharLevel = 0;
         public string Suffix = String.Empty;
         public Auction OriginalAuction = new Auction();
     }
