@@ -7814,6 +7814,20 @@
             "Level": 6,
             "RequiredLevel": 4,
             "BuyPrice": 0
+          },
+          {
+            "Id": 14333,
+            "Name": "Eternal Gloves",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Cloth",
+            "SubClassId": 1,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "HAND",
+            "BindingType": null,
+            "Level": 29,
+            "RequiredLevel": 24,
+            "BuyPrice": 0
           }
         ]
       },

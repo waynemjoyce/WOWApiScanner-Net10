@@ -750,8 +750,8 @@
       "ToggleOptions": [
         {
           "Id": 1,
-          "Name": "B",
-          "Label": "Bought items last hour",
+          "Name": "P",
+          "Label": "Purchase items last hour (P)A",
           "BackColorDark": "ForestGreen",
           "ToggleColorDark": "PaleGreen",
           "BackColorLight": "ForestGreen",
@@ -760,7 +760,7 @@
         {
           "Id": 2,
           "Name": "C",
-          "Label": "Ceremonius Gear",
+          "Label": "Ceremonius Gear (C)",
           "BackColorDark": "MediumPurple",
           "ToggleColorDark": "Thistle",
           "BackColorLight": "MediumPurple",
@@ -769,7 +769,7 @@
         {
           "Id": 4,
           "Name": "X",
-          "Label": "Too much stock which won't sell",
+          "Label": "Too much stock which won't sell (X)",
           "BackColorDark": "Firebrick",
           "ToggleColorDark": "MistyRose",
           "BackColorLight": "Firebrick",
@@ -778,7 +778,7 @@
         {
           "Id": 8,
           "Name": "M",
-          "Label": "Maraudon transmog received",
+          "Label": "Maraudon transmog received (M)",
           "BackColorDark": "Sienna",
           "ToggleColorDark": "Wheat",
           "BackColorLight": "Sienna",
@@ -787,7 +787,7 @@
         {
           "Id": 16,
           "Name": "L",
-          "Label": "Ceremonial Leather Loincloth",
+          "Label": "Ceremonial Leather Loincloth (L)",
           "BackColorDark": "MediumVioletRed",
           "ToggleColorDark": "MistyRose",
           "BackColorLight": "MediumVioletRed",
@@ -796,7 +796,16 @@
         {
           "Id": 32,
           "Name": "I",
-          "Label": "Iron docks transmog received",
+          "Label": "Iron docks transmog received (I)",
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
+        },
+        {
+          "Id": 64,
+          "Name": "B",
+          "Label": "Blackfathom Deep transmog received (B)",
           "BackColorDark": "Sienna",
           "ToggleColorDark": "Wheat",
           "BackColorLight": "Sienna",

@@ -76,6 +76,7 @@ namespace WOWAuctionApi_Net10
 
         public void AuctionsSearch(Charts chartsComponent, List<Realm> searchRealms)
         {
+            lvAuctions.Items.Clear();
             List<SearchResultCount> searchResultCounts = new List<SearchResultCount>();
 
             sc.LivePoll = false;
@@ -111,7 +112,7 @@ namespace WOWAuctionApi_Net10
                 if (lvi.Tag != null)
                 {
                     Realm realm = lvi.Tag as Realm;
-                    if (realm != null)
+                    if (realm != null && searchRealms.Contains(realm))
                     {
                         if (sc.SearchLogic.Options.NewDataOnly == true
                             && realm.Status != 2) { continue; }
@@ -146,47 +147,6 @@ namespace WOWAuctionApi_Net10
                     }
                 }
             }
-
-            /*
-            //Pass 1
-            //foreach (Realm realm in sc.Config.Realms)
-            foreach (Realm realm in searchRealms)
-            {
-                if (realmOptions.RealmChecked(realm.RealmId.Value))
-                {
-                    if (sc.SearchLogic.Options.NewDataOnly == true
-                        && realm.Status != 2) { continue; }
-
-                    var searchResults = sc.SearchLogic.DoAuctionSearch(realm);
-
-                    if (searchResults != null)
-                    {
-                        if (chartsComponent.ChartFilter == "")
-                        {
-                            RenderSearchResults(searchResults, realm, count);
-                        }
-                        else
-                        {
-                            searchResultCounts.Add(new SearchResultCount
-                            {
-                                SearchResults = searchResults,
-                                Realm = realm,
-                                Count = count
-                            });
-                        }
-
-                        sc.AllRealmsAuctionTotal += searchResults.Count;
-                        sc.Lists.RealmSearchCount.Add(new RealmCount
-                        {
-                            Realm = realm,
-                            Count = searchResults.Count,
-                            TotalValue = searchResults.Sum(r => r.RegionMarket)
-                        });
-                    }
-                    count++;
-                }
-            }
-            */
 
             chartsComponent.RenderCharts();
 

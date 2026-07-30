@@ -2162,7 +2162,7 @@
             // 
             charts1.Location = new Point(1386, 0);
             charts1.Name = "charts1";
-            charts1.Size = new Size(850, 1494);
+            charts1.Size = new Size(815, 1419);
             charts1.TabIndex = 136;
             charts1.Visible = false;
             // 

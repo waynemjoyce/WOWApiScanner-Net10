@@ -21,13 +21,36 @@ namespace WOWAuctionApi_Net10
 
         public void SetUpCharts()
         {
-            SetUpChart(chartTotalAuctions, $"Top {sc.Config.ChartTotalAuctions} Realms - Total Items On The Auction House", SeriesChartType.Column);
-            SetUpChart(chartTopSearches, $"Top {sc.Config.ChartSearchHits} Realms - Search Hits For This Search", SeriesChartType.Column);
-            SetUpChart(chartTotalValue, $"Top {sc.Config.ChartMarketValue} Realms - Total Region Market Value For This Search", SeriesChartType.Column);
+            //Rationalize location and size of charts pursuant to this control
+
+            //Each chart's width should be the same as this control
+            chartTotalAuctions.Width = this.Width;
+            chartTopSearches.Width = this.Width;
+            chartTotalValue.Width = this.Width;
+
+            //Each chart's height should be 1/3rd the height of this control
+            chartTotalAuctions.Height = this.Height / 3;
+            chartTopSearches.Height = this.Height / 3;
+            chartTotalValue.Height = this.Height / 3;
+
+            //Each chart should have left of 0
+            chartTotalAuctions.Left = 0;
+            chartTopSearches.Left = 0;
+            chartTotalValue.Left = 0;
+
+            //Each chart's top position should progress 1/3rd at a time
+            chartTopSearches.Top = 0;
+            chartTotalValue.Top = this.Height / 3;
+            chartTotalAuctions.Top = (this.Height / 3) * 2;
+
+            SetUpChart(chartTotalAuctions, $"Top {sc.Config.ChartTotalAuctions} Realms - Total Items On The Auction House", SeriesChartType.Bar);
+            SetUpChart(chartTopSearches, $"Top {sc.Config.ChartSearchHits} Realms - Search Hits For This Search", SeriesChartType.Bar);
+            SetUpChart(chartTotalValue, $"Top {sc.Config.ChartMarketValue} Realms - Total Region Market Value For This Search", SeriesChartType.Bar);
         }
 
         private void SetUpChart(Chart chart1, String title, SeriesChartType chartType = SeriesChartType.Pie)
         {
+            chart1.ChartAreas[0].AxisY.LabelStyle.Enabled = false;
 
             Color mainText;
             if (sc.UIOptions.ColorMode == SystemColorMode.Dark)
@@ -107,6 +130,7 @@ namespace WOWAuctionApi_Net10
             sortedList = originalList
                 .OrderByDescending(p => chartToRender.Name == "chartTotalValue" ? p.TotalValue : p.Count)
                 .Take(realmCount)
+                .Reverse()
                 .ToList();
 
             
