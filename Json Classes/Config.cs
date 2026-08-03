@@ -27,6 +27,7 @@ namespace WOWAuctionApi_Net10
         public int? ChartMarketValue { get; set; }
         public int? ChartSearchHits { get; set; }
         public int? ChartTotalAuctions { get; set; }
+        public int? StockLimit { get; set; }
         public List<Realm>? Realms { get; set; }
 
         [JsonIgnore]

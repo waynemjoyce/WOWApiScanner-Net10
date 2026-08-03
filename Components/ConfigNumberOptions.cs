@@ -23,9 +23,10 @@ namespace WOWAuctionApi_Net10
             sc.Config.LivePollInterval = (int)numPollInterval.Value;
             sc.Config.OnlyFirst = (int)numOnlyFirst.Value;
             sc.Config.Threshold = (int)numThreshold.Value;
-            sc.Config.ChartMarketValue = (int)numChartMarketValue.Value;    
-            sc.Config.ChartSearchHits = (int)numChartSearchHits.Value;  
-            sc.Config.ChartTotalAuctions = (int)numChartTotalAuctions.Value;    
+            sc.Config.ChartMarketValue = (int)numChartMarketValue.Value;
+            sc.Config.ChartSearchHits = (int)numChartSearchHits.Value;
+            sc.Config.ChartTotalAuctions = (int)numChartTotalAuctions.Value;
+            sc.Config.StockLimit = (int)numStockLimit.Value;
         }
 
         public void LoadFromConfig()
@@ -38,7 +39,8 @@ namespace WOWAuctionApi_Net10
             numThreshold.Value = sc.Config.Threshold.Value;
             numChartMarketValue.Value = sc.Config.ChartMarketValue.Value;   
             numChartSearchHits.Value = sc.Config.ChartSearchHits.Value; 
-            numChartTotalAuctions.Value = sc.Config.ChartTotalAuctions.Value;   
+            numChartTotalAuctions.Value = sc.Config.ChartTotalAuctions.Value;
+            numStockLimit.Value = sc.Config.StockLimit.Value;
         }
     }
 }

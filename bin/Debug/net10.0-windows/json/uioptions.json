@@ -751,61 +751,16 @@
         {
           "Id": 1,
           "Name": "P",
-          "Label": "Purchase items last hour (P)A",
+          "Label": "Purchase items last hour (P)",
           "BackColorDark": "ForestGreen",
           "ToggleColorDark": "PaleGreen",
           "BackColorLight": "ForestGreen",
           "ToggleColorLight": "PaleGreen"
         },
         {
-          "Id": 2,
-          "Name": "C",
-          "Label": "Ceremonius Gear (C)",
-          "BackColorDark": "MediumPurple",
-          "ToggleColorDark": "Thistle",
-          "BackColorLight": "MediumPurple",
-          "ToggleColorLight": "Thistle"
-        },
-        {
-          "Id": 4,
-          "Name": "X",
-          "Label": "Too much stock which won't sell (X)",
-          "BackColorDark": "Firebrick",
-          "ToggleColorDark": "MistyRose",
-          "BackColorLight": "Firebrick",
-          "ToggleColorLight": "MistyRose"
-        },
-        {
           "Id": 8,
           "Name": "M",
           "Label": "Maraudon transmog received (M)",
-          "BackColorDark": "Sienna",
-          "ToggleColorDark": "Wheat",
-          "BackColorLight": "Sienna",
-          "ToggleColorLight": "Wheat"
-        },
-        {
-          "Id": 16,
-          "Name": "L",
-          "Label": "Ceremonial Leather Loincloth (L)",
-          "BackColorDark": "MediumVioletRed",
-          "ToggleColorDark": "MistyRose",
-          "BackColorLight": "MediumVioletRed",
-          "ToggleColorLight": "MistyRose"
-        },
-        {
-          "Id": 32,
-          "Name": "I",
-          "Label": "Iron docks transmog received (I)",
-          "BackColorDark": "Sienna",
-          "ToggleColorDark": "Wheat",
-          "BackColorLight": "Sienna",
-          "ToggleColorLight": "Wheat"
-        },
-        {
-          "Id": 64,
-          "Name": "B",
-          "Label": "Blackfathom Deep transmog received (B)",
           "BackColorDark": "Sienna",
           "ToggleColorDark": "Wheat",
           "BackColorLight": "Sienna",

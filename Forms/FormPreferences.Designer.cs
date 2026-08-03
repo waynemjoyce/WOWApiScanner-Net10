@@ -39,7 +39,7 @@
             // btnSave
             // 
             btnSave.DialogResult = DialogResult.OK;
-            btnSave.Location = new Point(948, 990);
+            btnSave.Location = new Point(948, 1025);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(150, 46);
             btnSave.TabIndex = 0;
@@ -50,7 +50,7 @@
             // btnCancel
             // 
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(792, 990);
+            btnCancel.Location = new Point(792, 1025);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(150, 46);
             btnCancel.TabIndex = 1;
@@ -63,8 +63,9 @@
             configCheckOptions1.Location = new Point(29, 445);
             configCheckOptions1.Name = "configCheckOptions1";
             configCheckOptions1.OptionsTitle = "      Config Check Options";
+            configCheckOptions1.ShowEnabled = true;
             configCheckOptions1.ShowToggleButton = true;
-            configCheckOptions1.Size = new Size(515, 522);
+            configCheckOptions1.Size = new Size(515, 529);
             configCheckOptions1.TabIndex = 175;
             // 
             // configTextOptions1
@@ -73,6 +74,7 @@
             configTextOptions1.Location = new Point(29, 29);
             configTextOptions1.Name = "configTextOptions1";
             configTextOptions1.OptionsTitle = " Config Main Options";
+            configTextOptions1.ShowEnabled = true;
             configTextOptions1.ShowToggleButton = false;
             configTextOptions1.Size = new Size(1069, 384);
             configTextOptions1.TabIndex = 176;
@@ -83,8 +85,9 @@
             configNumberOptions1.Location = new Point(583, 451);
             configNumberOptions1.Name = "configNumberOptions1";
             configNumberOptions1.OptionsTitle = " Config Number Options";
+            configNumberOptions1.ShowEnabled = true;
             configNumberOptions1.ShowToggleButton = false;
-            configNumberOptions1.Size = new Size(515, 516);
+            configNumberOptions1.Size = new Size(515, 523);
             configNumberOptions1.TabIndex = 177;
             // 
             // FormPreferences

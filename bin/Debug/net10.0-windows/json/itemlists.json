@@ -7828,6 +7828,62 @@
             "Level": 29,
             "RequiredLevel": 24,
             "BuyPrice": 0
+          },
+          {
+            "Id": 4661,
+            "Name": "Bright Mantle",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Cloth",
+            "SubClassId": 1,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "SHOULDER",
+            "BindingType": null,
+            "Level": 16,
+            "RequiredLevel": 10,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 1207,
+            "Name": "Murphstar",
+            "ClassName": "Weapon",
+            "ClassId": 2,
+            "SubClassName": "Mace",
+            "SubClassId": 4,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "WEAPON",
+            "BindingType": null,
+            "Level": 22,
+            "RequiredLevel": 14,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 4409,
+            "Name": "Schematic: Small Seaforium Charge",
+            "ClassName": "Recipe",
+            "ClassId": 9,
+            "SubClassName": "Engineering",
+            "SubClassId": 3,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "NON_EQUIP",
+            "BindingType": null,
+            "Level": 1,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 4307,
+            "Name": "Heavy Linen Gloves",
+            "ClassName": "Armor",
+            "ClassId": 4,
+            "SubClassName": "Cloth",
+            "SubClassId": 1,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "HAND",
+            "BindingType": null,
+            "Level": 5,
+            "RequiredLevel": 3,
+            "BuyPrice": 0
           }
         ]
       },

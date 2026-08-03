@@ -36,7 +36,7 @@
     {
       "ProfileName": "Small Value",
       "SearchMaxG": 35,
-      "WorthAtLeast": 3000,
+      "WorthAtLeast": 2500,
       "SearchPercentage": 1,
       "MinSellRate": 0.001,
       "IconIndex": 16,

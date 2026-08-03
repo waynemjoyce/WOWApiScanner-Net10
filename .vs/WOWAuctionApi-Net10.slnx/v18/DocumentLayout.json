@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\components\\realmoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:components\\realmoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\components\\realmoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:components\\realmoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\forms\\formpreferences.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:forms\\formpreferences.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\components\\confignumberoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:components\\confignumberoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\components\\confignumberoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:components\\confignumberoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\json classes\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:json classes\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\wowauctionapi-net10.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:wowauctionapi-net10.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -11,7 +35,7 @@
       "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:components\\charts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\forms\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|C:\\Dev\\Git\\WOWAuctionApi-Net10\\forms\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:forms\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -21,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\logic\\searchlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:logic\\searchlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\forms\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:forms\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\helpers\\uihelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,12 +58,91 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WOWAuctionApi-Net10",
+              "Title": "RealmOptions.cs",
+              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\RealmOptions.cs",
+              "RelativeDocumentMoniker": "Components\\RealmOptions.cs",
+              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\RealmOptions.cs",
+              "RelativeToolTip": "Components\\RealmOptions.cs",
+              "ViewState": "AgIAAFACAAAAAAAAAAAewIcCAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-02T14:49:51.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormPreferences.cs [Design]",
+              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Forms\\FormPreferences.cs",
+              "RelativeDocumentMoniker": "Forms\\FormPreferences.cs",
+              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Forms\\FormPreferences.cs [Design]",
+              "RelativeToolTip": "Forms\\FormPreferences.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-02T14:48:32.124Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ConfigNumberOptions.cs",
+              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\ConfigNumberOptions.cs",
+              "RelativeDocumentMoniker": "Components\\ConfigNumberOptions.cs",
+              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\ConfigNumberOptions.cs",
+              "RelativeToolTip": "Components\\ConfigNumberOptions.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-02T14:43:33.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConfigNumberOptions.cs [Design]",
+              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\ConfigNumberOptions.cs",
+              "RelativeDocumentMoniker": "Components\\ConfigNumberOptions.cs",
+              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\ConfigNumberOptions.cs [Design]",
+              "RelativeToolTip": "Components\\ConfigNumberOptions.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-02T14:34:40.922Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Config.cs",
+              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Json Classes\\Config.cs",
+              "RelativeDocumentMoniker": "Json Classes\\Config.cs",
+              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Json Classes\\Config.cs",
+              "RelativeToolTip": "Json Classes\\Config.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAUwBwAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-02T14:33:36.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RealmOptions.cs [Design]",
+              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\RealmOptions.cs",
+              "RelativeDocumentMoniker": "Components\\RealmOptions.cs",
+              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\RealmOptions.cs [Design]",
+              "RelativeToolTip": "Components\\RealmOptions.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-02T14:49:47.26Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WOWAuctionApi-Net10.csproj",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
               "RelativeDocumentMoniker": "WOWAuctionApi-Net10.csproj",
               "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
@@ -55,7 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "FormMain.cs [Design]",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Forms\\FormMain.cs",
               "RelativeDocumentMoniker": "Forms\\FormMain.cs",
@@ -67,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "Charts.cs",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\Charts.cs",
               "RelativeDocumentMoniker": "Components\\Charts.cs",
@@ -75,16 +174,11 @@
               "RelativeToolTip": "Components\\Charts.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAewCUAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-30T06:51:09.115Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "WhenOpened": "2026-07-30T06:51:09.115Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "SearchLogic.cs",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Logic\\SearchLogic.cs",
               "RelativeDocumentMoniker": "Logic\\SearchLogic.cs",
@@ -92,12 +186,11 @@
               "RelativeToolTip": "Logic\\SearchLogic.cs",
               "ViewState": "AgIAAFUAAAAAAAAAAAAIwG0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T20:59:24.53Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-29T20:59:24.53Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "AuctionsView.cs",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\AuctionsView.cs",
               "RelativeDocumentMoniker": "Components\\AuctionsView.cs",
@@ -110,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "UIHelper.cs",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Helpers\\UIHelper.cs",
               "RelativeDocumentMoniker": "Helpers\\UIHelper.cs",
@@ -118,21 +211,7 @@
               "RelativeToolTip": "Helpers\\UIHelper.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAASwBkAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T20:59:24.547Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FormMain.cs",
-              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Forms\\FormMain.cs",
-              "RelativeDocumentMoniker": "Forms\\FormMain.cs",
-              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Forms\\FormMain.cs",
-              "RelativeToolTip": "Forms\\FormMain.cs",
-              "ViewState": "AgIAALkCAAAAAAAAAAAnwMcCAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-29T20:58:48.159Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-29T20:59:24.547Z"
             }
           ]
         }

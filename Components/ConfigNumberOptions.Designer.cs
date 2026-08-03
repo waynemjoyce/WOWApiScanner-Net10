@@ -46,6 +46,8 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            numStockLimit = new NumericUpDown();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)numOnlyFirst).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numPollInterval).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numThreshold).BeginInit();
@@ -55,6 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)numChartTotalAuctions).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numChartSearchHits).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numChartMarketValue).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numStockLimit).BeginInit();
             SuspendLayout();
             // 
             // label15
@@ -218,10 +221,30 @@
             label3.TabIndex = 189;
             label3.Text = "Chart: Market Value";
             // 
+            // numStockLimit
+            // 
+            numStockLimit.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            numStockLimit.Location = new Point(258, 468);
+            numStockLimit.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            numStockLimit.Name = "numStockLimit";
+            numStockLimit.Size = new Size(130, 39);
+            numStockLimit.TabIndex = 196;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(22, 470);
+            label4.Name = "label4";
+            label4.Size = new Size(130, 32);
+            label4.TabIndex = 195;
+            label4.Text = "Stock Limit";
+            // 
             // ConfigNumberOptions
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(numStockLimit);
+            Controls.Add(label4);
             Controls.Add(numChartTotalAuctions);
             Controls.Add(numChartSearchHits);
             Controls.Add(numChartMarketValue);
@@ -243,7 +266,7 @@
             Name = "ConfigNumberOptions";
             OptionsTitle = " Config Number Options";
             ShowToggleButton = false;
-            Size = new Size(410, 473);
+            Size = new Size(410, 529);
             Controls.SetChildIndex(label11, 0);
             Controls.SetChildIndex(label12, 0);
             Controls.SetChildIndex(label14, 0);
@@ -262,6 +285,8 @@
             Controls.SetChildIndex(numChartMarketValue, 0);
             Controls.SetChildIndex(numChartSearchHits, 0);
             Controls.SetChildIndex(numChartTotalAuctions, 0);
+            Controls.SetChildIndex(label4, 0);
+            Controls.SetChildIndex(numStockLimit, 0);
             ((System.ComponentModel.ISupportInitialize)numOnlyFirst).EndInit();
             ((System.ComponentModel.ISupportInitialize)numPollInterval).EndInit();
             ((System.ComponentModel.ISupportInitialize)numThreshold).EndInit();
@@ -271,6 +296,7 @@
             ((System.ComponentModel.ISupportInitialize)numChartTotalAuctions).EndInit();
             ((System.ComponentModel.ISupportInitialize)numChartSearchHits).EndInit();
             ((System.ComponentModel.ISupportInitialize)numChartMarketValue).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numStockLimit).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -301,5 +327,7 @@
         private Label label1;
         private Label label2;
         private Label label3;
+        private NumericUpDown numStockLimit;
+        private Label label4;
     }
 }
