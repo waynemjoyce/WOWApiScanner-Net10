@@ -1,11 +1,9 @@
 # WOWApiScanner-Net10
 World Of Warcraft API Auction Scanner - completely re-written in .Net 10 /  C# 14. Scans the World of Warcraft Auction House for a configurable number of realms using their REST Api, then allowed searching using a wide variety of criteria to find bargains.
 
-![Version 1.6.0 Auctions View](Screenshots/1.6.0%20-%20Auctions%20View.png?v=1)
+![Version 1.8.0 Auctions View - Dark](Screenshots/1.8.0%20-%20Auctions%20View%20-%20Dark.png?v=2)
 
-![Version 1.6.0 Lists View](Screenshots/1.6.0%20-%20Lists%20View.png?v=1)
-
-![Version 1.6.0 Preferences](Screenshots/1.6.0%20-%20Preferences.png?v=1)
+![Version 1.8.0 Auctions View - Light](Screenshots/1.8.0%20-%20Auctions%20View%20-%20Light.png?v=2)
 
 Brief overview of improvements in this new version:
 - Completely re-written in .Net 10 / C# 14
