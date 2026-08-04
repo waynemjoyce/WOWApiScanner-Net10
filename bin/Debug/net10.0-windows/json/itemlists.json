@@ -7884,6 +7884,48 @@
             "Level": 5,
             "RequiredLevel": 3,
             "BuyPrice": 0
+          },
+          {
+            "Id": 2408,
+            "Name": "Pattern: Fine Leather Gloves",
+            "ClassName": "Recipe",
+            "ClassId": 9,
+            "SubClassName": "Leatherworking",
+            "SubClassId": 1,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "NON_EQUIP",
+            "BindingType": null,
+            "Level": 1,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 2407,
+            "Name": "Pattern: White Leather Jerkin",
+            "ClassName": "Recipe",
+            "ClassId": 9,
+            "SubClassName": "Leatherworking",
+            "SubClassId": 1,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "NON_EQUIP",
+            "BindingType": null,
+            "Level": 1,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
+          },
+          {
+            "Id": 2409,
+            "Name": "Pattern: Dark Leather Tunic",
+            "ClassName": "Recipe",
+            "ClassId": 9,
+            "SubClassName": "Leatherworking",
+            "SubClassId": 1,
+            "QualityType": "UNCOMMON",
+            "InventoryType": "NON_EQUIP",
+            "BindingType": null,
+            "Level": 1,
+            "RequiredLevel": 0,
+            "BuyPrice": 0
           }
         ]
       },

@@ -142,7 +142,7 @@ namespace WOWAuctionApi_Net10
             OptionsTitle = "      Realms";
 
             var items = new List<ListViewItem>();
-            foreach (var r in sc.Config.Realms)
+            foreach (var r in sc.RealmData.Realms)
             {
                 if (r.Active.HasValue && r.Active.Value || (r.Active == false && sc.Config.DisplayInactiveRealms))
                 {
@@ -308,7 +308,7 @@ namespace WOWAuctionApi_Net10
             if (editRealm.DialogResult == DialogResult.OK)
             {
                 SetSelectedRealm(editRealm.Realm);
-                sc.Config.Save();
+                sc.RealmData.Save();
             }
             UpdateStockCount();
         }
@@ -330,7 +330,7 @@ namespace WOWAuctionApi_Net10
                 }
             }
 
-            foreach (Realm r in sc.Config.Realms)
+            foreach (Realm r in sc.RealmData.Realms)
             {
                 if (r.RealmId == realm.RealmId)
                 {
@@ -481,7 +481,7 @@ namespace WOWAuctionApi_Net10
                     }
                 }
                 UpdateAllFlags();
-                sc.Config.Save();
+                sc.RealmData.Save();
             }
         }
 
@@ -501,7 +501,7 @@ namespace WOWAuctionApi_Net10
                     selectedRealm.Flagged = false;
                 }
             }
-            sc.Config.Save();
+            sc.RealmData.Save();
         }
 
         private void mnRealms_Opened(object sender, EventArgs e)
@@ -541,7 +541,7 @@ namespace WOWAuctionApi_Net10
                             UpdateAllFlags();
                         }
                     }
-                    sc.Config.Save();
+                    sc.RealmData.Save();
                     UpdateStockCount();
                     mnRealms.Close();
                 }
@@ -560,7 +560,7 @@ namespace WOWAuctionApi_Net10
             {
                 currentRealm.RealmFlags = 0;
                 SetSelectedRealm(currentRealm);
-                sc.Config.Save();
+                sc.RealmData.Save();
                 mnRealms.Close();
             }
         }
@@ -591,7 +591,7 @@ namespace WOWAuctionApi_Net10
                 }
             }
 
-            sc.Config.Save();
+            sc.RealmData.Save();
             UpdateAllFlags();
         }   
 

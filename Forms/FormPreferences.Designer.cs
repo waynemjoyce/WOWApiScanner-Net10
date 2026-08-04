@@ -39,7 +39,7 @@
             // btnSave
             // 
             btnSave.DialogResult = DialogResult.OK;
-            btnSave.Location = new Point(948, 1025);
+            btnSave.Location = new Point(948, 1173);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(150, 46);
             btnSave.TabIndex = 0;
@@ -50,7 +50,7 @@
             // btnCancel
             // 
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(792, 1025);
+            btnCancel.Location = new Point(792, 1173);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(150, 46);
             btnCancel.TabIndex = 1;
@@ -65,7 +65,7 @@
             configCheckOptions1.OptionsTitle = "      Config Check Options";
             configCheckOptions1.ShowEnabled = true;
             configCheckOptions1.ShowToggleButton = true;
-            configCheckOptions1.Size = new Size(515, 529);
+            configCheckOptions1.Size = new Size(515, 697);
             configCheckOptions1.TabIndex = 175;
             // 
             // configTextOptions1
@@ -87,14 +87,14 @@
             configNumberOptions1.OptionsTitle = " Config Number Options";
             configNumberOptions1.ShowEnabled = true;
             configNumberOptions1.ShowToggleButton = false;
-            configNumberOptions1.Size = new Size(515, 523);
+            configNumberOptions1.Size = new Size(515, 691);
             configNumberOptions1.TabIndex = 177;
             // 
             // FormPreferences
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1122, 1106);
+            ClientSize = new Size(1122, 1268);
             Controls.Add(configNumberOptions1);
             Controls.Add(configTextOptions1);
             Controls.Add(configCheckOptions1);

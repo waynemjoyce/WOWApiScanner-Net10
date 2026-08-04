@@ -22,6 +22,7 @@ namespace WOWAuctionApi_Net10
         public static InteractionScript WowBuyScript = new InteractionScript();
         public static InteractionScript WowBuyScript_Slow = new InteractionScript();
         public static Config Config = new Config();
+        public static RealmData RealmData = new RealmData();
         public static SearchLogic SearchLogic = new SearchLogic();
 
         public static string BlizzAccessToken = "";
@@ -46,6 +47,8 @@ namespace WOWAuctionApi_Net10
             public static string Json = CurrentDirectory + @"\json\";
 
             public static string Config = $@"{Json}config.json";
+            public static string RealmData = $@"{Json}realmdata.json";
+            public static string RealmDataBackup = $@"{Json}\realmdatabackup\realmdata.json";
             public static string ItemCache = $@"{Json}itemcache.json";
             public static string PetCache = $@"{Json}petcache.json";
             public static string UIOptions = $@"{Json}uioptions.json";

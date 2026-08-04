@@ -641,7 +641,7 @@
       "SetName": "Config",
       "UseDefaultAttributes": false,
       "Attributes": {
-        "TogsPerColumn": 10,
+        "TogsPerColumn": 12,
         "Width": 60,
         "Height": 32,
         "XStart": 30,
@@ -727,6 +727,24 @@
           "Id": 256,
           "Name": "Dual Auction Lists",
           "Label": "Dual Auction Lists",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 512,
+          "Name": "Backup Realm Data On Start",
+          "Label": "Backup Realm Data On Start",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 1024,
+          "Name": "Backup Realm Data On Close",
+          "Label": "Backup Realm Data On Close",
           "BackColorDark": "LimeGreen",
           "ToggleColorDark": "PaleGreen",
           "BackColorLight": "DarkGreen",

@@ -74,7 +74,7 @@ namespace WOWAuctionApi_Net10
             }
             */
 
-            //MessageBox.Show(sc.Config.Realms.Count.ToString());
+            //MessageBox.Show(sc.RealmData.Realms.Count.ToString());
 
 
 

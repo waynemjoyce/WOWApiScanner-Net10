@@ -76,6 +76,11 @@ namespace WOWAuctionApi_Net10
             SetupOptionsPanels();
             sc.UIOptions = UserInterfaceOptions.LoadFromFile();
             LoadConfig();
+            LoadRealmData();
+            if (sc.Config.BackupRealmDataOnStart)
+            {
+                sc.RealmData.SaveBackup();
+            }
             itemListOptions1.LoadItemLists();
             RenderUIOptionsControls();
             LoadSearchProfiles();
@@ -112,7 +117,7 @@ namespace WOWAuctionApi_Net10
                 sc.WowBuyScript = InteractionScript.LoadFromFile("", "wowahbuy");
                 sc.WowBuyScript_Slow = InteractionScript.LoadFromFile("", "wowahbuy_slow");
                 tsbTest.Visible = true;
-                tsbRefreshWoWProcesses.Visible = true;  
+                tsbRefreshWoWProcesses.Visible = true;
                 tsbActivate.Visible = true;
                 tsbWoWInteraction.Visible = true;
                 RefreshWowButtons();
@@ -324,7 +329,17 @@ namespace WOWAuctionApi_Net10
             sc.Config.FlagFirstWithStockUpdate = checkOptions.Contains(tc.Id.Value);
             tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Dual Auction Lists");
             sc.Config.DualAuctionLists = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Backup Realm Data On Start");
+            sc.Config.BackupRealmDataOnStart = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Backup Realm Data On Close");
+            sc.Config.BackupRealmDataOnClose = checkOptions.Contains(tc.Id.Value);
         }
+
+        private void LoadRealmData()
+        {
+            sc.RealmData = RealmData.LoadFromFile(sc.Paths.RealmData);
+        }
+
         private void tsbRefreshAuctionData_Click(object sender, EventArgs e)
         {
             auctionsView1.LoadAuctionData();
@@ -699,7 +714,7 @@ namespace WOWAuctionApi_Net10
 
                         List<Realm> activeList = realms1;
 
-                        foreach (Realm r in sc.Config.Realms)
+                        foreach (Realm r in sc.RealmData.Realms)
                         {
                             if (r.RealmName == sc.Config.RealmSplitPoint)
                             {
@@ -717,7 +732,7 @@ namespace WOWAuctionApi_Net10
                     else
                     {
                         auctionsView1.Visible = false;
-                        auctionsView1.AuctionsSearch(charts1, sc.Config.Realms);
+                        auctionsView1.AuctionsSearch(charts1, sc.RealmData.Realms);
                         auctionsView1.Visible = true;
                     }
                     break;
@@ -856,8 +871,7 @@ namespace WOWAuctionApi_Net10
 
         private void tsbTest_Click(object sender, EventArgs e)
         {
-            FormBlank1 frm = new FormBlank1();
-            frm.ShowDialog();
+            sc.RealmData.SaveBackup();
 
         }
 
@@ -1392,7 +1406,7 @@ namespace WOWAuctionApi_Net10
             if (Enum.TryParse<Keys>(keyString, true, out Keys result))
             {
                 // Successfully parsed
-                return result;   
+                return result;
             }
             else
             {
@@ -1413,7 +1427,15 @@ namespace WOWAuctionApi_Net10
             else
             {
                 gkh.unhook();
-            }   
+            }
+        }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (sc.Config.BackupRealmDataOnClose)
+            {
+                sc.RealmData.SaveBackup();
+            }
         }
 
         public enum BuyPriceSelectType

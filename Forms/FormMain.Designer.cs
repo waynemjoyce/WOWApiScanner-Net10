@@ -457,7 +457,7 @@
             tsbTest.ImageTransparentColor = Color.Magenta;
             tsbTest.Name = "tsbTest";
             tsbTest.Size = new Size(52, 52);
-            tsbTest.Text = "Testing";
+            tsbTest.Text = "Backup Realm Data";
             tsbTest.Visible = false;
             tsbTest.Click += tsbTest_Click;
             // 
@@ -2340,6 +2340,7 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "WOW Auction API Scanner for .Net 10";
             WindowState = FormWindowState.Maximized;
+            FormClosed += FormMain_FormClosed;
             Load += FormMain_Load;
             toolStripMain.ResumeLayout(false);
             toolStripMain.PerformLayout();

@@ -318,7 +318,7 @@ namespace WOWAuctionApi_Net10
                 sc.Lists.TotalAuctionsCount.Clear();
             }
 
-            foreach (Realm r in sc.Config.Realms)
+            foreach (Realm r in sc.RealmData.Realms)
             {
                 if (realmOptions.RealmChecked(r.RealmId.Value))
                 {

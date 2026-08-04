@@ -28,7 +28,6 @@ namespace WOWAuctionApi_Net10
         public int? ChartSearchHits { get; set; }
         public int? ChartTotalAuctions { get; set; }
         public int? StockLimit { get; set; }
-        public List<Realm>? Realms { get; set; }
 
         [JsonIgnore]
         public bool SortCacheOnUpdate = false;
@@ -48,6 +47,11 @@ namespace WOWAuctionApi_Net10
         public bool FlagFirstWithStockUpdate = false;
         [JsonIgnore]
         public bool DualAuctionLists = false;
+        [JsonIgnore]
+        public bool BackupRealmDataOnStart = false;
+        [JsonIgnore]
+        public bool BackupRealmDataOnClose = false;
+
         public static Config LoadFromFile(string fileName)
         {
             var options = new JsonSerializerOptions
@@ -60,7 +64,6 @@ namespace WOWAuctionApi_Net10
 
         public void Save()
         {
-            Realms = Realms.OrderBy(r => r.RealmName).ToList(); 
             SaveToFile(sc.Paths.Config);
         }
     }
