@@ -45,6 +45,8 @@
             txtArea = new TextBox();
             label5 = new Label();
             realmFlags1 = new RealmFlags();
+            txtSales = new TextBox();
+            lblSales = new Label();
             ((System.ComponentModel.ISupportInitialize)numRealmId).BeginInit();
             SuspendLayout();
             // 
@@ -52,7 +54,7 @@
             // 
             txtStock.Location = new Point(527, 21);
             txtStock.Name = "txtStock";
-            txtStock.Size = new Size(94, 39);
+            txtStock.Size = new Size(158, 39);
             txtStock.TabIndex = 177;
             // 
             // label4
@@ -67,7 +69,7 @@
             // colorEditor1
             // 
             colorEditor1.Font = new Font("Segoe UI", 9F);
-            colorEditor1.Location = new Point(445, 77);
+            colorEditor1.Location = new Point(445, 128);
             colorEditor1.Margin = new Padding(6, 7, 6, 7);
             colorEditor1.Name = "colorEditor1";
             colorEditor1.ShowAlphaChannel = false;
@@ -87,14 +89,14 @@
             // lblColor
             // 
             lblColor.BackColor = Color.Tomato;
-            lblColor.Location = new Point(218, 133);
+            lblColor.Location = new Point(218, 111);
             lblColor.Name = "lblColor";
             lblColor.Size = new Size(199, 39);
             lblColor.TabIndex = 170;
             // 
             // numRealmId
             // 
-            numRealmId.Location = new Point(218, 77);
+            numRealmId.Location = new Point(218, 66);
             numRealmId.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             numRealmId.Name = "numRealmId";
             numRealmId.Size = new Size(199, 39);
@@ -103,7 +105,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(30, 132);
+            label3.Location = new Point(30, 113);
             label3.Name = "label3";
             label3.Size = new Size(71, 32);
             label3.TabIndex = 168;
@@ -112,7 +114,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(30, 79);
+            label2.Location = new Point(30, 68);
             label2.Name = "label2";
             label2.Size = new Size(34, 32);
             label2.TabIndex = 167;
@@ -120,7 +122,7 @@
             // 
             // txtRealmName
             // 
-            txtRealmName.Location = new Point(218, 22);
+            txtRealmName.Location = new Point(218, 21);
             txtRealmName.Name = "txtRealmName";
             txtRealmName.Size = new Size(199, 39);
             txtRealmName.TabIndex = 166;
@@ -128,7 +130,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(30, 24);
+            label1.Location = new Point(30, 23);
             label1.Name = "label1";
             label1.Size = new Size(78, 32);
             label1.TabIndex = 165;
@@ -160,7 +162,7 @@
             lblActive.AutoSize = true;
             lblActive.Font = new Font("Segoe UI", 9F);
             lblActive.ForeColor = Color.ForestGreen;
-            lblActive.Location = new Point(949, 26);
+            lblActive.Location = new Point(963, 26);
             lblActive.Name = "lblActive";
             lblActive.Size = new Size(79, 32);
             lblActive.TabIndex = 183;
@@ -171,7 +173,7 @@
             tslActive.Checked = true;
             tslActive.CheckState = CheckState.Checked;
             tslActive.ForeColor = Color.LimeGreen;
-            tslActive.Location = new Point(887, 26);
+            tslActive.Location = new Point(901, 26);
             tslActive.MinimumSize = new Size(46, 22);
             tslActive.Name = "tslActive";
             tslActive.OffBackColor = Color.Gray;
@@ -187,15 +189,15 @@
             // 
             // txtArea
             // 
-            txtArea.Location = new Point(740, 20);
+            txtArea.Location = new Point(803, 21);
             txtArea.Name = "txtArea";
-            txtArea.Size = new Size(94, 39);
+            txtArea.Size = new Size(73, 39);
             txtArea.TabIndex = 185;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(660, 22);
+            label5.Location = new Point(735, 23);
             label5.Name = "label5";
             label5.Size = new Size(62, 32);
             label5.TabIndex = 184;
@@ -207,15 +209,34 @@
             realmFlags1.Location = new Point(1083, 22);
             realmFlags1.Name = "realmFlags1";
             realmFlags1.OptionsTitle = "      Realm Flags";
+            realmFlags1.ShowEnabled = true;
             realmFlags1.ShowToggleButton = true;
             realmFlags1.Size = new Size(820, 522);
             realmFlags1.TabIndex = 186;
+            // 
+            // txtSales
+            // 
+            txtSales.Location = new Point(527, 66);
+            txtSales.Name = "txtSales";
+            txtSales.Size = new Size(158, 39);
+            txtSales.TabIndex = 188;
+            // 
+            // lblSales
+            // 
+            lblSales.AutoSize = true;
+            lblSales.Location = new Point(447, 68);
+            lblSales.Name = "lblSales";
+            lblSales.Size = new Size(68, 32);
+            lblSales.TabIndex = 187;
+            lblSales.Text = "Sales";
             // 
             // FormEditRealm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1935, 653);
+            Controls.Add(txtSales);
+            Controls.Add(lblSales);
             Controls.Add(realmFlags1);
             Controls.Add(txtArea);
             Controls.Add(label5);
@@ -260,5 +281,7 @@
         private TextBox txtArea;
         private Label label5;
         private RealmFlags realmFlags1;
+        private TextBox txtSales;
+        private Label lblSales;
     }
 }

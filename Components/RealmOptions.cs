@@ -18,6 +18,7 @@ namespace WOWAuctionApi_Net10
         private OptionSet flagOptions;
         private bool isDoubleClickCheck = false;
         int cachedStock = 0;
+        int cachedSales = 0;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ImageList SmallImageList
@@ -105,16 +106,17 @@ namespace WOWAuctionApi_Net10
 
         public void RenderColumns()
         {
-            AddColumn("R", 70);
-            AddColumn("S", 30); //Stock limit exceeded warning
-            AddColumn("Stock", 70, HorizontalAlignment.Right);
+            AddColumn("", 70);
+            AddColumn("Realm Name", 220);
 
             foreach (ToggleOption flagOption in flagOptions.ToggleOptions)
             {
                 AddColumn(flagOption.Name, 30);
             }
 
-            AddColumn("Realm Name", 220);
+            AddColumn("Stock", 75, HorizontalAlignment.Right);
+            AddColumn("!", 30); //Stock limit exceeded warning
+            AddColumn("Sales", 110, HorizontalAlignment.Right);
             AddColumn("Modified", 110);
             AddColumn("#", 110, HorizontalAlignment.Right);
             AddColumn("A", 60);
@@ -128,6 +130,28 @@ namespace WOWAuctionApi_Net10
             column.Width = width;
             column.TextAlign = alignment;
             lvRealms.Columns.Add(column);
+
+            ColumnHeader footer = new ColumnHeader();
+            footer.Name = $"colRealmsFooter_{name}";
+            footer.Text = "";
+            footer.Width = width;
+            footer.TextAlign = alignment;
+            lvRealmsFooter.Columns.Add(footer);
+        }
+
+        public void SetUpFooter()
+        {
+            const int footerHeight = 40;
+
+            lvRealmsFooter.Scrollable = false;
+            lvRealmsFooter.Height = footerHeight;
+            lvRealmsFooter.Width = lvRealms.Width;
+            lvRealmsFooter.Left = lvRealms.Left;
+            lvRealmsFooter.Top = lvRealms.Height + 50;
+            lvRealmsFooter.Visible = true;
+
+            //lvRealms.Height = lvRealms.Height - footerHeight;
+
         }
 
         public void LoadRealms()
@@ -135,6 +159,7 @@ namespace WOWAuctionApi_Net10
             flagOptions = sc.UIOptions.OptionSets.Single(set => set.SetName == "RealmFlags");
 
             RenderColumns();
+
 
             lvRealms.FullRowSelect = true;
 
@@ -156,7 +181,7 @@ namespace WOWAuctionApi_Net10
             lvRealms.Items.AddRange(items.ToArray()); // Add all at once
             lvRealms.EndUpdate();
             Application.DoEvents();
-            UpdateStockCount();
+            UpdateTotals();
 
             foreach (ToggleOption flagOption in flagOptions.ToggleOptions)
             {
@@ -173,10 +198,7 @@ namespace WOWAuctionApi_Net10
                 tsiUnflag.Tag = flagOption;
                 tsiUnflag.Click += miUnflagRealmSpecific_Click;
                 miUnflagAllSpecific.DropDownItems.AddRange(new ToolStripItem[] { tsiUnflag });
-
-
             }
-
         }
 
         private ListViewItem GetLVIForRealm(Realm r, string modified = "", int status = 0, string auctionCount = "0")
@@ -189,13 +211,9 @@ namespace WOWAuctionApi_Net10
 
             int flagCount = flagOptions.ToggleOptions.Count;
 
-            //Stock limit warning
-            lvi.SubItems.Add("");
-            StockLimitForListItem(lvi);
-
-            lvi.SubItems.Add(r.Stock.Value.ToString());
-            lvi.SubItems[SIIndex(SII.Stock)].BackColor = UIHelper.StringToColor(r.BackColor);
-            lvi.SubItems[SIIndex(SII.Stock)].ForeColor = Color.White;
+            lvi.SubItems.Add(r.RealmName);
+            lvi.SubItems[SIIndex(SII.RealmName)].BackColor = UIHelper.StringToColor(r.BackColor);
+            lvi.SubItems[SIIndex(SII.RealmName)].ForeColor = Color.White;
 
             foreach (ToggleOption flagOption in flagOptions.ToggleOptions)
             {
@@ -205,12 +223,12 @@ namespace WOWAuctionApi_Net10
                     lvi.SubItems.Add(flagOption.Name);
                     if (sc.UIOptions.ColorMode == SystemColorMode.Dark)
                     {
-                        lvi.SubItems[3 + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
+                        lvi.SubItems[SIIndex(SII.FlagOffset) + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
                             = Color.FromName(flagOption.BackColorDark);
                     }
                     else
                     {
-                        lvi.SubItems[3 + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
+                        lvi.SubItems[SIIndex(SII.FlagOffset) + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
                             = Color.FromName(flagOption.BackColorLight);
                     }
 
@@ -221,16 +239,27 @@ namespace WOWAuctionApi_Net10
                 }
             }
 
-            lvi.SubItems.Add(r.RealmName);
-            lvi.SubItems[SIIndex(SII.RealmName)].BackColor = UIHelper.StringToColor(r.BackColor);
-            lvi.SubItems[SIIndex(SII.RealmName)].ForeColor = Color.White;
+            lvi.SubItems.Add(r.Stock.Value.ToString("N0"));
+            lvi.SubItems[SIIndex(SII.Stock)].BackColor = UIHelper.StringToColor(r.BackColor);
+            lvi.SubItems[SIIndex(SII.Stock)].ForeColor = Color.White;
+
+            //Stock limit warning
+            lvi.SubItems.Add("");
+            StockLimitForListItem(lvi);
+
+            lvi.SubItems.Add(r.Sales.Value.ToString("N0"));
+            lvi.SubItems[SIIndex(SII.Sales)].BackColor = UIHelper.StringToColor(r.BackColor);
+            lvi.SubItems[SIIndex(SII.Sales)].ForeColor = Color.White;
+
             lvi.SubItems.Add((modified == "") ? "Stale" : modified);
             lvi.SubItems[SIIndex(SII.Modified)].BackColor = UIHelper.StringToColor(r.BackColor);
             lvi.SubItems[SIIndex(SII.Modified)].ForeColor = Color.White;
+
             lvi.SubItems.Add(auctionCount);
             lvi.SubItems[SIIndex(SII.AuctionCount)].BackColor = UIHelper.StringToColor(r.BackColor);
             lvi.SubItems[SIIndex(SII.AuctionCount)].ForeColor = Color.White;
             lvi.SubItems.Add(r.Area);
+
             lvi.SubItems[SIIndex(SII.Area)].BackColor = UIHelper.StringToColor(r.BackColor);
             lvi.SubItems[SIIndex(SII.Area)].ForeColor = Color.White;
 
@@ -310,7 +339,7 @@ namespace WOWAuctionApi_Net10
                 SetSelectedRealm(editRealm.Realm);
                 sc.RealmData.Save();
             }
-            UpdateStockCount();
+            UpdateTotals();
         }
 
         private void SetSelectedRealm(Realm realm)
@@ -339,6 +368,7 @@ namespace WOWAuctionApi_Net10
                     r.RealmName = realm.RealmName;
                     r.RealmId = realm.RealmId;
                     r.Stock = realm.Stock;
+                    sc.RealmData.Save();
                     break;
                 }
             }
@@ -359,19 +389,25 @@ namespace WOWAuctionApi_Net10
             EditRealm();
         }
 
-        private void UpdateStockCount()
+        private void UpdateTotals()
         {
             int stockCount = 0;
+            int salesCount = 0;
+            int auctionsCount = 0;
             foreach (ListViewItem lvi in lvRealms.Items)
             {
-                stockCount += int.Parse(lvi.SubItems[SIIndex(SII.Stock)].Text);
+                stockCount += int.Parse(lvi.SubItems[SIIndex(SII.Stock)].Text.Replace(",", ""));
+                salesCount += int.Parse(lvi.SubItems[SIIndex(SII.Sales)].Text.Replace(",", ""));
+                auctionsCount += int.Parse(lvi.SubItems[SIIndex(SII.AuctionCount)].Text.Replace(",", ""));
                 if (lvi.Tag != null)
                 {
                     Realm realm = lvi.Tag as Realm;
                     StockLimitForListItem(lvi);
                 }
             }
-            lvRealms.Columns[SIIndex(SII.Stock)].Text = stockCount.ToString();
+            lvRealmsFooter.Columns[SIIndex(SII.Stock)].Text = stockCount.ToString("N0");
+            lvRealmsFooter.Columns[SIIndex(SII.Sales)].Text = salesCount.ToString("N0");
+            lvRealmsFooter.Columns[SIIndex(SII.AuctionCount)].Text = auctionsCount.ToString("N0");
         }
 
         private void StockLimitForListItem(ListViewItem lvi)
@@ -394,34 +430,42 @@ namespace WOWAuctionApi_Net10
             }
 
             ListViewItem.ListViewSubItem lvi2 = lvi.SubItems[1];
-        }   
+        }
 
         public enum SII
         {
             StockWarning,
             Stock,
+            Sales,
             RealmName,
             Modified,
             AuctionCount,
-            Area
+            Area,
+            FlagOffset
         }
 
         public int SIIndex(SII subItemName)
         {
             switch (subItemName)
             {
-                case SII.StockWarning:
+                case SII.RealmName:
                     return 1;
                 case SII.Stock:
-                    return 2;
-                case SII.RealmName:
+                    return 2 + flagOptions.ToggleOptions.Count;
+                case SII.StockWarning:
                     return 3 + flagOptions.ToggleOptions.Count;
-                case SII.Modified:
+                case SII.Sales:
                     return 4 + flagOptions.ToggleOptions.Count;
-                case SII.AuctionCount:
+                case SII.Modified:
                     return 5 + flagOptions.ToggleOptions.Count;
-                case SII.Area:
+                case SII.AuctionCount:
                     return 6 + flagOptions.ToggleOptions.Count;
+                case SII.Area:
+                    return 7 + flagOptions.ToggleOptions.Count;
+
+
+                case SII.FlagOffset:
+                    return 2;
             }
 
             return 0;
@@ -485,6 +529,27 @@ namespace WOWAuctionApi_Net10
             }
         }
 
+        private void ClearAllSales()
+        {
+            if (MessageBox.Show(
+                "This will set sales on realms back to 0.\r\nAre you sure you wish to continue?",
+                    "Clear All Sales", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                foreach (ListViewItem lvi in lvRealms.Items)
+                {
+                    Realm selectedRealm = lvi.Tag as Realm;
+                    if (selectedRealm != null)
+                    {
+                        selectedRealm.Sales = 0;
+                        lvi.SubItems[SIIndex(SII.Sales)].Text = "0";    
+                    }
+                }
+
+                sc.RealmData.Save();
+                
+            }
+        }
+
         private void FlagAllRealms(bool flag)
         {
             foreach (ListViewItem lvi in lvRealms.Items)
@@ -509,17 +574,19 @@ namespace WOWAuctionApi_Net10
             Realm currentRealm = GetSelectedRealm();
             if (currentRealm != null)
             {
-                int cachedStock = currentRealm.Stock.Value;
+                cachedStock = currentRealm.Stock.Value;
+                cachedSales = currentRealm.Sales.Value;
                 miStockText.Text = currentRealm.Stock.ToString();
+                miSalesText.Text = currentRealm.Sales.ToString();
             }
         }
 
-        private void miStockText_Enter(object sender, EventArgs e)
+        private void MenuText_Enter(object sender, EventArgs e)
         {
-            miStockText.SelectAll();
+            MenuTextSelectAll(sender);
         }
 
-        private void miStockText_KeyDown(object sender, KeyEventArgs e)
+        private void MenuText_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -530,27 +597,55 @@ namespace WOWAuctionApi_Net10
                 Realm currentRealm = GetSelectedRealm();
                 if (currentRealm != null)
                 {
-                    if (int.Parse(miStockText.Text) != cachedStock)
+                    ToolStripTextBox mnuText = sender as ToolStripTextBox;
+                    if (mnuText != null)
                     {
-                        currentRealm.Stock = int.Parse(miStockText.Text);
-                        SetSelectedRealm(currentRealm);
-
-                        if (sc.Config.FlagFirstWithStockUpdate)
+                        switch (mnuText.Name)
                         {
-                            currentRealm.RealmFlags = AddBitIfNotExists(currentRealm.RealmFlags.Value, 1);
-                            UpdateAllFlags();
+                            case "miStockText":
+                            default:
+                                if (int.Parse(miStockText.Text) != cachedStock)
+                                {
+                                    currentRealm.Stock = int.Parse(miStockText.Text);
+                                    SetSelectedRealm(currentRealm);
+
+                                    if (sc.Config.FlagFirstWithStockUpdate)
+                                    {
+                                        currentRealm.RealmFlags = AddBitIfNotExists(currentRealm.RealmFlags.Value, 1);
+                                        UpdateAllFlags();
+                                    }
+                                }
+                                break;
+                            case "miSalesText":
+                                if (int.Parse(miSalesText.Text) != cachedSales)
+                                {
+                                    currentRealm.Sales = int.Parse(miSalesText.Text);
+                                    SetSelectedRealm(currentRealm);
+                                }
+                                break;
                         }
+
+                        sc.RealmData.Save();
+                        UpdateTotals();
+                        mnRealms.Close();
                     }
-                    sc.RealmData.Save();
-                    UpdateStockCount();
-                    mnRealms.Close();
+
                 }
             }
         }
 
-        private void miStockText_Click(object sender, EventArgs e)
+        private void MenuText_Click(object sender, EventArgs e)
         {
-            miStockText.SelectAll();
+            MenuTextSelectAll(sender);
+        }
+
+        private void MenuTextSelectAll(object sender)
+        {
+            ToolStripTextBox mnuText = sender as ToolStripTextBox;
+            if (mnuText != null)
+            {
+                mnuText.SelectAll();
+            }
         }
 
         private void miClearRealmFlags_Click(object sender, EventArgs e)
@@ -593,7 +688,7 @@ namespace WOWAuctionApi_Net10
 
             sc.RealmData.Save();
             UpdateAllFlags();
-        }   
+        }
 
         public int AddBitIfNotExists(int currentValue, int bitToAdd)
         {
@@ -611,40 +706,45 @@ namespace WOWAuctionApi_Net10
                 return currentValue - bitToDelete;
             }
             return currentValue;
-        }   
+        }
 
 
         public void UpdateAllFlags()
         {
             foreach (ListViewItem lvi in lvRealms.Items)
             {
-                Realm r = lvi.Tag as Realm; 
+                Realm r = lvi.Tag as Realm;
                 foreach (ToggleOption flagOption in flagOptions.ToggleOptions)
                 {
-               
+
                     bool isFlagged = (r.RealmFlags.HasValue && (r.RealmFlags.Value & flagOption.Id.Value) != 0);
                     if (isFlagged)
                     {
-                        lvi.SubItems[3 + flagOptions.ToggleOptions.IndexOf(flagOption)].Text = flagOption.Name;
+                        lvi.SubItems[SIIndex(SII.FlagOffset) + flagOptions.ToggleOptions.IndexOf(flagOption)].Text = flagOption.Name;
                         if (sc.UIOptions.ColorMode == SystemColorMode.Dark)
                         {
-                            lvi.SubItems[3 + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
+                            lvi.SubItems[SIIndex(SII.FlagOffset) + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
                                 = Color.FromName(flagOption.BackColorDark);
                         }
                         else
                         {
-                            lvi.SubItems[3 + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
+                            lvi.SubItems[SIIndex(SII.FlagOffset) + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
                                 = Color.FromName(flagOption.BackColorLight);
                         }
                     }
                     else
                     {
-                        lvi.SubItems[3 + flagOptions.ToggleOptions.IndexOf(flagOption)].Text = "";
-                        lvi.SubItems[3 + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor 
+                        lvi.SubItems[SIIndex(SII.FlagOffset) + flagOptions.ToggleOptions.IndexOf(flagOption)].Text = "";
+                        lvi.SubItems[SIIndex(SII.FlagOffset) + flagOptions.ToggleOptions.IndexOf(flagOption)].BackColor
                             = SystemColors.ControlLight;
                     }
                 }
             }
+        }
+
+        private void miClearAllSales_Click(object sender, EventArgs e)
+        {
+            ClearAllSales();
         }
     }
 

@@ -43,6 +43,8 @@
             btnPostAuctions = new Button();
             txtInteractionScript = new TextBox();
             btnRunScript = new Button();
+            button3 = new Button();
+            btnGeneralTest = new Button();
             SuspendLayout();
             // 
             // txtX
@@ -131,9 +133,9 @@
             // 
             button1.Location = new Point(1471, 256);
             button1.Name = "button1";
-            button1.Size = new Size(150, 46);
+            button1.Size = new Size(255, 46);
             button1.TabIndex = 9;
-            button1.Text = "button1";
+            button1.Text = "Realms by auc #";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -150,9 +152,9 @@
             // 
             button2.Location = new Point(1471, 308);
             button2.Name = "button2";
-            button2.Size = new Size(150, 46);
+            button2.Size = new Size(255, 46);
             button2.TabIndex = 11;
-            button2.Text = "button2";
+            button2.Text = "Active realms";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -184,11 +186,33 @@
             btnRunScript.UseVisualStyleBackColor = true;
             btnRunScript.Click += btnRunScript_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(1471, 360);
+            button3.Name = "button3";
+            button3.Size = new Size(255, 46);
+            button3.TabIndex = 15;
+            button3.Text = "A to Z Realms";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // btnGeneralTest
+            // 
+            btnGeneralTest.Location = new Point(1471, 514);
+            btnGeneralTest.Name = "btnGeneralTest";
+            btnGeneralTest.Size = new Size(255, 46);
+            btnGeneralTest.TabIndex = 16;
+            btnGeneralTest.Text = "General Test";
+            btnGeneralTest.UseVisualStyleBackColor = true;
+            btnGeneralTest.Click += btnGeneralTest_Click;
+            // 
             // FormMouseTest
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2158, 1085);
+            Controls.Add(btnGeneralTest);
+            Controls.Add(button3);
             Controls.Add(btnRunScript);
             Controls.Add(txtInteractionScript);
             Controls.Add(btnPostAuctions);
@@ -231,5 +255,7 @@
         private Button btnPostAuctions;
         private TextBox txtInteractionScript;
         private Button btnRunScript;
+        private Button button3;
+        private Button btnGeneralTest;
     }
 }

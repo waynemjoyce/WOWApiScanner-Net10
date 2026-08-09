@@ -91,6 +91,7 @@ namespace WOWAuctionApi_Net10
         public int? RealmFlags { get; set; }
 
         public int? Stock { get; set; }
+        public int? Sales { get; set; }
 
         public bool? Active { get; set; }
 

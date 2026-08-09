@@ -2162,7 +2162,7 @@
             // 
             charts1.Location = new Point(1386, 0);
             charts1.Name = "charts1";
-            charts1.Size = new Size(815, 1419);
+            charts1.Size = new Size(773, 1419);
             charts1.TabIndex = 136;
             charts1.Visible = false;
             // 
@@ -2266,12 +2266,12 @@
             // realmOptions1
             // 
             realmOptions1.BackColor = SystemColors.ControlLight;
-            realmOptions1.Location = new Point(2856, 529);
+            realmOptions1.Location = new Point(2779, 529);
             realmOptions1.Name = "realmOptions1";
             realmOptions1.OptionsTitle = "      Realms";
             realmOptions1.ShowEnabled = false;
             realmOptions1.ShowToggleButton = false;
-            realmOptions1.Size = new Size(946, 1441);
+            realmOptions1.Size = new Size(1023, 1441);
             realmOptions1.TabIndex = 157;
             realmOptions1.Visible = false;
             // 
@@ -2342,6 +2342,7 @@
             WindowState = FormWindowState.Maximized;
             FormClosed += FormMain_FormClosed;
             Load += FormMain_Load;
+            Paint += FormMain_Paint;
             toolStripMain.ResumeLayout(false);
             toolStripMain.PerformLayout();
             panelRibbon.ResumeLayout(false);

@@ -1,0 +1,122 @@
+{
+  "ScriptName": "wowahbuy",
+  "Events": [
+    {
+      "EventName": "Click AH search box",
+      "EventType": "MouseMoveAndClick",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": -4381,
+      "Y": 395,
+      "DelayBefore": 0,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Select all",
+      "EventType": "SendKeys",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": 100,
+      "Y": 200,
+      "DelayBefore": 0,
+      "DelayBetween": 0,
+      "DelayAfter": 125,
+      "KeysToSend": "^a",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Paste from clipboard",
+      "EventType": "SendKeys",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": 100,
+      "Y": 200,
+      "DelayBefore": 0,
+      "DelayBetween": 0,
+      "DelayAfter": 125,
+      "KeysToSend": "^v",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Click search",
+      "EventType": "MouseMoveAndClick",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": -3303,
+      "Y": 395,
+      "DelayBefore": 0,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Click top item",
+      "EventType": "MouseMoveAndClick",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": -4001,
+      "Y": 525,
+      "DelayBefore": 0,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Select item",
+      "EventType": "MouseMoveAndClick",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": -4123,
+      "Y": 859,
+      "DelayBefore": 0,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Click buyout",
+      "EventType": "MouseMoveAndClick",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": -3240,
+      "Y": 1523,
+      "DelayBefore": 0,
+      "DelayBetween": 125,
+      "DelayAfter": 125,
+      "KeysToSend": "NA",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Pause over item button",
+      "EventType": "MouseMove",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": -4009,
+      "Y": 655,
+      "DelayBefore": 0,
+      "DelayBetween": 0,
+      "DelayAfter": 800,
+      "KeysToSend": "Test",
+      "Frequency": 1
+    },
+    {
+      "EventName": "Move to accept button",
+      "EventType": "MouseMove",
+      "Enabled": true,
+      "MouseClickType": "Left",
+      "X": -2708,
+      "Y": 467,
+      "DelayBefore": 0,
+      "DelayBetween": 0,
+      "DelayAfter": 125,
+      "KeysToSend": "Test",
+      "Frequency": 1
+    }
+  ]
+}

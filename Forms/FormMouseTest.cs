@@ -53,17 +53,23 @@ namespace WOWAuctionApi_Net10
         {
             textBox1.Clear();
 
-            //List all unique values for X
-            List<string> uniqueInventoryTypes = sc.Caches.ItemCache.Items
-                .Select(p => p.SubClassName)
-                .Distinct()
-                .ToList();
+            /*
+             * 
+             * 
+             */
 
-            foreach (string type in uniqueInventoryTypes)
+            List<Realm> orderedList = sc.RealmData.Realms.OrderBy(r => r.NumAuctions).ToList();
+
+
+            foreach (Realm r in orderedList)
             {
-                textBox1.Text += type + "\r\n";
-
+                if (r.Active.Value)
+                {
+                    textBox1.Text += $"{r.RealmName} - {r.NumAuctions}\r\n";
+                }
             }
+
+
 
             /*
             BlizzItem bi = API_Blizzard.GetBlizzItemFromItemId(sc.BlizzAccessToken, long.Parse(this.textBox1.Text));
@@ -84,8 +90,19 @@ namespace WOWAuctionApi_Net10
 
         private void button2_Click(object sender, EventArgs e)
         {
-            InteractionScript ins = (InteractionScript)InteractionScript.LoadFromFile("", "wowahbuy");
-            ins.ProcessScript();
+            int count = 0;
+            foreach (Realm r in sc.RealmData.Realms)
+            {
+                if (r.Active == true)
+                {
+                    count++;
+                }
+            }
+            MessageBox.Show($"Active realms = {count.ToString()}");
+
+
+            //InteractionScript ins = (InteractionScript)InteractionScript.LoadFromFile("", "wowahbuy");
+            //ins.ProcessScript();
         }
 
         private void btnPostAuctions_Click(object sender, EventArgs e)
@@ -104,6 +121,29 @@ namespace WOWAuctionApi_Net10
             InteractionScript script = InteractionScript.LoadFromFile("", txtInteractionScript.Text);
             script.ProcessID = sc.CurrentWoWProcess;
             script.ProcessScript();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+
+            foreach (Realm r in sc.RealmData.Realms)
+            {
+                if (r.Active == true)
+                {
+                    textBox1.Text += $"{r.RealmName}\r\n";
+                }
+            }
+        }
+
+        private void btnGeneralTest_Click(object sender, EventArgs e)
+        {
+
+            foreach (Realm r in sc.RealmData.Realms)
+            {
+                r.Sales = 0;
+            }
+            sc.RealmData.Save();
         }
     }
 }

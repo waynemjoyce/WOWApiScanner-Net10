@@ -35,6 +35,7 @@
             miEditRealm = new ToolStripMenuItem();
             miClearRealmFlags = new ToolStripMenuItem();
             miStockText = new ToolStripTextBox();
+            miSalesText = new ToolStripTextBox();
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripSeparator2 = new ToolStripSeparator();
             miFlagAllSpecific = new ToolStripMenuItem();
@@ -42,8 +43,9 @@
             toolStripSeparator3 = new ToolStripSeparator();
             toolStripSeparator4 = new ToolStripSeparator();
             miUnflagAllRealms = new ToolStripMenuItem();
+            miClearAllSales = new ToolStripMenuItem();
             btnToggleRealms = new Button();
-            contextMenuStrip1 = new ContextMenuStrip(components);
+            lvRealmsFooter = new ListView();
             mnRealms.SuspendLayout();
             SuspendLayout();
             // 
@@ -58,7 +60,7 @@
             lvRealms.Location = new Point(26, 61);
             lvRealms.MultiSelect = false;
             lvRealms.Name = "lvRealms";
-            lvRealms.Size = new Size(736, 1489);
+            lvRealms.Size = new Size(736, 1450);
             lvRealms.TabIndex = 131;
             lvRealms.UseCompatibleStateImageBehavior = false;
             lvRealms.View = View.Details;
@@ -70,9 +72,9 @@
             // mnRealms
             // 
             mnRealms.ImageScalingSize = new Size(32, 32);
-            mnRealms.Items.AddRange(new ToolStripItem[] { miEditRealm, miClearRealmFlags, miStockText, toolStripSeparator1, toolStripSeparator2, miFlagAllSpecific, miUnflagAllSpecific, toolStripSeparator3, toolStripSeparator4, miUnflagAllRealms });
+            mnRealms.Items.AddRange(new ToolStripItem[] { miEditRealm, miClearRealmFlags, miStockText, miSalesText, toolStripSeparator1, toolStripSeparator2, miFlagAllSpecific, miUnflagAllSpecific, toolStripSeparator3, toolStripSeparator4, miUnflagAllRealms, miClearAllSales });
             mnRealms.Name = "contextMenuStrip1";
-            mnRealms.Size = new Size(316, 261);
+            mnRealms.Size = new Size(316, 386);
             mnRealms.Text = "Realm options";
             mnRealms.Opened += mnRealms_Opened;
             // 
@@ -94,9 +96,17 @@
             // 
             miStockText.Name = "miStockText";
             miStockText.Size = new Size(100, 39);
-            miStockText.Enter += miStockText_Enter;
-            miStockText.KeyDown += miStockText_KeyDown;
-            miStockText.Click += miStockText_Click;
+            miStockText.Enter += MenuText_Enter;
+            miStockText.KeyDown += MenuText_KeyDown;
+            miStockText.Click += MenuText_Click;
+            // 
+            // miSalesText
+            // 
+            miSalesText.Name = "miSalesText";
+            miSalesText.Size = new Size(100, 39);
+            miSalesText.Enter += MenuText_Enter;
+            miSalesText.KeyDown += MenuText_KeyDown;
+            miSalesText.Click += MenuText_Click;
             // 
             // toolStripSeparator1
             // 
@@ -137,6 +147,13 @@
             miUnflagAllRealms.Text = "UNFLAG ALL REALMS";
             miUnflagAllRealms.Click += miUnflagAllRealms_Click;
             // 
+            // miClearAllSales
+            // 
+            miClearAllSales.Name = "miClearAllSales";
+            miClearAllSales.Size = new Size(315, 38);
+            miClearAllSales.Text = "CLEAR ALL SALES";
+            miClearAllSales.Click += miClearAllSales_Click;
+            // 
             // btnToggleRealms
             // 
             btnToggleRealms.BackColor = SystemColors.ControlDark;
@@ -150,16 +167,29 @@
             btnToggleRealms.UseVisualStyleBackColor = false;
             btnToggleRealms.Click += btnToggleRealms_Click;
             // 
-            // contextMenuStrip1
+            // lvRealmsFooter
             // 
-            contextMenuStrip1.ImageScalingSize = new Size(32, 32);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
+            lvRealmsFooter.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lvRealmsFooter.BackColor = SystemColors.ControlLight;
+            lvRealmsFooter.CheckBoxes = true;
+            lvRealmsFooter.ContextMenuStrip = mnRealms;
+            lvRealmsFooter.Font = new Font("Segoe UI", 8F);
+            lvRealmsFooter.FullRowSelect = true;
+            lvRealmsFooter.Location = new Point(249, 44);
+            lvRealmsFooter.MultiSelect = false;
+            lvRealmsFooter.Name = "lvRealmsFooter";
+            lvRealmsFooter.Scrollable = false;
+            lvRealmsFooter.Size = new Size(463, 257);
+            lvRealmsFooter.TabIndex = 151;
+            lvRealmsFooter.UseCompatibleStateImageBehavior = false;
+            lvRealmsFooter.View = View.Details;
+            lvRealmsFooter.Visible = false;
             // 
             // RealmOptions
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lvRealmsFooter);
             Controls.Add(btnToggleRealms);
             Controls.Add(lvRealms);
             Name = "RealmOptions";
@@ -170,6 +200,7 @@
             Load += RealmOptions_Load;
             Controls.SetChildIndex(lvRealms, 0);
             Controls.SetChildIndex(btnToggleRealms, 0);
+            Controls.SetChildIndex(lvRealmsFooter, 0);
             mnRealms.ResumeLayout(false);
             mnRealms.PerformLayout();
             ResumeLayout(false);
@@ -182,7 +213,6 @@
         private ContextMenuStrip mnRealms;
         private ToolStripMenuItem miEditRealm;
         private ToolStripMenuItem miUnflagAllRealms;
-        private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem miClearRealmFlags;
         private ToolStripTextBox miStockText;
         private ToolStripSeparator toolStripSeparator1;
@@ -191,5 +221,8 @@
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem miFlagAllSpecific;
+        private ListView lvRealmsFooter;
+        private ToolStripTextBox miSalesText;
+        private ToolStripMenuItem miClearAllSales;
     }
 }

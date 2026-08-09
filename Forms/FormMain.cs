@@ -1438,6 +1438,11 @@ namespace WOWAuctionApi_Net10
             }
         }
 
+        private void FormMain_Paint(object sender, PaintEventArgs e)
+        {
+            realmOptions1.SetUpFooter();
+        }
+
         public enum BuyPriceSelectType
         {
             Selected,

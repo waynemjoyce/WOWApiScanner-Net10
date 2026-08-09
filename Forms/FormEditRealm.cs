@@ -33,6 +33,7 @@ namespace WOWAuctionApi_Net10.Forms
             txtStock.Text = realm.Stock.Value.ToString();
             tslActive.Checked = realm.Active.Value;
             txtArea.Text = realm.Area;
+            txtSales.Text = realm.Sales.ToString();
 
             UIHelper.RenderUIOptionsSet(sc.UIOptions.OptionSets.Single(set => set.SetName == "RealmFlags"), realmFlags1);
             UIHelper.SetControlBitwiseValue(realmFlags1, realm.RealmFlags ?? 0);
@@ -47,6 +48,7 @@ namespace WOWAuctionApi_Net10.Forms
             realm.Active = tslActive.Checked;
             realm.Area = txtArea.Text;
             realm.RealmFlags = UIHelper.GetControlBitwiseValue(realmFlags1);
+            realm.Sales = int.Parse(txtSales.Text);
         }
 
         private void colorWheel1_ColorChanged(object sender, EventArgs e)

@@ -755,7 +755,7 @@
     {
       "SetName": "RealmFlags",
       "UseDefaultAttributes": false,
-      "Attributes": {
+      "Attributes": { 
         "TogsPerColumn": 7,
         "Width": 60,
         "Height": 32,
@@ -771,14 +771,14 @@
           "Name": "P",
           "Label": "Purchase items last hour (P)",
           "BackColorDark": "ForestGreen",
-          "ToggleColorDark": "PaleGreen",
+          "ToggleColorDark": "PaleGreen", 
           "BackColorLight": "ForestGreen",
           "ToggleColorLight": "PaleGreen"
         },
         {
-          "Id": 8,
-          "Name": "M",
-          "Label": "Maraudon transmog received (M)",
+          "Id": 32,
+          "Name": "Z",
+          "Label": "Zul Farak transmog received (Z)",
           "BackColorDark": "Sienna",
           "ToggleColorDark": "Wheat",
           "BackColorLight": "Sienna",
