@@ -333,6 +333,8 @@ namespace WOWAuctionApi_Net10
             sc.Config.BackupRealmDataOnStart = checkOptions.Contains(tc.Id.Value);
             tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Backup Realm Data On Close");
             sc.Config.BackupRealmDataOnClose = checkOptions.Contains(tc.Id.Value);
+            tc = configOptions.ToggleOptions.Single(tog => tog.Name == "Exclude Searches With First Flag");
+            sc.Config.ExcludeSearchesWithFirstFlag = checkOptions.Contains(tc.Id.Value);
         }
 
         private void LoadRealmData()
@@ -662,6 +664,7 @@ namespace WOWAuctionApi_Net10
             sc.SearchLogic.Options.HasSockets = sc.SearchLogic.Options.Main.Contains("Socket");
             sc.SearchLogic.Options.AtoZ = sc.SearchLogic.Options.Main.Contains("A to Z");
             sc.SearchLogic.Options.IncludeBuyout = sc.SearchLogic.Options.Main.Contains("Include Buyout");
+            sc.SearchLogic.Options.LatestEpicsOnly = sc.SearchLogic.Options.Main.Contains("Latest Epics Only");
             sc.SearchLogic.Options.IncludeBid = sc.SearchLogic.Options.Main.Contains("Include Bid");
             sc.SearchLogic.Options.UseStringFilter = (sc.CurrentProfile.StringFilter != "");
             sc.SearchLogic.Options.StringFilter = sc.CurrentProfile.StringFilter;

@@ -113,7 +113,7 @@ namespace WOWAuctionApi_Net10
             int addedCount = 0;
 
             Dictionary<long, TsmItem> localRegionItems = sc.Dictionaries.RegionItems
-                .Where(item => item.Value.petSpeciesId != null).ToDictionary();
+                .Where(item => item.Value.petSpeciesId == null).ToDictionary();
             int regionCount = localRegionItems.Count;
             tspCache.Maximum = regionCount;
 

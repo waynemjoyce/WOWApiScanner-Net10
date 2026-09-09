@@ -9,6 +9,8 @@ namespace WOWAuctionApi_Net10
     {
         public List<long> MidnightItemIds { get; set; }
 
+        public List<long> LatestEpics { get; set; }
+
         public static ItemData Load()
         {
             return ItemData.LoadFromFile(sc.Paths.ItemData);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace WOWAuctionApi_Net10
@@ -56,18 +57,47 @@ namespace WOWAuctionApi_Net10
             return searchResults;
         }
 
+        private void LatestEpics_ModifyItemLevels(List<Auction> modAuctions)
+        {
+            foreach (Auction a in modAuctions)
+            {
+                if (a.item.bonus_lists.Contains(12825)) { a.item.itemLevel = 279; continue; }
+                if (a.item.bonus_lists.Contains(12833)) { a.item.itemLevel = 292; continue; }
+                if (a.item.bonus_lists.Contains(12834)) { a.item.itemLevel = 295; continue; }
+                if (a.item.bonus_lists.Contains(12835)) { a.item.itemLevel = 298; continue; }
+                if (a.item.bonus_lists.Contains(12841)) { a.item.itemLevel = 305; continue; }
+                if (a.item.bonus_lists.Contains(12842)) { a.item.itemLevel = 308; continue; }
+                if (a.item.bonus_lists.Contains(12843)) { a.item.itemLevel = 311; continue; }
+            }
+        }
+
         //Search realm auction results
         public List<SearchResult> DoAuctionSearch(Realm realm)
         {
             var searchResults = new List<SearchResult>();
+
+            if (sc.Config.ExcludeSearchesWithFirstFlag == true && UIHelper.BitwiseHasValue(realm.RealmFlags.Value,1))
+            {
+                return searchResults;
+            }
+
+
             List<Auction> auctions = sc.Dictionaries.RealmAuctions[realm.RealmId.Value].auctions;
+
+   
 
             //Get blocked item cache
             //Do not add items which are in the blocked list
             ItemCache blockedListCache = sc.ItemLists.GetListByName("SYS.BLOCKED").ItemCache;
             blockedListCache.FillItemIds();
 
-            
+            if (Options.LatestEpicsOnly)
+            {
+                auctions = auctions
+                    .Where(auction => sc.ItemData.LatestEpics.Contains(auction.item.id))
+                    .ToList();
+                LatestEpics_ModifyItemLevels(auctions);
+            }
             
             if (sc.CurrentProfile.ListOption != 0)
             {
@@ -343,6 +373,7 @@ namespace WOWAuctionApi_Net10
         public bool UseStringFilter;
         public bool IncludeBuyout;
         public bool IncludeBid;
+        public bool LatestEpicsOnly;
         public string StringFilter;
         public long FixedMaxG = 0;
         public long FixedWorthAtLeast = 0;

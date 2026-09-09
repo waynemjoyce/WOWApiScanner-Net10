@@ -145,5 +145,39 @@ namespace WOWAuctionApi_Net10
             }
             sc.RealmData.Save();
         }
+
+        private void btnUnpickLocks_Click(object sender, EventArgs e)
+        {
+            int startX = 10414;
+            int startY = 1494;
+
+            int mouseX = startX;
+            int mouseY = startY;
+
+            int rows = int.Parse(txtUnpickLockRows.Text);
+            int columns = 12;
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    mouseX = startX + (j * 80);
+                    mouseY = startY + (i * 82);
+
+                    //Ready to pick lock
+                    SendKeys.Send("9");
+
+                    //Left click item to pick lock and wait 1.6 seconds
+                    MouseHelper.MoveAndClick(mouseX, mouseY, InteractionMouseClickType.Left);
+                    Thread.Sleep(1600);
+
+                    //Right click item to open the box, wait 1 second
+                    MouseHelper.MoveAndClick(mouseX, mouseY, InteractionMouseClickType.Right);
+                    Thread.Sleep(1000);
+
+                }
+
+            }
+        }
     }
 }

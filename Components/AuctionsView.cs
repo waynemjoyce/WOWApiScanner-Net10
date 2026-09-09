@@ -226,6 +226,9 @@ namespace WOWAuctionApi_Net10
                 //lvi.SubItems.Add((sc.ItemData.MidnightItemIds.Contains(result.ItemId)) ? "Y" : "");
 
                 lvi.SubItems.Add((result.ItemId >= sc.Config.LatestXpacItemId) ? "Y" : "");
+                
+                //Add column and uncomment the following to add bonuses
+                //lvi.SubItems.Add(toolTip);
                 lvAuctions.Items.Add(lvi);
             }
             lvAuctions.ResumeLayout();

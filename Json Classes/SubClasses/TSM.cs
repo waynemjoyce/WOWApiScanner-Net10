@@ -15,5 +15,7 @@ namespace WOWAuctionApi_Net10
         public float? saleRate { get; set; }
         public float? soldPerDay { get; set; }
         public long? historical { get; set; }
+
+        public long? vendorSell { get; set; }
     }
 }

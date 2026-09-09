@@ -51,6 +51,8 @@ namespace WOWAuctionApi_Net10
         public bool BackupRealmDataOnStart = false;
         [JsonIgnore]
         public bool BackupRealmDataOnClose = false;
+        [JsonIgnore]
+        public bool ExcludeSearchesWithFirstFlag = false;
 
         public static Config LoadFromFile(string fileName)
         {

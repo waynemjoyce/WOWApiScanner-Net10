@@ -225,7 +225,7 @@
             // 
             numStockLimit.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             numStockLimit.Location = new Point(258, 468);
-            numStockLimit.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            numStockLimit.Maximum = new decimal(new int[] { 5000, 0, 0, 0 });
             numStockLimit.Name = "numStockLimit";
             numStockLimit.Size = new Size(130, 39);
             numStockLimit.TabIndex = 196;

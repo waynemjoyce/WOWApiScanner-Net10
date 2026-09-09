@@ -45,6 +45,9 @@
             btnRunScript = new Button();
             button3 = new Button();
             btnGeneralTest = new Button();
+            txtUnpickLockRows = new TextBox();
+            label3 = new Label();
+            btnUnpickLocks = new Button();
             SuspendLayout();
             // 
             // txtX
@@ -206,11 +209,41 @@
             btnGeneralTest.UseVisualStyleBackColor = true;
             btnGeneralTest.Click += btnGeneralTest_Click;
             // 
+            // txtUnpickLockRows
+            // 
+            txtUnpickLockRows.Location = new Point(1479, 702);
+            txtUnpickLockRows.Name = "txtUnpickLockRows";
+            txtUnpickLockRows.Size = new Size(200, 39);
+            txtUnpickLockRows.TabIndex = 17;
+            txtUnpickLockRows.Text = "5";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1353, 708);
+            label3.Name = "label3";
+            label3.Size = new Size(68, 32);
+            label3.TabIndex = 18;
+            label3.Text = "Rows";
+            // 
+            // btnUnpickLocks
+            // 
+            btnUnpickLocks.Location = new Point(1724, 705);
+            btnUnpickLocks.Name = "btnUnpickLocks";
+            btnUnpickLocks.Size = new Size(150, 46);
+            btnUnpickLocks.TabIndex = 19;
+            btnUnpickLocks.Text = "Unpick";
+            btnUnpickLocks.UseVisualStyleBackColor = true;
+            btnUnpickLocks.Click += btnUnpickLocks_Click;
+            // 
             // FormMouseTest
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2158, 1085);
+            Controls.Add(btnUnpickLocks);
+            Controls.Add(label3);
+            Controls.Add(txtUnpickLockRows);
             Controls.Add(btnGeneralTest);
             Controls.Add(button3);
             Controls.Add(btnRunScript);
@@ -257,5 +290,8 @@
         private Button btnRunScript;
         private Button button3;
         private Button btnGeneralTest;
+        private TextBox txtUnpickLockRows;
+        private Label label3;
+        private Button btnUnpickLocks;
     }
 }

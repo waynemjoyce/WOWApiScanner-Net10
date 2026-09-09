@@ -118,8 +118,8 @@
             imgProfile48 = new ImageList(components);
             pnlAuctionData = new Panel();
             auctionsView2 = new AuctionsView();
-            charts1 = new Charts();
             auctionsView1 = new AuctionsView();
+            charts1 = new Charts();
             mainOptions1 = new MainOptions();
             itemClassOptions1 = new ItemClassOptions();
             bonusOptions1 = new BonusOptions();
@@ -2142,8 +2142,8 @@
             // pnlAuctionData
             // 
             pnlAuctionData.Controls.Add(auctionsView2);
-            pnlAuctionData.Controls.Add(charts1);
             pnlAuctionData.Controls.Add(auctionsView1);
+            pnlAuctionData.Controls.Add(charts1);
             pnlAuctionData.Location = new Point(610, 529);
             pnlAuctionData.Name = "pnlAuctionData";
             pnlAuctionData.Size = new Size(2750, 1445);
@@ -2158,6 +2158,14 @@
             auctionsView2.TabIndex = 137;
             auctionsView2.Visible = false;
             // 
+            // auctionsView1
+            // 
+            auctionsView1.Location = new Point(0, 2);
+            auctionsView1.Name = "auctionsView1";
+            auctionsView1.Size = new Size(1300, 1417);
+            auctionsView1.TabIndex = 135;
+            auctionsView1.Visible = false;
+            // 
             // charts1
             // 
             charts1.Location = new Point(1386, 0);
@@ -2165,14 +2173,6 @@
             charts1.Size = new Size(773, 1419);
             charts1.TabIndex = 136;
             charts1.Visible = false;
-            // 
-            // auctionsView1
-            // 
-            auctionsView1.Location = new Point(0, 2);
-            auctionsView1.Name = "auctionsView1";
-            auctionsView1.Size = new Size(1380, 1417);
-            auctionsView1.TabIndex = 135;
-            auctionsView1.Visible = false;
             // 
             // mainOptions1
             // 

@@ -12,9 +12,9 @@
   "OptionSets": [
     {
       "SetName": "Main",
-      "UseDefaultAttributes": true,
+      "UseDefaultAttributes": false,
       "Attributes": {
-        "TogsPerColumn": 7,
+        "TogsPerColumn": 8,
         "Width": 60,
         "Height": 32,
         "XStart": 30,
@@ -86,6 +86,15 @@
           "ToggleColorDark": "White",
           "BackColorLight": "Gray",
           "ToggleColorLight": "Gainsboro"
+        },
+        {
+          "Id": 128,
+          "Name": "Latest Epics Only",
+          "Label": "Latest Epics Only",
+          "BackColorDark": "MediumOrchid",
+          "ToggleColorDark": "Thistle",
+          "BackColorLight": "DarkViolet",
+          "ToggleColorLight": "Plum"
         }
       ]
     },
@@ -749,6 +758,15 @@
           "ToggleColorDark": "PaleGreen",
           "BackColorLight": "DarkGreen",
           "ToggleColorLight": "DarkSeaGreen"
+        },
+        {
+          "Id": 2048,
+          "Name": "Exclude Searches With First Flag",
+          "Label": "Exclude Searches With First Flag",
+          "BackColorDark": "Orange",
+          "ToggleColorDark": "NavajoWhite",
+          "BackColorLight": "Chocolate",
+          "ToggleColorLight": "Tan"
         }
       ]
     },
@@ -775,14 +793,23 @@
           "BackColorLight": "ForestGreen",
           "ToggleColorLight": "PaleGreen"
         },
+                {
+          "Id": 2,
+          "Name": "S",
+          "Label": "Stock sort (S)",
+          "BackColorDark": "DarkOrange",
+          "ToggleColorDark": "PeachPuff",
+          "BackColorLight": "DarkOrange",
+          "ToggleColorLight": "PeachPuff"
+        },
         {
-          "Id": 32,
-          "Name": "Z",
-          "Label": "Zul Farak transmog received (Z)",
-          "BackColorDark": "Sienna",
-          "ToggleColorDark": "Wheat",
-          "BackColorLight": "Sienna",
-          "ToggleColorLight": "Wheat"
+          "Id": 64,
+          "Name": "K",
+          "Label": "Razorfen Kraul (K)",
+          "BackColorDark": "LimeGreen",
+          "ToggleColorDark": "PaleGreen",
+          "BackColorLight": "DarkGreen",
+          "ToggleColorLight": "DarkSeaGreen"
         }
       ]
     }

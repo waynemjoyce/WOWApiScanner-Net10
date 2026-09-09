@@ -16499,6 +16499,90 @@
       "IsHordeOnly": false,
       "Description": "Finally caught a blind cave skipper. He flopped helplessly for twenty minutes and then let out a burp. Great companion he is!",
       "Source": null
+    },
+    {
+      "Id": 5129,
+      "Name": "Slitherfang",
+      "BattlePetType": "Beast",
+      "IsTradable": true,
+      "IsBattlePet": false,
+      "IsCapturable": false,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "Rescued from the Altar of Fangs, Slitherfang is a tenacious, fierce, and positively adorable survivor.",
+      "Source": null
+    },
+    {
+      "Id": 3526,
+      "Name": "Three-Eyed Fish",
+      "BattlePetType": "Aquatic",
+      "IsTradable": true,
+      "IsBattlePet": true,
+      "IsCapturable": false,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "Like Neltharion, this fish went mad listening to whispers of the Old Cods.",
+      "Source": null
+    },
+    {
+      "Id": 5020,
+      "Name": "Overloaded Manaling",
+      "BattlePetType": "Magic",
+      "IsTradable": true,
+      "IsBattlePet": true,
+      "IsCapturable": false,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "The naga\u0027s mix of arcane and void magics have disturbed the mana wyrms around Daggerspine Point making them extremely hostile. The very few manalings remaining in the aftermath of their ritual are showing unique abilities.",
+      "Source": null
+    },
+    {
+      "Id": 5038,
+      "Name": "Wriggling Capybara",
+      "BattlePetType": "Beast",
+      "IsTradable": true,
+      "IsBattlePet": true,
+      "IsCapturable": false,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "At home in small dens, these little guys wriggle into all sorts of tight spots, even sometimes supply pouches.",
+      "Source": null
+    },
+    {
+      "Id": 5125,
+      "Name": "Soulcoil Remnant",
+      "BattlePetType": "Magic",
+      "IsTradable": true,
+      "IsBattlePet": false,
+      "IsCapturable": true,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "Even a failed ritual can leave something behind.",
+      "Source": null
+    },
+    {
+      "Id": 5134,
+      "Name": "Cauldron Concoction",
+      "BattlePetType": "Magic",
+      "IsTradable": true,
+      "IsBattlePet": false,
+      "IsCapturable": true,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "Infused with a raging spirit and a combination of pristine ritual ingredients.",
+      "Source": null
+    },
+    {
+      "Id": 5040,
+      "Name": "Curious Lynx Kitten",
+      "BattlePetType": "Beast",
+      "IsTradable": true,
+      "IsBattlePet": true,
+      "IsCapturable": false,
+      "IsAllianceOnly": false,
+      "IsHordeOnly": false,
+      "Description": "The saying curiosity killed the cat wasn\u0027t written about the Eversong lynx, even if their reckless kittens do find their way to the frontlines. A few rangers have found a lifelong companion stowed away in the supply wagons on campaign.",
+      "Source": null
     }
   ]
 }
