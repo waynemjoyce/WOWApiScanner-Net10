@@ -162,6 +162,8 @@ namespace WOWAuctionApi_Net10
 
 
             lvRealms.FullRowSelect = true;
+            lvRealms.ListViewItemSorter = new ListViewItemComparer(1, SortOrder.Ascending);
+            lvRealms.ColumnClick += LvRealms_ColumnClick;
 
             btnToggleRealms.Visible = true;
             OptionsTitle = "      Realms";
@@ -199,6 +201,31 @@ namespace WOWAuctionApi_Net10
                 tsiUnflag.Click += miUnflagRealmSpecific_Click;
                 miUnflagAllSpecific.DropDownItems.AddRange(new ToolStripItem[] { tsiUnflag });
             }
+        }
+
+        private void LvRealms_ColumnClick(object? sender, ColumnClickEventArgs e)
+        {
+            if (sender is not ListView lvRealms) return;
+
+            // Retrieve the current comparer
+            if (lvRealms.ListViewItemSorter is not ListViewItemComparer comparer) return;
+
+            // If the clicked column is already the sorted column, toggle the order
+            if (e.Column == comparer.ColumnIndex)
+            {
+                comparer.Order = comparer.Order == SortOrder.Ascending
+                    ? SortOrder.Descending
+                    : SortOrder.Ascending;
+            }
+            else
+            {
+                // Set to the newly clicked column and default to Ascending
+                comparer.ColumnIndex = e.Column;
+                comparer.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort operation
+            lvRealms.Sort();
         }
 
         private ListViewItem GetLVIForRealm(Realm r, string modified = "", int status = 0, string auctionCount = "0")

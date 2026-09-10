@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\wowauctionapi-net10.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:wowauctionapi-net10.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\components\\realmoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:components\\realmoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\helpers\\listviewitemcomparer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:helpers\\listviewitemcomparer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|c:\\dev\\git\\wowauctionapi-net10\\api classes\\api_tsm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EFF805E4-37CA-5422-B5A8-62FD7D4AED02}|WOWAuctionApi-Net10.csproj|solutionrelative:api classes\\api_tsm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -30,24 +42,67 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "WOWAuctionApi-Net10",
+              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
+              "RelativeDocumentMoniker": "WOWAuctionApi-Net10.csproj",
+              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\WOWAuctionApi-Net10.csproj",
+              "RelativeToolTip": "WOWAuctionApi-Net10.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-09-10T00:52:42.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RealmOptions.cs",
+              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\RealmOptions.cs",
+              "RelativeDocumentMoniker": "Components\\RealmOptions.cs",
+              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Components\\RealmOptions.cs",
+              "RelativeToolTip": "Components\\RealmOptions.cs",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAQwMYAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T00:36:48.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ListViewItemComparer.cs",
+              "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Helpers\\ListViewItemComparer.cs",
+              "RelativeDocumentMoniker": "Helpers\\ListViewItemComparer.cs",
+              "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Helpers\\ListViewItemComparer.cs",
+              "RelativeToolTip": "Helpers\\ListViewItemComparer.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-09T23:10:45.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "API_TSM.cs",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\API Classes\\API_TSM.cs",
               "RelativeDocumentMoniker": "API Classes\\API_TSM.cs",
               "ToolTip": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\API Classes\\API_TSM.cs",
               "RelativeToolTip": "API Classes\\API_TSM.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBsAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-22T03:37:18.184Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "TSM.cs",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Json Classes\\SubClasses\\TSM.cs",
               "RelativeDocumentMoniker": "Json Classes\\SubClasses\\TSM.cs",
@@ -55,12 +110,11 @@
               "RelativeToolTip": "Json Classes\\SubClasses\\TSM.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-22T03:35:01.715Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-22T03:35:01.715Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "FormMain.cs",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Forms\\FormMain.cs",
               "RelativeDocumentMoniker": "Forms\\FormMain.cs",
@@ -68,16 +122,11 @@
               "RelativeToolTip": "Forms\\FormMain.cs",
               "ViewState": "AgIAAIkCAAAAAAAAAAAIwKYCAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-22T02:11:30.586Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "WhenOpened": "2026-08-22T02:11:30.586Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "SearchLogic.cs",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Logic\\SearchLogic.cs",
               "RelativeDocumentMoniker": "Logic\\SearchLogic.cs",
@@ -85,12 +134,11 @@
               "RelativeToolTip": "Logic\\SearchLogic.cs",
               "ViewState": "AgIAAFMAAAAAAAAAAAAgwGAAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-22T01:53:08.058Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-22T01:53:08.058Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ItemData.cs",
               "DocumentMoniker": "C:\\Dev\\Git\\WOWAuctionApi-Net10\\Json Classes\\ItemData.cs",
               "RelativeDocumentMoniker": "Json Classes\\ItemData.cs",
@@ -98,8 +146,7 @@
               "RelativeToolTip": "Json Classes\\ItemData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-22T01:50:50.15Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-22T01:50:50.15Z"
             }
           ]
         }

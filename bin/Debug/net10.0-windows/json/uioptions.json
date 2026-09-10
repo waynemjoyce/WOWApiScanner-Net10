@@ -806,10 +806,10 @@
           "Id": 64,
           "Name": "K",
           "Label": "Razorfen Kraul (K)",
-          "BackColorDark": "LimeGreen",
-          "ToggleColorDark": "PaleGreen",
-          "BackColorLight": "DarkGreen",
-          "ToggleColorLight": "DarkSeaGreen"
+          "BackColorDark": "Sienna",
+          "ToggleColorDark": "Wheat",
+          "BackColorLight": "Sienna",
+          "ToggleColorLight": "Wheat"
         }
       ]
     }
