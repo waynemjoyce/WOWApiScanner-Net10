@@ -6,7 +6,7 @@
       "BackColor": "#AC5258",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 535,
+      "Stock": 625,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -17,7 +17,7 @@
       "BackColor": "#427084",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 531,
+      "Stock": 619,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -28,7 +28,7 @@
       "BackColor": "#800000",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 525,
+      "Stock": 623,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -39,7 +39,7 @@
       "BackColor": "#674EA6",
       "Flagged": false,
       "RealmFlags": 64,
-      "Stock": 617,
+      "Stock": 679,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -72,7 +72,7 @@
       "BackColor": "#7A0000",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 515,
+      "Stock": 611,
       "Sales": 0,
       "Active": true,
       "Area": "BR"
@@ -94,7 +94,7 @@
       "BackColor": "#171717",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 538,
+      "Stock": 641,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -116,7 +116,7 @@
       "BackColor": "#990000",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 520,
+      "Stock": 614,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -127,8 +127,8 @@
       "BackColor": "#92827E",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 517,
-      "Sales": 2004,
+      "Stock": 616,
+      "Sales": 0,
       "Active": true,
       "Area": "US"
     },
@@ -149,7 +149,7 @@
       "BackColor": "#3C78D8",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 536,
+      "Stock": 633,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -171,7 +171,7 @@
       "BackColor": "#AD5000",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 540,
+      "Stock": 640,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -193,7 +193,7 @@
       "BackColor": "#434343",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 519,
+      "Stock": 607,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -204,7 +204,7 @@
       "BackColor": "#A64D79",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 515,
+      "Stock": 609,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -215,7 +215,7 @@
       "BackColor": "#D97E25",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 521,
+      "Stock": 613,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -281,8 +281,8 @@
       "BackColor": "#DBA40A",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 530,
-      "Sales": 19985,
+      "Stock": 629,
+      "Sales": 0,
       "Active": true,
       "Area": "US"
     },
@@ -292,7 +292,7 @@
       "BackColor": "#6AA84F",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 523,
+      "Stock": 622,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -314,7 +314,7 @@
       "BackColor": "#61040B",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 522,
+      "Stock": 620,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -347,7 +347,7 @@
       "BackColor": "#FD7800",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 529,
+      "Stock": 628,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -358,7 +358,7 @@
       "BackColor": "#000043",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 515,
+      "Stock": 608,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -380,7 +380,7 @@
       "BackColor": "#674EA6",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 514,
+      "Stock": 651,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -391,7 +391,7 @@
       "BackColor": "#434343",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 520,
+      "Stock": 617,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -434,9 +434,9 @@
       "RealmId": 1136,
       "BackColor": "#446B32",
       "Flagged": false,
-      "RealmFlags": 0,
-      "Stock": 534,
-      "Sales": 10900,
+      "RealmFlags": 64,
+      "Stock": 689,
+      "Sales": 0,
       "Active": true,
       "Area": "US"
     },
@@ -446,7 +446,7 @@
       "BackColor": "#660000",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 524,
+      "Stock": 621,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -456,9 +456,9 @@
       "RealmId": 57,
       "BackColor": "#A59559",
       "Flagged": false,
-      "RealmFlags": 0,
-      "Stock": 520,
-      "Sales": 338,
+      "RealmFlags": 64,
+      "Stock": 670,
+      "Sales": 0,
       "Active": true,
       "Area": "US"
     },
@@ -468,7 +468,7 @@
       "BackColor": "#0D2343",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 520,
+      "Stock": 615,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -476,10 +476,10 @@
     {
       "RealmName": "Kel\u0027Thuzad",
       "RealmId": 3693,
-      "BackColor": "#990000",
+      "BackColor": "#360000",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 519,
+      "Stock": 614,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -501,7 +501,7 @@
       "BackColor": "#674EA6",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 519,
+      "Stock": 617,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -512,7 +512,7 @@
       "BackColor": "#AAAAAA",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 518,
+      "Stock": 616,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -523,7 +523,7 @@
       "BackColor": "#472000",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 516,
+      "Stock": 615,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -534,7 +534,7 @@
       "BackColor": "#6AA84F",
       "Flagged": false,
       "RealmFlags": 64,
-      "Stock": 609,
+      "Stock": 647,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -544,8 +544,8 @@
       "RealmId": 77,
       "BackColor": "#853E22",
       "Flagged": false,
-      "RealmFlags": 0,
-      "Stock": 535,
+      "RealmFlags": 64,
+      "Stock": 690,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -567,7 +567,7 @@
       "BackColor": "#572513",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 539,
+      "Stock": 652,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -578,7 +578,7 @@
       "BackColor": "#A64D79",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 526,
+      "Stock": 626,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -586,10 +586,10 @@
     {
       "RealmName": "Onyxia",
       "RealmId": 104,
-      "BackColor": "#990000",
+      "BackColor": "#992E00",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 521,
+      "Stock": 619,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -600,7 +600,7 @@
       "BackColor": "#674EA6",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 529,
+      "Stock": 626,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -610,8 +610,8 @@
       "RealmId": 5,
       "BackColor": "#660000",
       "Flagged": false,
-      "RealmFlags": 0,
-      "Stock": 516,
+      "RealmFlags": 64,
+      "Stock": 690,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -622,7 +622,7 @@
       "BackColor": "#383800",
       "Flagged": true,
       "RealmFlags": 0,
-      "Stock": 517,
+      "Stock": 616,
       "Sales": 0,
       "Active": true,
       "Area": "LA"
@@ -633,7 +633,7 @@
       "BackColor": "#C18638",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 513,
+      "Stock": 610,
       "Sales": 0,
       "Active": true,
       "Area": "LA"
@@ -644,7 +644,7 @@
       "BackColor": "#004000",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 511,
+      "Stock": 632,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -676,8 +676,8 @@
       "RealmId": 76,
       "BackColor": "#030A48",
       "Flagged": false,
-      "RealmFlags": 0,
-      "Stock": 515,
+      "RealmFlags": 64,
+      "Stock": 665,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -688,7 +688,7 @@
       "BackColor": "#00007E",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 526,
+      "Stock": 626,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -732,7 +732,7 @@
       "BackColor": "#888888",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 516,
+      "Stock": 616,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -743,8 +743,8 @@
       "BackColor": "#2468DA",
       "Flagged": false,
       "RealmFlags": 64,
-      "Stock": 630,
-      "Sales": 1425,
+      "Stock": 683,
+      "Sales": 0,
       "Active": true,
       "Area": "US"
     },
@@ -765,7 +765,7 @@
       "BackColor": "#674EA6",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 521,
+      "Stock": 618,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -775,8 +775,8 @@
       "RealmId": 11,
       "BackColor": "#FD7800",
       "Flagged": false,
-      "RealmFlags": 0,
-      "Stock": 518,
+      "RealmFlags": 64,
+      "Stock": 672,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -809,7 +809,7 @@
       "BackColor": "#990000",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 523,
+      "Stock": 622,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -820,7 +820,7 @@
       "BackColor": "#8F3EC0",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 522,
+      "Stock": 616,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -831,7 +831,7 @@
       "BackColor": "#A2BD74",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 520,
+      "Stock": 618,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -842,7 +842,7 @@
       "BackColor": "#2B7AD3",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 518,
+      "Stock": 614,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -853,7 +853,7 @@
       "BackColor": "#674EA6",
       "Flagged": false,
       "RealmFlags": 0,
-      "Stock": 520,
+      "Stock": 615,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -874,8 +874,8 @@
       "RealmId": 1171,
       "BackColor": "#C43F1D",
       "Flagged": false,
-      "RealmFlags": 0,
-      "Stock": 523,
+      "RealmFlags": 64,
+      "Stock": 678,
       "Sales": 0,
       "Active": true,
       "Area": "US"
@@ -907,8 +907,8 @@
       "RealmId": 61,
       "BackColor": "#927320",
       "Flagged": false,
-      "RealmFlags": 0,
-      "Stock": 518,
+      "RealmFlags": 64,
+      "Stock": 672,
       "Sales": 0,
       "Active": true,
       "Area": "US"

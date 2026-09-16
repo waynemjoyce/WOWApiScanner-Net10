@@ -231,7 +231,7 @@
         }
       ]
     },
-        {
+    {
       "SetName": "SubClass",
       "UseDefaultAttributes": false,
       "Attributes": {
@@ -316,7 +316,7 @@
           "ToggleColorDark": "Gainsboro",
           "BackColorLight": "DimGray",
           "ToggleColorLight": "LightGray"
-        },        
+        },
         {
           "Id": 256,
           "Name": "Crossbow",
@@ -773,7 +773,7 @@
     {
       "SetName": "RealmFlags",
       "UseDefaultAttributes": false,
-      "Attributes": { 
+      "Attributes": {
         "TogsPerColumn": 7,
         "Width": 60,
         "Height": 32,
@@ -789,11 +789,11 @@
           "Name": "P",
           "Label": "Purchase items last hour (P)",
           "BackColorDark": "ForestGreen",
-          "ToggleColorDark": "PaleGreen", 
+          "ToggleColorDark": "PaleGreen",
           "BackColorLight": "ForestGreen",
           "ToggleColorLight": "PaleGreen"
         },
-                {
+        {
           "Id": 2,
           "Name": "S",
           "Label": "Stock sort (S)",
@@ -803,13 +803,22 @@
           "ToggleColorLight": "PeachPuff"
         },
         {
+          "Id": 4,
+          "Name": "D",
+          "Label": "Delayed Post (D)",
+          "BackColorDark": "MediumVioletRed",
+          "ToggleColorDark": "MistyRose",
+          "BackColorLight": "MediumVioletRed",
+          "ToggleColorLight": "MistyRose"
+        },
+        {
           "Id": 64,
-          "Name": "K",
-          "Label": "Razorfen Kraul (K)",
-          "BackColorDark": "Sienna",
-          "ToggleColorDark": "Wheat",
-          "BackColorLight": "Sienna",
-          "ToggleColorLight": "Wheat"
+          "Name": "W",
+          "Label": "Razorfen Downs (W)",
+          "BackColorDark": "CornflowerBlue",
+          "ToggleColorDark": "Azure",
+          "BackColorLight": "CornflowerBlue",
+          "ToggleColorLight": "Azure"
         }
       ]
     }
